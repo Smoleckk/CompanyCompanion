@@ -1,0 +1,88 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <h1>{{pageTitle}}</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
+                <mat-form-field class="full-width">
+                    <mat-label>Invoice No</mat-label>
+                    <input matInput placeholder="Invoice No" formControlName="invoiceNo">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-select (selectionChange)="CustomerChange()" formControlName="customerId"
+                        placeholder="Customer Id">
+                        <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Delivery Address" formControlName="deliveryAddress">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Remarks</mat-label>
+                    <input matInput placeholder="Remarks" formControlName="remarks">
+                </mat-form-field>
+
+                <h3>Add Products</h3>
+                <div class="add-products-form" [formGroup]="invoiceForm">
+                    <ng-container formArrayName="details">
+                        <ng-container *ngFor="let detailForm of details.controls; let i = index">
+                            <div class="lesson-form-row" [formGroupName]="i">
+                                <mat-form-field appearance="fill">
+                                    <mat-select (selectionChange)="ProductChange(i)" formControlName="productCode"
+                                        placeholder="Product Code">
+                                        <mat-option *ngFor="let item of getProduct" [value]="item.code">{{item.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <input matInput formControlName="productName" placeholder="productName">
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <input type="number" (change)="ItemCalculation(i)" matInput formControlName="qty"
+                                        placeholder="qty">
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <input type="number" (change)="ItemCalculation(i)" matInput
+                                        formControlName="salesPrice" placeholder="salesPrice">
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <input matInput formControlName="total" placeholder="total">
+                                </mat-form-field>
+                                <mat-icon class="delete-btn" (click)="deletePProduct(i)">
+                                    delete_forever</mat-icon>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <button mat-mini-fab (click)="addProduct()">
+                        <mat-icon class="add-course-btn">add</mat-icon>
+                    </button>
+                </div>
+                <mat-form-field class="full-width">
+                    <mat-label>Summary Total</mat-label>
+                    <input matInput placeholder="Summary Total" formControlName="total">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Summary Tax</mat-label>
+                    <input matInput placeholder="Summary Tax" formControlName="tax">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Summary NetTotal</mat-label>
+                    <input matInput placeholder="Summary NetTotal" formControlName="netTotal">
+                </mat-form-field>
+
+                <div class="form-submit">
+                    <a routerLink="/invoice-list" mat-raised-button color="accent">Back</a>
+                    <button mat-raised-button color="primary">Save</button>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+
+
+
+
+</div>
