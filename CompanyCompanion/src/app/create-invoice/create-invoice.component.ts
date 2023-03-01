@@ -36,13 +36,27 @@ export class CreateInvoiceComponent implements OnInit {
 
   invoiceForm = this.builder.group({
     invoiceNo: this.builder.control(''),
+    placeOfIssue: this.builder.control(''),
+    dateIssued: this.builder.control(''),
+    dueDate: this.builder.control(''),
     customerId: this.builder.control(''),
     customerName: this.builder.control(''),
-    deliveryAddress: this.builder.control(''),
-    remarks: this.builder.control(''),
+    customerNip: this.builder.control(''),
+    customerDeliveryAddress: this.builder.control(''),
+    customerCityCode: this.builder.control(''),
+    sellerId: this.builder.control(''),
+    sellerIdName: this.builder.control(''),
+    sellerNip: this.builder.control(''),
+    sellerDeliveryAddress: this.builder.control(''),
+    sellerCityCode: this.builder.control(''),
     total: this.builder.control({ value: 0, disabled: true }),
     tax: this.builder.control({ value: 0, disabled: true }),
     netTotal: this.builder.control({ value: 0, disabled: true }),
+    paymentStatus: this.builder.control(''),
+    paymentType: this.builder.control(''),
+    accountNumber: this.builder.control(''),
+    paymentDescription: this.builder.control(''),
+    remarks: this.builder.control(''),
     details: this.builder.array([])
   });
 
@@ -56,8 +70,11 @@ export class CreateInvoiceComponent implements OnInit {
       productCode: this.builder.control('', Validators.required),
       productName: this.builder.control(''),
       qty: this.builder.control(1),
+      unit: this.builder.control('Sztuka'),
       salesPrice: this.builder.control(0),
-      total: this.builder.control({ value: 0, disabled: true }),
+      vat: this.builder.control(0),
+      bruttoPrice: this.builder.control({ value: 0, disabled: true }),
+      nettoPrice: this.builder.control({ value: 0, disabled: true }),
     })
     let customerCode = this.invoiceForm.get("customerId")?.value;
     if (customerCode != null && customerCode != '') {
@@ -72,17 +89,17 @@ export class CreateInvoiceComponent implements OnInit {
   }
 
   SetEditInfo(invoiceNo: any) {
-    this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
-      let editData: any;
-      editData = res;
-      if (editData != null) {
-        this.invoiceForm.setValue({
-          invoiceNo: editData.invoiceNo, customerId: editData.customerId,
-          customerName: editData.customerName, deliveryAddress: editData.deliveryAddress, remarks: editData.remarks,
-          total: editData.total, tax: editData.tax, netTotal: editData.netTotal, details: []
-        })
-      }
-    })
+    // this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
+    //   let editData: any;
+    //   editData = res;
+    //   if (editData != null) {
+    //     this.invoiceForm.setValue({
+    //       invoiceNo: editData.invoiceNo, customerId: editData.customerId,
+    //       customerName: editData.customerName, deliveryAddress: editData.deliveryAddress, remarks: editData.remarks,
+    //       total: editData.total, tax: editData.tax, netTotal: editData.netTotal, details: []
+    //     })
+    //   }
+    // })
   }
 
   SaveInvoice() {
@@ -113,7 +130,7 @@ export class CreateInvoiceComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm.get("deliveryAddress")?.setValue(customData.address + ' ,' + customData.phone + ' ,' + customData.email)
+        this.invoiceForm.get("customerDeliveryAddress")?.setValue(customData.address + ' ,' + customData.phone + ' ,' + customData.email)
         this.invoiceForm.get("customerName")?.setValue(customData.name)
       }
     })
@@ -140,26 +157,28 @@ export class CreateInvoiceComponent implements OnInit {
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
     let qty = this.invoiceProduct.get("qty")?.value;
     let price = this.invoiceProduct.get("salesPrice")?.value;
-    let total = qty * price;
-    this.invoiceProduct.get("total")?.setValue(total)
+    let vat = this.invoiceProduct.get("vat")?.value;
+    let totalBrutto = qty * price;
+    let totalNetto = qty * price * (1+(vat/100));
+    this.invoiceProduct.get("bruttoPrice")?.setValue(totalBrutto)
+    this.invoiceProduct.get("nettoPrice")?.setValue(totalNetto)
 
     this.SummaryCalculation();
   }
   SummaryCalculation() {
     let array = this.invoiceForm.getRawValue().details;
-    let sumTotal = 0;
+    let sumTotalBrutto = 0;
+    let sumTotalNetto = 0;
     array.forEach((x: any) => {
-      sumTotal = sumTotal + x.total;
+      sumTotalBrutto = sumTotalBrutto + x.bruttoPrice;
+    });
+    array.forEach((x: any) => {
+      sumTotalNetto = sumTotalNetto + x.nettoPrice;
     });
 
-    //tax 
-    // let sumTax=((7/100)*sumTotal).toPrecision(2);
-    let sumTax = (7 / 100) * sumTotal;
-    let netTotal = sumTotal + sumTax;
-
-    this.invoiceForm.get("total")?.setValue(sumTotal)
-    this.invoiceForm.get("tax")?.setValue(sumTax)
-    this.invoiceForm.get("netTotal")?.setValue(netTotal)
+    this.invoiceForm.get("total")?.setValue(sumTotalBrutto)
+    this.invoiceForm.get("tax")?.setValue(sumTotalNetto-sumTotalBrutto)
+    this.invoiceForm.get("netTotal")?.setValue(sumTotalNetto)
 
   }
 }

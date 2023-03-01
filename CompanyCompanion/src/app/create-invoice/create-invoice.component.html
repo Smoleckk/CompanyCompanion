@@ -15,7 +15,7 @@
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label>Place of issue</mat-label>
-                                <input matInput placeholder="Place of issue" formControlName="invoiceNo">
+                                <input matInput placeholder="Place of issue" formControlName="placeOfIssue">
                             </mat-form-field>
                         </div>
                     </mat-grid-tile>
@@ -23,11 +23,11 @@
                         <div class="">
                             <mat-form-field class="full-width">
                                 <mat-label>Date Issued</mat-label>
-                                <input type="date" matInput placeholder="Date Issued" formControlName="invoiceNo">
+                                <input type="date" matInput placeholder="Date Issued" formControlName="dateIssued">
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label>Due Date</mat-label>
-                                <input type="date" matInput placeholder="Due Date" formControlName="invoiceNo">
+                                <input type="date" matInput placeholder="Due Date" formControlName="dueDate">
                             </mat-form-field>
                         </div>
                     </mat-grid-tile>
@@ -43,20 +43,23 @@
                     <mat-grid-tile>
                         <div class="">
                             <mat-form-field class="half-width">
-                                <mat-label>Seller</mat-label>
-                                <input matInput placeholder="Seller" formControlName="invoiceNo">
+                                <mat-select  formControlName="sellerId"
+                                    placeholder="Seller Id">
+                                    <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}
+                                    </mat-option>
+                                </mat-select>
                             </mat-form-field>
                             <mat-form-field class="half-width">
-                                <mat-label>NIP</mat-label>
-                                <input matInput placeholder="NIP" formControlName="invoiceNo">
+                                <mat-label>Seller NIP</mat-label>
+                                <input matInput placeholder="Seller NIP" formControlName="sellerNip">
                             </mat-form-field>
                             <mat-form-field class="half-width">
-                                <mat-label>Address</mat-label>
-                                <input matInput placeholder="Street / No" formControlName="invoiceNo">
+                                <mat-label>Seller Address</mat-label>
+                                <input matInput placeholder="Seller Address" formControlName="sellerDeliveryAddress">
                             </mat-form-field>
                             <mat-form-field class="half-width">
-                                <mat-label>City/ Code</mat-label>
-                                <input matInput placeholder="City/ Code" formControlName="invoiceNo">
+                                <mat-label>Seller City/ Code</mat-label>
+                                <input matInput placeholder="Seller City/ Code" formControlName="sellerCityCode">
                             </mat-form-field>
                         </div>
                     </mat-grid-tile>
@@ -70,16 +73,16 @@
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="half-width">
-                                <mat-label>NIP</mat-label>
-                                <input matInput placeholder="NIP" formControlName="invoiceNo">
+                                <mat-label>Customer NIP</mat-label>
+                                <input matInput placeholder="Customer NIP" formControlName="customerNip">
                             </mat-form-field>
                             <mat-form-field class="half-width">
-                                <mat-label>Address</mat-label>
-                                <input matInput placeholder="Delivery Address" formControlName="deliveryAddress">
+                                <mat-label>Customer Address</mat-label>
+                                <input matInput placeholder="Customer Address" formControlName="customerDeliveryAddress">
                             </mat-form-field>
                             <mat-form-field class="half-width">
-                                <mat-label>City/ Code</mat-label>
-                                <input matInput placeholder="City/ Code" formControlName="invoiceNo">
+                                <mat-label>Customer City/ Code</mat-label>
+                                <input matInput placeholder="Customer City/ Code" formControlName="customerCityCode">
                             </mat-form-field>
                         </div>
                     </mat-grid-tile>
@@ -87,7 +90,7 @@
                 <!-- Table of products -->
                 <!-- <h3>Add Products</h3> -->
 
-                <mat-grid-list cols="6" rowHeight="40px">
+                <mat-grid-list style="background-color: #346beb;" cols="9" rowHeight="60px">
                     <mat-grid-tile>
                         <h4>Product Code</h4>
                     </mat-grid-tile>
@@ -98,10 +101,19 @@
                         <h4>Quantity</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
+                        <h4>Unit</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
                         <h4>Sales Price</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <h4>Total</h4>
+                        <h4>Vat</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Brutto Price</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Netto Price</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <h4>Action</h4>
@@ -112,7 +124,7 @@
                     <ng-container formArrayName="details">
                         <ng-container *ngFor="let detailForm of details.controls; let i = index">
                             <div [formGroupName]="i">
-                                <mat-grid-list cols="6" rowHeight="70px">
+                                <mat-grid-list cols="9" rowHeight="70px">
                                     <mat-grid-tile>
                                         <mat-form-field appearance="fill">
                                             <mat-select (selectionChange)="ProductChange(i)"
@@ -136,13 +148,29 @@
                                     </mat-grid-tile>
                                     <mat-grid-tile>
                                         <mat-form-field appearance="fill">
+                                            <input (change)="ItemCalculation(i)" matInput
+                                                formControlName="unit" placeholder="Unit">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
                                             <input type="number" (change)="ItemCalculation(i)" matInput
                                                 formControlName="salesPrice" placeholder="salesPrice">
                                         </mat-form-field>
                                     </mat-grid-tile>
                                     <mat-grid-tile>
                                         <mat-form-field appearance="fill">
-                                            <input matInput formControlName="total" placeholder="total">
+                                            <input type="number" (change)="ItemCalculation(i)" matInput formControlName="vat" placeholder="Vat">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput formControlName="bruttoPrice" placeholder="Brutto Price">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <input type="number" matInput formControlName="nettoPrice" placeholder="Netto Price">
                                         </mat-form-field>
                                     </mat-grid-tile>
                                     <mat-grid-tile>
@@ -186,11 +214,11 @@
                         <div class="full-width">
                             <mat-form-field class="full-width">
                                 <mat-label>Payment status</mat-label>
-                                <input matInput placeholder="Payment status" formControlName="invoiceNo">
+                                <input matInput placeholder="Payment status" formControlName="paymentStatus">
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label>Payment type</mat-label>
-                                <input matInput placeholder="Payment type" formControlName="">
+                                <input matInput placeholder="Payment type" formControlName="paymentType">
                             </mat-form-field>
                         </div>
                     </mat-grid-tile>
@@ -198,11 +226,11 @@
                         <div class="full-width">
                             <mat-form-field class="full-width">
                                 <mat-label>Account Number</mat-label>
-                                <input matInput placeholder="Account Number" formControlName="invoiceNo">
+                                <input matInput placeholder="Account Number" formControlName="accountNumber">
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label>Payment Description</mat-label>
-                                <input matInput placeholder="Account Number" formControlName="invoiceNo">
+                                <input matInput placeholder="Account Number" formControlName="paymentDescription">
                             </mat-form-field>
                         </div>
                     </mat-grid-tile>
