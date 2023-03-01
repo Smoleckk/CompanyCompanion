@@ -59,7 +59,23 @@ export class CreateInvoiceComponent implements OnInit {
     remarks: this.builder.control(''),
     details: this.builder.array([])
   });
-
+  SetEditInfo(invoiceNo: any) {
+    this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
+      let editData: any;
+      editData = res;
+      if (editData != null) {
+        this.invoiceForm.setValue({
+          invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
+          customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
+          sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
+          total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
+          paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
+          remarks: editData.remarks,
+          details: []
+        })
+      }
+    })
+  }
   get details() {
     return this.invoiceForm.controls["details"] as FormArray;
   }
@@ -88,19 +104,7 @@ export class CreateInvoiceComponent implements OnInit {
     this.details.removeAt(lessonIndex);
   }
 
-  SetEditInfo(invoiceNo: any) {
-    // this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
-    //   let editData: any;
-    //   editData = res;
-    //   if (editData != null) {
-    //     this.invoiceForm.setValue({
-    //       invoiceNo: editData.invoiceNo, customerId: editData.customerId,
-    //       customerName: editData.customerName, deliveryAddress: editData.deliveryAddress, remarks: editData.remarks,
-    //       total: editData.total, tax: editData.tax, netTotal: editData.netTotal, details: []
-    //     })
-    //   }
-    // })
-  }
+
 
   SaveInvoice() {
     if (this.invoiceForm.valid) {
@@ -159,7 +163,7 @@ export class CreateInvoiceComponent implements OnInit {
     let price = this.invoiceProduct.get("salesPrice")?.value;
     let vat = this.invoiceProduct.get("vat")?.value;
     let totalBrutto = qty * price;
-    let totalNetto = qty * price * (1+(vat/100));
+    let totalNetto = qty * price * (1 + (vat / 100));
     this.invoiceProduct.get("bruttoPrice")?.setValue(totalBrutto)
     this.invoiceProduct.get("nettoPrice")?.setValue(totalNetto)
 
@@ -177,7 +181,7 @@ export class CreateInvoiceComponent implements OnInit {
     });
 
     this.invoiceForm.get("total")?.setValue(sumTotalBrutto)
-    this.invoiceForm.get("tax")?.setValue(sumTotalNetto-sumTotalBrutto)
+    this.invoiceForm.get("tax")?.setValue(sumTotalNetto - sumTotalBrutto)
     this.invoiceForm.get("netTotal")?.setValue(sumTotalNetto)
 
   }
