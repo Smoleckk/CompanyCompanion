@@ -5,72 +5,213 @@
         </mat-card-header>
         <mat-card-content>
             <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
-                <mat-form-field class="full-width">
-                    <mat-label>Invoice No</mat-label>
-                    <input matInput placeholder="Invoice No" formControlName="invoiceNo">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-select (selectionChange)="CustomerChange()" formControlName="customerId"
-                        placeholder="Customer Id">
-                        <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-label>Address</mat-label>
-                    <input matInput placeholder="Delivery Address" formControlName="deliveryAddress">
-                </mat-form-field>
-                <mat-form-field class="full-width">
+                <!-- Header -->
+                <mat-grid-list cols="3" rowHeight="150px">
+                    <mat-grid-tile class="row-flex">
+                        <div class="">
+                            <mat-form-field class="full-width">
+                                <mat-label>Invoice No</mat-label>
+                                <input matInput placeholder="Invoice No" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Place of issue</mat-label>
+                                <input matInput placeholder="Place of issue" formControlName="invoiceNo">
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div class="">
+                            <mat-form-field class="full-width">
+                                <mat-label>Date Issued</mat-label>
+                                <input type="date" matInput placeholder="Date Issued" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Due Date</mat-label>
+                                <input type="date" matInput placeholder="Due Date" formControlName="invoiceNo">
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width">
+                            <mat-label>Upload Logo</mat-label>
+                            <input matInput placeholder="Upload Logo" formControlName="invoiceNo">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <!-- Contractor/Owner -->
+                <mat-grid-list cols="2" rowHeight="400px">
+                    <mat-grid-tile>
+                        <div class="">
+                            <mat-form-field class="half-width">
+                                <mat-label>Seller</mat-label>
+                                <input matInput placeholder="Seller" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                                <mat-label>NIP</mat-label>
+                                <input matInput placeholder="NIP" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                                <mat-label>Address</mat-label>
+                                <input matInput placeholder="Street / No" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                                <mat-label>City/ Code</mat-label>
+                                <input matInput placeholder="City/ Code" formControlName="invoiceNo">
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <div class="">
+                            <mat-form-field class="half-width">
+                                <mat-select (selectionChange)="CustomerChange()" formControlName="customerId"
+                                    placeholder="Customer Id">
+                                    <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                                <mat-label>NIP</mat-label>
+                                <input matInput placeholder="NIP" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                                <mat-label>Address</mat-label>
+                                <input matInput placeholder="Delivery Address" formControlName="deliveryAddress">
+                            </mat-form-field>
+                            <mat-form-field class="half-width">
+                                <mat-label>City/ Code</mat-label>
+                                <input matInput placeholder="City/ Code" formControlName="invoiceNo">
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <!-- Table of products -->
+                <!-- <h3>Add Products</h3> -->
+
+                <mat-grid-list cols="6" rowHeight="40px">
+                    <mat-grid-tile>
+                        <h4>Product Code</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Product Name</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Quantity</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Sales Price</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Total</h4>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <h4>Action</h4>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <div class="add-products-form" [formGroup]="invoiceForm">
+                    <ng-container formArrayName="details">
+                        <ng-container *ngFor="let detailForm of details.controls; let i = index">
+                            <div [formGroupName]="i">
+                                <mat-grid-list cols="6" rowHeight="70px">
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <mat-select (selectionChange)="ProductChange(i)"
+                                                formControlName="productCode" placeholder="Product Code">
+                                                <mat-option *ngFor="let item of getProduct" [value]="item.code">
+                                                    {{item.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput formControlName="productName" placeholder="productName">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <input type="number" (change)="ItemCalculation(i)" matInput
+                                                formControlName="qty" placeholder="qty">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <input type="number" (change)="ItemCalculation(i)" matInput
+                                                formControlName="salesPrice" placeholder="salesPrice">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput formControlName="total" placeholder="total">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-icon class="delete-btn" (click)="deletePProduct(i)">
+                                            delete_forever</mat-icon>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <a mat-mini-fab (click)="addProduct()">
+                        <mat-icon class="add-course-btn">add</mat-icon>
+                    </a>
+                </div>
+                <mat-grid-list cols="3" rowHeight="100px">
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width">
+                            <mat-label>Summary Total</mat-label>
+                            <input matInput placeholder="Summary Total" formControlName="total">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width">
+                            <mat-label>Summary Tax</mat-label>
+                            <input matInput placeholder="Summary Tax" formControlName="tax">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="full-width">
+                            <mat-label>Summary NetTotal</mat-label>
+                            <input matInput placeholder="Summary NetTotal" formControlName="netTotal">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+
+
+                <!-- Details -->
+                <mat-grid-list cols="4" rowHeight="150px">
+                    <mat-grid-tile [rowspan]="1" [colspan]="1">
+                        <div class="full-width">
+                            <mat-form-field class="full-width">
+                                <mat-label>Payment status</mat-label>
+                                <input matInput placeholder="Payment status" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Payment type</mat-label>
+                                <input matInput placeholder="Payment type" formControlName="">
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [rowspan]="1" [colspan]="3">
+                        <div class="full-width">
+                            <mat-form-field class="full-width">
+                                <mat-label>Account Number</mat-label>
+                                <input matInput placeholder="Account Number" formControlName="invoiceNo">
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Payment Description</mat-label>
+                                <input matInput placeholder="Account Number" formControlName="invoiceNo">
+                            </mat-form-field>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <mat-form-field style="width: 100%;">
                     <mat-label>Remarks</mat-label>
                     <input matInput placeholder="Remarks" formControlName="remarks">
                 </mat-form-field>
 
-                <h3>Add Products</h3>
-                <div class="add-products-form" [formGroup]="invoiceForm">
-                    <ng-container formArrayName="details">
-                        <ng-container *ngFor="let detailForm of details.controls; let i = index">
-                            <div class="lesson-form-row" [formGroupName]="i">
-                                <mat-form-field appearance="fill">
-                                    <mat-select (selectionChange)="ProductChange(i)" formControlName="productCode"
-                                        placeholder="Product Code">
-                                        <mat-option *ngFor="let item of getProduct" [value]="item.code">{{item.name}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field appearance="fill">
-                                    <input matInput formControlName="productName" placeholder="productName">
-                                </mat-form-field>
-                                <mat-form-field appearance="fill">
-                                    <input type="number" (change)="ItemCalculation(i)" matInput formControlName="qty"
-                                        placeholder="qty">
-                                </mat-form-field>
-                                <mat-form-field appearance="fill">
-                                    <input type="number" (change)="ItemCalculation(i)" matInput
-                                        formControlName="salesPrice" placeholder="salesPrice">
-                                </mat-form-field>
-                                <mat-form-field appearance="fill">
-                                    <input matInput formControlName="total" placeholder="total">
-                                </mat-form-field>
-                                <mat-icon class="delete-btn" (click)="deletePProduct(i)">
-                                    delete_forever</mat-icon>
-                            </div>
-                        </ng-container>
-                    </ng-container>
-                    <button mat-mini-fab (click)="addProduct()">
-                        <mat-icon class="add-course-btn">add</mat-icon>
-                    </button>
-                </div>
-                <mat-form-field class="full-width">
-                    <mat-label>Summary Total</mat-label>
-                    <input matInput placeholder="Summary Total" formControlName="total">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-label>Summary Tax</mat-label>
-                    <input matInput placeholder="Summary Tax" formControlName="tax">
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <mat-label>Summary NetTotal</mat-label>
-                    <input matInput placeholder="Summary NetTotal" formControlName="netTotal">
-                </mat-form-field>
 
                 <div class="form-submit">
                     <a routerLink="/invoice-list" mat-raised-button color="accent">Back</a>

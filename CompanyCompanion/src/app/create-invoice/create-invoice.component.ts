@@ -35,11 +35,11 @@ export class CreateInvoiceComponent implements OnInit {
   isEdit = false;
 
   invoiceForm = this.builder.group({
-    invoiceNo: this.builder.control('', Validators.required),
-    customerId: this.builder.control('', Validators.required),
-    customerName: this.builder.control('', Validators.required),
-    deliveryAddress: this.builder.control('', Validators.required),
-    remarks: this.builder.control('', Validators.required),
+    invoiceNo: this.builder.control(''),
+    customerId: this.builder.control(''),
+    customerName: this.builder.control(''),
+    deliveryAddress: this.builder.control(''),
+    remarks: this.builder.control(''),
     total: this.builder.control({ value: 0, disabled: true }),
     tax: this.builder.control({ value: 0, disabled: true }),
     netTotal: this.builder.control({ value: 0, disabled: true }),
