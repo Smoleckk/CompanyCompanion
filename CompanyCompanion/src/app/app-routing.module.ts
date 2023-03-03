@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 import { HomeComponent } from './home/home.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
   { path: "user-list", component: UserListComponent, canActivate: [AuthGuard] },
+  { path: "product-list", component: ProductListComponent, canActivate: [AuthGuard] },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "invoice-list", component: InvoiceListComponent, canActivate: [AuthGuard] },
   { path: "create-invoice", component: CreateInvoiceComponent, canActivate: [AuthGuard] },

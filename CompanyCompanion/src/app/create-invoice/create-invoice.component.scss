@@ -5,7 +5,10 @@
     margin-bottom: 100px;
     max-width: 900px;
 }
-
+.itemCompleted{
+    color: purple;
+    text-decoration: line-through;
+}
 mat-card {
     padding: 30px;
 }
@@ -38,3 +41,4 @@ mat-card {
         padding: 0px;
     }
 }
+

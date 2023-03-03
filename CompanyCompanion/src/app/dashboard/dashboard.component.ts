@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../service/user.service';
-
+import jsPDF from 'jspdf';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
 
-  constructor(private service:UserService){
-    this.LoadUsers();
+  constructor(){
   }
-  userdata:any;
 
   ngOnInit(): void {
   }
-
-  LoadUsers(){
-    this.service.LoadUsers().subscribe(data=>{
-      this.userdata=data;
+  makePdf() {
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.setFont("helvetica");
+    pdf.setFontSize(4);
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        pdf.save("sample.pdf")
+      }
     })
   }
-
 }

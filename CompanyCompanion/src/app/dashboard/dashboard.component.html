@@ -1,31 +1,100 @@
-<!-- <div class="card-box">
-    <div class="row">
-        <div class="col-sm-4">
-            <a routerLink="create" id="addbtn" class="btn btn-success btn-rounded">Add New</a>
+<a (click)="makePdf()" mat-raised-button color="primary">pdf</a>
+
+
+<div class="page" size="A4" id="content" #content>
+    <div class="wrapper">
+        <div class="one">Company Companion!</div>
+        <div class="two">
+            <p class="pborder">Miejsce wystawienia</p>
+            <p>Warszawa</p>
+            <p class="pborder">Data wystawienia</p>
+            <p>03-03-2023</p>
+            <p class="pborder">Data wykonania uslugi</p>
+            <p>03-03-2023</p>
         </div>
-    </div>
-    <br>
+        <div class="three">
+            <p class="pborder">Sprzedawca</p>
+            <p>Uslugi Informatyczne Jan Nowak</p>
+            <p>NIP: 716464892</p>
+            <p>Kowal 12</p>
+            <p>00-001 Warszawa</p>
+        </div>
+        <div class="four">
+            <p class="pborder">Sprzedawca</p>
+            <p>Uslugi Informatyczne Jan Nowak</p>
+            <p>NIP: 716464892</p>
+            <p>Kowal 12</p>
+            <p>00-001 Warszawa</p>
+        </div>
+        <div class="five">
+            <p class="invoiceHeader">Faktura VAT 02/02/2021</p>
 
-    <div class="row">
-        <div class="table-responsive">
-
-            <table class="table table-bordered" id="datatable" role="grid">
-                <thead class="bg-primary text-white">
-                    <tr role="row">
-                        <th>username</th>
-                        <th>password</th>
+        </div>
+        <div class="six">
+            <table style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">Kod</th>
+                        <th style="width: 170px;">Nazwa towaru lub uslugi</th>
+                        <th style="width: 50px;">Jm.</th>
+                        <th style="width: 50px;">Ilosc</th>
+                        <th style="width: 50px;">Cena netto</th>
+                        <th style="width: 50px;">Warosc netto</th>
+                        <th style="width: 50px;">Stawka Vat</th>
+                        <th style="width: 50px;">Cena brutto</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of userdata">
-                        <td>{{item.username}}</td>
-                        <td>{{item.passwordHash}}</td>
+                    <!-- *ngFor="let item of details.controls;let i=index" [formGroupName]="i" -->
+                    <tr>
+                        <td style="width: 50px;">1</td>
+                        <td style="width: 170px;">Instalacja systemu operacyjnego</td>
+                        <td style="width: 50px;">Szt.</td>
+                        <td style="width: 50px;">1</td>
+                        <td style="width: 50px;">1000</td>
+                        <td style="width: 50px;">1000</td>
+                        <td style="width: 50px;">23</td>
+                        <td style="width: 50px;">1230</td>
                     </tr>
-
                 </tbody>
-            </table>
 
+            </table>
         </div>
+        <div class="seven">
+            <div class="sideBySide">
+                <p style="width: 140px; ">Sposob platnosc: </p>
+                <p>Przelew</p>
+            </div>
+            <div class="sideBySide">
+                <p style="width: 140px; ">Termin platnosc: </p>
+                <p>05-03-2023</p>
+            </div>
+            <div class="sideBySide">
+                <p style="width: 140px; ">Numer konta: </p>
+                <p>49 1020 2892 2276 3005 0000 0000</p>
+            </div>
+        </div>
+        <div class="eight">
+            <div class="sideBySide">
+                <p style="width: 140px; ">Do zaplaty </p>
+                <p style="font-weight: bold;">1 242,10 PLN</p>
+            </div>
+            <div class="sideBySide">
+                <p style="width: 60px; ">Slownie: </p>
+                <p>Tysiac dwiescie czterdziesci dwa 10/100 PLN</p>
+            </div>
+        </div>
+        <div class="nine">
+            <div class="signature">
+                <p>Podpis osoby upowaznionej do wystawienia</p>
+            </div>
+        </div>
+        <div class="ten">
+            <div class="signature">
+                <p>Podpis osoby upowaznionej do odbioru</p>
+            </div>
+        </div>
+
+
     </div>
-</div> -->
-<h1>Dashboard</h1>
+</div>

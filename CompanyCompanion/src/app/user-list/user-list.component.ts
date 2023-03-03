@@ -47,7 +47,4 @@ export class UserListComponent implements OnInit {
       this.LoadUsers();
     })
   }
-
-  opendialog() {
-  }
 }

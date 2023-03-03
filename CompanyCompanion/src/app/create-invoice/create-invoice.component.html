@@ -1,3 +1,6 @@
+<!-- <a (click)="makePdf()" mat-raised-button color="primary">pdf</a> -->
+
+
 <div class="container">
     <mat-card>
         <mat-card-header>
@@ -43,8 +46,7 @@
                     <mat-grid-tile>
                         <div class="">
                             <mat-form-field class="half-width">
-                                <mat-select  formControlName="sellerId"
-                                    placeholder="Seller Id">
+                                <mat-select formControlName="sellerId" placeholder="Seller Id">
                                     <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}
                                     </mat-option>
                                 </mat-select>
@@ -78,7 +80,8 @@
                             </mat-form-field>
                             <mat-form-field class="half-width">
                                 <mat-label>Customer Address</mat-label>
-                                <input matInput placeholder="Customer Address" formControlName="customerDeliveryAddress">
+                                <input matInput placeholder="Customer Address"
+                                    formControlName="customerDeliveryAddress">
                             </mat-form-field>
                             <mat-form-field class="half-width">
                                 <mat-label>Customer City/ Code</mat-label>
@@ -90,7 +93,7 @@
                 <!-- Table of products -->
                 <!-- <h3>Add Products</h3> -->
 
-                <mat-grid-list style="background-color: #346beb;" cols="9" rowHeight="60px">
+                <mat-grid-list style="background-color: #97999c;" cols="9" rowHeight="60px">
                     <mat-grid-tile>
                         <h4>Product Code</h4>
                     </mat-grid-tile>
@@ -148,8 +151,8 @@
                                     </mat-grid-tile>
                                     <mat-grid-tile>
                                         <mat-form-field appearance="fill">
-                                            <input (change)="ItemCalculation(i)" matInput
-                                                formControlName="unit" placeholder="Unit">
+                                            <input (change)="ItemCalculation(i)" matInput formControlName="unit"
+                                                placeholder="Unit">
                                         </mat-form-field>
                                     </mat-grid-tile>
                                     <mat-grid-tile>
@@ -160,7 +163,8 @@
                                     </mat-grid-tile>
                                     <mat-grid-tile>
                                         <mat-form-field appearance="fill">
-                                            <input type="number" (change)="ItemCalculation(i)" matInput formControlName="vat" placeholder="Vat">
+                                            <input type="number" (change)="ItemCalculation(i)" matInput
+                                                formControlName="vat" placeholder="Vat">
                                         </mat-form-field>
                                     </mat-grid-tile>
                                     <mat-grid-tile>
@@ -170,7 +174,8 @@
                                     </mat-grid-tile>
                                     <mat-grid-tile>
                                         <mat-form-field appearance="fill">
-                                            <input type="number" matInput formControlName="nettoPrice" placeholder="Netto Price">
+                                            <input type="number" matInput formControlName="nettoPrice"
+                                                placeholder="Netto Price">
                                         </mat-form-field>
                                     </mat-grid-tile>
                                     <mat-grid-tile>
@@ -181,10 +186,11 @@
                             </div>
                         </ng-container>
                     </ng-container>
-                    <a mat-mini-fab (click)="addProduct()">
-                        <mat-icon class="add-course-btn">add</mat-icon>
-                    </a>
+
                 </div>
+                <a mat-mini-fab (click)="addProduct()">
+                    <mat-icon class="add-course-btn">add</mat-icon>
+                </a>
                 <mat-grid-list cols="3" rowHeight="100px">
                     <mat-grid-tile>
                         <mat-form-field class="full-width">

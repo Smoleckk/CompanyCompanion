@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from '../service/invoice.service';
-
 @Component({
   selector: 'app-create-invoice',
   templateUrl: './create-invoice.component.html',
   styleUrls: ['./create-invoice.component.scss']
 })
 export class CreateInvoiceComponent implements OnInit {
+
+  @ViewChild('content', { static: false }) el!: ElementRef
 
   constructor(private builder: FormBuilder, private service: InvoiceService,
     private router: Router, private toastr: ToastrService, private activeRoute: ActivatedRoute) {
@@ -24,6 +27,7 @@ export class CreateInvoiceComponent implements OnInit {
       this.isEdit = true;
       this.SetEditInfo(this.editInvoiceNo)
     }
+
   }
 
   pageTitle = "Create Invoice"
@@ -33,6 +37,7 @@ export class CreateInvoiceComponent implements OnInit {
   getProduct: any;
   editInvoiceNo: any;
   isEdit = false;
+  editInvoiceDetail: any;
 
   invoiceForm = this.builder.group({
     invoiceNo: this.builder.control(''),
@@ -60,6 +65,8 @@ export class CreateInvoiceComponent implements OnInit {
     details: this.builder.array([])
   });
   SetEditInfo(invoiceNo: any) {
+    // this.service.
+
     this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
       let editData: any;
       editData = res;
@@ -102,6 +109,7 @@ export class CreateInvoiceComponent implements OnInit {
 
   deletePProduct(lessonIndex: number) {
     this.details.removeAt(lessonIndex);
+    this.SummaryCalculation();
   }
 
 
@@ -109,7 +117,11 @@ export class CreateInvoiceComponent implements OnInit {
   SaveInvoice() {
     if (this.invoiceForm.valid) {
       this.service.SaveInvoice(this.invoiceForm.getRawValue()).subscribe(res => {
-        this.toastr.success('Created Successfully', 'Invoice No')
+        if (this.isEdit) {
+          this.toastr.success('Created Edited', 'Invoice No')
+        } else {
+          this.toastr.success('Created Successfully', 'Invoice No')
+        }
         this.router.navigate(['/invoice-list'])
       })
     } else {
@@ -185,4 +197,16 @@ export class CreateInvoiceComponent implements OnInit {
     this.invoiceForm.get("netTotal")?.setValue(sumTotalNetto)
 
   }
+  makePdf() {
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.setFont("helvetica");
+    pdf.setFontSize(9);
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        pdf.save("sample.pdf")
+      }
+    })
+  }
+
+  
 }

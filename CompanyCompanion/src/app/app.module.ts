@@ -24,6 +24,11 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UpdateUserPopupComponent } from './update-user-popup/update-user-popup.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { CreateInvoiceComponent } from './create-invoice/create-invoice.component'
+import {NgxPrintModule} from 'ngx-print';
+import * as $ from 'jquery';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { UpdateProductPopupComponent } from './product/update-product-popup/update-product-popup.component';
+import { CreateProductPopupComponent } from './product/create-product-popup/create-product-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +40,10 @@ import { CreateInvoiceComponent } from './create-invoice/create-invoice.componen
     UserListComponent,
     UpdateUserPopupComponent,
     InvoiceListComponent,
-    CreateInvoiceComponent
+    CreateInvoiceComponent,
+    ProductListComponent,
+    UpdateProductPopupComponent,
+    CreateProductPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +64,7 @@ import { CreateInvoiceComponent } from './create-invoice/create-invoice.componen
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxPrintModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]

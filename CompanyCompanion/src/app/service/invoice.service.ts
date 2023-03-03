@@ -24,6 +24,12 @@ export class InvoiceService {
   GetProductsByCode(code: any) {
     return this.http.get(this.apiUrlProducts + 'get-products-by-code?code=' + code);
   }
+  UpdateProductByCode(product:any){
+    return this.http.put(this.apiUrlProducts +'update-product-by-code',product);
+  }
+  CreateProduct(product:any){
+    return this.http.post(this.apiUrlProducts +'save-product',product);
+  }
 
   GetAllInvoice(){
     return this.http.get(this.apiUrlInvoice+'get-invoices-header')
