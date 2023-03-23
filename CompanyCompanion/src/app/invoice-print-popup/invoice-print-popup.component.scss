@@ -9,7 +9,7 @@ body {
   min-width: 600px;
   min-height: 840px;
   display: block;
-  margin: 0 auto;
+  // margin: 0 auto;
   // margin-bottom: 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
 }
@@ -146,5 +146,11 @@ td {
 
 .rightOptions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  height: 90vh;
+  justify-content: space-around;
+}
+.download{
+  padding: 20px;
 }

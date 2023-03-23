@@ -28,8 +28,13 @@ namespace CompanyCompanionAPI.Controllers
         [HttpPost("save-invoice")]
         public ActionResult<InvoiceHeader> SaveInvoice(Invoice invoice)
         {
+            InvoiceHeader c = invoicesHeader.Find(c => c.InvoiceNo == invoice.InvoiceNo);
+            if(c != null)
+            {
+                invoicesHeader.Remove(c);
+            }
             InvoiceHeader invoiceHeader = new InvoiceHeader
-            { InvoiceNo = invoice.InvoiceNo, PlaceOfIssue = invoice.PlaceOfIssue, DateIssued = invoice.DateIssued, DueDate = invoice.DueDate };
+            {InvoiceId = invoice.InvoiceId, InvoiceNo = invoice.InvoiceNo, PlaceOfIssue = invoice.PlaceOfIssue, DateIssued = invoice.DateIssued, DueDate = invoice.DueDate,IsGenerated=invoice.IsGenerated };
             invoicesHeader.Add(invoiceHeader);
             return Ok(invoicesHeader);
         }

@@ -20,6 +20,7 @@ export class CreateInvoiceComponent implements OnInit {
   ngOnInit(): void {
     this.GetCustomers();
     this.GetProducts();
+    this.ShowInvoiceNumber();
 
     this.editInvoiceNo = this.activeRoute.snapshot.paramMap.get('invoiceno');
     if (this.editInvoiceNo != null) {
@@ -37,6 +38,7 @@ export class CreateInvoiceComponent implements OnInit {
   getProduct: any;
   editInvoiceNo: any;
   isEdit = false;
+  isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
 
   invoiceForm = this.builder.group({
@@ -63,11 +65,10 @@ export class CreateInvoiceComponent implements OnInit {
     paymentDescription: this.builder.control(''),
     remarks: this.builder.control(''),
     details: this.builder.array([]),
-    
+    isGenerated: this.builder.control(false)
   });
-  
+
   SetEditInfo(invoiceNo: any) {
-    // this.service.
     this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
       let editData: any;
       editData = res;
@@ -79,7 +80,8 @@ export class CreateInvoiceComponent implements OnInit {
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
           paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
           remarks: editData.remarks,
-          details: []
+          details: [],
+          isGenerated: editData.isGenerated
         })
       }
     })
@@ -152,6 +154,9 @@ export class CreateInvoiceComponent implements OnInit {
       }
     })
   }
+  ShowInvoiceNumber() {
+    this.isGeneratedShow = this.invoiceForm.get("isGenerated")?.value as boolean;
+  }
 
   ProductChange(index: any) {
     this.invoiceDetail = this.invoiceForm.controls["details"] as FormArray;
@@ -209,5 +214,5 @@ export class CreateInvoiceComponent implements OnInit {
     })
   }
 
-  
+
 }

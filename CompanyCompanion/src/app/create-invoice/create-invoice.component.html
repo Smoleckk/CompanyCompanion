@@ -9,13 +9,17 @@
         <mat-card-content>
             <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
                 <!-- Header -->
-                <mat-grid-list cols="3" rowHeight="150px">
+                <mat-grid-list cols="3" rowHeight="200px">
                     <mat-grid-tile class="row-flex">
                         <div class="">
-                            <mat-form-field class="full-width">
+                            <mat-checkbox formControlName="isGenerated" color="primary">
+                                Do you want to generate invoice number?
+                            </mat-checkbox>
+                            <!-- *ngIf="isGeneratedShow"  -->
+                            <!-- <mat-form-field class="full-width">
                                 <mat-label>Invoice No</mat-label>
                                 <input matInput placeholder="Invoice No" formControlName="invoiceNo">
-                            </mat-form-field>
+                            </mat-form-field> -->
                             <mat-form-field class="full-width">
                                 <mat-label>Place of issue</mat-label>
                                 <input matInput placeholder="Place of issue" formControlName="placeOfIssue">

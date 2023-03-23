@@ -30,6 +30,8 @@ export class InvoiceListComponent implements OnInit {
 
   LoadInvoice() {
     this.service.GetAllInvoice().subscribe(res => {
+      console.log(res);
+      
       this.invoiceHeader = res;
       this.dataSource = new MatTableDataSource(this.invoiceHeader);
       this.dataSource.paginator = this.paginator;

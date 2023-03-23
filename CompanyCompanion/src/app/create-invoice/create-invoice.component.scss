@@ -1,44 +1,40 @@
 .container {
-    margin: auto;
-    width: 60%;
-    margin-top: 100px;
-    margin-bottom: 100px;
     max-width: 900px;
 }
-.itemCompleted{
-    color: purple;
-    text-decoration: line-through;
-}
-mat-card {
-    padding: 30px;
-}
+// .itemCompleted{
+//     color: purple;
+//     text-decoration: line-through;
+// }
+// mat-card {
+//     padding: 30px;
+// }
 
-.full-width {
-    width: 90%;
-}
-.half-width{
-    width: 85%;
-}
+// .full-width {
+//     width: 90%;
+// }
+// .half-width{
+//     width: 85%;
+// }
 
-.form-submit {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
+// .form-submit {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: space-around;
+// }
 
-@media only screen and (max-width: 1000px) {
-    .container {
-        width: 80%;
-    }
-}
+// @media only screen and (max-width: 1000px) {
+//     .container {
+//         width: 80%;
+//     }
+// }
 
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 95%;
-    }
+// @media only screen and (max-width: 600px) {
+//     .container {
+//         width: 95%;
+//     }
 
-    mat-card {
-        padding: 0px;
-    }
-}
+//     mat-card {
+//         padding: 0px;
+//     }
+// }
 

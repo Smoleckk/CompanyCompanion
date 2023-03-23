@@ -32,9 +32,11 @@
             <ng-container matColumnDef="Action">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element">
-                    <a mat-raised-button (click)="InvoiceEdit(element.invoiceNo)" color="primary">Edit</a> | <a
-                        mat-raised-button (click)="InvoiceRemove(element.invoiceNo)" color="accent">Delete</a> | <a
-                        mat-raised-button (click)="InvoiceDownload(element.invoiceNo)" color="accent">Show</a>
+                    <a mat-raised-button (click)="InvoiceEdit(element.invoiceNo)"
+                        color="primary">Edit</a>
+                    <a mat-raised-button *ngIf="!element.isGenerated" (click)="InvoiceRemove(element.invoiceNo)"
+                        color="accent">Delete</a>
+                    <a mat-raised-button (click)="InvoiceDownload(element.invoiceNo)" color="accent">Show</a>
                     <!-- (click)="UpdateUser(element.username)" -->
                 </td>
             </ng-container>
