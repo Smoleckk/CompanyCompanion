@@ -22,11 +22,11 @@ export class CreateInvoiceComponent implements OnInit {
     this.GetProducts();
     this.ShowInvoiceNumber();
 
-    this.editInvoiceNo = this.activeRoute.snapshot.paramMap.get('invoiceno');
-    if (this.editInvoiceNo != null) {
+    this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
+    if (this.editInvoiceId != null) {
       this.pageTitle = "Edit Invoice"
       this.isEdit = true;
-      this.SetEditInfo(this.editInvoiceNo)
+      this.SetEditInfo(this.editInvoiceId)
     }
 
   }
@@ -36,7 +36,7 @@ export class CreateInvoiceComponent implements OnInit {
   invoiceProduct!: FormGroup<any>;
   getCustomer: any;
   getProduct: any;
-  editInvoiceNo: any;
+  editInvoiceId: any;
   isEdit = false;
   isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
@@ -68,8 +68,8 @@ export class CreateInvoiceComponent implements OnInit {
     isGenerated: this.builder.control(false)
   });
 
-  SetEditInfo(invoiceNo: any) {
-    this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
+  SetEditInfo(invoiceId: any) {
+    this.service.GetInvHeaderByCode(invoiceId).subscribe(res => {
       let editData: any;
       editData = res;
       if (editData != null) {

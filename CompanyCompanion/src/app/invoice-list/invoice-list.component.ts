@@ -38,16 +38,16 @@ export class InvoiceListComponent implements OnInit {
       this.dataSource.sort = this.sort;
     })
   }
-  InvoiceRemove(invoiceNo: any) {
-    if (confirm('Do you want to remove this Invoice :' + invoiceNo)) {
-      this.service.RemoveInvoice(invoiceNo).subscribe(res => {
+  InvoiceRemove(invoiceId: any) {
+    if (confirm('Do you want to remove this Invoice :' + invoiceId)) {
+      this.service.RemoveInvoice(invoiceId).subscribe(res => {
         this.toastr.success('Deleted Successfully', 'Remove Invoice')
         this.LoadInvoice();
       })
     }
   }
-  InvoiceEdit(invoiceNo: any) {
-    this.router.navigateByUrl('/edit-invoice/' + invoiceNo)
+  InvoiceEdit(invoiceId: any) {
+    this.router.navigateByUrl('/edit-invoice/' + invoiceId)
   }
   InvoiceDownload(code: any) {
     const popup = this.dialog.open(InvoicePrintPopupComponent, {

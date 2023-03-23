@@ -2,6 +2,7 @@
 {
     public class InvoiceHeader
     {
+        public string InvoiceId { get; set; } = Guid.NewGuid().ToString();
         public string InvoiceNo { get; set; } = string.Empty;
         public string PlaceOfIssue { get; set; } = string.Empty;
         public string DateIssued { get; set; } = string.Empty;

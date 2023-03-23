@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "invoice-list", component: InvoiceListComponent, canActivate: [AuthGuard] },
   { path: "create-invoice", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
-  { path: "edit-invoice/:invoiceno", component: CreateInvoiceComponent, canActivate: [AuthGuard] }
+  { path: "edit-invoice/:invoiceId", component: CreateInvoiceComponent, canActivate: [AuthGuard] }
 
 ];
 

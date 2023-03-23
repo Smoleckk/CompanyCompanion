@@ -9,7 +9,7 @@ namespace CompanyCompanionAPI.Controllers
     {
         public static List<InvoiceHeader> invoicesHeader = new List<InvoiceHeader>
         {
-            new InvoiceHeader{ InvoiceNo="N0165",InvoiceDate=DateTime.Now}
+            new InvoiceHeader{IsGenerated=true, InvoiceNo="N0165",InvoiceDate=DateTime.Now}
     };
 
         [HttpGet("get-invoices-header")]
@@ -22,12 +22,17 @@ namespace CompanyCompanionAPI.Controllers
         [HttpGet("get-invoice-header-by-code")]
         public ActionResult<InvoiceHeader> GetInvoiceHeaderByCode(string code)
         {
-            InvoiceHeader c = invoicesHeader.Find(c => c.InvoiceNo == code);
+            InvoiceHeader c = invoicesHeader.Find(c => c.InvoiceId == code);
             return Ok(c);
         }
         [HttpPost("save-invoice")]
         public ActionResult<InvoiceHeader> SaveInvoice(Invoice invoice)
         {
+            Random rnd = new Random();
+            if (invoice.IsGenerated)
+            {
+                invoice.InvoiceNo = "No" + rnd.Next();
+            }
             InvoiceHeader c = invoicesHeader.Find(c => c.InvoiceNo == invoice.InvoiceNo);
             if(c != null)
             {
@@ -41,7 +46,7 @@ namespace CompanyCompanionAPI.Controllers
         [HttpDelete("delete-invoice")]
         public ActionResult<List<InvoiceHeader>> SaveInvoice(string code)
         {
-            invoicesHeader.RemoveAll(x => x.InvoiceNo == code);
+            invoicesHeader.RemoveAll(x => x.InvoiceId == code);
             return Ok(invoicesHeader);
         }
     }
