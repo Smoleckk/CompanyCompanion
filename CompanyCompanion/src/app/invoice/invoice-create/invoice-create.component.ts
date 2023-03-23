@@ -7,8 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from '../../service/invoice.service';
 @Component({
   selector: 'app-create-invoice',
-  templateUrl: './create-invoice.component.html',
-  styleUrls: ['./create-invoice.component.scss']
+  templateUrl: './invoice-create.component.html',
+  styleUrls: ['./invoice-create.component.scss']
 })
 export class CreateInvoiceComponent implements OnInit {
 

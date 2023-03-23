@@ -23,7 +23,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UpdateUserPopupComponent } from './user/update-user-popup/update-user-popup.component';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
-import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component'
+import { CreateInvoiceComponent } from './invoice/invoice-create/invoice-create.component'
 import {NgxPrintModule} from 'ngx-print';
 import * as $ from 'jquery';
 import { ProductListComponent } from './product/product-list/product-list.component';

@@ -7,7 +7,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { HomeComponent } from './home/home.component';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
-import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component';
+import { CreateInvoiceComponent } from './invoice/invoice-create/invoice-create.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
