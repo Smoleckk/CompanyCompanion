@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../service/user.service';
 import jsPDF from 'jspdf';
 @Component({
   selector: 'app-dashboard',

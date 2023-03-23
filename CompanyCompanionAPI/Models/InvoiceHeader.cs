@@ -27,5 +27,6 @@
         public string Remarks { get; set; } = string.Empty;
         public string CreateUser { get; set; } = string.Empty;
         public DateTime CreateDate { get; set; } = DateTime.Now;
+        public bool IsGenerated { get; set; } = false;
     }
 }

@@ -29,6 +29,7 @@ import * as $ from 'jquery';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { UpdateProductPopupComponent } from './product/update-product-popup/update-product-popup.component';
 import { CreateProductPopupComponent } from './product/create-product-popup/create-product-popup.component';
+import { InvoicePrintPopupComponent } from './invoice-print-popup/invoice-print-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { CreateProductPopupComponent } from './product/create-product-popup/crea
     ProductListComponent,
     UpdateProductPopupComponent,
     CreateProductPopupComponent,
+    InvoicePrintPopupComponent,
   ],
   imports: [
     BrowserModule,

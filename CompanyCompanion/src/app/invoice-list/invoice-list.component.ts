@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { InvoicePrintPopupComponent } from '../invoice-print-popup/invoice-print-popup.component';
 import { InvoiceService } from '../service/invoice.service';
 
 @Component({
@@ -13,7 +15,7 @@ import { InvoiceService } from '../service/invoice.service';
 })
 export class InvoiceListComponent implements OnInit {
 
-  constructor(private service: InvoiceService, private toastr: ToastrService, private router: Router) { }
+  constructor(private service: InvoiceService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.LoadInvoice();
@@ -45,6 +47,15 @@ export class InvoiceListComponent implements OnInit {
   InvoiceEdit(invoiceNo: any) {
     this.router.navigateByUrl('/edit-invoice/' + invoiceNo)
   }
-
+  InvoiceDownload(code: any) {
+    const popup = this.dialog.open(InvoicePrintPopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '50%',
+      data: {
+        code: code
+      }
+    })
+  }
 
 }

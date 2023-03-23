@@ -1,6 +1,4 @@
 ﻿using CompanyCompanionAPI.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyCompanionAPI.Controllers
@@ -9,7 +7,7 @@ namespace CompanyCompanionAPI.Controllers
     [ApiController]
     public class InvoiceController : ControllerBase
     {
-        public static List<InvoiceHeader> invoicesHeader= new List<InvoiceHeader>
+        public static List<InvoiceHeader> invoicesHeader = new List<InvoiceHeader>
         {
             new InvoiceHeader{ InvoiceNo="N0165",InvoiceDate=DateTime.Now}
     };
@@ -30,7 +28,8 @@ namespace CompanyCompanionAPI.Controllers
         [HttpPost("save-invoice")]
         public ActionResult<InvoiceHeader> SaveInvoice(Invoice invoice)
         {
-            InvoiceHeader invoiceHeader = new InvoiceHeader { InvoiceNo = invoice.InvoiceNo, InvoiceDate = DateTime.Now };
+            InvoiceHeader invoiceHeader = new InvoiceHeader
+            { InvoiceNo = invoice.InvoiceNo, PlaceOfIssue = invoice.PlaceOfIssue, DateIssued = invoice.DateIssued, DueDate = invoice.DueDate };
             invoicesHeader.Add(invoiceHeader);
             return Ok(invoicesHeader);
         }

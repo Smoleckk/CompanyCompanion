@@ -62,11 +62,12 @@ export class CreateInvoiceComponent implements OnInit {
     accountNumber: this.builder.control(''),
     paymentDescription: this.builder.control(''),
     remarks: this.builder.control(''),
-    details: this.builder.array([])
+    details: this.builder.array([]),
+    
   });
+  
   SetEditInfo(invoiceNo: any) {
     // this.service.
-
     this.service.GetInvHeaderByCode(invoiceNo).subscribe(res => {
       let editData: any;
       editData = res;
