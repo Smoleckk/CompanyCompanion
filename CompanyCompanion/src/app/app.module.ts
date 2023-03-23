@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,17 +19,17 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from 'src/material.module';
 import {ToastrModule} from 'ngx-toastr';
-import { RegisterComponent } from './register/register.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UpdateUserPopupComponent } from './update-user-popup/update-user-popup.component';
-import { InvoiceListComponent } from './invoice-list/invoice-list.component';
-import { CreateInvoiceComponent } from './create-invoice/create-invoice.component'
+import { RegisterComponent } from './auth/register/register.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UpdateUserPopupComponent } from './user/update-user-popup/update-user-popup.component';
+import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
+import { CreateInvoiceComponent } from './invoice/create-invoice/create-invoice.component'
 import {NgxPrintModule} from 'ngx-print';
 import * as $ from 'jquery';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { UpdateProductPopupComponent } from './product/update-product-popup/update-product-popup.component';
 import { CreateProductPopupComponent } from './product/create-product-popup/create-product-popup.component';
-import { InvoicePrintPopupComponent } from './invoice-print-popup/invoice-print-popup.component';
+import { InvoicePrintPopupComponent } from './invoice/invoice-print-popup/invoice-print-popup.component';
 @NgModule({
   declarations: [
     AppComponent,

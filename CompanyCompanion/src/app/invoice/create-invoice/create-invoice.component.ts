@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
-import { InvoiceService } from '../service/invoice.service';
+import { InvoiceService } from '../../service/invoice.service';
 @Component({
   selector: 'app-create-invoice',
   templateUrl: './create-invoice.component.html',

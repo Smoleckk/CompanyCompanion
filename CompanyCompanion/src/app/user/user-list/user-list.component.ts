@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserService } from '../service/user.service';
+import { UserService } from '../../service/user.service';
 import { UpdateUserPopupComponent } from '../update-user-popup/update-user-popup.component';
 
 @Component({

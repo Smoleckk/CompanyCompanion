@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InvoicePrintPopupComponent } from '../invoice-print-popup/invoice-print-popup.component';
-import { InvoiceService } from '../service/invoice.service';
+import { InvoiceService } from '../../service/invoice.service';
 
 @Component({
   selector: 'app-invoice-list',

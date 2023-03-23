@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
-import { InvoiceService } from '../service/invoice.service';
+import { InvoiceService } from '../../service/invoice.service';
 
 @Component({
   selector: 'app-invoice-print-popup',
