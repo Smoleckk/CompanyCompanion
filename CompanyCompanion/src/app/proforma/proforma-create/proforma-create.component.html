@@ -7,18 +7,18 @@
             <h1>{{pageTitle}}</h1>
         </mat-card-header>
         <mat-card-content>
-            <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
+            <form class="form" [formGroup]="proformaForm" (ngSubmit)="SaveProforma()">
                 <!-- Header -->
                 <mat-grid-list cols="3" rowHeight="200px">
                     <mat-grid-tile class="row-flex">
                         <div class="">
                             <mat-checkbox formControlName="isGenerated" color="primary">
-                                Do you want to generate invoice number?
+                                Do you want to generate proforma number?
                             </mat-checkbox>
                             <!-- *ngIf="isGeneratedShow"  -->
-                            <!-- <mat-form-field  class="full-width">
-                                <mat-label>Invoice No</mat-label>
-                                <input matInput placeholder="Invoice No" formControlName="invoiceNo">
+                            <!-- <mat-form-field class="full-width">
+                                <mat-label>Proforma No</mat-label>
+                                <input matInput placeholder="Proforma No" formControlName="proformaNo">
                             </mat-form-field> -->
                             <mat-form-field class="full-width">
                                 <mat-label>Place of issue</mat-label>
@@ -41,7 +41,7 @@
                     <mat-grid-tile>
                         <mat-form-field class="full-width">
                             <mat-label>Upload Logo</mat-label>
-                            <input matInput placeholder="Upload Logo" formControlName="invoiceNo">
+                            <input matInput placeholder="Upload Logo" formControlName="proformaNo">
                         </mat-form-field>
                     </mat-grid-tile>
                 </mat-grid-list>
@@ -127,7 +127,7 @@
                     </mat-grid-tile>
                 </mat-grid-list>
 
-                <div class="add-products-form" [formGroup]="invoiceForm">
+                <div class="add-products-form" [formGroup]="proformaForm">
                     <ng-container formArrayName="details">
                         <ng-container *ngFor="let detailForm of details.controls; let i = index">
                             <div [formGroupName]="i">
@@ -252,7 +252,7 @@
 
 
                 <div class="form-submit">
-                    <a routerLink="/invoice-list" mat-raised-button color="accent">Back</a>
+                    <a routerLink="/proforma-list" mat-raised-button color="accent">Back</a>
                     <button mat-raised-button color="primary">Save</button>
                 </div>
 

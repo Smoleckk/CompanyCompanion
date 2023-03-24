@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
 import { CreateInvoiceComponent } from './invoice/invoice-create/invoice-create.component';
 import { AuthGuard } from './shared/auth.guard';
+import { ProformaCreateComponent } from './proforma/proforma-create/proforma-create.component';
+import { ProformaListComponent } from './proforma/proforma-list/proforma-list.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -19,7 +21,11 @@ const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "invoice-list", component: InvoiceListComponent, canActivate: [AuthGuard] },
   { path: "create-invoice", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
-  { path: "edit-invoice/:invoiceId", component: CreateInvoiceComponent, canActivate: [AuthGuard] }
+  { path: "edit-invoice/:invoiceId", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
+  { path: "invoice-from-proforma/:proformaId", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
+  { path: "proforma-list", component: ProformaListComponent, canActivate: [AuthGuard] },
+  { path: "create-proforma", component: ProformaCreateComponent, canActivate: [AuthGuard] },
+  { path: "edit-proforma/:proformaId", component: ProformaCreateComponent, canActivate: [AuthGuard] }
 
 ];
 

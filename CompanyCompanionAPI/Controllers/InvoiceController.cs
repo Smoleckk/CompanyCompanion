@@ -33,13 +33,13 @@ namespace CompanyCompanionAPI.Controllers
             {
                 invoice.InvoiceNo = "No" + rnd.Next();
             }
-            InvoiceHeader c = invoicesHeader.Find(c => c.InvoiceNo == invoice.InvoiceNo);
+            InvoiceHeader c = invoicesHeader.Find(c => c.InvoiceId == invoice.InvoiceId);
             if(c != null)
             {
                 invoicesHeader.Remove(c);
             }
             InvoiceHeader invoiceHeader = new InvoiceHeader
-            {InvoiceId = invoice.InvoiceId, InvoiceNo = invoice.InvoiceNo, PlaceOfIssue = invoice.PlaceOfIssue, DateIssued = invoice.DateIssued, DueDate = invoice.DueDate,IsGenerated=invoice.IsGenerated };
+            {InvoiceId = Guid.NewGuid().ToString(), InvoiceNo = invoice.InvoiceNo, PlaceOfIssue = invoice.PlaceOfIssue, DateIssued = invoice.DateIssued, DueDate = invoice.DueDate,IsGenerated=invoice.IsGenerated };
             invoicesHeader.Add(invoiceHeader);
             return Ok(invoicesHeader);
         }

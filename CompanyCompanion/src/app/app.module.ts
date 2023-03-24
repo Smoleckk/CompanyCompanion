@@ -30,6 +30,9 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { UpdateProductPopupComponent } from './product/update-product-popup/update-product-popup.component';
 import { CreateProductPopupComponent } from './product/create-product-popup/create-product-popup.component';
 import { InvoicePrintPopupComponent } from './invoice/invoice-print-popup/invoice-print-popup.component';
+import { ProformaListComponent } from './proforma/proforma-list/proforma-list.component';
+import { ProformaCreateComponent } from './proforma/proforma-create/proforma-create.component';
+import { ProformaPrintPopupComponent } from './proforma/proforma-print-popup/proforma-print-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +49,9 @@ import { InvoicePrintPopupComponent } from './invoice/invoice-print-popup/invoic
     UpdateProductPopupComponent,
     CreateProductPopupComponent,
     InvoicePrintPopupComponent,
+    ProformaListComponent,
+    ProformaCreateComponent,
+    ProformaPrintPopupComponent,
   ],
   imports: [
     BrowserModule,

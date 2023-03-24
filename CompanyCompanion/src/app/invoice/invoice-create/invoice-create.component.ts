@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from '../../service/invoice.service';
+import { ProformaService } from '../../service/proforma.service';
 @Component({
   selector: 'app-create-invoice',
   templateUrl: './invoice-create.component.html',
@@ -14,7 +15,7 @@ export class CreateInvoiceComponent implements OnInit {
 
   @ViewChild('content', { static: false }) el!: ElementRef
 
-  constructor(private builder: FormBuilder, private service: InvoiceService,
+  constructor(private builder: FormBuilder, private service: InvoiceService,private serviceProforma: ProformaService,
     private router: Router, private toastr: ToastrService, private activeRoute: ActivatedRoute) {
   }
   ngOnInit(): void {
@@ -28,7 +29,14 @@ export class CreateInvoiceComponent implements OnInit {
       this.isEdit = true;
       this.SetEditInfo(this.editInvoiceId)
     }
-
+    this.invoiceFromProformaId = this.activeRoute.snapshot.paramMap.get('proformaId');
+    if (this.invoiceFromProformaId != null) {
+      console.log(this.invoiceFromProformaId);
+      
+      this.pageTitle = "Invoice from proforma"
+      this.isEdit = true;
+      this.SetEditInfoProforma(this.invoiceFromProformaId)
+    }
   }
 
   pageTitle = "Create Invoice"
@@ -37,12 +45,14 @@ export class CreateInvoiceComponent implements OnInit {
   getCustomer: any;
   getProduct: any;
   editInvoiceId: any;
+  invoiceFromProformaId: any;
   isEdit = false;
   isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
 
   invoiceForm = this.builder.group({
-    invoiceNo: this.builder.control(''),
+    invoiceId: this.builder.control(''),
+    invoiceNo: this.builder.control({ value: '', disabled: true }),
     placeOfIssue: this.builder.control(''),
     dateIssued: this.builder.control(''),
     dueDate: this.builder.control(''),
@@ -68,13 +78,31 @@ export class CreateInvoiceComponent implements OnInit {
     isGenerated: this.builder.control(false)
   });
 
-  SetEditInfo(invoiceId: any) {
-    this.service.GetInvHeaderByCode(invoiceId).subscribe(res => {
+  SetEditInfo(invoiceIdCode: any) {
+    this.service.GetInvHeaderByCode(invoiceIdCode).subscribe(res => {
       let editData: any;
       editData = res;
       if (editData != null) {
         this.invoiceForm.setValue({
-          invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
+          invoiceId:editData.invoiceId, invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
+          customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
+          sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
+          total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
+          paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
+          remarks: editData.remarks,
+          details: [],
+          isGenerated: editData.isGenerated
+        })
+      }
+    })
+  }
+  SetEditInfoProforma(proformaId: any) {
+    this.serviceProforma.GetProformaHeaderByCode(proformaId).subscribe(res => {
+      let editData: any;
+      editData = res;
+      if (editData != null) {
+        this.invoiceForm.setValue({
+          invoiceId:editData.proformaId,invoiceNo: editData.proformaNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
           customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
