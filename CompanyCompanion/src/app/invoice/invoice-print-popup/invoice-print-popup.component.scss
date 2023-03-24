@@ -163,7 +163,6 @@ tfoot {
 }
 
 tbody {
-  // background-color: #e4f0f5;
 }
 
 caption {
@@ -190,4 +189,7 @@ th {
 td {
   text-align: center;
   height: 20px !important;
+}
+th{
+  font-weight: bold;
 }

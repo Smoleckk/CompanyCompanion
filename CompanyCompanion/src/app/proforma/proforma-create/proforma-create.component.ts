@@ -31,7 +31,19 @@ export class ProformaCreateComponent implements OnInit {
       this.SetEditInfo(this.editProformaId)
     }
 
+    this.breakpoint3 = (window.innerWidth <= 800) ? 1 : 3;
+    this.breakpoint2 = (window.innerWidth <= 800) ? 1 : 2;
+    this.breakpoint9 = (window.innerWidth <= 800) ? 3 : 9;
   }
+  onResize(event: any) {
+    this.breakpoint3 = (event.target.innerWidth <= 800) ? 1 : 3;
+    this.breakpoint2 = (event.target.innerWidth <= 800) ? 1 : 2;
+    this.breakpoint9 = (event.target.innerWidth <= 800) ? 3 : 9;
+  }
+// breakpoints
+breakpoint2: any;
+breakpoint3: any;
+breakpoint9: any;
 
   pageTitle = "Create Proforma"
   proformaDetail!: FormArray<any>;

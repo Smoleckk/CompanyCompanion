@@ -122,7 +122,7 @@ breakpoint9: any;
           paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
           remarks: editData.remarks,
           details: [],
-          isGenerated: editData.isGenerated
+          isGenerated: false
         })
       }
     })
