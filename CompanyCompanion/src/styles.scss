@@ -1,6 +1,15 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 @import "toaster";
+
 
 .container {
     margin: auto;
@@ -8,22 +17,41 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: 100px;
     margin-bottom: 100px;
     // max-width: 900px;
+    // min-width: 600px;
+    // padding: 5%;
 }
+
+.title {
+    font-size: 44px;
+}
+
+.middlerows {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .containerpopup {
     margin: auto;
 }
-.itemCompleted{
+
+.itemCompleted {
     color: purple;
     text-decoration: line-through;
 }
+
 mat-card {
     padding: 0px;
+    border-radius: 50%;
 }
 
 .full-width {
     width: 90%;
 }
-.half-width{
+
+.half-width {
     width: 85%;
 }
 
@@ -33,19 +61,18 @@ mat-card {
     justify-content: space-around;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1500px) {
     .container {
-        width: 80%;
+        width: 95%;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    .container {
-        width: 95%;
-    }
+    // .container {
+    //     width: 95%;
+    // }
 
     mat-card {
         padding: 0px;
     }
 }
-

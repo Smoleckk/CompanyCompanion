@@ -1,6 +1,16 @@
 .container {
-    max-width: 900px;
+    max-width: 1200px;
 }
+
+// ::ng-deep .mat-mdc-text-field-wrapper {
+//     height: 30px !important;
+// }
+
+// ::ng-deep .mat-mdc-form-field-flex {
+//     margin-top: -10px !important;
+//     min-height: 10px !important;
+// }
+
 // .itemCompleted{
 //     color: purple;
 //     text-decoration: line-through;
@@ -37,4 +47,3 @@
 //         padding: 0px;
 //     }
 // }
-

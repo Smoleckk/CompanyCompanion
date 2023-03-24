@@ -5,7 +5,7 @@ body {
 .page[size="A4"] {
   background: white;
   max-width: 600px;
-  max-height: 840px;
+  min-height: 840px;
   min-width: 600px;
   min-height: 840px;
   display: block;
@@ -151,6 +151,43 @@ td {
   height: 90vh;
   justify-content: space-around;
 }
-.download{
+
+.download {
   padding: 20px;
+}
+
+// table
+thead,
+tfoot {
+  background-color: lightgray;
+}
+
+tbody {
+  // background-color: #e4f0f5;
+}
+
+caption {
+  padding: 10px;
+  caption-side: bottom;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 1px 2px;
+  height: 20px !important;
+
+}
+
+td {
+  text-align: center;
+  height: 20px !important;
 }

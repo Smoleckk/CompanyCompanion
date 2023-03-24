@@ -4,25 +4,25 @@
         <mat-card-header>
             <h1>Create Product</h1>
         </mat-card-header>
-        <mat-card-content>
-            <form class="form" [formGroup]="createform" (ngSubmit)="saveProduct()">
-                <mat-form-field class="full-width">
+        <mat-card-content  >
+            <form class="form middlerows" [formGroup]="createform" (ngSubmit)="saveProduct()" >
+                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Code</mat-label>
                     <input matInput placeholder="Edd" formControlName="code">
                 </mat-form-field>
-                <mat-form-field class="full-width">
+                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Edd" formControlName="name">
                 </mat-form-field>
-                <mat-form-field class="full-width">
+                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Price</mat-label>
                     <input matInput placeholder="Edd" formControlName="price">
                 </mat-form-field>
-                <mat-form-field class="full-width">
+                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Category</mat-label>
                     <input matInput placeholder="Edd" formControlName="category">
                 </mat-form-field>
-                <mat-form-field class="full-width">
+                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Remarks</mat-label>
                     <input matInput placeholder="Edd" formControlName="remarks">
                 </mat-form-field>

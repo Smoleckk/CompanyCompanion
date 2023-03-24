@@ -29,30 +29,50 @@
 
             </div>
             <div class="six">
-                <table style="width: 100%;">
+                <table>
                     <thead>
                         <tr>
-                            <th style="width: 50px;">Kod</th>
-                            <th style="width: 170px;">Nazwa towaru lub uslugi</th>
-                            <th style="width: 50px;">Jm.</th>
-                            <th style="width: 50px;">Ilosc</th>
-                            <th style="width: 50px;">Cena netto</th>
-                            <th style="width: 50px;">Warosc netto</th>
-                            <th style="width: 50px;">Stawka Vat</th>
-                            <th style="width: 50px;">Cena brutto</th>
+                            <th scope="col">Kod</th>
+                            <th scope="col">Nazwa towaru lub uslugi</th>
+                            <th scope="col">Jm.</th>
+                            <th scope="col">Ilosc</th>
+                            <th scope="col">Cena netto</th>
+                            <th scope="col">Warosc netto</th>
+                            <th scope="col">Stawka Vat</th>
+                            <th scope="col">Cena brutto</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- *ngFor="let item of details.controls;let i=index" [formGroupName]="i" -->
                         <tr>
-                            <td style="width: 50px;">1</td>
-                            <td style="width: 170px;">Instalacja systemu operacyjnego</td>
-                            <td style="width: 50px;">Szt.</td>
-                            <td style="width: 50px;">1</td>
-                            <td style="width: 50px;">1000</td>
-                            <td style="width: 50px;">1000</td>
-                            <td style="width: 50px;">23</td>
-                            <td style="width: 50px;">1230</td>
+                            <th>1</th>
+                            <th>Instalacja systemu operacyjnego sdasdasd</th>
+                            <th>Szt.</th>
+                            <th>1</th>
+                            <th>{{1000 | currency}}</th>
+                            <th>{{1000 | currency}}</th>
+                            <th>{{0.23 | percent}}</th>
+                            <th>{{1230 | currency}}</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>Instalacja systemu operacyjnego sdasdasd</th>
+                            <th>Szt.</th>
+                            <th>1</th>
+                            <th>{{1000 | currency}}</th>
+                            <th>{{1000 | currency}}</th>
+                            <th>{{0.23 | percent}}</th>
+                            <th>{{1230 | currency}}</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>Instalacja systemu operacyjnego sdasdasd</th>
+                            <th>Szt.</th>
+                            <th>1</th>
+                            <th>{{1000 | currency}}</th>
+                            <th>{{1000 | currency}}</th>
+                            <th>{{0.23 | percent}}</th>
+                            <th>{{1230 | currency}}</th>
                         </tr>
                     </tbody>
 

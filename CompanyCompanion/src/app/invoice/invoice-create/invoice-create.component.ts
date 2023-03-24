@@ -15,7 +15,7 @@ export class CreateInvoiceComponent implements OnInit {
 
   @ViewChild('content', { static: false }) el!: ElementRef
 
-  constructor(private builder: FormBuilder, private service: InvoiceService,private serviceProforma: ProformaService,
+  constructor(private builder: FormBuilder, private service: InvoiceService, private serviceProforma: ProformaService,
     private router: Router, private toastr: ToastrService, private activeRoute: ActivatedRoute) {
   }
   ngOnInit(): void {
@@ -32,14 +32,26 @@ export class CreateInvoiceComponent implements OnInit {
     this.invoiceFromProformaId = this.activeRoute.snapshot.paramMap.get('proformaId');
     if (this.invoiceFromProformaId != null) {
       console.log(this.invoiceFromProformaId);
-      
+
       this.pageTitle = "Invoice from proforma"
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId)
     }
+    this.breakpoint3 = (window.innerWidth <= 800) ? 1 : 3;
+    this.breakpoint2 = (window.innerWidth <= 800) ? 1 : 2;
+    this.breakpoint9 = (window.innerWidth <= 800) ? 3 : 9;
   }
-
-  pageTitle = "Create Invoice"
+  onResize(event: any) {
+    this.breakpoint3 = (event.target.innerWidth <= 800) ? 1 : 3;
+    this.breakpoint2 = (event.target.innerWidth <= 800) ? 1 : 2;
+    this.breakpoint9 = (event.target.innerWidth <= 800) ? 3 : 9;
+  }
+// breakpoints
+breakpoint2: any;
+breakpoint3: any;
+breakpoint9: any;
+//
+  pageTitle = "New invoice"
   invoiceDetail!: FormArray<any>;
   invoiceProduct!: FormGroup<any>;
   getCustomer: any;
@@ -49,6 +61,7 @@ export class CreateInvoiceComponent implements OnInit {
   isEdit = false;
   isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
+
 
   invoiceForm = this.builder.group({
     invoiceId: this.builder.control(''),
@@ -84,7 +97,7 @@ export class CreateInvoiceComponent implements OnInit {
       editData = res;
       if (editData != null) {
         this.invoiceForm.setValue({
-          invoiceId:editData.invoiceId, invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
+          invoiceId: editData.invoiceId, invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
           customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
@@ -102,7 +115,7 @@ export class CreateInvoiceComponent implements OnInit {
       editData = res;
       if (editData != null) {
         this.invoiceForm.setValue({
-          invoiceId:editData.proformaId,invoiceNo: editData.proformaNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
+          invoiceId: editData.proformaId, invoiceNo: editData.proformaNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
           customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
