@@ -16,7 +16,7 @@ body {
     width: 70%;
     margin-top: 100px;
     margin-bottom: 100px;
-    // max-width: 900px;
+    // max-width: 300px;
     // min-width: 600px;
     // padding: 5%;
 }
@@ -30,7 +30,8 @@ body {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    justify-content: space-around;
+    // justify-content: space-around;
+    text-align: left;
 }
 
 .containerpopup {
@@ -52,7 +53,7 @@ mat-card {
 }
 
 .half-width {
-    width: 85%;
+    width: 65%;
 }
 
 .form-submit {

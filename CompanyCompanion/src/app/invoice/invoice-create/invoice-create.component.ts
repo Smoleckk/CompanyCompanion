@@ -22,6 +22,7 @@ export class CreateInvoiceComponent implements OnInit {
     this.GetCustomers();
     this.GetProducts();
     this.ShowInvoiceNumber();
+    this.addProduct();
 
     this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
     if (this.editInvoiceId != null) {
@@ -37,19 +38,25 @@ export class CreateInvoiceComponent implements OnInit {
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId)
     }
-    this.breakpoint3 = (window.innerWidth <= 850) ? 1 : 3;
     this.breakpoint2 = (window.innerWidth <= 850) ? 1 : 2;
-    this.breakpoint9 = (window.innerWidth <= 850) ? 3 : 9;
+    this.breakpoint3 = (window.innerWidth <= 850) ? 1 : 3;
+    this.breakpoint4 = (window.innerWidth <= 850) ? 1 : 4;
+    this.breakpoint9 = (window.innerWidth <= 850) ? 3 : 10;
+    this.colspan3 = (window.innerWidth <= 850) ? 2 : 3;
   }
   onResize(event: any) {
-    this.breakpoint3 = (event.target.innerWidth <= 850) ? 1 : 3;
     this.breakpoint2 = (event.target.innerWidth <= 850) ? 1 : 2;
-    this.breakpoint9 = (event.target.innerWidth <= 850) ? 3 : 9;
+    this.breakpoint3 = (event.target.innerWidth <= 850) ? 1 : 3;
+    this.breakpoint4 = (event.target.innerWidth <= 850) ? 1 : 4;
+    this.breakpoint9 = (event.target.innerWidth <= 850) ? 3 : 10;
+    this.colspan3 = (window.innerWidth <= 850) ? 2 : 3;
   }
 // breakpoints
 breakpoint2: any;
 breakpoint3: any;
+breakpoint4: any;
 breakpoint9: any;
+colspan3: any;
 //
   paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
   paymentStatus: string[] = ['Paid', 'Unpaid',];
@@ -145,12 +152,12 @@ breakpoint9: any;
       bruttoPrice: this.builder.control({ value: 0, disabled: true }),
       nettoPrice: this.builder.control({ value: 0, disabled: true }),
     })
-    let customerCode = this.invoiceForm.get("customerId")?.value;
-    if (customerCode != null && customerCode != '') {
+    // let customerCode = this.invoiceForm.get("customerId")?.value;
+    // if (customerCode != null && customerCode != '') {
       this.details.push(detailForm);
-    } else {
-      this.toastr.warning('Please select the customer', 'Validation')
-    }
+    // } else {
+      // this.toastr.warning('Please select the customer', 'Validation')
+    // }
   }
 
   deletePProduct(lessonIndex: number) {
