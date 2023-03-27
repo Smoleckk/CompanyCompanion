@@ -37,20 +37,22 @@ export class CreateInvoiceComponent implements OnInit {
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId)
     }
-    this.breakpoint3 = (window.innerWidth <= 800) ? 1 : 3;
-    this.breakpoint2 = (window.innerWidth <= 800) ? 1 : 2;
-    this.breakpoint9 = (window.innerWidth <= 800) ? 3 : 9;
+    this.breakpoint3 = (window.innerWidth <= 850) ? 1 : 3;
+    this.breakpoint2 = (window.innerWidth <= 850) ? 1 : 2;
+    this.breakpoint9 = (window.innerWidth <= 850) ? 3 : 9;
   }
   onResize(event: any) {
-    this.breakpoint3 = (event.target.innerWidth <= 800) ? 1 : 3;
-    this.breakpoint2 = (event.target.innerWidth <= 800) ? 1 : 2;
-    this.breakpoint9 = (event.target.innerWidth <= 800) ? 3 : 9;
+    this.breakpoint3 = (event.target.innerWidth <= 850) ? 1 : 3;
+    this.breakpoint2 = (event.target.innerWidth <= 850) ? 1 : 2;
+    this.breakpoint9 = (event.target.innerWidth <= 850) ? 3 : 9;
   }
 // breakpoints
 breakpoint2: any;
 breakpoint3: any;
 breakpoint9: any;
 //
+  paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
+  paymentStatus: string[] = ['Paid', 'Unpaid',];
   pageTitle = "New invoice"
   invoiceDetail!: FormArray<any>;
   invoiceProduct!: FormGroup<any>;

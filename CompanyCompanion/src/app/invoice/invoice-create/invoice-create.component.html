@@ -1,12 +1,10 @@
-<!-- <a (click)="makePdf()" mat-raised-button color="primary">pdf</a> -->
-
 <div class="container">
     <h1 class="title">{{pageTitle}}</h1>
     <mat-card>
         <mat-card-content>
             <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
                 <!-- Header -->
-                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="170px">
+                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="140px">
                     <mat-grid-tile>
                         <div class="middlerows">
                             <mat-form-field class="custom-form-field" appearance="outline" class="full-width">
@@ -46,7 +44,7 @@
                 </mat-grid-list>
                 <hr>
                 <!-- Contractor/Owner -->
-                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="320px">
+                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="250px">
                     <mat-grid-tile>
                         <div class="middlerows">
                             <mat-form-field appearance="outline" class="half-width">
@@ -95,13 +93,13 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 <!-- Table of products -->
-                <mat-grid-list style="background-color: #eaedf1; border-radius: 10px;" [cols]="breakpoint9"
-                    (window:resize)="onResize($event)" rowHeight="60px">
+                <mat-grid-list style="background-color: #eaedf1;" [cols]="breakpoint9"
+                    (window:resize)="onResize($event)" rowHeight="35px">
                     <mat-grid-tile>
-                        <h4>Product Code</h4>
+                        <h4>P. Code</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <h4>Product Name</h4>
+                        <h4>P. Name</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <h4>Quantity</h4>
@@ -110,16 +108,16 @@
                         <h4>Unit</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <h4>Sales Price</h4>
+                        <h4> Price</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <h4>Vat</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <h4>Brutto Price</h4>
+                        <h4>Brutto</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <h4>Netto Price</h4>
+                        <h4>Netto</h4>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <h4>Action</h4>
@@ -130,7 +128,7 @@
                     <ng-container formArrayName="details">
                         <ng-container *ngFor="let detailForm of details.controls; let i = index">
                             <div [formGroupName]="i">
-                                <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="90px">
+                                <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="65px">
                                     <mat-grid-tile>
                                         <mat-form-field appearance="outline">
                                             <mat-select (selectionChange)="ProductChange(i)"
@@ -194,7 +192,7 @@
                 <a mat-mini-fab (click)="addProduct()">
                     <mat-icon class="add-course-btn">add</mat-icon>
                 </a>
-                <mat-grid-list [cols]="breakpoint3" (window:resize)="onResize($event)" rowHeight="100px">
+                <mat-grid-list [cols]="breakpoint3" (window:resize)="onResize($event)" rowHeight="80px">
                     <mat-grid-tile>
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Summary Total</mat-label>
@@ -215,17 +213,26 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 <!-- Details -->
-                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="170px">
+                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="130px">
                     <mat-grid-tile>
                         <div class="middlerows">
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>Payment status</mat-label>
-                                <input matInput placeholder="Payment status" formControlName="paymentStatus">
+                                <!-- <mat-label>Payment status</mat-label>
+                                <input matInput placeholder="Payment status" formControlName="paymentStatus"> -->
+                                <mat-select formControlName="paymentStatus" placeholder="Payment status">
+                                    <mat-option *ngFor="let item of paymentStatus" [value]="item">{{item}}
+                                    </mat-option>
+                                </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>Payment type</mat-label>
-                                <input matInput placeholder="Payment type" formControlName="paymentType">
+                                <!-- <mat-label>Payment type</mat-label>
+                                <input matInput placeholder="Payment type" formControlName="paymentType"> -->
+                                <mat-select formControlName="paymentType" placeholder="Payment type">
+                                    <mat-option *ngFor="let item of paymentType" [value]="item">{{item}}
+                                    </mat-option>
+                                </mat-select>
                             </mat-form-field>
+
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile>
