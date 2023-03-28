@@ -20,7 +20,6 @@ export class InvoiceListComponent implements OnInit {
   ngOnInit(): void {
     this.LoadInvoice();
   }
-
   invoiceHeader: any;
   dataSource: any;
   displayedColumns: string[] = ['Invoice No', 'Customer', 'Remarks', 'Total', 'Tax', 'NetTotal', 'Action'];

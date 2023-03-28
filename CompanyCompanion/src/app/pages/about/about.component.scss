@@ -1,0 +1,51 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.header-h1 {
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+mat-card {
+    margin: auto;
+    width: 80%;
+    margin-top: 5%;
+    padding: 20px;
+    flex-wrap: wrap;
+
+}
+
+.div-next-to {
+    display: flex;
+    width: 33%;
+}
+
+.p-style {
+    font-size: 200%;
+    font-weight: 700;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    div-next-to {
+        width: 100%;
+    }
+
+    .div-next-to {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    mat-card {
+        width: 95%;
+    }
+
+
+}

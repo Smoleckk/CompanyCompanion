@@ -19,16 +19,23 @@
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Date Issued</mat-label>
-                            <input type="date" matInput placeholder="Date Issued" formControlName="dateIssued">
+                        <mat-form-field appearance="outline">
+                            <mat-label>date Issued</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="dateIssued">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Due Date</mat-label>
-                            <input type="date" matInput placeholder="Due Date" formControlName="dueDate">
+                        <mat-form-field appearance="fill">
+                            <mat-label>due Date</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="dueDate">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
                         </mat-form-field>
+
                     </mat-grid-tile>
                 </mat-grid-list>
                 <!-- <hr> -->
@@ -90,7 +97,7 @@
                 </mat-grid-list>
                 <!-- Table of products -->
                 <mat-card style="margin: 10px 0 30px 0; padding: 1px;">
-                    <h2 style="background-color: #eaedf1; padding: 0px; margin: 0px; padding-left: 10px;">Invoice product</h2>
+                    <h2 color="accent" style=" padding: 0px; margin: 0px; padding-left: 10px;">Invoice product</h2>
                     <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="35px">
                         <mat-grid-tile>
                             <h4 style="padding: 0; margin:0;">Code</h4>
@@ -230,8 +237,7 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 <!-- Payments -->
-                <mat-grid-list [cols]="breakpoint3" (window:resize)="onResize($event)" rowHeight="70px"
-                    >
+                <mat-grid-list [cols]="breakpoint3" (window:resize)="onResize($event)" rowHeight="70px">
                     <mat-grid-tile>
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-select formControlName="isGenerated" placeholder="Status">

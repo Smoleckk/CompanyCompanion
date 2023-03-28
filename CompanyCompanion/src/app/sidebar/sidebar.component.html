@@ -1,12 +1,12 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav *ngIf="displaymenu" #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+<!-- <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav *ngIf="displaymenu" #drawer class="sidenav" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a>
-      <a mat-list-item routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
       <a mat-list-item routerLink="invoice-list" routerLinkActive="active" ariaCurrentWhenActive="page">Invoice list</a>
-      <a mat-list-item routerLink="proforma-list" routerLinkActive="active" ariaCurrentWhenActive="page">Proforma list</a>
+      <a mat-list-item routerLink="proforma-list" routerLinkActive="active" ariaCurrentWhenActive="page">Proforma
+        list</a>
       <a mat-list-item routerLink="product-list" routerLinkActive="active" ariaCurrentWhenActive="page">Product list</a>
       <a mat-list-item routerLink="user-list" routerLinkActive="active" ariaCurrentWhenActive="page">User list</a>
       <a mat-list-item routerLink="dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
@@ -14,16 +14,66 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" *ngIf="displaymenu">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button 
-        *ngIf="isHandset$ | async">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button  *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>CompanyCompanion</span>
-      
+      <div style="width: 100%; display: flex; justify-content: space-between;">
+        <a style="cursor: pointer;" mat-list-item routerLink="" routerLinkActive="active"
+          ariaCurrentWhenActive="page">CompanyCompanion</a>
+        <div style="display: flex; width: 80%;">
+          <a style="cursor: pointer;" mat-list-item routerLink="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">About</a>
+          <a style="cursor: pointer;" mat-list-item routerLink="/login" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Logout</a>
+        </div>
+      </div>
+
+
     </mat-toolbar>
 
     <router-outlet></router-outlet>
-    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{'darkMode':isDarkTheme}">
+  <mat-sidenav [ngClass]="{'show':!displaymenu}" #drawer class="sidenav" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="invoice-list" routerLinkActive="active" ariaCurrentWhenActive="page">Invoices</a>
+      <a mat-list-item routerLink="proforma-list" routerLinkActive="active" ariaCurrentWhenActive="page">Proforma</a>
+      <a mat-list-item routerLink="product-list" routerLinkActive="active" ariaCurrentWhenActive="page">Products</a>
+      <a mat-list-item routerLink="user-list" routerLinkActive="active" ariaCurrentWhenActive="page">Users</a>
+      <a mat-list-item routerLink="dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <mat-toolbar [ngClass]="{'show':!displaymenu}" color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a style="cursor: pointer;" mat-list-item routerLink="" routerLinkActive="active"
+        ariaCurrentWhenActive="page">CompanyCompanion</a>
+      <div class="flex-stretch"></div>
+
+      <div style="display: flex; width: 80%; ">
+        <mat-slide-toggle [(ngModel)]="isDarkTheme">
+          Dark theme
+        </mat-slide-toggle>
+        <a style="cursor: pointer;" mat-list-item routerLink="about" routerLinkActive="active"
+          ariaCurrentWhenActive="page">About</a>
+        <a style="cursor: pointer;" mat-list-item routerLink="/login" routerLinkActive="active"
+          ariaCurrentWhenActive="page">
+          <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="logout"></mat-icon>
+        </a>
+      </div>
+
+
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
-<!-- (click)="drawer.toggle()" -->

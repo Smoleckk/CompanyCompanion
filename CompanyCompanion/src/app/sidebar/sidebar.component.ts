@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   displaymenu=false;
+  isDarkTheme:boolean=false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -18,6 +19,7 @@ export class SidebarComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,private route:Router) {}
+
 
   ngDoCheck(): void {
     if (this.route.url == '/login' || this.route.url == '/register' ) {

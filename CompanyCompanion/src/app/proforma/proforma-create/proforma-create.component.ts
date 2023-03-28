@@ -23,6 +23,7 @@ export class ProformaCreateComponent implements OnInit {
     this.GetCustomers();
     this.GetProducts();
     this.ShowProformaNumber();
+    this.addProduct();
 
     this.editProformaId = this.activeRoute.snapshot.paramMap.get('proformaId');
     if (this.editProformaId != null) {
@@ -30,21 +31,28 @@ export class ProformaCreateComponent implements OnInit {
       this.isEdit = true;
       this.SetEditInfo(this.editProformaId)
     }
-
-    this.breakpoint3 = (window.innerWidth <= 800) ? 1 : 3;
-    this.breakpoint2 = (window.innerWidth <= 800) ? 1 : 2;
-    this.breakpoint9 = (window.innerWidth <= 800) ? 3 : 9;
+    this.breakpoint2 = (window.innerWidth <= 850) ? 1 : 2;
+    this.breakpoint3 = (window.innerWidth <= 850) ? 1 : 3;
+    this.breakpoint4 = (window.innerWidth <= 850) ? 1 : 4;
+    this.breakpoint9 = (window.innerWidth <= 850) ? 3 : 10;
+    this.colspan3 = (window.innerWidth <= 850) ? 2 : 3;
   }
   onResize(event: any) {
-    this.breakpoint3 = (event.target.innerWidth <= 800) ? 1 : 3;
-    this.breakpoint2 = (event.target.innerWidth <= 800) ? 1 : 2;
-    this.breakpoint9 = (event.target.innerWidth <= 800) ? 3 : 9;
+    this.breakpoint2 = (event.target.innerWidth <= 850) ? 1 : 2;
+    this.breakpoint3 = (event.target.innerWidth <= 850) ? 1 : 3;
+    this.breakpoint4 = (event.target.innerWidth <= 850) ? 1 : 4;
+    this.breakpoint9 = (event.target.innerWidth <= 850) ? 3 : 10;
+    this.colspan3 = (window.innerWidth <= 850) ? 2 : 3;
   }
-// breakpoints
-breakpoint2: any;
-breakpoint3: any;
-breakpoint9: any;
+  // breakpoints
+  breakpoint2: any;
+  breakpoint3: any;
+  breakpoint4: any;
+  breakpoint9: any;
+  colspan3: any;
 
+  paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
+  paymentStatus: string[] = ['Paid', 'Unpaid',];
   pageTitle = "Create Proforma"
   proformaDetail!: FormArray<any>;
   proformaProduct!: FormGroup<any>;
@@ -89,7 +97,7 @@ breakpoint9: any;
       editData = res;
       if (editData != null) {
         this.proformaForm.setValue({
-          proformaId:editData.proformaId,proformaNo: editData.proformaNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
+          proformaId: editData.proformaId, proformaNo: editData.proformaNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
           customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
@@ -117,12 +125,12 @@ breakpoint9: any;
       bruttoPrice: this.builder.control({ value: 0, disabled: true }),
       nettoPrice: this.builder.control({ value: 0, disabled: true }),
     })
-    let customerCode = this.proformaForm.get("customerId")?.value;
-    if (customerCode != null && customerCode != '') {
+    // let customerCode = this.proformaForm.get("customerId")?.value;
+    // if (customerCode != null && customerCode != '') {
       this.details.push(detailForm);
-    } else {
-      this.toastr.warning('Please select the customer', 'Validation')
-    }
+    // } else {
+      // this.toastr.warning('Please select the customer', 'Validation')
+    // }
   }
 
   deletePProduct(lessonIndex: number) {
