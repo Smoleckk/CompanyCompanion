@@ -10,30 +10,22 @@ $angular-primary-dark: mat.define-palette(mat.$deep-purple-palette);
 $angular-accent-dark: mat.define-palette(mat.$purple-palette);
 $angular-warn-dark: mat.define-palette(mat.$red-palette);
 
-$angular-default-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $angular-primary-light,
-      accent: $angular-accent-light,
-      warn: $angular-warn-light,
-    ),
-  )
-);
+$angular-default-theme: mat.define-light-theme((color: (primary: $angular-primary-light,
+                accent: $angular-accent-light,
+                warn: $angular-warn-light,
+            ),
+        ));
 
 
-$angular-dark-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: $angular-primary-dark,
-      accent: $angular-accent-dark,
-      warn: $angular-warn-dark,
-    ),
-  )
-);
+$angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary-dark,
+                accent: $angular-accent-dark,
+                warn: $angular-warn-dark,
+            ),
+        ));
 @include mat.all-component-themes($angular-default-theme);
 
 .darkMode {
-  @include mat.all-component-colors($angular-dark-theme);
+    @include mat.all-component-colors($angular-dark-theme);
 }
 
 html,
@@ -102,18 +94,54 @@ mat-card {
 
 @media only screen and (max-width: 1500px) {
     .container {
-        width: 95%;
+        width: 85%;
+        margin-top: 70px;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    // .container {
-    //     width: 95%;
-    // }
+    .container {
+        width: 95%;
+        margin-top: 20px;
+
+    }
 
     mat-card {
         padding: 0px;
     }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.breadcrumb-header {
+    border-bottom: 1px solid black;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: 500 !important;
+}
+
+.breadcrumb {
+    margin: 1px 0 20px 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+
+    .card {
+        display: flex;
+        align-items: center;
+    }
+
+    .middle {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 500;
+        padding: 0 !important;
+    }
+}
+
+.breadcrumb-p {
+    font-size: 18px;
+    margin: 0 1px !important;
+    padding: 0 !important;
+}

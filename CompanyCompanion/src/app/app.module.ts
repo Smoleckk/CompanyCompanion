@@ -81,7 +81,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSlideToggleModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}, MatDatepickerModule ],
   bootstrap: [AppComponent]

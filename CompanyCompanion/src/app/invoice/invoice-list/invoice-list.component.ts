@@ -22,7 +22,8 @@ export class InvoiceListComponent implements OnInit {
   }
   invoiceHeader: any;
   dataSource: any;
-  displayedColumns: string[] = ['Invoice No', 'Customer', 'Remarks', 'Total', 'Tax', 'NetTotal', 'Action'];
+  displayedColumns: string[] = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+  // 'Remarks', 'Total', 'Tax',
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

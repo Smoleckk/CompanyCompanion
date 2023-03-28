@@ -22,7 +22,8 @@ export class ProformaListComponent implements OnInit {
 
   proformaHeader: any;
   dataSource: any;
-  displayedColumns: string[] = ['Proforma No', 'Customer', 'Remarks', 'Total', 'Tax', 'NetTotal', 'Action'];
+  displayedColumns: string[] = ['Proforma No', 'Customer', 'NetTotal', 'Action'];
+  // , 'Remarks', 'Total', 'Tax',
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

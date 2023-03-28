@@ -1,11 +1,20 @@
 <div class="container">
-    <h1 class="title">{{pageTitle}}</h1>
+    <h1 class="breadcrumb-header">{{pageTitle}}</h1>
+    <mat-card class="breadcrumb">
+        <mat-card-actions class="card">
+            <div [routerLink]="['/']" class="middle">
+                <mat-icon>home</mat-icon>
+                <p class="breadcrumb-p">Home</p>
+            </div>
+            <p class="breadcrumb-p middle" [routerLink]="['/invoice-list']">/Invoices</p>
+            <p class="breadcrumb-p">/Invoice</p>
+        </mat-card-actions>
+    </mat-card>
     <mat-card>
         <mat-card-content>
             <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
                 <!-- Header -->
-                <mat-grid-list [cols]="breakpoint4" (window:resize)="onResize($event)" rowHeight="70px"
-                    style="">
+                <mat-grid-list [cols]="breakpoint4" (window:resize)="onResize($event)" rowHeight="70px" style="">
                     <mat-grid-tile>
                         <mat-form-field class="custom-form-field" appearance="outline" class="full-width">
                             <mat-label>Upload Logo</mat-label>
@@ -18,11 +27,11 @@
                             <input matInput placeholder="Place of issue" formControlName="placeOfIssue">
                         </mat-form-field>
                     </mat-grid-tile>
-                    <mat-grid-tile> 
+                    <mat-grid-tile>
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>date Issued</mat-label>
                             <input matInput [matDatepicker]="picker1" formControlName="dateIssued">
-                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                             <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
@@ -31,7 +40,7 @@
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>due Date</mat-label>
                             <input matInput [matDatepicker]="picker2" formControlName="dueDate">
-                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                             <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                             <mat-datepicker #picker2></mat-datepicker>
                         </mat-form-field>
@@ -40,8 +49,7 @@
                 </mat-grid-list>
                 <!-- <hr> -->
                 <!-- Contractor/Owner -->
-                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="300px"
-                    style="">
+                <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="300px" style="">
                     <mat-grid-tile>
                         <div class="middlerows">
                             <div style="text-align: left;" class="half-width">
@@ -297,7 +305,7 @@
                 </mat-form-field>
 
                 <div class="form-submit">
-                    <a routerLink="/invoice-list" mat-raised-button color="accent">Back</a>
+                    <!-- <a routerLink="/invoice-list" mat-raised-button color="accent">Back</a> -->
                     <!-- <mat-checkbox formControlName="isGenerated" color="primary">
                         Do you want to generate invoice number?
                     </mat-checkbox> -->
