@@ -1,5 +1,7 @@
 <div class="container">
-    <a routerLink="/create-invoice" mat-raised-button color="accent">Create new invoice</a>
+    <div style="text-align: right; margin-bottom: 20px;" >
+        <a routerLink="/create-invoice" mat-raised-button color="accent">Create new invoice</a>
+    </div>
 
     <div class="mat-elevation-z8">
         <table mat-table matSort [dataSource]="dataSource">

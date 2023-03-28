@@ -6,8 +6,8 @@ $angular-primary-light: mat.define-palette(mat.$green-palette);
 $angular-accent-light: mat.define-palette(mat.$teal-palette);
 $angular-warn-light: mat.define-palette(mat.$red-palette);
 // dark
-$angular-primary-dark: mat.define-palette(mat.$yellow-palette);
-$angular-accent-dark: mat.define-palette(mat.$amber-palette);
+$angular-primary-dark: mat.define-palette(mat.$deep-purple-palette);
+$angular-accent-dark: mat.define-palette(mat.$purple-palette);
 $angular-warn-dark: mat.define-palette(mat.$red-palette);
 
 $angular-default-theme: mat.define-light-theme(

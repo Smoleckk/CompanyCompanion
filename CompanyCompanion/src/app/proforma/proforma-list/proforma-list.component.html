@@ -1,6 +1,7 @@
 <div class="container">
-    <a routerLink="/create-proforma" mat-raised-button color="accent">Create new proforma</a>
-
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a routerLink="/create-proforma" mat-raised-button color="accent">Create new proforma</a>
+    </div>
     <div class="mat-elevation-z8">
         <table mat-table matSort [dataSource]="dataSource">
 
@@ -37,7 +38,9 @@
                         color="primary">Edit</a>
                     <a mat-raised-button *ngIf="!element.isGenerated" (click)="ProformaRemove(element.proformaId)"
                         color="accent">Delete</a>
-                    <a mat-raised-button *ngIf="element.isGenerated" (click)="GenerateInvoiceFormProforma(element.proformaId)" color="accent"> Proforma to invoice</a>
+                    <a mat-raised-button *ngIf="element.isGenerated"
+                        (click)="GenerateInvoiceFormProforma(element.proformaId)" color="accent"> Proforma to
+                        invoice</a>
                     <!-- (click)="UpdateUser(element.username)" -->
                 </td>
             </ng-container>
