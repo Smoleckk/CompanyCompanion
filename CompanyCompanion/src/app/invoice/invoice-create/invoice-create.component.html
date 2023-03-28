@@ -5,7 +5,7 @@
             <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
                 <!-- Header -->
                 <mat-grid-list [cols]="breakpoint4" (window:resize)="onResize($event)" rowHeight="70px"
-                    style="border-bottom: 1px solid black;">
+                    style="">
                     <mat-grid-tile>
                         <mat-form-field class="custom-form-field" appearance="outline" class="full-width">
                             <mat-label>Upload Logo</mat-label>
@@ -18,8 +18,8 @@
                             <input matInput placeholder="Place of issue" formControlName="placeOfIssue">
                         </mat-form-field>
                     </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-form-field appearance="outline">
+                    <mat-grid-tile> 
+                        <mat-form-field appearance="outline" class="full-width">
                             <mat-label>date Issued</mat-label>
                             <input matInput [matDatepicker]="picker1" formControlName="dateIssued">
                             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -28,7 +28,7 @@
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="outline" class="full-width">
                             <mat-label>due Date</mat-label>
                             <input matInput [matDatepicker]="picker2" formControlName="dueDate">
                             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -41,7 +41,7 @@
                 <!-- <hr> -->
                 <!-- Contractor/Owner -->
                 <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="300px"
-                    style="border-bottom: 1px solid black;">
+                    style="">
                     <mat-grid-tile>
                         <div class="middlerows">
                             <div style="text-align: left;" class="half-width">
