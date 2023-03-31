@@ -10,7 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hideMenu:boolean = true;
 
+  HideMenu(){
+    this.hideMenu=!this.hideMenu;
+  }
   messageclass = ''
   message = ''
   Customerid: any;
@@ -40,4 +44,5 @@ export class LoginComponent implements OnInit {
         })
     }
   }
+
 }

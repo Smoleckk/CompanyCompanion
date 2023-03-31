@@ -22,11 +22,16 @@ export class SidebarComponent {
 
 
   ngDoCheck(): void {
-    if (this.route.url == '/login' || this.route.url == '/register' ) {
+    if (this.route.url == '/login' || this.route.url == '/register' || this.route.url == '/welcome' ) {
       this.displaymenu = false
     } else {
       this.displaymenu = true
     }
+  }  
+  hideMenu:boolean = true;
+
+  HideMenu(){
+    this.hideMenu=!this.hideMenu;
   }
 
 }

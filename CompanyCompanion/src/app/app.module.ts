@@ -37,6 +37,7 @@ import { ProformaPrintPopupComponent } from './proforma/proforma-print-popup/pro
 import { AboutComponent } from './pages/about/about.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ProformaCreateComponent,
     ProformaPrintPopupComponent,
     AboutComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
