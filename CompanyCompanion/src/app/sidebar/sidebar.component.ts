@@ -33,5 +33,12 @@ export class SidebarComponent {
   HideMenu(){
     this.hideMenu=!this.hideMenu;
   }
+  clearLocal(){
+    localStorage.removeItem('token');
+  }
+  // checkLogin(){
+  //   if(localStorage.getItem('token')!=null)
+  //   return true;
+  // }
 
 }

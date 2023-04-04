@@ -1,8 +1,8 @@
 .text-box {
     width: 90%;
-    color: #fff;
+    color: black;
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -14,15 +14,15 @@
 
     p {
         margin: 40px 0 60px;
-        color: #fff;
+        color: black;
     }
 }
 
 .hero-btn {
     display: inline-block;
     text-decoration: none;
-    color: #fff;
-    border: 1px solid #fff;
+    color: black;
+    border: 1px solid black;
     padding: 12px 34px;
     font-style: 13px;
     background: transparent;
@@ -79,7 +79,7 @@ p {
 
 .course-col {
     flex-basis: 31%;
-    background: #f8fff3;
+    background: #fff;
     border-radius: 10px;
     margin-bottom: 5%;
     padding: 20px 12px;
@@ -126,6 +126,7 @@ h3 {
     width: 400px;
     height: 300px;
     object-fit: cover;
+    min-width: 300px;
 }
 
 .layer {
@@ -145,7 +146,7 @@ h3 {
 .layer h3 {
     width: 100%;
     font-weight: 500;
-    color: #fff;
+    color: black;
     font-size: 26px;
     bottom: 0;
     left: 50%;
@@ -174,7 +175,7 @@ h3 {
     border-radius: 10px;
     margin-bottom: 5%;
     text-align: left;
-    background: #f8fff3;
+    background: #fff;
     padding: 25px;
     cursor: pointer;
     display: flex;

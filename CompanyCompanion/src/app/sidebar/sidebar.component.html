@@ -31,7 +31,7 @@
         aria-label="Example icon-button with heart icon">
         <mat-icon>bookmark</mat-icon>
       </button> -->
-      <button routerLink="/welcome" mat-icon-button class="example-icon"
+      <button (click)="clearLocal()" routerLink="/welcome" mat-icon-button class="example-icon"
         aria-label="Example icon-button with share icon">
         <mat-icon>logout</mat-icon>
       </button>
@@ -42,12 +42,12 @@
 
 
 <mat-sidenav-container *ngIf="!displaymenu" class="sidenav-container mat-app-background">
-  <section class="sub-header">
-    <nav>
+  <section class="">
+    <nav style="background-image: linear-gradient(to right, #617055, #116444);">
       <a href="welcome">CompanyCompanion</a>
       <div class="nav-links" id="navlinks" [ngClass]="{'hidemenu':hideMenu}">
-        <button (click)="HideMenu()" mat-icon-button>
-          <mat-icon class="fa fa-times">power_settings_new</mat-icon>
+        <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
+          <mat-icon class="hide-icon fa fa-times">power_settings_new</mat-icon>
         </button>
         <ul>
           <li><a href="/welcome">HOME</a></li>
@@ -59,8 +59,8 @@
           <li><a href="/register">REGISTER</a></li>
         </ul>
       </div>
-      <button (click)="HideMenu()" mat-icon-button>
-        <mat-icon class="fa fa-bars">reorder</mat-icon>
+      <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
+        <mat-icon class="hide-icon fa fa-bars">reorder</mat-icon>
 
       </button>
     </nav>
