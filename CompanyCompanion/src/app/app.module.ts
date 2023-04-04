@@ -38,6 +38,7 @@ import { AboutComponent } from './pages/about/about.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     MatSlideToggleModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatStepperModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}, MatDatepickerModule ],
   bootstrap: [AppComponent]

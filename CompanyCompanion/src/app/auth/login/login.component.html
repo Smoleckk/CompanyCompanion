@@ -24,3 +24,39 @@
         </mat-card-content>
     </mat-card>
 </div>
+<!-- <mat-stepper #stepper>
+    <form [formGroup]="loginform" (ngSubmit)="ProceedLogin()">
+        <mat-step errorMessage="Name is required.">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>User Name</mat-label>
+                <input required matInput placeholder="Edd" formControlName="username">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step  errorMessage="Address is required.">
+            <ng-template matStepLabel>Fill out your address</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input required type="password" matInput formControlName="password">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div class="form-submit">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-raised-button color="primary">Login</button>
+            </div>
+
+        </mat-step>
+    </form>
+
+</mat-stepper> -->
