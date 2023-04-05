@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  apiurl = 'https://localhost:7184/api/Auth/';
+  apiurl = 'https://localhost:7037/api/Auth/';
   constructor(private http: HttpClient) { }
 
   proceedLogin(usercred: any) {
@@ -17,10 +17,24 @@ export class AuthService {
   GetToken(){
     return localStorage.getItem('token') || '';
   }
+  HaveAccess() {
+    var loggintoken = localStorage.getItem('token') || '';
+    if(loggintoken!=''){
+      var _extractedtoken = loggintoken.split('.')[1];
+      var _atodata = atob(_extractedtoken);
+      var _finaldata = JSON.parse(_atodata);
+      var role = _finaldata[Object.keys(_finaldata)[1]];
+      console.log(_finaldata[Object.keys(_finaldata)[1]]);
+      if (role == 'Admin') {
+        return true;
+      }
+    }
+    return false;
+  }
+
   proceedRegister(usercred: any) {
     return this.http.post(this.apiurl+'register', usercred)
   }
-
 
   GetByName(username:any){
     return this.http.post(this.apiurl+'get-by-username', username)

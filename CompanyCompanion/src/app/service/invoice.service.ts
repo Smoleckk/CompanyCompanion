@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class InvoiceService {
-  apiUrlCustomer = 'https://localhost:7184/api/Customer/';
-  apiUrlProducts = 'https://localhost:7184/api/Products/';
-  apiUrlInvoice = 'https://localhost:7184/api/Invoice/';
+  apiUrlCustomer = 'https://localhost:7037/api/Customer/';
+  apiUrlProducts = 'https://localhost:7037/api/Products/';
+  apiUrlInvoice = 'https://localhost:7037/api/Invoice/';
 
   constructor(private http: HttpClient) { }
 

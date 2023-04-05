@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProformaService {
-  apiUrlCustomer = 'https://localhost:7184/api/Customer/';
-  apiUrlProducts = 'https://localhost:7184/api/Products/';
-  apiUrlProforma = 'https://localhost:7184/api/Proforma/';
+  apiUrlCustomer = 'https://localhost:7037/api/Customer/';
+  apiUrlProducts = 'https://localhost:7037/api/Products/';
+  apiUrlProforma = 'https://localhost:7037/api/Proforma/';
 
   constructor(private http: HttpClient) { }
 

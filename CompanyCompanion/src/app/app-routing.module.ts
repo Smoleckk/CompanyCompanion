@@ -13,13 +13,14 @@ import { AuthGuard } from './shared/auth.guard';
 import { ProformaCreateComponent } from './proforma/proforma-create/proforma-create.component';
 import { ProformaListComponent } from './proforma/proforma-list/proforma-list.component';
 import { AboutComponent } from './pages/about/about.component';
+import { RoleGuard } from './shared/role.guard';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "welcome", component: WelcomeComponent },
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: "user-list", component: UserListComponent, canActivate: [AuthGuard] },
+  { path: "user-list", component: UserListComponent, canActivate: [RoleGuard] },
   { path: "product-list", component: ProductListComponent, canActivate: [AuthGuard] },
   { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "about", component: AboutComponent, canActivate: [AuthGuard] },

@@ -29,18 +29,43 @@ export class RegisterComponent {
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
 
-  registerform = this.builder.group({
+  registerForm = this.builder.group({
     username: this.builder.control('', Validators.required),
-    password: this.builder.control('', Validators.required)
+    password: this.builder.control('', Validators.required),
+    email: this.builder.control('', Validators.required),
+
   })
 
-  secondFormGroup = this.builder.group({
-    companyName: ['', Validators.required],
+  companyForm = this.builder.group({
+    name: ['', Validators.required],
+    nip: ['', Validators.required],
+    city: ['', Validators.required],
+    cityCode: ['', Validators.required],
   });
 
+  formData = {
+    username: this.registerForm.value.username,
+    password: this.registerForm.value.password,
+    email: this.registerForm.value.email,
+    name: this.companyForm.value.name,
+    nip: this.companyForm.value.nip,
+    city: this.companyForm.value.city,
+    cityCode: this.companyForm.value.cityCode
+  };
+
   proceedregistration() {
-    if (this.registerform.valid) {
-      this.service.proceedRegister(this.registerform.value).subscribe(res => {
+    this.formData = {
+      username: this.registerForm.value.username,
+      password: this.registerForm.value.password,
+      email: this.registerForm.value.email,
+      name: this.companyForm.value.name,
+      nip: this.companyForm.value.nip,
+      city: this.companyForm.value.city,
+      cityCode: this.companyForm.value.cityCode
+    };
+    if (this.registerForm.valid) {
+      this.service.proceedRegister(this.formData).subscribe(res => {
+        // console.log(this.formData);
         this.toaster.success('Please contact', 'Registered successfully')
         this.route.navigate(['login'])
       },
