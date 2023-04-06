@@ -81,9 +81,9 @@
                                 <h2>Customer</h2>
                             </div>
                             <mat-form-field appearance="outline" class="half-width">
-                                <mat-select (selectionChange)="CustomerChange()" formControlName="customerId"
-                                    placeholder="Customer Id">
-                                    <mat-option *ngFor="let item of getCustomer" [value]="item.customerId">
+                                <mat-select (selectionChange)="CustomerChange()" formControlName="customerName"
+                                    placeholder="Customer Name">
+                                    <mat-option *ngFor="let item of getCustomer" [value]="item.customerName">
                                         {{item.customerName}}
                                     </mat-option>
                                 </mat-select>

@@ -78,7 +78,6 @@ export class CreateInvoiceComponent implements OnInit {
     placeOfIssue: this.builder.control(''),
     dateIssued: this.builder.control(new Date().toISOString()),
     dueDate: this.builder.control(new Date().toISOString()),
-    customerId: this.builder.control({ value: 0, disabled: false }),
     customerName: this.builder.control(''),
     customerNip: this.builder.control(''),
     customerDeliveryAddress: this.builder.control(''),
@@ -105,7 +104,7 @@ export class CreateInvoiceComponent implements OnInit {
       let editData: any;
       editData = res;
       console.log(invoiceIdCode);
-      console.log(editData.customerId);
+      console.log(editData);
       
       editData.products.forEach((product: any) => {
         this.products.push(this.builder.group({
@@ -122,7 +121,7 @@ export class CreateInvoiceComponent implements OnInit {
       if (editData != null) {
         this.invoiceForm.setValue({
           invoiceId: editData.invoiceId, invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
-          customerId: 1, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
+          customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
           paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
@@ -135,7 +134,6 @@ export class CreateInvoiceComponent implements OnInit {
     })
   }
 
-
   SetEditInfoProforma(proformaId: any) {
     this.serviceProforma.GetProformaHeaderByCode(proformaId).subscribe(res => {
       let editData: any;
@@ -143,7 +141,7 @@ export class CreateInvoiceComponent implements OnInit {
       if (editData != null) {
         this.invoiceForm.setValue({
           invoiceId: editData.proformaId, invoiceNo: editData.proformaNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
-          customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
+          customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
           paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
@@ -220,7 +218,7 @@ export class CreateInvoiceComponent implements OnInit {
     })
   }
   CustomerChange() {
-    let customerCode = this.invoiceForm.get("customerId")?.value;
+    let customerCode = this.invoiceForm.get("customerName")?.value;
     this.service.GetCustomerByCode(customerCode).subscribe(res => {
       let customData: any;
       customData = res;

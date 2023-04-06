@@ -35,16 +35,16 @@ namespace CompanyCompanionBackend.Controllers
 
         // GET: api/customers/5
         [HttpGet("{id}")]
-        public ActionResult<Customer> GetCustomer(int id)
+        public async Task<ActionResult<Customer>> GetCustomer(string id)
         {
-            var customer = _context.Customers.Find(id);
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerName == id);
 
             if (customer == null)
             {
                 return NotFound();
             }
 
-            return customer;
+            return Ok(customer);
         }
 
         // POST: api/customers
