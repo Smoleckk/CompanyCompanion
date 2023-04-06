@@ -12,5 +12,6 @@ namespace CompanyCompanionBackend.Models
         public ICollection<User> Users { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
         public ICollection<Customer> Customers { get; set; }
+        public ICollection<ProductMagazine> ProductMagazines { get; set; }
     }
 }

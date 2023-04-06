@@ -6,7 +6,6 @@
         public string PlaceOfIssue { get; set; } = string.Empty;
         public string DateIssued { get; set; } = string.Empty;
         public string DueDate { get; set; } = string.Empty;
-        public int CustomerId { get; set; }
         public string CustomerName { get; set; } = string.Empty;
         public string CustomerNip { get; set; } = string.Empty;
         public string CustomerDeliveryAddress { get; set; } = string.Empty;

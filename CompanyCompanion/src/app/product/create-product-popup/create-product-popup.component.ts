@@ -20,9 +20,11 @@ export class CreateProductPopupComponent {
   }
 
   createform = this.builder.group({
-    code: this.builder.control('', Validators.required),
     name: this.builder.control('', Validators.required),
     price: this.builder.control('', Validators.required),
+    vat: this.builder.control('', Validators.required),
+    qty: this.builder.control('', Validators.required),
+    unit: this.builder.control('', Validators.required),
     category: this.builder.control('', Validators.required),
     remarks: this.builder.control('', Validators.required)
   })

@@ -21,13 +21,14 @@ namespace CompanyCompanionBackend.Controllers
         }
 
 
-        [HttpGet("get-invoices-header")]
-        public async Task<ActionResult<List<User>>> GetInvoicesHeader()
+        [HttpGet("get-invoices-header"), Authorize]
+        public async Task<ActionResult<List<Invoice>>> GetInvoicesHeader()
         {
-            var invoices = await context.Invoices.ToListAsync();
-            var invoiceHeader = _mapper.Map<List<InvoiceHeader>>(invoices);
+            var userName = User?.Identity?.Name;
+            var user = await context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
+            var company = await context.Companies.Include(i => i.Invoices).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
 
-            return Ok(invoiceHeader);
+            return Ok(company.Invoices);
         }
 
         [HttpGet("get-invoice-by-Code")]
@@ -110,7 +111,6 @@ namespace CompanyCompanionBackend.Controllers
             invoice.PlaceOfIssue = invoiceDto.PlaceOfIssue;
             invoice.DateIssued = invoiceDto.DateIssued;
             invoice.DueDate = invoiceDto.DueDate;
-            invoice.CustomerId = "";
             invoice.CustomerName = invoiceDto.CustomerName;
             invoice.CustomerNip = invoiceDto.CustomerNip;
             invoice.CustomerDeliveryAddress = invoiceDto.CustomerDeliveryAddress;

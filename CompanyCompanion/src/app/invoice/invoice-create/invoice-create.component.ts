@@ -235,7 +235,10 @@ export class CreateInvoiceComponent implements OnInit {
   ProductChange(index: any) {
     this.invoiceDetail = this.invoiceForm.controls["products"] as FormArray;
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
-    let productCode = this.invoiceProduct.get("productCode")?.value;
+     console.log(this.invoiceProduct.value);
+    let productCode = this.invoiceProduct.get("productName")?.value;
+    console.log(productCode);
+    
     this.service.GetProductsByCode(productCode).subscribe(res => {
       let prodData: any;
       prodData = res;
@@ -243,6 +246,8 @@ export class CreateInvoiceComponent implements OnInit {
       if (prodData != null) {
         this.invoiceProduct.get("productName")?.setValue(prodData.name)
         this.invoiceProduct.get("salesPrice")?.setValue(prodData.price)
+        this.invoiceProduct.get("vat")?.setValue(prodData.vat)
+        this.invoiceProduct.get("unit")?.setValue(prodData.unit)
         this.ItemCalculation(index);
       }
     })

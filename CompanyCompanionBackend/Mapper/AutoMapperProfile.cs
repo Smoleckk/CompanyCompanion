@@ -3,9 +3,10 @@ using CompanyCompanionBackend.Models;
 
 namespace CompanyCompanionBackend.Mapper
 {
-    public class AutoMapperProfile:Profile
+    public class AutoMapperProfile : Profile
     {
-        public AutoMapperProfile() {
+        public AutoMapperProfile()
+        {
 
             CreateMap<Invoice, InvoiceHeader>()
     .ForMember(dest => dest.InvoiceHeaderId, opt => opt.MapFrom(src => src.InvoiceId))
@@ -18,6 +19,8 @@ namespace CompanyCompanionBackend.Mapper
 
             CreateMap<InvoiceAddDto, Invoice>();
             CreateMap<Invoice, InvoiceReturnDto>();
+            CreateMap<CustomerAddDto, Customer>();
+            CreateMap<ProductMagazineAddDto, ProductMagazine>();
 
 
         }

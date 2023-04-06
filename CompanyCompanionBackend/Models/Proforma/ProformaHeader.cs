@@ -8,7 +8,6 @@
         public string DateIssued { get; set; } = string.Empty;
         public string DueDate { get; set; } = string.Empty;
         public DateTime ProformaDate { get; set; } = DateTime.Now;
-        public string CustomerId { get; set; } = string.Empty;
         public string CustomerName { get; set; } = string.Empty;
         public string CustomerNip { get; set; } = string.Empty;
         public string customerDeliveryAddress { get; set; } = string.Empty;

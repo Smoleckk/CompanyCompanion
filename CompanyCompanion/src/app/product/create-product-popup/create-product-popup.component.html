@@ -7,16 +7,24 @@
         <mat-card-content  >
             <form class="form middlerows" [formGroup]="createform" (ngSubmit)="saveProduct()" >
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Code</mat-label>
-                    <input matInput placeholder="Edd" formControlName="code">
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Edd" formControlName="name">
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Price</mat-label>
                     <input matInput placeholder="Edd" formControlName="price">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>vat</mat-label>
+                    <input matInput placeholder="Edd" formControlName="vat">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>qty</mat-label>
+                    <input matInput placeholder="Edd" formControlName="qty">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>unit</mat-label>
+                    <input matInput placeholder="Edd" formControlName="unit">
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Category</mat-label>

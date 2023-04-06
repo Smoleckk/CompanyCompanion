@@ -1,5 +1,9 @@
-﻿using CompanyCompanionBackend.Models;
+﻿using AutoMapper;
+using CompanyCompanionBackend.Data;
+using CompanyCompanionBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CompanyCompanionBackend.Controllers
 {
@@ -7,31 +11,72 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        [HttpGet("get-customers")]
-        public ActionResult<List<Customer>> GetCustomers()
-        {
-            Customer customer1 = new Customer { CustomerId = 1, CustomerName = "aaa", CustomerNip = "123972821", CustomerAddress = "00-000", CustomerCity = "Warszawa" };
-            Customer customer2 = new Customer { CustomerId = 2, CustomerName = "aaa", CustomerNip = "123972821", CustomerAddress = "00-000", CustomerCity = "Warszawa" };
-            Customer customer3 = new Customer { CustomerId = 3, CustomerName = "aaa", CustomerNip = "123972821" };
-            List<Customer> customers = new List<Customer> { };
-            customers.Add(customer1);
-            customers.Add(customer2);
-            customers.Add(customer3);
 
+        private readonly DataContext _context;
+        private readonly IMapper _mapper;
+        public CustomerController(DataContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+            _mapper = mapper;
+        }
+
+        // GET: api/customers
+        [HttpGet, Authorize]
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        {
+
+            var userName = User?.Identity?.Name;
+            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
+            var company = await _context.Companies.Include(i => i.Customers).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
+            var customers = company.Customers;
             return Ok(customers);
         }
-        [HttpGet("get-customers-by-code")]
-        public ActionResult<Customer> GetCustomers(string code)
+
+        // GET: api/customers/5
+        [HttpGet("{id}")]
+        public ActionResult<Customer> GetCustomer(int id)
         {
-            Customer customer1 = new Customer { CustomerId = 1, CustomerName = "aaa", CustomerNip = "123972821", CustomerAddress = "00-000", CustomerCity = "Warszawa" };
-            Customer customer2 = new Customer { CustomerId = 2, CustomerName = "aaa", CustomerNip = "123972821", CustomerAddress = "00-000", CustomerCity = "Warszawa" };
-            Customer customer3 = new Customer { CustomerId = 3, CustomerName = "aaa", CustomerNip = "123972821" };
-            List<Customer> customers = new List<Customer>();
-            customers.Add(customer1);
-            customers.Add(customer2);
-            customers.Add(customer3);
-            Customer c = customers.Find(c => c.CustomerId == Int32.Parse(code));
-            return Ok(c);
+            var customer = _context.Customers.Find(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return customer;
         }
+
+        // POST: api/customers
+        [HttpPost, Authorize]
+        public async Task<ActionResult<Customer>> PostCustomer(CustomerAddDto customerAddDto)
+        {
+            var userName = User?.Identity?.Name;
+            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
+            Company company = await _context.Companies.Include(i => i.Customers).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
+            var customer = _mapper.Map<Customer>(customerAddDto);
+            company.Customers.Add(customer);
+            await _context.SaveChangesAsync();
+
+            return Ok(customer);
+        }
+
+        // DELETE: api/customers/5
+        [HttpDelete("{id}")]
+        public ActionResult<Customer> DeleteCustomer(int id)
+        {
+            var customer = _context.Customers.Find(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            _context.Customers.Remove(customer);
+            _context.SaveChanges();
+
+            return customer;
+        }
+
     }
 }
