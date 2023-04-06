@@ -4,6 +4,7 @@ using CompanyCompanionBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyCompanionBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230405175844_relations")]
+    partial class relations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CityCode")
+                    b.Property<string>("CityCustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -76,7 +78,7 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomerCityCode")
+                    b.Property<string>("CustomerCityCustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -84,7 +86,7 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Code")
+                    b.Property<string>("CustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -137,11 +139,11 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SellerCityCode")
+                    b.Property<string>("SellerCityCustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SellerDeliveryCustomerCity")
+                    b.Property<string>("sellerDeliveryAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -187,7 +189,7 @@ namespace CompanyCompanionBackend.Migrations
                     b.Property<double>("NettoPrice")
                         .HasColumnType("float");
 
-                    b.Property<string>("ProductCode")
+                    b.Property<string>("ProductCustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -254,7 +256,7 @@ namespace CompanyCompanionBackend.Migrations
                     b.HasOne("CompanyCompanionBackend.Models.Company", "Company")
                         .WithMany("Invoices")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -272,7 +274,7 @@ namespace CompanyCompanionBackend.Migrations
                     b.HasOne("CompanyCompanionBackend.Models.Company", "Company")
                         .WithMany("Users")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");

@@ -12,7 +12,7 @@
     </mat-card>
     <mat-card>
         <mat-card-content>
-            <form class="form" [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
+            <form [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
                 <!-- Header -->
                 <mat-grid-list [cols]="breakpoint4" (window:resize)="onResize($event)" rowHeight="70px" style="">
                     <mat-grid-tile>
@@ -55,12 +55,12 @@
                             <div style="text-align: left;" class="half-width">
                                 <h2>Seller</h2>
                             </div>
-                            <mat-form-field appearance="outline" class="half-width">
+                            <!-- <mat-form-field appearance="outline" class="half-width">
                                 <mat-select formControlName="sellerId" placeholder="Seller Id">
                                     <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}
                                     </mat-option>
                                 </mat-select>
-                            </mat-form-field>
+                            </mat-form-field> -->
                             <mat-form-field appearance="outline" class="half-width">
                                 <mat-label>Seller NIP</mat-label>
                                 <input matInput placeholder="Seller NIP" formControlName="sellerNip">
@@ -83,10 +83,19 @@
                             <mat-form-field appearance="outline" class="half-width">
                                 <mat-select (selectionChange)="CustomerChange()" formControlName="customerId"
                                     placeholder="Customer Id">
-                                    <mat-option *ngFor="let item of getCustomer" [value]="item.code">{{item.name}}
+                                    <mat-option *ngFor="let item of getCustomer" [value]="item.customerId">
+                                        {{item.customerName}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
+                            <mat-form-field appearance="outline" class="half-width">
+                                <mat-label>Customer Name</mat-label>
+                                <input matInput placeholder="Customer Name" formControlName="customerName">
+                            </mat-form-field>
+                            <!-- <mat-form-field appearance="outline" class="half-width">
+                                    <mat-label>Customer Id</mat-label>
+                                    <input matInput placeholder="Customer Id" formControlName="customerId">
+                                </mat-form-field> -->
                             <mat-form-field appearance="outline" class="half-width">
                                 <mat-label>Customer NIP</mat-label>
                                 <input matInput placeholder="Customer NIP" formControlName="customerNip">
@@ -96,10 +105,7 @@
                                 <input matInput placeholder="Customer Address"
                                     formControlName="customerDeliveryAddress">
                             </mat-form-field>
-                            <mat-form-field appearance="outline" class="half-width">
-                                <mat-label>Customer City/ Code</mat-label>
-                                <input matInput placeholder="Customer City/ Code" formControlName="customerCityCode">
-                            </mat-form-field>
+
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
@@ -137,8 +143,8 @@
                     </mat-grid-list>
 
                     <div class="add-products-form" [formGroup]="invoiceForm">
-                        <ng-container formArrayName="details">
-                            <ng-container *ngFor="let detailForm of details.controls; let i = index">
+                        <ng-container formArrayName="products">
+                            <ng-container *ngFor="let detailForm of products.controls; let i = index">
                                 <div [formGroupName]="i">
                                     <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)"
                                         rowHeight="65px">

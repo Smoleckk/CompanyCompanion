@@ -34,15 +34,17 @@ export class InvoiceService {
   GetAllInvoice(){
     return this.http.get(this.apiUrlInvoice+'get-invoices-header')
   }
-  GetInvHeaderByCode(invoiceId:any){
-    return this.http.get(this.apiUrlInvoice+'get-invoice-header-by-code?code='+invoiceId)
+  GetInvByCode(invoiceId:any){
+    return this.http.get(this.apiUrlInvoice+'get-invoice-by-code?code='+invoiceId)
   }
   RemoveInvoice(invoiceId:any){
     return this.http.delete(this.apiUrlInvoice + 'delete-invoice?code=' + invoiceId);
   }
   SaveInvoice(invoiceData:any){
     return this.http.post(this.apiUrlInvoice + 'save-invoice',invoiceData);
-  
+  }
+  EditInvoice(invoiceData:any){
+    return this.http.put(this.apiUrlInvoice + 'invoices/'+invoiceData.invoiceId,invoiceData);
   }
 
 }

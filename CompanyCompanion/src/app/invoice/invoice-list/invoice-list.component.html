@@ -27,7 +27,7 @@
                 <th mat-header-cell mat-sort-header *matHeaderCellDef> Invoice Number </th>
                 <td mat-cell *matCellDef="let element"> {{element.invoiceNo}}</td>
                 <!-- <a style="cursor: pointer; color: blue;"
-                        (click)="InvoiceDownload(element.invoiceId)">{{element.invoiceNo}}</a>  -->
+                        (click)="InvoiceDownload(element.invoiceHeaderId)">{{element.invoiceNo}}</a>  -->
             </ng-container>
             <ng-container matColumnDef="Customer">
                 <th mat-header-cell mat-sort-header *matHeaderCellDef> Customer </th>
@@ -53,22 +53,18 @@
             <ng-container matColumnDef="Action">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let element">
-                    <a mat-icon-button (click)="InvoiceDownload(element.invoiceId)" color="primary">
+                    <a mat-icon-button (click)="InvoiceDownload(element.invoiceHeaderId)" color="primary">
                         <mat-icon>print</mat-icon>
                     </a>
-                    <a mat-icon-button *ngIf="!element.isGenerated" (click)="InvoiceEdit(element.invoiceId)"
+                    <a mat-icon-button *ngIf="!element.isGenerated" (click)="InvoiceEdit(element.invoiceHeaderId)"
                         color="primary">
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a mat-icon-button *ngIf="!element.isGenerated" (click)="InvoiceRemove(element.invoiceId)"
+                    <!-- *ngIf="!element.isGenerated" -->
+                    <a mat-icon-button  (click)="InvoiceRemove(element.invoiceHeaderId)"
                         color="warn">
                         <mat-icon>delete</mat-icon>
                     </a>
-                    <!-- <a mat-raised-button *ngIf="!element.isGenerated" (click)="InvoiceEdit(element.invoiceId)"
-            color="primary">Edit</a>
-                    <a mat-raised-button *ngIf="!element.isGenerated" (click)="InvoiceRemove(element.invoiceId)"
-                        color="accent">Delete</a> -->
-                    <!-- <a mat-raised-button (click)="InvoiceDownload(element.invoiceId)" color="accent">Show</a> -->
                 </td>
             </ng-container>
 

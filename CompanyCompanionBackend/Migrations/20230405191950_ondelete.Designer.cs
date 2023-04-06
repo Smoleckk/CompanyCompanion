@@ -4,6 +4,7 @@ using CompanyCompanionBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyCompanionBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230405191950_ondelete")]
+    partial class ondelete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,11 +82,11 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomerDeliveryCustomerCity")
+                    b.Property<string>("customerDeliveryAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Code")
+                    b.Property<string>("CustomerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -141,7 +143,7 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SellerDeliveryCustomerCity")
+                    b.Property<string>("sellerDeliveryAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

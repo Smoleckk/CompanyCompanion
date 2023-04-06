@@ -21,9 +21,9 @@ namespace CompanyCompanionBackend.Controllers
 
 
         [HttpGet("get-proforma-header-by-code")]
-        public ActionResult<ProformaHeader> GetProformaHeaderByCode(string code)
+        public ActionResult<ProformaHeader> GetProformaHeaderByCode(string Code)
         {
-            ProformaHeader c = proformasHeader.Find(c => c.ProformaId == code);
+            ProformaHeader c = proformasHeader.Find(c => c.ProformaId == Code);
             return Ok(c);
         }
         [HttpPost("save-proforma")]
@@ -45,9 +45,9 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(proformasHeader);
         }
         [HttpDelete("delete-proforma")]
-        public ActionResult<List<ProformaHeader>> SaveProforma(string code)
+        public ActionResult<List<ProformaHeader>> SaveProforma(string Code)
         {
-            proformasHeader.RemoveAll(x => x.ProformaId == code);
+            proformasHeader.RemoveAll(x => x.ProformaId == Code);
             return Ok(proformasHeader);
         }
     }

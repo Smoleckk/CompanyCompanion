@@ -20,7 +20,7 @@ export class InvoicePrintPopupComponent {
   editdata: any;
   ngOnInit(): void {
     if (this.data.code != null && this.data.code != '') {
-      this.service.GetInvHeaderByCode(this.data.code).subscribe(res => {
+      this.service.GetInvByCode(this.data.code).subscribe(res => {
         console.log(res);
         this.editdata = res;
       })

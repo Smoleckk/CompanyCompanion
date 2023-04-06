@@ -1,13 +1,12 @@
-﻿namespace CompanyCompanionBackend.Models.Invoice
+﻿namespace CompanyCompanionBackend.Models
 {
-    public class Invoice
+    public class InvoiceReturnDto
     {
-        public string InvoiceId { get; set; } = Guid.NewGuid().ToString();
+        public int InvoiceId { get; set; }
         public string InvoiceNo { get; set; } = string.Empty;
         public string PlaceOfIssue { get; set; } = string.Empty;
         public string DateIssued { get; set; } = string.Empty;
         public string DueDate { get; set; } = string.Empty;
-        public DateTime InvoiceDate { get; set; } = DateTime.Now;
         public string CustomerId { get; set; } = string.Empty;
         public string CustomerName { get; set; } = string.Empty;
         public string CustomerNip { get; set; } = string.Empty;
@@ -26,11 +25,7 @@
         public string AccountNumber { get; set; } = string.Empty;
         public string PaymentDescription { get; set; } = string.Empty;
         public string Remarks { get; set; } = string.Empty;
-        public string CreateUser { get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.Now;
+        public List<Product> Products { get; set; } = new List<Product>();
         public bool IsGenerated { get; set; } = false;
-
-        public List<InvoiceProduct> Products { get; set; } = new List<InvoiceProduct>();
-
     }
 }

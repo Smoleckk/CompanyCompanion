@@ -2,10 +2,14 @@
 {
     public class Product
     {
-        public string Code { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public int Price { get; set; }
-        public int Category { get; set; }
-        public string Remarks { get; set; } = string.Empty;
+        public int ProductId { get; set; } = 0;
+        public string ProductCode { get; set; } = string.Empty;
+        public string ProductName { get; set; } = string.Empty;
+        public double Qty { get; set; }
+        public string Unit { get; set; }
+        public double SalesPrice { get; set; }
+        public double Vat { get; set; }
+        public double BruttoPrice { get; set; }
+        public double NettoPrice { get; set; }
     }
 }
