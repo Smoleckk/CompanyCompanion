@@ -31,10 +31,10 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(company.Invoices);
         }
 
-        [HttpGet("get-invoice-by-Code")]
-        public async Task<ActionResult<InvoiceReturnDto>> GetInvoiceByCode(string Code)
+        [HttpGet("{code}")]
+        public async Task<ActionResult<InvoiceReturnDto>> GetInvoiceByCode(string code)
         {
-            var invoice = context.Invoices.Include(c => c.Products).FirstOrDefault(c => c.InvoiceId == Int32.Parse(Code));
+            var invoice = context.Invoices.Include(c => c.Products).FirstOrDefault(c => c.InvoiceId == Int32.Parse(code));
             if (invoice == null)
             {
                 return NotFound("Invoice not found.");
@@ -66,10 +66,10 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(invoice);
         }
 
-        [HttpDelete("delete-invoice")]
-        public async Task<ActionResult<string>> DeleteInvoice(string Code)
+        [HttpDelete("{code}")]
+        public async Task<ActionResult<string>> DeleteInvoice(string code)
         {
-            var invoice = await context.Invoices.Include(c => c.Products).FirstOrDefaultAsync(x => x.InvoiceId == Int32.Parse(Code));
+            var invoice = await context.Invoices.Include(c => c.Products).FirstOrDefaultAsync(x => x.InvoiceId == Int32.Parse(code));
             if (invoice == null)
             {
                 return NotFound("Invoice not found");
@@ -81,7 +81,7 @@ namespace CompanyCompanionBackend.Controllers
             context.Invoices.Remove(invoice);
             await context.SaveChangesAsync();
 
-            return Ok(Code);
+            return Ok(code);
         }
         [HttpGet, Authorize]
         public ActionResult<string> GetMe()

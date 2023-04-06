@@ -30,7 +30,7 @@ export class InvoiceListComponent implements OnInit {
 
   LoadInvoice() {
     this.service.GetAllInvoice().subscribe(res => {
-      // console.log(res);
+       console.log(res);
       
       this.invoiceHeader = res;
       this.dataSource = new MatTableDataSource(this.invoiceHeader);
@@ -50,6 +50,8 @@ export class InvoiceListComponent implements OnInit {
     this.router.navigateByUrl('/edit-invoice/' + invoiceId)
   }
   InvoiceDownload(code: any) {
+    console.log(code);
+    
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',

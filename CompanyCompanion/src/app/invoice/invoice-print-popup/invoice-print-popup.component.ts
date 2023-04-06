@@ -19,6 +19,8 @@ export class InvoicePrintPopupComponent {
   }
   editdata: any;
   ngOnInit(): void {
+    console.log(this.data.code);
+    
     if (this.data.code != null && this.data.code != '') {
       this.service.GetInvByCode(this.data.code).subscribe(res => {
         console.log(res);

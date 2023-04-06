@@ -104,6 +104,9 @@ export class CreateInvoiceComponent implements OnInit {
     this.service.GetInvByCode(invoiceIdCode).subscribe(res => {
       let editData: any;
       editData = res;
+      console.log(invoiceIdCode);
+      console.log(editData.customerId);
+      
       editData.products.forEach((product: any) => {
         this.products.push(this.builder.group({
           productCode: [product.productCode],
@@ -119,7 +122,7 @@ export class CreateInvoiceComponent implements OnInit {
       if (editData != null) {
         this.invoiceForm.setValue({
           invoiceId: editData.invoiceId, invoiceNo: editData.invoiceNo, placeOfIssue: editData.placeOfIssue, dateIssued: editData.dateIssued, dueDate: editData.dueDate,
-          customerId: editData.customerId, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
+          customerId: 1, customerName: editData.customerName, customerNip: editData.customerNip, customerDeliveryAddress: editData.customerDeliveryAddress, customerCityCode: editData.customerCityCode,
           sellerId: editData.sellerId, sellerIdName: editData.sellerIdName, sellerNip: editData.sellerNip, sellerDeliveryAddress: editData.sellerDeliveryAddress, sellerCityCode: editData.sellerCityCode,
           total: editData.total, tax: editData.tax, netTotal: editData.netTotal,
           paymentStatus: editData.paymentStatus, paymentType: editData.paymentType, accountNumber: editData.accountNumber, paymentDescription: editData.paymentDescription,
