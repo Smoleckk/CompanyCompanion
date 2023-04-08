@@ -14,7 +14,7 @@ import { ProformaCreateComponent } from './proforma/proforma-create/proforma-cre
 import { ProformaListComponent } from './proforma/proforma-list/proforma-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { RoleGuard } from './shared/role.guard';
-
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
@@ -30,7 +30,8 @@ const routes: Routes = [
   { path: "invoice-from-proforma/:proformaId", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
   { path: "proforma-list", component: ProformaListComponent, canActivate: [AuthGuard] },
   { path: "create-proforma", component: ProformaCreateComponent, canActivate: [AuthGuard] },
-  { path: "edit-proforma/:proformaId", component: ProformaCreateComponent, canActivate: [AuthGuard] }
+  { path: "edit-proforma/:proformaId", component: ProformaCreateComponent, canActivate: [AuthGuard] },
+  { path: "customer-list", component: CustomerListComponent, canActivate: [AuthGuard] },
 
 ];
 

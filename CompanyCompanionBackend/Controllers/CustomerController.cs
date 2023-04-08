@@ -18,32 +18,34 @@ namespace CompanyCompanionBackend.Controllers
         {
             _context = context;
             _mapper = mapper;
-            _mapper = mapper;
         }
 
         // GET: api/customers
         [HttpGet, Authorize]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        public async Task<ActionResult<IEnumerable<CustomerReturnDto>>> GetCustomers()
         {
 
             var userName = User?.Identity?.Name;
             var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
             var company = await _context.Companies.Include(i => i.Customers).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
             var customers = company.Customers;
+
+            // var customersReturn = _mapper.Map<CustomerReturnDto>(customers);
+
             return Ok(customers);
         }
 
         // GET: api/customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(string id)
+        public async Task<ActionResult<CustomerReturnDto>> GetCustomer(string id)
         {
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerName == id);
+            Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerName == id);
 
             if (customer == null)
             {
                 return NotFound();
             }
-
+            //var customersReturn = _mapper.Map<CustomerReturnDto>(customer);
             return Ok(customer);
         }
 
@@ -63,9 +65,11 @@ namespace CompanyCompanionBackend.Controllers
 
         // DELETE: api/customers/5
         [HttpDelete("{id}")]
-        public ActionResult<Customer> DeleteCustomer(int id)
+        public async Task<ActionResult<Customer>> DeleteCustomer(int id)
         {
-            var customer = _context.Customers.Find(id);
+
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerId == id);
+            //var customer = _context.Customers.Find(id);
 
             if (customer == null)
             {

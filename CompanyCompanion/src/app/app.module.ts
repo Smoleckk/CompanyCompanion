@@ -39,6 +39,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerCreatePopupComponent } from './customer/customer-create-popup/customer-create-popup.component';
+import { UserCreatePopupComponent } from './user/user-create-popup/user-create-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +63,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     ProformaPrintPopupComponent,
     AboutComponent,
     WelcomeComponent,
+    CustomerListComponent,
+    CustomerCreatePopupComponent,
+    UserCreatePopupComponent,
   ],
   imports: [
     BrowserModule,

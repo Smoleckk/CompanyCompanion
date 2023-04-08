@@ -20,7 +20,12 @@ namespace CompanyCompanionBackend.Mapper
             CreateMap<InvoiceAddDto, Invoice>();
             CreateMap<Invoice, InvoiceReturnDto>();
             CreateMap<CustomerAddDto, Customer>();
+            CreateMap<Customer, CustomerReturnDto>();
             CreateMap<ProductMagazineAddDto, ProductMagazine>();
+
+            CreateMap<User, UserReturnDto>().ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
+
 
 
         }
