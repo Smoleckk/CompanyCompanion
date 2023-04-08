@@ -11,6 +11,7 @@ namespace CompanyCompanionBackend.Models.UserModel
         public string Role { get; set; } = "User";
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+
         [JsonIgnore]
         public Company Company { get; set; }
     }

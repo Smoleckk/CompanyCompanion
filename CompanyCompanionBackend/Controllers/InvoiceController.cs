@@ -21,8 +21,6 @@ namespace CompanyCompanionBackend.Controllers
             _context = context;
         }
 
-
-
         [HttpGet("get-invoices-header")]
         [Authorize]
         public async Task<ActionResult<List<Invoice>>> GetInvoicesHeader()
@@ -34,7 +32,8 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet("{code}")]
         public async Task<ActionResult<InvoiceReturnDto>> GetInvoiceByCode(string code)
         {
-            var invoice = await _context.Invoices.Include(c => c.Products)
+            var invoice = await _context.Invoices
+                .Include(c => c.Products)
                 .FirstOrDefaultAsync(c => c.InvoiceId == int.Parse(code));
 
             if (invoice == null)
@@ -71,7 +70,8 @@ namespace CompanyCompanionBackend.Controllers
         [HttpDelete("{code}")]
         public async Task<ActionResult<string>> DeleteInvoice(string code)
         {
-            var invoice = await _context.Invoices.Include(c => c.Products)
+            var invoice = await _context.Invoices
+                .Include(c => c.Products)
                 .FirstOrDefaultAsync(x => x.InvoiceId == int.Parse(code));
 
             if (invoice == null)
@@ -93,7 +93,8 @@ namespace CompanyCompanionBackend.Controllers
         [HttpPut("invoices/{id}")]
         public async Task<IActionResult> UpdateInvoice(int id, [FromBody] InvoiceAddDto invoiceDto)
         {
-            Invoice invoice = await _context.Invoices.Include(i => i.Products)
+            Invoice invoice = await _context.Invoices
+                .Include(i => i.Products)
                 .SingleOrDefaultAsync(i => i.InvoiceId == id);
 
             if (invoice == null)
@@ -119,7 +120,9 @@ namespace CompanyCompanionBackend.Controllers
             // update existing products or add new ones
             foreach (var productDto in invoiceDto.Products)
             {
-                var product = invoice.Products.FirstOrDefault(p => p.ProductId == productDto.ProductId);
+                var product = invoice.Products.FirstOrDefault(
+                    p => p.ProductId == productDto.ProductId
+                );
 
                 if (product != null)
                 {
@@ -139,12 +142,13 @@ namespace CompanyCompanionBackend.Controllers
         private async Task<Company> GetCompany()
         {
             var userName = User?.Identity?.Name;
-            var user = await _context.Users.Include(c => c.Company)
+            var user = await _context.Users
+                .Include(c => c.Company)
                 .FirstOrDefaultAsync(c => c.Username == userName);
-            var company = await _context.Companies.Include(i => i.Invoices)
+            var company = await _context.Companies
+                .Include(i => i.Invoices)
                 .FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
             return company;
         }
-
     }
 }

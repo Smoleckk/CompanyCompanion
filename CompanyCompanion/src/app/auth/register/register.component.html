@@ -21,83 +21,203 @@
         </mat-card-content>
     </mat-card>
 </div> -->
-<div style="width: 100%; margin: auto; margin-top: 20px;">
-    <mat-stepper #stepper style="padding: 40px;" [orientation]="(stepperOrientation | async)!">
-        <mat-step [stepControl]="registerForm" label="Personal info" errorMessage="Personal info is required.">
-            <mat-card style="max-width: 600px; min-height: 300px; margin: auto; margin-top: 40px; border-radius: 10px;">
-                <mat-card-header
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-image: linear-gradient(to right, #617055, #116444);display: flex; flex-direction: column;justify-content: center;align-items: center;">
-                    <h1 style="color: #fff; font-weight:500;">Personal Info</h1>
-                    <p style="color: #fff;">Tell us more about you.</p>
-                </mat-card-header>
-                <mat-card-content>
-                    <form class="form" [formGroup]="registerForm"
-                        style="margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>User Name</mat-label>
-                            <input matInput placeholder="Edd" formControlName="username">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Email</mat-label>
-                            <input matInput placeholder="Edd" formControlName="email">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Password</mat-label>
-                            <input type="password" matInput formControlName="password">
-                        </mat-form-field>
-                        <button mat-raised-button color="primary" matStepperNext>Next</button>
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </mat-step>
-        <mat-step [stepControl]="companyForm" label="Company info" errorMessage="Company info is required.">
-            <mat-card style="max-width: 600px; min-height: 300px; margin: auto; margin-top: 40px; border-radius: 10px;">
-                <mat-card-header
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-image: linear-gradient(to right, #617055, #116444);display: flex; flex-direction: column;justify-content: center;align-items: center;">
-                    <h1 style="color: #fff; font-weight:500;">Company Info</h1>
-                    <p style="color: #fff;">Tell us more about your company.</p>
-                </mat-card-header>
-                <mat-card-content>
-                    <form class="form" [formGroup]="companyForm"
-                        style="margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Company name</mat-label>
-                            <input matInput placeholder="Company name" formControlName="name" required>
-                        </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Company nip</mat-label>
-                            <input matInput placeholder="Company nip" formControlName="nip" required>
-                        </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Company city</mat-label>
-                            <input matInput placeholder="Company city" formControlName="city" required>
-                        </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Company city code</mat-label>
-                            <input matInput placeholder="Company city code" formControlName="cityCode" required>
-                        </mat-form-field>
-                        <div class="">
-                            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-                            <button mat-raised-button color="primary" matStepperNext>Next</button>
-                        </div>
-
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </mat-step>
-        <mat-step label="Register">
-            <mat-card style="max-width: 600px; min-height: 300px; margin: auto; margin-top: 40px; border-radius: 10px;">
-                <mat-card-header
-                    style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-image: linear-gradient(to right, #617055, #116444);display: flex; flex-direction: column;justify-content: center;align-items: center;">
-                    <h1 style="color: #fff; font-weight:500;">Lets register</h1>
-                    <p style="color: #fff;">Your data is correct? Lets register!</p>
-                </mat-card-header>
-                <mat-card-content
-                    style="margin-top: 50px; display: flex; justify-content: space-around; align-items: center;">
-                    <button mat-raised-button color="accent" (click)="stepper.reset()">Reset</button>
-                    <button mat-raised-button color="primary" (click)="proceedregistration()">Register</button>
-                </mat-card-content>
-            </mat-card>
-        </mat-step>
-    </mat-stepper>
+<div style="width: 100%; margin: auto; margin-top: 20px">
+  <mat-stepper
+    #stepper
+    style="padding: 40px"
+    [orientation]="(stepperOrientation | async)!"
+  >
+    <mat-step
+      [stepControl]="registerForm"
+      label="Personal info"
+      errorMessage="Personal info is required."
+    >
+      <mat-card
+        style="
+          max-width: 600px;
+          min-height: 300px;
+          margin: auto;
+          margin-top: 40px;
+          border-radius: 10px;
+        "
+      >
+        <mat-card-header
+          style="
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-image: linear-gradient(to right, #617055, #116444);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h1 style="color: #fff; font-weight: 500">Personal Info</h1>
+          <p style="color: #fff">Tell us more about you.</p>
+        </mat-card-header>
+        <mat-card-content>
+          <form
+            class="form"
+            [formGroup]="registerForm"
+            style="
+              margin-top: 30px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="Edd" formControlName="username" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Edd" formControlName="email" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="password" />
+            </mat-form-field>
+            <button mat-raised-button color="primary" matStepperNext>
+              Next
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-step>
+    <mat-step
+      [stepControl]="companyForm"
+      label="Company info"
+      errorMessage="Company info is required."
+    >
+      <mat-card
+        style="
+          max-width: 600px;
+          min-height: 300px;
+          margin: auto;
+          margin-top: 40px;
+          border-radius: 10px;
+        "
+      >
+        <mat-card-header
+          style="
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-image: linear-gradient(to right, #617055, #116444);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h1 style="color: #fff; font-weight: 500">Company Info</h1>
+          <p style="color: #fff">Tell us more about your company.</p>
+        </mat-card-header>
+        <mat-card-content>
+          <form
+            class="form"
+            [formGroup]="companyForm"
+            style="
+              margin-top: 30px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <mat-form-field appearance="fill">
+              <mat-label>Company name</mat-label>
+              <input
+                matInput
+                placeholder="Company name"
+                formControlName="name"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Company nip</mat-label>
+              <input
+                matInput
+                placeholder="Company nip"
+                formControlName="nip"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Company city</mat-label>
+              <input
+                matInput
+                placeholder="Company city"
+                formControlName="city"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Company city code</mat-label>
+              <input
+                matInput
+                placeholder="Company city code"
+                formControlName="cityCode"
+                required
+              />
+            </mat-form-field>
+            <div class="">
+              <button mat-raised-button color="accent" matStepperPrevious>
+                Back
+              </button>
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-step>
+    <mat-step label="Register">
+      <mat-card
+        style="
+          max-width: 600px;
+          min-height: 300px;
+          margin: auto;
+          margin-top: 40px;
+          border-radius: 10px;
+        "
+      >
+        <mat-card-header
+          style="
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-image: linear-gradient(to right, #617055, #116444);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h1 style="color: #fff; font-weight: 500">Lets register</h1>
+          <p style="color: #fff">Your data is correct? Lets register!</p>
+        </mat-card-header>
+        <mat-card-content
+          style="
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+          "
+        >
+          <button mat-raised-button color="accent" (click)="stepper.reset()">
+            Reset
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="proceedRegistration()"
+          >
+            Register
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-step>
+  </mat-stepper>
 </div>

@@ -10,8 +10,13 @@ namespace CompanyCompanionBackend.Controllers
     {
         public static List<ProformaHeader> proformasHeader = new List<ProformaHeader>
         {
-            new ProformaHeader{IsGenerated=true, ProformaNo="P22",ProformaDate=DateTime.Now}
-    };
+            new ProformaHeader
+            {
+                IsGenerated = true,
+                ProformaNo = "P22",
+                ProformaDate = DateTime.Now
+            }
+        };
 
         [HttpGet("get-proformas-header")]
         public ActionResult<List<ProformaHeader>> GetProformaHeader()
@@ -19,13 +24,13 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(proformasHeader);
         }
 
-
         [HttpGet("get-proforma-header-by-code")]
         public ActionResult<ProformaHeader> GetProformaHeaderByCode(string Code)
         {
             ProformaHeader c = proformasHeader.Find(c => c.ProformaId == Code);
             return Ok(c);
         }
+
         [HttpPost("save-proforma")]
         public ActionResult<ProformaHeader> SaveProforma(Proforma proforma)
         {
@@ -40,10 +45,18 @@ namespace CompanyCompanionBackend.Controllers
                 proformasHeader.Remove(c);
             }
             ProformaHeader proformaHeader = new ProformaHeader
-            { ProformaId = Guid.NewGuid().ToString(), ProformaNo = proforma.ProformaNo, PlaceOfIssue = proforma.PlaceOfIssue, DateIssued = proforma.DateIssued, DueDate = proforma.DueDate, IsGenerated = proforma.IsGenerated };
+            {
+                ProformaId = Guid.NewGuid().ToString(),
+                ProformaNo = proforma.ProformaNo,
+                PlaceOfIssue = proforma.PlaceOfIssue,
+                DateIssued = proforma.DateIssued,
+                DueDate = proforma.DueDate,
+                IsGenerated = proforma.IsGenerated
+            };
             proformasHeader.Add(proformaHeader);
             return Ok(proformasHeader);
         }
+
         [HttpDelete("delete-proforma")]
         public ActionResult<List<ProformaHeader>> SaveProforma(string Code)
         {

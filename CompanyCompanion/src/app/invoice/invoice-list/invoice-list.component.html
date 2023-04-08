@@ -1,39 +1,40 @@
 <div class="container">
-    <h1 class="breadcrumb-header">Seller invoices</h1>
-    <mat-card class="breadcrumb">
-        <mat-card-actions class="card">
-            <div [routerLink]="['/']" class="middle">
-                <mat-icon>home</mat-icon>
-                <p class="breadcrumb-p">Home</p>
-            </div>
-            <p class="breadcrumb-p">/Invoices</p>
-        </mat-card-actions>
-        <mat-card-actions>
-            <div [routerLink]="['/create-invoice']" class="middle">
-                <!-- <p class="breadcrumb-p">Add Invoice</p> -->
-                <mat-icon color="primary">add_circle</mat-icon>
-            </div>
-        </mat-card-actions>
-    </mat-card>
+  <h1 class="breadcrumb-header">Seller invoices</h1>
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+      <p class="breadcrumb-p">/Invoices</p>
+    </mat-card-actions>
+    <mat-card-actions>
+      <div [routerLink]="['/create-invoice']" class="middle">
+        <!-- <p class="breadcrumb-p">Add Invoice</p> -->
+        <mat-icon color="primary">add_circle</mat-icon>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 
-    <!-- <div style="text-align: right; margin-bottom: 20px;">
+  <!-- <div style="text-align: right; margin-bottom: 20px;">
         <a routerLink="/create-invoice" mat-raised-button color="accent">Create new invoice</a>
     </div> -->
 
-    <div class="mat-elevation-z8">
-        <table mat-table matSort [dataSource]="dataSource">
-
-            <ng-container matColumnDef="Invoice No">
-                <th mat-header-cell mat-sort-header *matHeaderCellDef> Invoice Number </th>
-                <td mat-cell *matCellDef="let element"> {{element.invoiceNo}}</td>
-                <!-- <a style="cursor: pointer; color: blue;"
+  <div class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource">
+      <ng-container matColumnDef="Invoice No">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+          Invoice Number
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.invoiceNo }}</td>
+        <!-- <a style="cursor: pointer; color: blue;"
                         (click)="InvoiceDownload(element.invoiceHeaderId)">{{element.invoiceNo}}</a>  -->
-            </ng-container>
-            <ng-container matColumnDef="Customer">
-                <th mat-header-cell mat-sort-header *matHeaderCellDef> Customer </th>
-                <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
-            </ng-container>
-            <!-- <ng-container matColumnDef="Remarks">
+      </ng-container>
+      <ng-container matColumnDef="Customer">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
+        <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="Remarks">
                 <th mat-header-cell mat-sort-header *matHeaderCellDef> Remarks </th>
                 <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
             </ng-container>
@@ -45,35 +46,51 @@
                 <th mat-header-cell mat-sort-header *matHeaderCellDef> Tax</th>
                 <td mat-cell *matCellDef="let element"> {{element.tax | currency}} </td>
             </ng-container> -->
-            <ng-container matColumnDef="NetTotal">
-                <th mat-header-cell mat-sort-header *matHeaderCellDef> NetTotal</th>
-                <td mat-cell *matCellDef="let element"> {{element.netTotal | currency}} </td>
-            </ng-container>
+      <ng-container matColumnDef="NetTotal">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>NetTotal</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.netTotal | currency }}
+        </td>
+      </ng-container>
 
-            <ng-container matColumnDef="Action">
-                <th mat-header-cell *matHeaderCellDef> </th>
-                <td mat-cell *matCellDef="let element">
-                    <a mat-icon-button (click)="InvoiceDownload(element.invoiceId)" color="primary">
-                        <mat-icon>print</mat-icon>
-                    </a>
-                    <a mat-icon-button *ngIf="!element.isGenerated" (click)="InvoiceEdit(element.invoiceId)"
-                        color="primary">
-                        <mat-icon>edit</mat-icon>
-                    </a>
-                    <!-- *ngIf="!element.isGenerated" -->
-                    <a mat-icon-button  (click)="InvoiceRemove(element.invoiceId)"
-                        color="warn">
-                        <mat-icon>delete</mat-icon>
-                    </a>
-                </td>
-            </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            mat-icon-button
+            (click)="downloadInvoice(element.invoiceId)"
+            color="primary"
+          >
+            <mat-icon>print</mat-icon>
+          </a>
+          <a
+            mat-icon-button
+            *ngIf="!element.isGenerated"
+            (click)="editInvoice(element.invoiceId)"
+            color="primary"
+          >
+            <mat-icon>edit</mat-icon>
+          </a>
+          <!-- *ngIf="!element.isGenerated" -->
+          <a
+            mat-icon-button
+            (click)="removeInvoice(element.invoiceId)"
+            color="warn"
+          >
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
-    </div>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
 </div>

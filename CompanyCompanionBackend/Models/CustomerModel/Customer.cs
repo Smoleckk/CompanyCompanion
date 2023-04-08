@@ -1,6 +1,5 @@
 ﻿using CompanyCompanionBackend.Models.InvoiceModel;
 
-
 namespace CompanyCompanionBackend.Models.CustomerModel
 {
     public class Customer
@@ -12,8 +11,5 @@ namespace CompanyCompanionBackend.Models.CustomerModel
         public string CustomerAddress { get; set; } = string.Empty;
         public DateTime CustomerCreatedDate { get; set; } = DateTime.Now;
         public ICollection<Invoice> Invoices { get; set; }
-
-
     }
-
 }

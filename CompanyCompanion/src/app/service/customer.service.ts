@@ -2,34 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomerService {
-  apiUrlCustomer = 'https://localhost:7037/api/Customer/';
-  apiUrlProducts = 'https://localhost:7037/api/ProductMagazines/';
-  apiUrlInvoice = 'https://localhost:7037/api/Invoice/';
+  private apiUrl = 'https://localhost:7037/api/Customer/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-
-  GetCustomers():Observable<any> {
-    return this.http.get(this.apiUrlCustomer);
+  getCustomers(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
-  GetCustomerByCode(code: any) {
-    return this.http.get(this.apiUrlCustomer + code);
-  }
-  DeleteCustomerByCode(code: any) {
-    return this.http.delete(this.apiUrlCustomer + code);
+  getCustomerByCode(code: any): Observable<any> {
+    return this.http.get(this.apiUrl + code);
   }
 
-  // UpdateCustomerByCode(customer:any){
-  //   return this.http.put(this.apiUrlCustomer +'update-customer-by-code',customer);
-  // }
+  deleteCustomerByCode(code: any): Observable<any> {
+    return this.http.delete(this.apiUrl + code);
+  }
 
-  CreateCustomer(customer:any){
-    return this.http.post(this.apiUrlCustomer,customer);
+  createCustomer(customer: any): Observable<any> {
+    return this.http.post(this.apiUrl, customer);
   }
 }

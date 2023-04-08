@@ -29,7 +29,7 @@ export class UserCreatePopupComponent {
 
   SaveUser() {
     if (this.createform.valid) {
-      this.service.CreateUser(this.createform.value).subscribe(() => {
+      this.service.createUser(this.createform.value).subscribe(() => {
         this.toastr.success('Created successfully');
         this.dialog.close();
       });

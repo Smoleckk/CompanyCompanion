@@ -13,9 +13,9 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+
         public CustomerController(DataContext context, IMapper mapper)
         {
             _context = context;
@@ -36,7 +36,9 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerReturnDto>> GetCustomer(string id)
         {
-            Customer customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerName == id);
+            Customer customer = await _context.Customers.FirstOrDefaultAsync(
+                c => c.CustomerName == id
+            );
 
             if (customer == null)
             {
@@ -61,7 +63,6 @@ namespace CompanyCompanionBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Customer>> DeleteCustomer(int id)
         {
-
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerId == id);
 
             if (customer == null)
@@ -74,6 +75,7 @@ namespace CompanyCompanionBackend.Controllers
 
             return customer;
         }
+
         private async Task<User> GetUserWithCompany()
         {
             var userName = User?.Identity?.Name;
@@ -82,6 +84,5 @@ namespace CompanyCompanionBackend.Controllers
                 .ThenInclude(i => i.Customers)
                 .FirstOrDefaultAsync(c => c.Username == userName);
         }
-
     }
 }

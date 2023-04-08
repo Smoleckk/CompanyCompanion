@@ -25,6 +25,5 @@
         public string Remarks { get; set; } = string.Empty;
         public List<Product> Products { get; set; } = new List<Product>();
         public bool IsGenerated { get; set; } = false;
-
     }
 }

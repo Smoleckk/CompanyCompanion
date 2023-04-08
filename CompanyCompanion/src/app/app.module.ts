@@ -19,13 +19,13 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from 'src/material.module';
-import {ToastrModule} from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UpdateUserPopupComponent } from './user/update-user-popup/update-user-popup.component';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
-import { CreateInvoiceComponent } from './invoice/invoice-create/invoice-create.component'
-import {NgxPrintModule} from 'ngx-print';
+import { CreateInvoiceComponent } from './invoice/invoice-create/invoice-create.component';
+import { NgxPrintModule } from 'ngx-print';
 import * as $ from 'jquery';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { UpdateProductPopupComponent } from './product/update-product-popup/update-product-popup.component';
@@ -35,10 +35,10 @@ import { ProformaListComponent } from './proforma/proforma-list/proforma-list.co
 import { ProformaCreateComponent } from './proforma/proforma-create/proforma-create.component';
 import { ProformaPrintPopupComponent } from './proforma/proforma-print-popup/proforma-print-popup.component';
 import { AboutComponent } from './pages/about/about.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerCreatePopupComponent } from './customer/customer-create-popup/customer-create-popup.component';
 import { UserCreatePopupComponent } from './user/user-create-popup/user-create-popup.component';
@@ -74,8 +74,8 @@ import { UserCreatePopupComponent } from './user/user-create-popup/user-create-p
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-      closeButton: true
-   }),
+      closeButton: true,
+    }),
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -91,9 +91,16 @@ import { UserCreatePopupComponent } from './user/user-create-popup/user-create-p
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatStepperModule
+    MatStepperModule,
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}, MatDatepickerModule ],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+    MatDatepickerModule,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

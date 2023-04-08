@@ -11,12 +11,11 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-
   constructor(private service: UserService, private dialog: MatDialog) {
-    this.LoadUsers();
+    this.loadUsers();
   }
   userdata: any;
   dataSource: any;
@@ -24,16 +23,15 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  LoadUsers() {
-    this.service.LoadUsers().subscribe(data => {
+  loadUsers() {
+    this.service.loadUsers().subscribe((data) => {
       this.userdata = data;
       this.dataSource = new MatTableDataSource(this.userdata);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    });
   }
   UpdateUser(username: any) {
     const popup = this.dialog.open(UpdateUserPopupComponent, {
@@ -41,22 +39,22 @@ export class UserListComponent implements OnInit {
       exitAnimationDuration: '500ms',
       width: '50%',
       data: {
-        usercode: username
-      }
-    })
+        usercode: username,
+      },
+    });
 
     popup.afterClosed().subscribe(() => {
-      this.LoadUsers();
-    })
+      this.loadUsers();
+    });
   }
-  CreateUser() {
+  createUser() {
     const popup = this.dialog.open(UserCreatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',
     });
     popup.afterClosed().subscribe(() => {
-      this.LoadUsers();
+      this.loadUsers();
     });
   }
 }

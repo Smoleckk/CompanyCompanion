@@ -16,27 +16,66 @@ import { AboutComponent } from './pages/about/about.component';
 import { RoleGuard } from './shared/role.guard';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 const routes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "welcome", component: WelcomeComponent },
-  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: "user-list", component: UserListComponent, canActivate: [RoleGuard] },
-  { path: "product-list", component: ProductListComponent, canActivate: [AuthGuard] },
-  { path: "", component: HomeComponent, canActivate: [AuthGuard] },
-  { path: "about", component: AboutComponent, canActivate: [AuthGuard] },
-  { path: "invoice-list", component: InvoiceListComponent, canActivate: [AuthGuard] },
-  { path: "create-invoice", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
-  { path: "edit-invoice/:invoiceId", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
-  { path: "invoice-from-proforma/:proformaId", component: CreateInvoiceComponent, canActivate: [AuthGuard] },
-  { path: "proforma-list", component: ProformaListComponent, canActivate: [AuthGuard] },
-  { path: "create-proforma", component: ProformaCreateComponent, canActivate: [AuthGuard] },
-  { path: "edit-proforma/:proformaId", component: ProformaCreateComponent, canActivate: [AuthGuard] },
-  { path: "customer-list", component: CustomerListComponent, canActivate: [AuthGuard] },
-
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'welcome', component: WelcomeComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'user-list', component: UserListComponent, canActivate: [RoleGuard] },
+  {
+    path: 'product-list',
+    component: ProductListComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  {
+    path: 'invoice-list',
+    component: InvoiceListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-invoice',
+    component: CreateInvoiceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-invoice/:invoiceId',
+    component: CreateInvoiceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'invoice-from-proforma/:proformaId',
+    component: CreateInvoiceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'proforma-list',
+    component: ProformaListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-proforma',
+    component: ProformaCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-proforma/:proformaId',
+    component: ProformaCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customer-list',
+    component: CustomerListComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

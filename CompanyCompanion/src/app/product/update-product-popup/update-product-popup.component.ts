@@ -7,39 +7,49 @@ import { InvoiceService } from 'src/app/service/invoice.service';
 @Component({
   selector: 'app-update-product-popup',
   templateUrl: './update-product-popup.component.html',
-  styleUrls: ['./update-product-popup.component.scss']
+  styleUrls: ['./update-product-popup.component.scss'],
 })
-export class UpdateProductPopupComponent {
-  constructor(private builder: FormBuilder, private service: InvoiceService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService,
-    private dialog: MatDialogRef<UpdateProductPopupComponent>) {
-  }
-
+export class UpdateProductPopupComponent implements OnInit {
   editdata: any;
+  updateform = this.builder.group({
+    code: ['', Validators.required],
+    name: ['', Validators.required],
+    price: ['', Validators.required],
+    category: ['', Validators.required],
+    remarks: ['', Validators.required],
+  });
+
+  constructor(
+    private builder: FormBuilder,
+    private service: InvoiceService,
+    private toastr: ToastrService,
+    private dialog: MatDialogRef<UpdateProductPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
   ngOnInit(): void {
-    if (this.data.code != null && this.data.code != '') {
-      this.service.GetProductsByCode(this.data.code).subscribe(res => {
+    if (this.data.code) {
+      this.service.GetProductsByCode(this.data.code).subscribe((res) => {
         this.editdata = res;
-        this.updateform.setValue({ code: this.editdata.code, name: this.editdata.name, price: this.editdata.price, category: this.editdata.category, remarks: this.editdata.remarks });
-      })
+        this.updateform.patchValue({
+          code: this.editdata.code,
+          name: this.editdata.name,
+          price: this.editdata.price,
+          category: this.editdata.category,
+          remarks: this.editdata.remarks,
+        });
+      });
     }
   }
 
-  updateform = this.builder.group({
-    code: this.builder.control('', Validators.required),
-    name: this.builder.control('', Validators.required),
-    price: this.builder.control('', Validators.required),
-    category: this.builder.control('', Validators.required),
-    remarks: this.builder.control('', Validators.required)
-  })
-  updateProduct() {
+  updateProduct(): void {
     if (this.updateform.valid) {
       this.service.UpdateProductByCode(this.updateform.value).subscribe(() => {
-        this.toastr.success('Updated successfully');
-        this.dialog.close()
-      })
+        this.toastr.success('Product updated successfully');
+        this.dialog.close();
+      });
     } else {
-      this.toastr.warning('Please check data')
+      this.toastr.warning('Please check the data');
     }
   }
 }

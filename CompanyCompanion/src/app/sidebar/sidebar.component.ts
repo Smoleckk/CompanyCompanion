@@ -37,7 +37,7 @@ export class SidebarComponent {
     } else {
       this.displaymenu = true;
     }
-    if (this.authService.HaveAccess()) {
+    if (this.authService.haveAccess()) {
       this.roleAdmin = true;
     } else {
       this.roleAdmin = false;
@@ -52,7 +52,7 @@ export class SidebarComponent {
     localStorage.removeItem('token');
   }
   canActivate() {
-    if (this.authService.HaveAccess()) {
+    if (this.authService.haveAccess()) {
       this.roleAdmin = true;
     } else {
       this.roleAdmin = false;

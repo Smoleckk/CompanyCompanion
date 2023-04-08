@@ -16,6 +16,7 @@ namespace CompanyCompanionBackend.Controllers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+
         public UserController(DataContext context, IMapper mapper)
         {
             _context = context;
@@ -31,6 +32,7 @@ namespace CompanyCompanionBackend.Controllers
 
             return Ok(usersReturn);
         }
+
         [HttpPost, Authorize]
         public async Task<ActionResult<User>> Register(UserAddDto request)
         {
@@ -55,7 +57,12 @@ namespace CompanyCompanionBackend.Controllers
 
             return Ok(user);
         }
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+
+        private void CreatePasswordHash(
+            string password,
+            out byte[] passwordHash,
+            out byte[] passwordSalt
+        )
         {
             using (var hmac = new HMACSHA512())
             {
@@ -63,11 +70,16 @@ namespace CompanyCompanionBackend.Controllers
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+
         private async Task<Company> GetCompany()
         {
             var userName = User?.Identity?.Name;
-            var userCompany = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            var company = await _context.Companies.Include(i => i.Users).FirstOrDefaultAsync(c => c.CompanyId == userCompany.Company.CompanyId);
+            var userCompany = await _context.Users
+                .Include(c => c.Company)
+                .FirstOrDefaultAsync(c => c.Username == userName);
+            var company = await _context.Companies
+                .Include(i => i.Users)
+                .FirstOrDefaultAsync(c => c.CompanyId == userCompany.Company.CompanyId);
             return company;
         }
     }

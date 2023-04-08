@@ -8,35 +8,35 @@ import { InvoiceService } from 'src/app/service/invoice.service';
 @Component({
   selector: 'app-customer-create-popup',
   templateUrl: './customer-create-popup.component.html',
-  styleUrls: ['./customer-create-popup.component.scss']
+  styleUrls: ['./customer-create-popup.component.scss'],
 })
 export class CustomerCreatePopupComponent {
-  constructor(private builder: FormBuilder, private service: CustomerService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService,
-    private dialog: MatDialogRef<CustomerCreatePopupComponent>) {
-  }
-
   editdata: any;
-  ngOnInit(): void {
-  }
+
+  constructor(
+    private builder: FormBuilder,
+    private service: CustomerService,
+    private toastr: ToastrService,
+    private dialog: MatDialogRef<CustomerCreatePopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   createform = this.builder.group({
-    customerName: this.builder.control('', Validators.required),
-    customerNip: this.builder.control('', Validators.required),
-    customerCity: this.builder.control('', Validators.required),
-    customerAddress: this.builder.control('', Validators.required)
-  })
+    customerName: ['', Validators.required],
+    customerNip: ['', Validators.required],
+    customerCity: ['', Validators.required],
+    customerAddress: ['', Validators.required],
+  });
 
-  SaveCustomer() {
+  saveCustomer() {
     if (this.createform.valid) {
       console.log(this.createform.value);
-      
-      this.service.CreateCustomer(this.createform.value).subscribe(() => {
+      this.service.createCustomer(this.createform.value).subscribe(() => {
         this.toastr.success('Created successfully');
-        this.dialog.close()
-      })
+        this.dialog.close();
+      });
     } else {
-      this.toastr.warning('Please check data')
+      this.toastr.warning('Please check data');
     }
   }
 }

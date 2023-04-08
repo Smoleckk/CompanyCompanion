@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+
 namespace CompanyCompanionBackend.Controllers
 {
     [Route("api/[controller]")]
@@ -21,8 +22,8 @@ namespace CompanyCompanionBackend.Controllers
         {
             this.configuration = configuration;
             this.context = context;
-
         }
+
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserRegisterDto request)
         {
@@ -48,6 +49,7 @@ namespace CompanyCompanionBackend.Controllers
 
             return Ok(user);
         }
+
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLogin request)
         {
@@ -61,23 +63,23 @@ namespace CompanyCompanionBackend.Controllers
                 return BadRequest("Wrong password.");
             }
             string token = CreateToken(findUser);
-            TokenResponse tokenResponse = new TokenResponse
-            {
-                jwtToken = token,
-            };
+            TokenResponse tokenResponse = new TokenResponse { jwtToken = token, };
 
-            return Ok(tokenResponse); ;
+            return Ok(tokenResponse);
+            ;
         }
+
         private string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,user.Username),
-                new Claim(ClaimTypes.Role,user.Role)
-
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!));
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!)
+            );
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -85,12 +87,17 @@ namespace CompanyCompanionBackend.Controllers
                 claims: claims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds
-                );
+            );
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
             return jwt;
         }
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+
+        private void CreatePasswordHash(
+            string password,
+            out byte[] passwordHash,
+            out byte[] passwordSalt
+        )
         {
             using (var hmac = new HMACSHA512())
             {
@@ -98,6 +105,7 @@ namespace CompanyCompanionBackend.Controllers
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))

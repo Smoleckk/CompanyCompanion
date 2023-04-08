@@ -1,45 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  apiurl = 'https://localhost:7037/api/Auth/';
-  constructor(private http: HttpClient) { }
+  apiUrl = 'https://localhost:7037/api/Auth/';
 
-  proceedLogin(usercred: any) {
-    return this.http.post(this.apiurl+'login', usercred)
+  constructor(private http: HttpClient) {}
+
+  proceedLogin(usercred: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'login', usercred);
   }
-  IsLoggedIn(){
-    return localStorage.getItem('token')!=null;
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') !== null;
   }
-  GetToken(){
+
+  getToken(): string {
     return localStorage.getItem('token') || '';
   }
-  HaveAccess() {
-    var loggintoken = localStorage.getItem('token') || '';
-    if(loggintoken!=''){
-      var _extractedtoken = loggintoken.split('.')[1];
-      var _atodata = atob(_extractedtoken);
-      var _finaldata = JSON.parse(_atodata);
-      var role = _finaldata[Object.keys(_finaldata)[1]];
+
+  haveAccess(): boolean {
+    const loggintoken = localStorage.getItem('token') || '';
+    if (loggintoken !== '') {
+      const _extractedtoken = loggintoken.split('.')[1];
+      const _atodata = atob(_extractedtoken);
+      const _finaldata = JSON.parse(_atodata);
+      const role = _finaldata[Object.keys(_finaldata)[1]];
       console.log(_finaldata[Object.keys(_finaldata)[1]]);
-      if (role == 'Admin') {
+      if (role === 'Admin') {
         return true;
       }
     }
     return false;
   }
 
-  proceedRegister(usercred: any) {
-    return this.http.post(this.apiurl+'register', usercred)
+  proceedRegister(usercred: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'register', usercred);
   }
 
-  GetByName(username:any){
-    return this.http.post(this.apiurl+'get-by-username', username)
+  getByName(username: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'get-by-username', username);
   }
-  updateuser(username:any,inputdata:any){
-    return this.http.put(this.apiurl+'/'+username,inputdata);
+
+  updateUser(username: any, inputdata: any): Observable<any> {
+    return this.http.put<any>(this.apiUrl + '/' + username, inputdata);
   }
 }

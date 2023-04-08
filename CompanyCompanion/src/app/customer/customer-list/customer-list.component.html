@@ -1,45 +1,55 @@
 <div class="container">
-    <a (click)="CreateCustomer()" mat-raised-button color="primary">Add Customer</a>
-  
-      <div class="mat-elevation-z8">
-          <table mat-table matSort [dataSource]="dataSource">
-        
-            <!-- <ng-container matColumnDef="customerId">
+  <a (click)="createCustomer()" mat-raised-button color="primary"
+    >Add Customer</a
+  >
+
+  <div class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource">
+      <!-- <ng-container matColumnDef="customerId">
               <th mat-header-cell mat-sort-header *matHeaderCellDef> customerId </th>
               <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
             </ng-container> -->
-            <ng-container matColumnDef="customerName">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> customerName </th>
-              <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="customerNip">
-              <th mat-header-cell *matHeaderCellDef> customerNip </th>
-              <td mat-cell *matCellDef="let element"> {{element.customerNip}} </td>
-            </ng-container>
-            <ng-container matColumnDef="customerCity">
-              <th mat-header-cell *matHeaderCellDef> customerCity </th>
-              <td mat-cell *matCellDef="let element"> {{element.customerCity}} </td>
-            </ng-container>
-            <ng-container matColumnDef="customerAddress">
-              <th mat-header-cell *matHeaderCellDef> customerAddress </th>
-              <td mat-cell *matCellDef="let element"> {{element.customerAddress}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef> Action </th>
-              <td mat-cell *matCellDef="let element"> 
-                  <a (click)="DeleteCustomer(element.customerId)" mat-raised-button color="warn">Delete</a>
-              </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                         showFirstLastButtons
-                         aria-label="Select page of periodic elements">
-          </mat-paginator>
-        </div>
-      </div>
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>customerName</th>
+        <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="customerNip">
+        <th mat-header-cell *matHeaderCellDef>customerNip</th>
+        <td mat-cell *matCellDef="let element">{{ element.customerNip }}</td>
+      </ng-container>
+      <ng-container matColumnDef="customerCity">
+        <th mat-header-cell *matHeaderCellDef>customerCity</th>
+        <td mat-cell *matCellDef="let element">{{ element.customerCity }}</td>
+      </ng-container>
+      <ng-container matColumnDef="customerAddress">
+        <th mat-header-cell *matHeaderCellDef>customerAddress</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.customerAddress }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            (click)="deleteCustomer(element.customerId)"
+            mat-raised-button
+            color="warn"
+            >Delete</a
+          >
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</div>

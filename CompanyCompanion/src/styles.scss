@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @import "@angular/material/theming";
 @include mat.core();
 // light
@@ -10,139 +10,144 @@ $angular-primary-dark: mat.define-palette(mat.$deep-purple-palette);
 $angular-accent-dark: mat.define-palette(mat.$purple-palette);
 $angular-warn-dark: mat.define-palette(mat.$red-palette);
 
-$angular-default-theme: mat.define-light-theme((color: (primary: $angular-primary-light,
-                accent: $angular-accent-light,
-                warn: $angular-warn-light,
-            ),
-        ));
+$angular-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-primary-light,
+      accent: $angular-accent-light,
+      warn: $angular-warn-light,
+    ),
+  )
+);
 
-
-$angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary-dark,
-                accent: $angular-accent-dark,
-                warn: $angular-warn-dark,
-            ),
-        ));
+$angular-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $angular-primary-dark,
+      accent: $angular-accent-dark,
+      warn: $angular-warn-dark,
+    ),
+  )
+);
 @include mat.all-component-themes($angular-default-theme);
 
 .darkMode {
-    @include mat.all-component-colors($angular-dark-theme);
+  @include mat.all-component-colors($angular-dark-theme);
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 @import "toaster";
 @import "pages";
 
-
 .container {
-    margin: auto;
-    width: 70%;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    // max-width: 300px;
-    // min-width: 600px;
-    // padding: 5%;
+  margin: auto;
+  width: 70%;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  // max-width: 300px;
+  // min-width: 600px;
+  // padding: 5%;
 }
 
 .title {
-    font-size: 44px;
+  font-size: 44px;
 }
 
 .middlerows {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    // justify-content: space-around;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  // justify-content: space-around;
+  text-align: left;
 }
 
 .containerpopup {
-    margin: auto;
+  margin: auto;
 }
 
 .itemCompleted {
-    color: purple;
-    text-decoration: line-through;
+  color: purple;
+  text-decoration: line-through;
 }
 
 mat-card {
-    padding: 0px;
-    border-radius: 50%;
+  padding: 0px;
+  border-radius: 50%;
 }
 
 .full-width {
-    width: 90%;
+  width: 90%;
 }
 
 .half-width {
-    width: 65%;
+  width: 65%;
 }
 
 .form-submit {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 @media only screen and (max-width: 1500px) {
-    .container {
-        width: 85%;
-        margin-top: 70px;
-    }
+  .container {
+    width: 85%;
+    margin-top: 70px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .container {
-        width: 95%;
-        margin-top: 20px;
+  .container {
+    width: 95%;
+    margin-top: 20px;
+  }
 
-    }
-
-    mat-card {
-        padding: 0px;
-    }
+  mat-card {
+    padding: 0px;
+  }
 }
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .breadcrumb-header {
-    border-bottom: 1px solid black;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-weight: 500 !important;
+  border-bottom: 1px solid black;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 500 !important;
 }
 
 .breadcrumb {
-    margin: 1px 0 20px 0 !important;
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between;
+  margin: 1px 0 20px 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
 
-    .card {
-        display: flex;
-        align-items: center;
-    }
+  .card {
+    display: flex;
+    align-items: center;
+  }
 
-    .middle {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        font-weight: 500;
-        padding: 0 !important;
-    }
+  .middle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0 !important;
+  }
 }
 
 .breadcrumb-p {
-    font-size: 18px;
-    margin: 0 1px !important;
-    padding: 0 !important;
+  font-size: 18px;
+  margin: 0 1px !important;
+  padding: 0 !important;
 }

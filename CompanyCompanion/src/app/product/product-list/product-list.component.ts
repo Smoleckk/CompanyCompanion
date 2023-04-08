@@ -7,55 +7,61 @@ import { InvoiceService } from 'src/app/service/invoice.service';
 import { CreateProductPopupComponent } from '../create-product-popup/create-product-popup.component';
 import { UpdateProductPopupComponent } from '../update-product-popup/update-product-popup.component';
 
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
 })
-export class ProductListComponent {
-  constructor(private service: InvoiceService, private dialog: MatDialog) {
-    this.LoadProducts();
-  }
-  productData: any;
-  dataSource: any;
-  displayedColumns: string[] = ['code', 'name', 'price','category','remarks','action'];
+export class ProductListComponent implements OnInit {
+  displayedColumns: string[] = [
+    'code',
+    'name',
+    'price',
+    'category',
+    'remarks',
+    'action',
+  ];
+  dataSource!: MatTableDataSource<any>;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  constructor(private service: InvoiceService, private dialog: MatDialog) {}
+
   ngOnInit(): void {
+    this.loadProducts();
   }
 
-  LoadProducts() {
-    this.service.GetProducts().subscribe(data => {
-      this.productData = data;
-      this.dataSource = new MatTableDataSource(this.productData);
+  loadProducts(): void {
+    this.service.GetProducts().subscribe((data: any) => {
+      this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    });
   }
-  UpdateProduct(code: any) {
+
+  updateProduct(code: any): void {
     const popup = this.dialog.open(UpdateProductPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',
-      data: {
-        code: code
-      }
-    })
+      data: { code },
+    });
+
     popup.afterClosed().subscribe(() => {
-      this.LoadProducts();
-    })
+      this.loadProducts();
+    });
   }
-  CreateProduct(){
+
+  createProduct(): void {
     const popup = this.dialog.open(CreateProductPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',
-    })
-    popup.afterClosed().subscribe(() => {
-      this.LoadProducts();
-    })
-  }
+    });
 
+    popup.afterClosed().subscribe(() => {
+      this.loadProducts();
+    });
+  }
 }

@@ -13,13 +13,6 @@ import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-
   styleUrls: ['./customer-list.component.scss'],
 })
 export class CustomerListComponent {
-  constructor(
-    private service: CustomerService,
-    private dialog: MatDialog,
-    private toastr: ToastrService
-  ) {
-    this.LoadCustomers();
-  }
   customerData: any;
   dataSource: any;
   displayedColumns: string[] = [
@@ -29,13 +22,22 @@ export class CustomerListComponent {
     'customerAddress',
     'action',
   ];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {}
+  constructor(
+    private service: CustomerService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
+  ) {}
 
-  LoadCustomers() {
-    this.service.GetCustomers().subscribe((data) => {
+  ngOnInit(): void {
+    this.loadCustomers();
+  }
+
+  loadCustomers(): void {
+    this.service.getCustomers().subscribe((data) => {
       console.log(data);
 
       this.customerData = data;
@@ -44,34 +46,22 @@ export class CustomerListComponent {
       this.dataSource.sort = this.sort;
     });
   }
-  DeleteCustomer(code: any) {
-    this.service.DeleteCustomerByCode(code).subscribe(() => {
+
+  deleteCustomer(code: any): void {
+    this.service.deleteCustomerByCode(code).subscribe(() => {
       this.toastr.success('Deleted successfully');
-      this.LoadCustomers();
+      this.loadCustomers();
     });
   }
 
-  // UpdateProduct(code: any) {
-  //   const popup = this.dialog.open(UpdateProductPopupComponent, {
-  //     enterAnimationDuration: '1000ms',
-  //     exitAnimationDuration: '500ms',
-  //     width: '50%',
-  //     data: {
-  //       code: code
-  //     }
-  //   })
-  //   popup.afterClosed().subscribe(() => {
-  //     this.LoadCustomers();
-  //   })
-  // }
-  CreateCustomer() {
+  createCustomer(): void {
     const popup = this.dialog.open(CustomerCreatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',
     });
     popup.afterClosed().subscribe(() => {
-      this.LoadCustomers();
+      this.loadCustomers();
     });
   }
 }

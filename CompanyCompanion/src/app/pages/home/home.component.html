@@ -1,52 +1,70 @@
 <div class="container">
-    <h1 class="breadcrumb-header">Home</h1>
-    <mat-card class="breadcrumb">
-        <mat-card-actions class="card">
-            <div [routerLink]="['/']" class="middle">
-                <mat-icon>home</mat-icon>
-                <p class="breadcrumb-p">Home</p>
-            </div>
-        </mat-card-actions>
+  <h1 class="breadcrumb-header">Home</h1>
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+  <div class="container2">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Seller invoice</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          style="font-size: 16px; font-weight: 700; cursor: pointer"
+          mat-list-item
+          routerLink="invoice-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Invoice list</a
+        >
+      </mat-card-actions>
     </mat-card>
-    <div class="container2">
-        <mat-card class="example-card ">
-            <mat-card-header>
-                <mat-card-title>Seller invoice</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <mat-divider></mat-divider>
-            </mat-card-content>
-            <mat-card-actions>
-                <a style="font-size: 16px; font-weight:700; cursor:pointer" mat-list-item routerLink="invoice-list"
-                    routerLinkActive="active" ariaCurrentWhenActive="page">Invoice list</a>
-            </mat-card-actions>
-        </mat-card>
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>Proforma invoice</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <mat-divider></mat-divider>
-            </mat-card-content>
-            <mat-card-actions>
-                <a style="font-size: 16px; font-weight:700; cursor:pointer" mat-list-item routerLink="proforma-list"
-                    routerLinkActive="active" ariaCurrentWhenActive="page">Proforma list</a>
-            </mat-card-actions>
-        </mat-card>
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>Seller invoice</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <mat-divider></mat-divider>
-            </mat-card-content>
-            <mat-card-actions>
-                <a style="font-size: 16px; font-weight:700; cursor:pointer" mat-list-item routerLink="product-list"
-                    routerLinkActive="active" ariaCurrentWhenActive="page">Product list</a>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Proforma invoice</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          style="font-size: 16px; font-weight: 700; cursor: pointer"
+          mat-list-item
+          routerLink="proforma-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Proforma list</a
+        >
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Seller invoice</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          style="font-size: 16px; font-weight: 700; cursor: pointer"
+          mat-list-item
+          routerLink="product-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Product list</a
+        >
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

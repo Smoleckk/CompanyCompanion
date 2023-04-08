@@ -11,55 +11,55 @@ import { InvoiceService } from '../../service/invoice.service';
 @Component({
   selector: 'app-invoice-list',
   templateUrl: './invoice-list.component.html',
-  styleUrls: ['./invoice-list.component.scss']
+  styleUrls: ['./invoice-list.component.scss'],
 })
 export class InvoiceListComponent implements OnInit {
+  constructor(
+    private invoiceService: InvoiceService,
+    private toastrService: ToastrService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
-  constructor(private service: InvoiceService, private toastr: ToastrService, private router: Router, private dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.LoadInvoice();
-  }
-  invoiceHeader: any;
-  dataSource: any;
   displayedColumns: string[] = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
-  // 'Remarks', 'Total', 'Tax',
+  dataSource = new MatTableDataSource<any>();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  ngOnInit(): void {
+    this.loadInvoices();
+  }
 
-  LoadInvoice() {
-    this.service.GetAllInvoice().subscribe(res => {
-       console.log(res);
-      
-      this.invoiceHeader = res;
-      this.dataSource = new MatTableDataSource(this.invoiceHeader);
+  loadInvoices(): void {
+    this.invoiceService.GetAllInvoice().subscribe((invoices: any) => {
+      this.dataSource.data = invoices;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    });
   }
-  InvoiceRemove(invoiceId: any) {
-    if (confirm('Do you want to remove this Invoice :' + invoiceId)) {
-      this.service.RemoveInvoice(invoiceId).subscribe(res => {
-        this.toastr.success('Deleted Successfully', 'Remove Invoice')
-        this.LoadInvoice();
-      })
+
+  removeInvoice(invoiceId: any): void {
+    if (confirm('Do you want to remove this invoice: ' + invoiceId)) {
+      this.invoiceService.RemoveInvoice(invoiceId).subscribe(() => {
+        this.toastrService.success('Deleted successfully', 'Remove Invoice');
+        this.loadInvoices();
+      });
     }
   }
-  InvoiceEdit(invoiceId: any) {
-    this.router.navigateByUrl('/edit-invoice/' + invoiceId)
+
+  editInvoice(invoiceId: any): void {
+    this.router.navigateByUrl(`/edit-invoice/${invoiceId}`);
   }
-  InvoiceDownload(code: any) {
-    console.log(code);
-    
+
+  downloadInvoice(code: any): void {
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',
       data: {
-        code: code
-      }
-    })
+        code: code,
+      },
+    });
   }
-
 }

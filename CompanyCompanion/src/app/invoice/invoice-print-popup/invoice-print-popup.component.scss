@@ -15,7 +15,6 @@ body {
 }
 
 @media print {
-
   body,
   page[size="A4"] {
     margin: 0;
@@ -90,7 +89,6 @@ th {
   padding: 0;
   font-size: 9px;
   line-height: 8px;
-
 }
 
 th {
@@ -183,13 +181,12 @@ th {
   border: 1px solid black;
   padding: 1px 2px;
   height: 20px !important;
-
 }
 
 td {
   text-align: center;
   height: 20px !important;
 }
-th{
+th {
   font-weight: bold;
 }

@@ -33,7 +33,9 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet("{name}")]
         public async Task<ActionResult<ProductMagazine>> GetProductMagazine(string name)
         {
-            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(c => c.Name == name);
+            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
+                c => c.Name == name
+            );
 
             if (productMagazine == null)
             {
@@ -44,7 +46,9 @@ namespace CompanyCompanionBackend.Controllers
         }
 
         [HttpPost, Authorize]
-        public async Task<ActionResult<ProductMagazine>> PostProductMagazine(ProductMagazineAddDto productMagazineAddDto)
+        public async Task<ActionResult<ProductMagazine>> PostProductMagazine(
+            ProductMagazineAddDto productMagazineAddDto
+        )
         {
             var user = await GetUser();
             var company = await GetCompany(user);

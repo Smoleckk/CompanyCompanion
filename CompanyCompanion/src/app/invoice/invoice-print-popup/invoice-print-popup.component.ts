@@ -1,4 +1,10 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
@@ -8,35 +14,37 @@ import { InvoiceService } from '../../service/invoice.service';
 @Component({
   selector: 'app-invoice-print-popup',
   templateUrl: './invoice-print-popup.component.html',
-  styleUrls: ['./invoice-print-popup.component.scss']
+  styleUrls: ['./invoice-print-popup.component.scss'],
 })
-export class InvoicePrintPopupComponent {
-  @ViewChild('content', { static: false }) el!: ElementRef
+export class InvoicePrintPopupComponent implements OnInit {
+  @ViewChild('content', { static: false }) private content!: ElementRef;
+  public editdata: any;
 
-  constructor(private builder: FormBuilder, private service: InvoiceService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService,
-    private dialog: MatDialogRef<InvoicePrintPopupComponent>) {
-  }
-  editdata: any;
+  constructor(
+    private builder: FormBuilder,
+    private service: InvoiceService,
+    private toastr: ToastrService,
+    private dialogRef: MatDialogRef<InvoicePrintPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
   ngOnInit(): void {
-    console.log(this.data.code);
-    
-    if (this.data.code != null && this.data.code != '') {
-      this.service.GetInvByCode(this.data.code).subscribe(res => {
+    if (this.data.code) {
+      this.service.GetInvByCode(this.data.code).subscribe((res) => {
         console.log(res);
         this.editdata = res;
-      })
+      });
     }
   }
 
-  makePdf() {
-    let pdf = new jsPDF('p', 'pt', 'a4');
-    pdf.setFont("helvetica");
+  public makePdf(): void {
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.setFont('helvetica');
     pdf.setFontSize(4);
-    pdf.html(this.el.nativeElement, {
+    pdf.html(this.content.nativeElement, {
       callback: (pdf) => {
-        pdf.save("sample.pdf")
-      }
-    })
+        pdf.save('sample.pdf');
+      },
+    });
   }
 }
