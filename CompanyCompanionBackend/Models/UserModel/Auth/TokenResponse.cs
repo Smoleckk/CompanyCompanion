@@ -1,4 +1,4 @@
-﻿namespace CompanyCompanionBackend.Models
+﻿namespace CompanyCompanionBackend.Models.UserModel.Auth
 {
     public class TokenResponse
     {

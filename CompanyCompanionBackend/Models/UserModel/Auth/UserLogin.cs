@@ -1,6 +1,6 @@
-﻿namespace CompanyCompanionBackend.ModelDto
+﻿namespace CompanyCompanionBackend.Models.UserModel.Auth
 {
-    public class UserDto
+    public class UserLogin
     {
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;

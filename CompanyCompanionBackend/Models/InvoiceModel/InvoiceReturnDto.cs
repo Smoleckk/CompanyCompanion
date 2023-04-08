@@ -1,7 +1,8 @@
-﻿namespace CompanyCompanionBackend.Models
+﻿namespace CompanyCompanionBackend.Models.InvoiceModel
 {
-    public class InvoiceAddDto
+    public class InvoiceReturnDto
     {
+        public int InvoiceId { get; set; }
         public string InvoiceNo { get; set; } = string.Empty;
         public string PlaceOfIssue { get; set; } = string.Empty;
         public string DateIssued { get; set; } = string.Empty;
@@ -25,6 +26,5 @@
         public string Remarks { get; set; } = string.Empty;
         public List<Product> Products { get; set; } = new List<Product>();
         public bool IsGenerated { get; set; } = false;
-
     }
 }

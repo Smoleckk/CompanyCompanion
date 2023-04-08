@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Models;
-using CompanyCompanionBackend.ModelsDto;
+using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +25,7 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-
-            var userName = User?.Identity?.Name;
-            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            var company = await _context.Companies.Include(i => i.Users).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
-            var users = company.Users;
+            var users = GetCompany().Result.Users;
 
             var usersReturn = _mapper.Map<IEnumerable<UserReturnDto>>(users);
 
@@ -44,10 +40,6 @@ namespace CompanyCompanionBackend.Controllers
                 return BadRequest("Username already exists.");
             }
 
-            var userName = User?.Identity?.Name;
-            var userCompany = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            var company = await _context.Companies.Include(i => i.Users).FirstOrDefaultAsync(c => c.CompanyId == userCompany.Company.CompanyId);
-
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var user = new User
             {
@@ -55,7 +47,7 @@ namespace CompanyCompanionBackend.Controllers
                 Email = request.Email,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Company = company
+                Company = await GetCompany()
             };
 
             _context.Users.Add(user);
@@ -70,6 +62,13 @@ namespace CompanyCompanionBackend.Controllers
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
+        }
+        private async Task<Company> GetCompany()
+        {
+            var userName = User?.Identity?.Name;
+            var userCompany = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
+            var company = await _context.Companies.Include(i => i.Users).FirstOrDefaultAsync(c => c.CompanyId == userCompany.Company.CompanyId);
+            return company;
         }
     }
 }

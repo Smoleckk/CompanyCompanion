@@ -1,7 +1,8 @@
-﻿namespace CompanyCompanionBackend.Models
+﻿namespace CompanyCompanionBackend.Models.ProdMagazine
 {
-    public class ProductMagazineAddDto
+    public class ProductMagazine
     {
+        public int ProductMagazineId { get; set; }
         public string Name { get; set; } = string.Empty;
         public double Price { get; set; }
         public double Vat { get; set; }

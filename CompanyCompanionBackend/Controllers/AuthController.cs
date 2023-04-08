@@ -1,21 +1,19 @@
 ﻿using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.ModelDto;
-using CompanyCompanionBackend.Models;
-using CompanyCompanionBackend.ModelsDto;
+using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.UserModel;
+using CompanyCompanionBackend.Models.UserModel.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-
 namespace CompanyCompanionBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        //public static User user = new User();
         private readonly IConfiguration configuration;
         private readonly DataContext context;
 
@@ -32,6 +30,7 @@ namespace CompanyCompanionBackend.Controllers
             User user = new User();
             user.Username = request.Username;
             user.Email = request.Email;
+            user.Role = "Admin";
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
             Company company = new Company
@@ -50,7 +49,7 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(user);
         }
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
+        public async Task<ActionResult<string>> Login(UserLogin request)
         {
             var findUser = context.Users.FirstOrDefault(c => c.Username == request.Username);
             if (findUser == null)
@@ -74,7 +73,7 @@ namespace CompanyCompanionBackend.Controllers
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name,user.Username),
-                new Claim(ClaimTypes.Role,"Admin")
+                new Claim(ClaimTypes.Role,user.Role)
 
             };
 

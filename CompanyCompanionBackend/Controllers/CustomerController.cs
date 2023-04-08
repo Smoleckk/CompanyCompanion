@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Models;
+using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,42 +22,35 @@ namespace CompanyCompanionBackend.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/customers
         [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<CustomerReturnDto>>> GetCustomers()
         {
+            var user = await GetUserWithCompany();
+            var customers = user.Company.Customers;
 
-            var userName = User?.Identity?.Name;
-            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            var company = await _context.Companies.Include(i => i.Customers).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
-            var customers = company.Customers;
+            var customersReturn = _mapper.Map<IEnumerable<CustomerReturnDto>>(customers);
 
-            // var customersReturn = _mapper.Map<CustomerReturnDto>(customers);
-
-            return Ok(customers);
+            return Ok(customersReturn);
         }
 
-        // GET: api/customers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerReturnDto>> GetCustomer(string id)
         {
-            Customer customer = _context.Customers.FirstOrDefault(c => c.CustomerName == id);
+            Customer customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerName == id);
 
             if (customer == null)
             {
                 return NotFound();
             }
-            //var customersReturn = _mapper.Map<CustomerReturnDto>(customer);
+            var customersReturn = _mapper.Map<CustomerReturnDto>(customer);
             return Ok(customer);
         }
 
-        // POST: api/customers
         [HttpPost, Authorize]
         public async Task<ActionResult<Customer>> PostCustomer(CustomerAddDto customerAddDto)
         {
-            var userName = User?.Identity?.Name;
-            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            Company company = await _context.Companies.Include(i => i.Customers).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
+            var user = await GetUserWithCompany();
+            Company company = user.Company;
             var customer = _mapper.Map<Customer>(customerAddDto);
             company.Customers.Add(customer);
             await _context.SaveChangesAsync();
@@ -63,13 +58,11 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(customer);
         }
 
-        // DELETE: api/customers/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Customer>> DeleteCustomer(int id)
         {
 
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerId == id);
-            //var customer = _context.Customers.Find(id);
 
             if (customer == null)
             {
@@ -77,9 +70,17 @@ namespace CompanyCompanionBackend.Controllers
             }
 
             _context.Customers.Remove(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return customer;
+        }
+        private async Task<User> GetUserWithCompany()
+        {
+            var userName = User?.Identity?.Name;
+            return await _context.Users
+                .Include(c => c.Company)
+                .ThenInclude(i => i.Customers)
+                .FirstOrDefaultAsync(c => c.Username == userName);
         }
 
     }

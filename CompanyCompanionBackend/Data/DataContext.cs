@@ -1,4 +1,8 @@
-﻿using CompanyCompanionBackend.Models;
+﻿using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.InvoiceModel;
+using CompanyCompanionBackend.Models.ProdMagazine;
+using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyCompanionBackend.Data
@@ -18,22 +22,22 @@ namespace CompanyCompanionBackend.Data
             modelBuilder.Entity<Company>()
     .HasMany(c => c.Users)
     .WithOne(e => e.Company);
-    //.OnDelete(DeleteBehavior.SetNull);
+            //.OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<User>()
     .HasOne(e => e.Company)
     .WithMany(c => c.Users);
-    //.OnDelete(DeleteBehavior.SetNull);
+            //.OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Company>()
 .HasMany(c => c.Invoices)
 .WithOne(e => e.Company);
-//.OnDelete(DeleteBehavior.SetNull);
+            //.OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Invoice>()
     .HasOne(e => e.Company)
     .WithMany(c => c.Invoices);
-    //.OnDelete(DeleteBehavior.SetNull);
+            //.OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

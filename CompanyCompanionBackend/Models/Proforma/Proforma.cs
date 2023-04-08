@@ -1,4 +1,4 @@
-﻿
+﻿using CompanyCompanionBackend.Models.InvoiceModel;
 namespace CompanyCompanionBackend.Models.Proforma
 {
     public class Proforma

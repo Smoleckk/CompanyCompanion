@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Models;
+using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.ProdMagazine;
+using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,17 +21,15 @@ namespace CompanyCompanionBackend.Controllers
             _mapper = mapper;
             _context = context;
         }
-        // GET: api/productmagazines
+
         [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<ProductMagazine>>> GetProductMagazines()
         {
-            var userName = User?.Identity?.Name;
-            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            var company = await _context.Companies.Include(i => i.ProductMagazines).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
+            var user = await GetUser();
+            var company = await GetCompany(user);
             return Ok(company.ProductMagazines);
         }
 
-        // GET: api/productmagazines/5
         [HttpGet("{name}")]
         public async Task<ActionResult<ProductMagazine>> GetProductMagazine(string name)
         {
@@ -43,13 +43,12 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(productMagazine);
         }
 
-        // POST: api/productmagazines
         [HttpPost, Authorize]
         public async Task<ActionResult<ProductMagazine>> PostProductMagazine(ProductMagazineAddDto productMagazineAddDto)
         {
-            var userName = User?.Identity?.Name;
-            var user = await _context.Users.Include(c => c.Company).FirstOrDefaultAsync(c => c.Username == userName);
-            Company company = await _context.Companies.Include(i => i.ProductMagazines).FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
+            var user = await GetUser();
+            var company = await GetCompany(user);
+
             var productMagazine = _mapper.Map<ProductMagazine>(productMagazineAddDto);
             company.ProductMagazines.Add(productMagazine);
             await _context.SaveChangesAsync();
@@ -57,11 +56,10 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(productMagazine);
         }
 
-        // DELETE: api/productmagazines/5
         [HttpDelete("{id}")]
-        public ActionResult<ProductMagazine> DeleteProductMagazine(string id)
+        public async Task<ActionResult<ProductMagazine>> DeleteProductMagazine(string id)
         {
-            var productMagazine = _context.ProductMagazines.Find(id);
+            var productMagazine = await _context.ProductMagazines.FindAsync(id);
 
             if (productMagazine == null)
             {
@@ -69,9 +67,24 @@ namespace CompanyCompanionBackend.Controllers
             }
 
             _context.ProductMagazines.Remove(productMagazine);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return productMagazine;
+        }
+
+        private async Task<User> GetUser()
+        {
+            var userName = User?.Identity?.Name;
+            return await _context.Users
+                .Include(c => c.Company)
+                .FirstOrDefaultAsync(c => c.Username == userName);
+        }
+
+        private async Task<Company> GetCompany(User user)
+        {
+            return await _context.Companies
+                .Include(i => i.ProductMagazines)
+                .FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
         }
     }
 }

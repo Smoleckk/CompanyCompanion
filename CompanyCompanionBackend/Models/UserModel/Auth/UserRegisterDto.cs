@@ -1,4 +1,4 @@
-﻿namespace CompanyCompanionBackend.ModelsDto
+﻿namespace CompanyCompanionBackend.Models.UserModel.Auth
 {
     public class UserRegisterDto
     {

@@ -35,12 +35,12 @@ namespace CompanyCompanionBackend.Controllers
                 proforma.ProformaNo = "PNo" + rnd.Next();
             }
             ProformaHeader c = proformasHeader.Find(c => c.ProformaId == proforma.ProformaId);
-            if(c != null)
+            if (c != null)
             {
                 proformasHeader.Remove(c);
             }
             ProformaHeader proformaHeader = new ProformaHeader
-            { ProformaId = Guid.NewGuid().ToString(), ProformaNo = proforma.ProformaNo, PlaceOfIssue = proforma.PlaceOfIssue, DateIssued = proforma.DateIssued, DueDate = proforma.DueDate,IsGenerated= proforma.IsGenerated };
+            { ProformaId = Guid.NewGuid().ToString(), ProformaNo = proforma.ProformaNo, PlaceOfIssue = proforma.PlaceOfIssue, DateIssued = proforma.DateIssued, DueDate = proforma.DueDate, IsGenerated = proforma.IsGenerated };
             proformasHeader.Add(proformaHeader);
             return Ok(proformasHeader);
         }

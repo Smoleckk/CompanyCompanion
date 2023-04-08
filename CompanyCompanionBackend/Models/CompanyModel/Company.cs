@@ -1,5 +1,9 @@
-﻿
-namespace CompanyCompanionBackend.Models
+﻿using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.ProdMagazine;
+using CompanyCompanionBackend.Models.UserModel;
+using CompanyCompanionBackend.Models.InvoiceModel;
+
+namespace CompanyCompanionBackend.Models.CompanyModel
 {
     public class Company
     {

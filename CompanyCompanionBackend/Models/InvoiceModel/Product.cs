@@ -1,4 +1,4 @@
-﻿namespace CompanyCompanionBackend.Models
+﻿namespace CompanyCompanionBackend.Models.InvoiceModel
 {
     public class Product
     {
