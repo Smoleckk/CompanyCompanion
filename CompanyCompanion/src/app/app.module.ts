@@ -42,6 +42,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerCreatePopupComponent } from './customer/customer-create-popup/customer-create-popup.component';
 import { UserCreatePopupComponent } from './user/user-create-popup/user-create-popup.component';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,7 @@ import { UserCreatePopupComponent } from './user/user-create-popup/user-create-p
     CustomerListComponent,
     CustomerCreatePopupComponent,
     UserCreatePopupComponent,
+    CustomerDetailsComponent,
   ],
   imports: [
     BrowserModule,

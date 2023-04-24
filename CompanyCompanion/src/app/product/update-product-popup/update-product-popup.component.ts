@@ -12,9 +12,12 @@ import { InvoiceService } from 'src/app/service/invoice.service';
 export class UpdateProductPopupComponent implements OnInit {
   editdata: any;
   updateform = this.builder.group({
-    code: ['', Validators.required],
+    productMagazineId: ['', Validators.required],
     name: ['', Validators.required],
     price: ['', Validators.required],
+    vat: ['', Validators.required],
+    qty: ['', Validators.required],
+    unit: ['', Validators.required],
     category: ['', Validators.required],
     remarks: ['', Validators.required],
   });
@@ -28,17 +31,22 @@ export class UpdateProductPopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.data.code) {
-      this.service.GetProductsByCode(this.data.code).subscribe((res) => {
-        this.editdata = res;
-        this.updateform.patchValue({
-          code: this.editdata.code,
-          name: this.editdata.name,
-          price: this.editdata.price,
-          category: this.editdata.category,
-          remarks: this.editdata.remarks,
+    if (this.data.productMagazineId) {
+      this.service
+        .GetProductsByCode(this.data.productMagazineId)
+        .subscribe((res) => {
+          this.editdata = res;
+          this.updateform.patchValue({
+            productMagazineId: this.editdata.productMagazineId,
+            name: this.editdata.name,
+            price: this.editdata.price,
+            vat: this.editdata.vat,
+            qty: this.editdata.qty,
+            unit: this.editdata.unit,
+            category: this.editdata.category,
+            remarks: this.editdata.remarks,
+          });
         });
-      });
     }
   }
 

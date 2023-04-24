@@ -1,0 +1,79 @@
+<div class="container">
+  <h1 class="breadcrumb-header">{{ pageTitle }}</h1>
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+      <p class="breadcrumb-p middle" [routerLink]="['/customer-list']">
+        /Customers
+      </p>
+      <p class="breadcrumb-p">/Customer</p>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-content class="customer-details">
+      <div class="customer-detail">
+        <h2>Customer Name</h2>
+        <h3>{{ customerForm.value.customerName }}</h3>
+      </div>
+      <div class="customer-detail">
+        <h2>Customer Nip</h2>
+        <h3>{{ customerForm.value.customerNip }}</h3>
+      </div>
+      <div class="customer-detail">
+        <h2>Customer City</h2>
+        <h3>{{ customerForm.value.customerCity }}</h3>
+      </div>
+      <div class="customer-detail">
+        <h2>Customer Address</h2>
+        <h3>{{ customerForm.value.customerAddress }}</h3>
+      </div>
+
+      <!-- <form [formGroup]="customerForm" >
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>Customer Id</mat-label>
+                  <input
+                    matInput
+                    placeholder="Customer Id"
+                    formControlName="customerId"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>Customer</mat-label>
+                  <input
+                    matInput
+                    placeholder="customerName"
+                    formControlName="customerName"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>customerNip</mat-label>
+                  <input
+                    matInput
+                    placeholder="customerNip"
+                    formControlName="customerNip"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>customerCity</mat-label>
+                  <input
+                    matInput
+                    placeholder="customerCity"
+                    formControlName="customerCity"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>customerAddress</mat-label>
+                  <input
+                    matInput
+                    placeholder="customerAddress"
+                    formControlName="customerAddress"
+                  />
+                </mat-form-field>
+            <button mat-raised-button color="primary">Save</button>
+        </form> -->
+    </mat-card-content>
+  </mat-card>
+</div>

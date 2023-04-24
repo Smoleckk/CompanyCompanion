@@ -34,16 +34,16 @@ namespace CompanyCompanionBackend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CustomerReturnDto>> GetCustomer(string id)
+        public async Task<ActionResult<CustomerReturnDto>> GetCustomer(int id)
         {
-            Customer customer = await _context.Customers.FirstOrDefaultAsync(
-                c => c.CustomerName == id
+            Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(
+                c => c.CustomerId == id
             );
 
-            if (customer == null)
-            {
-                return NotFound();
-            }
+            //if (customer == null)
+            //{
+            //    return NotFound();
+            //}
             var customersReturn = _mapper.Map<CustomerReturnDto>(customer);
             return Ok(customer);
         }

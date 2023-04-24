@@ -1,8 +1,21 @@
 <div class="container">
-  <a (click)="createCustomer()" mat-raised-button color="primary"
-    >Add Customer</a
-  >
-
+  <h1 class="breadcrumb-header">Customers</h1>
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+      <p class="breadcrumb-p">/Customers</p>
+    </mat-card-actions>
+    <mat-card-actions>
+      <div class="middle">
+        <mat-icon (click)="createCustomer()" color="primary"
+          >add_circle</mat-icon
+        >
+      </div>
+    </mat-card-actions>
+  </mat-card>
   <div class="mat-elevation-z8">
     <table mat-table matSort [dataSource]="dataSource">
       <!-- <ng-container matColumnDef="customerId">
@@ -10,34 +23,41 @@
               <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
             </ng-container> -->
       <ng-container matColumnDef="customerName">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef>customerName</th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="customerNip">
-        <th mat-header-cell *matHeaderCellDef>customerNip</th>
+        <th mat-header-cell *matHeaderCellDef>Nip</th>
         <td mat-cell *matCellDef="let element">{{ element.customerNip }}</td>
       </ng-container>
       <ng-container matColumnDef="customerCity">
-        <th mat-header-cell *matHeaderCellDef>customerCity</th>
+        <th mat-header-cell *matHeaderCellDef>City</th>
         <td mat-cell *matCellDef="let element">{{ element.customerCity }}</td>
       </ng-container>
       <ng-container matColumnDef="customerAddress">
-        <th mat-header-cell *matHeaderCellDef>customerAddress</th>
+        <th mat-header-cell *matHeaderCellDef>Address</th>
         <td mat-cell *matCellDef="let element">
           {{ element.customerAddress }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <a
+            mat-icon-button
             (click)="deleteCustomer(element.customerId)"
-            mat-raised-button
             color="warn"
-            >Delete</a
           >
+            <mat-icon>delete</mat-icon>
+          </a>
+          <a
+            mat-icon-button
+            (click)="detailsCustomer(element.customerId)"
+          >
+            <mat-icon>details</mat-icon>
+          </a>
         </td>
       </ng-container>
 

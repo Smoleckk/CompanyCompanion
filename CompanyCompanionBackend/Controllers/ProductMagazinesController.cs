@@ -6,6 +6,7 @@ using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace CompanyCompanionBackend.Controllers
 {
@@ -30,17 +31,40 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(company.ProductMagazines);
         }
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<ProductMagazine>> GetProductMagazine(string name)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductMagazine>> GetProductMagazine(int id)
         {
             var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
-                c => c.Name == name
+                c => c.ProductMagazineId == id
             );
 
             if (productMagazine == null)
             {
                 return NotFound();
             }
+
+            return Ok(productMagazine);
+        }
+        [HttpPut]
+        public async Task<ActionResult<ProductMagazine>> UpdateProductMagazine(ProductMagazine productUpdate)
+        {
+            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
+                c => c.ProductMagazineId == productUpdate.ProductMagazineId
+            );
+
+            if (productMagazine == null)
+            {
+                return NotFound();
+            }
+            productMagazine.Name = productUpdate.Name;
+            productMagazine.Price = productUpdate.Price;
+            productMagazine.Vat = productUpdate.Vat;
+            productMagazine.Qty = productUpdate.Qty;
+            productMagazine.Unit = productUpdate.Unit;
+            productMagazine.Category = productUpdate.Category;
+            productMagazine.Remarks = productUpdate.Remarks;
+
+            await _context.SaveChangesAsync();
 
             return Ok(productMagazine);
         }
@@ -61,9 +85,11 @@ namespace CompanyCompanionBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ProductMagazine>> DeleteProductMagazine(string id)
+        public async Task<ActionResult<ProductMagazine>> DeleteProductMagazine(int id)
         {
-            var productMagazine = await _context.ProductMagazines.FindAsync(id);
+            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
+                c => c.ProductMagazineId == id
+            );
 
             if (productMagazine == null)
             {

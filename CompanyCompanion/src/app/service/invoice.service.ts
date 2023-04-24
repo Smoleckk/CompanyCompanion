@@ -26,12 +26,14 @@ export class InvoiceService {
   }
   UpdateProductByCode(product: any) {
     return this.http.put(
-      this.apiUrlProducts + 'update-product-by-code',
-      product
+      this.apiUrlProducts,product
     );
   }
   CreateProduct(product: any) {
     return this.http.post(this.apiUrlProducts, product);
+  }
+  deleteProduct(code: any) {
+    return this.http.delete(this.apiUrlProducts + code);
   }
 
   GetAllInvoice() {

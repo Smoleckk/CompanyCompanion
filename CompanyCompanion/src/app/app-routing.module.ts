@@ -15,6 +15,7 @@ import { ProformaListComponent } from './proforma/proforma-list/proforma-list.co
 import { AboutComponent } from './pages/about/about.component';
 import { RoleGuard } from './shared/role.guard';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -70,6 +71,11 @@ const routes: Routes = [
   {
     path: 'customer-list',
     component: CustomerListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customer/:customerId',
+    component: CustomerDetailsComponent,
     canActivate: [AuthGuard],
   },
 ];

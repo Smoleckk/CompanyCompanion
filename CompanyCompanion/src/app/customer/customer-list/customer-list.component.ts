@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-create-popup.component';
@@ -29,7 +30,8 @@ export class CustomerListComponent {
   constructor(
     private service: CustomerService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,11 @@ export class CustomerListComponent {
       this.toastr.success('Deleted successfully');
       this.loadCustomers();
     });
+  }
+  detailsCustomer(code: any): void {
+    // this.router.navigate(['customer/${code}']);
+    this.router.navigateByUrl('/customer/' + code);
+
   }
 
   createCustomer(): void {
