@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
+import { ProfileService } from 'src/app/service/profile.service';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProformaService } from '../../service/proforma.service';
 @Component({
@@ -26,12 +27,14 @@ export class CreateInvoiceComponent implements OnInit {
     private serviceProforma: ProformaService,
     private router: Router,
     private toastr: ToastrService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private profileService: ProfileService
   ) {}
   ngOnInit(): void {
     this.getCustomers();
     this.GetProducts();
     this.ShowInvoiceNumber();
+    this.getProfile();
     // this.addProduct();
 
     this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
@@ -92,11 +95,11 @@ export class CreateInvoiceComponent implements OnInit {
     customerNip: this.builder.control(''),
     customerDeliveryAddress: this.builder.control(''),
     customerCityCode: this.builder.control(''),
-    sellerId: this.builder.control(''),
-    sellerIdName: this.builder.control(''),
-    sellerNip: this.builder.control(''),
-    sellerDeliveryAddress: this.builder.control(''),
-    sellerCityCode: this.builder.control(''),
+    sellerId: this.builder.control({ value: '', disabled: true }),
+    sellerIdName: this.builder.control({ value: '', disabled: true }),
+    sellerNip: this.builder.control({ value: '', disabled: true }),
+    sellerDeliveryAddress: this.builder.control({ value: '', disabled: true }),
+    sellerCityCode: this.builder.control({ value: '', disabled: true }),
     total: this.builder.control({ value: 0, disabled: true }),
     tax: this.builder.control({ value: 0, disabled: true }),
     netTotal: this.builder.control({ value: 0, disabled: true }),
@@ -200,6 +203,18 @@ export class CreateInvoiceComponent implements OnInit {
   get products() {
     return this.invoiceForm.controls['products'] as FormArray;
   }
+  getProfile() {
+    this.profileService.getProfile().subscribe((res) => {
+      let customData: any;
+      customData = res;
+      if (customData != null) {
+        this.invoiceForm.get('sellerIdName')?.setValue(customData.name);
+        this.invoiceForm.get('sellerNip')?.setValue(customData.nip);
+        this.invoiceForm.get('sellerDeliveryAddress')?.setValue(customData.city);
+        this.invoiceForm.get('sellerCityCode')?.setValue(customData.cityCode);
+      }
+    });
+  }
 
   addProduct() {
     const detailForm = this.builder.group({
@@ -274,11 +289,7 @@ export class CreateInvoiceComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm
-          .get('customerDeliveryAddress')
-          ?.setValue(
-            customData.customerAddress + ', ' + customData.customerCity
-          );
+        this.invoiceForm.get('customerDeliveryAddress')?.setValue(customData.customerAddress + ', ' + customData.customerCity);
         this.invoiceForm.get('customerName')?.setValue(customData.customerName);
         this.invoiceForm.get('customerNip')?.setValue(customData.customerNip);
       }

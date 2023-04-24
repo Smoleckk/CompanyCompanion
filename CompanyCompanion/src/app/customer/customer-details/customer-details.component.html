@@ -14,7 +14,16 @@
   </mat-card>
   <mat-card>
     <mat-card-content class="customer-details">
-      <div class="customer-detail">
+      <h1 style="width: 100%">
+        <b>{{ customerForm.value.customerName }}</b>
+      </h1>
+      <h3 style="width: 50%; border-bottom: 1px solid black;letter-spacing: 2px;">Customer data</h3>
+      <div style="width: 50%"></div>
+      <p>{{ customerForm.value.customerName }}</p>
+      <p>{{ customerForm.value.customerNip }}</p>
+      <p>{{ customerForm.value.customerCity }}, {{ customerForm.value.customerAddress }}</p>
+
+      <!-- <div class="customer-detail">
         <h2>Customer Name</h2>
         <h3>{{ customerForm.value.customerName }}</h3>
       </div>
@@ -29,11 +38,14 @@
       <div class="customer-detail">
         <h2>Customer Address</h2>
         <h3>{{ customerForm.value.customerAddress }}</h3>
-      </div>
+      </div> -->
 
       <!-- //////////////// -->
-      <div class="mat-elevation-z8" style="width:100%">
-        <table mat-table matSort [dataSource]="dataSource" >
+
+      <h3 style="width: 50%;margin-top: 40px; border-bottom: 1px solid black;letter-spacing: 2px;">Customer invoices</h3>
+      <div style="width: 50%"></div>
+      <div class="mat-elevation-z8" style="width: 100%">
+        <table mat-table matSort [dataSource]="dataSource">
           <ng-container matColumnDef="Invoice No">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>
               Invoice number
@@ -73,7 +85,6 @@
               >
                 <mat-icon>edit</mat-icon>
               </a>
-              <!-- *ngIf="!element.isGenerated" -->
               <a
                 mat-icon-button
                 (click)="removeInvoice(element.invoiceId)"

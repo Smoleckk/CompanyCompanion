@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/service/profile.service';
 
 @Component({
@@ -13,22 +10,12 @@ import { ProfileService } from 'src/app/service/profile.service';
 export class ProfileDetailsComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
-    private toastr: ToastrService,
-    private activeRoute: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog,
     private profileService: ProfileService
   ) {}
   ngOnInit(): void {
-    // this.userPRofileId = this.activeRoute.snapshot.paramMap.get('profileId');
-    // if (this.userPRofileId != null) {
-    //   // this.pageTitle = 'Edit Customer';
-    //   this.isEdit = true;
       this.SetEditInfo();
-    // }
   }
-  userPRofileId: any;
-  isEdit = false;
+
   pageTitle = 'Profile';
   profileForm = this.builder.group({
     username: ['', Validators.required],

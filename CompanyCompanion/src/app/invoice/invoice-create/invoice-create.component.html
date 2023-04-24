@@ -85,7 +85,6 @@
           [cols]="breakpoint2"
           (window:resize)="onResize($event)"
           rowHeight="300px"
-          style=""
         >
           <mat-grid-tile>
             <div class="middlerows">
@@ -98,6 +97,14 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field> -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Seller Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Seller Name"
+                  formControlName="sellerIdName"
+                />
+              </mat-form-field>
               <mat-form-field appearance="outline" class="half-width">
                 <mat-label>Seller NIP</mat-label>
                 <input
@@ -133,7 +140,7 @@
                 <mat-select
                   (selectionChange)="CustomerChange()"
                   formControlName="customerName"
-                  placeholder="Customer Name"
+                  placeholder="Select Customer"
                 >
                   <mat-option
                     *ngFor="let item of getCustomer"
