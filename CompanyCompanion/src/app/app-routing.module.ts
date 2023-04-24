@@ -16,6 +16,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { RoleGuard } from './shared/role.guard';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -76,6 +77,11 @@ const routes: Routes = [
   {
     path: 'customer/:customerId',
     component: CustomerDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileDetailsComponent,
     canActivate: [AuthGuard],
   },
 ];

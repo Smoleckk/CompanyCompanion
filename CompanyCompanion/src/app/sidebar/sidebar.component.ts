@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -24,7 +24,8 @@ export class SidebarComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private route: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieService: CookieService
   ) {}
 
   ngDoCheck(): void {
@@ -58,9 +59,24 @@ export class SidebarComponent {
       this.roleAdmin = false;
     }
   }
+  setCookie() {
+    // console.log(this.isDarkTheme);
+    this.isDarkTheme = !this.isDarkTheme;
+    console.log(this.isDarkTheme);
 
-  // checkLogin(){
-  //   if(localStorage.getItem('token')!=null)
-  //   return true;
+    this.cookieService.set('isDarkTheme', this.isDarkTheme.toString());
+    this.isDarkTheme = this.getCookie();
+  }
+
+  // toogleCookie() {
+  //   this.isDarkTheme = false;
+  //   console.log(this.isDarkTheme);
+  //   this.cookieService.set('isDarkTheme', this.isDarkTheme.toString());
+  //  this.isDarkTheme= this.getCookie();
+
   // }
+  getCookie() {
+    const isDarkThemeCookie = this.cookieService.get('isDarkTheme');
+    return Boolean(isDarkThemeCookie);
+  }
 }

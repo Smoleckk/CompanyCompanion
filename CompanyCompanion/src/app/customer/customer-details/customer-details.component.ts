@@ -73,9 +73,6 @@ export class CustomerDetailsComponent implements OnInit {
           customerAddress: editData.customerAddress,
         });
         this.loadInvoices();
-
-        // this.customerInvoices = editData.invoices;
-        // console.log(this.customerInvoices);
       }
     });
   }

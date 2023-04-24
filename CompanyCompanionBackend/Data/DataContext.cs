@@ -29,6 +29,7 @@ namespace CompanyCompanionBackend.Data
 
             modelBuilder.Entity<Company>().HasMany(c => c.Invoices).WithOne(e => e.Company);
             //.OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Company>().HasMany(c => c.Users).WithOne(e => e.Company);
 
             modelBuilder.Entity<Invoice>().HasOne(e => e.Company).WithMany(c => c.Invoices);
             //.OnDelete(DeleteBehavior.SetNull);

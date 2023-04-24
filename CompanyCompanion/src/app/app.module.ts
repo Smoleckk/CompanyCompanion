@@ -43,6 +43,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerCreatePopupComponent } from './customer/customer-create-popup/customer-create-popup.component';
 import { UserCreatePopupComponent } from './user/user-create-popup/user-create-popup.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import { CustomerDetailsComponent } from './customer/customer-details/customer-d
     CustomerCreatePopupComponent,
     UserCreatePopupComponent,
     CustomerDetailsComponent,
+    ProfileDetailsComponent,
   ],
   imports: [
     BrowserModule,

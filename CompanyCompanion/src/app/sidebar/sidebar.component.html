@@ -15,6 +15,13 @@
     <mat-nav-list>
       <a
         mat-list-item
+        routerLink="profile"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        ><b>Profile</b></a
+      >
+      <a
+        mat-list-item
         routerLink="invoice-list"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
@@ -47,7 +54,7 @@
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
         *ngIf="roleAdmin"
-        >Users</a
+        >Co-workers</a
       >
       <a
         mat-list-item
@@ -83,10 +90,6 @@
       >
         <mat-icon>question_mark</mat-icon>
       </button>
-      <!-- <button routerLink="/welcome" mat-icon-button class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon">
-        <mat-icon>bookmark</mat-icon>
-      </button> -->
       <button
         (click)="clearLocal()"
         routerLink="/welcome"
@@ -114,10 +117,6 @@
         </button>
         <ul>
           <li><a href="/welcome">HOME</a></li>
-          <!-- <li><a href="">ABOUT</a></li>
-          <li><a href="">COURSE</a></li>
-          <li><a href="">BLOG</a></li>
-          <li><a href="">CONTACT</a></li> -->
           <li><a href="/login">LOGIN</a></li>
           <li><a href="/register">REGISTER</a></li>
         </ul>

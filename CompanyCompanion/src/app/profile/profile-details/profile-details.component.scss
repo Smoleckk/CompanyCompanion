@@ -1,0 +1,16 @@
+.customer-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: start;
+    flex-wrap: wrap;
+  }
+  .customer-detail{
+      width: 200px;
+      display: flex;
+  }
+  .customer-detail-info{
+    color:gray;
+    margin-left: 10px;
+  }
+  
