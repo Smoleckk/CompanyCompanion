@@ -31,49 +31,70 @@
         <h3>{{ customerForm.value.customerAddress }}</h3>
       </div>
 
-      <!-- <form [formGroup]="customerForm" >
-                <mat-form-field appearance="outline" class="half-width">
-                  <mat-label>Customer Id</mat-label>
-                  <input
-                    matInput
-                    placeholder="Customer Id"
-                    formControlName="customerId"
-                  />
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="half-width">
-                  <mat-label>Customer</mat-label>
-                  <input
-                    matInput
-                    placeholder="customerName"
-                    formControlName="customerName"
-                  />
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="half-width">
-                  <mat-label>customerNip</mat-label>
-                  <input
-                    matInput
-                    placeholder="customerNip"
-                    formControlName="customerNip"
-                  />
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="half-width">
-                  <mat-label>customerCity</mat-label>
-                  <input
-                    matInput
-                    placeholder="customerCity"
-                    formControlName="customerCity"
-                  />
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="half-width">
-                  <mat-label>customerAddress</mat-label>
-                  <input
-                    matInput
-                    placeholder="customerAddress"
-                    formControlName="customerAddress"
-                  />
-                </mat-form-field>
-            <button mat-raised-button color="primary">Save</button>
-        </form> -->
+      <!-- //////////////// -->
+      <div class="mat-elevation-z8" style="width:100%">
+        <table mat-table matSort [dataSource]="dataSource" >
+          <ng-container matColumnDef="Invoice No">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Invoice number
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.invoiceNo }}</td>
+          </ng-container>
+          <ng-container matColumnDef="Customer">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerName }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="NetTotal">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Netto total
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.netTotal | currency }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <a
+                mat-icon-button
+                (click)="downloadInvoice(element.invoiceId)"
+                color="primary"
+              >
+                <mat-icon>print</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                *ngIf="!element.isGenerated"
+                (click)="editInvoice(element.invoiceId)"
+                color="primary"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <!-- *ngIf="!element.isGenerated" -->
+              <a
+                mat-icon-button
+                (click)="removeInvoice(element.invoiceId)"
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

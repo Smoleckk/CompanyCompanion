@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,13 @@ namespace CompanyCompanionBackend.Controllers
         {
             var company = await GetCompany();
             return Ok(company.Invoices);
+        }
+        [HttpGet("get-invoices-header/{code}")]
+        [Authorize]
+        public async Task<ActionResult<List<Invoice>>> GetCustomerInvoicesHeader(string code)
+        {
+            var company = await GetCompany();
+            return Ok(company.Invoices.Where(i => i.CustomerName == code));
         }
 
         [HttpGet("{code}")]
@@ -56,12 +64,15 @@ namespace CompanyCompanionBackend.Controllers
             {
                 invoiceAddDto.InvoiceNo = "No" + rnd.Next();
             }
+            Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(
+    c => c.CustomerName == invoiceAddDto.CustomerName
+);
 
             var invoice = _mapper.Map<Invoice>(invoiceAddDto);
 
             invoice.Company = await GetCompany();
-
-            _context.Invoices.Add(invoice);
+            customer.Invoices.Add(invoice);
+            //_context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
 
             return Ok(invoice);

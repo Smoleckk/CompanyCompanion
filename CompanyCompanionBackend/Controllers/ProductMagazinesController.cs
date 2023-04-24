@@ -45,6 +45,20 @@ namespace CompanyCompanionBackend.Controllers
 
             return Ok(productMagazine);
         }
+        [HttpGet("name/{name}")]
+        public async Task<ActionResult<ProductMagazine>> GetProductMagazineByName(string name)
+        {
+            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
+                c => c.Name == name
+            );
+
+            if (productMagazine == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(productMagazine);
+        }
         [HttpPut]
         public async Task<ActionResult<ProductMagazine>> UpdateProductMagazine(ProductMagazine productUpdate)
         {

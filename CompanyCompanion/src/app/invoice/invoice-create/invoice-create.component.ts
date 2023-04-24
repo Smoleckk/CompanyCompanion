@@ -296,7 +296,7 @@ export class CreateInvoiceComponent implements OnInit {
     let productCode = this.invoiceProduct.get('productName')?.value;
     console.log(productCode);
 
-    this.service.GetProductsByCode(productCode).subscribe((res) => {
+    this.service.GetProductsByName(productCode).subscribe((res) => {
       let prodData: any;
       prodData = res;
       console.log(prodData);

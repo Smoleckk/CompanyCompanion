@@ -24,10 +24,11 @@ export class InvoiceService {
   GetProductsByCode(code: any) {
     return this.http.get(this.apiUrlProducts + code);
   }
+  GetProductsByName(name: any) {
+    return this.http.get(this.apiUrlProducts + 'name/' + name);
+  }
   UpdateProductByCode(product: any) {
-    return this.http.put(
-      this.apiUrlProducts,product
-    );
+    return this.http.put(this.apiUrlProducts, product);
   }
   CreateProduct(product: any) {
     return this.http.post(this.apiUrlProducts, product);
@@ -38,6 +39,9 @@ export class InvoiceService {
 
   GetAllInvoice() {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
+  }
+  GetCustomerInvoices(code:any) {
+    return this.http.get(this.apiUrlInvoice + 'get-invoices-header/'+code);
   }
   GetInvByCode(invoiceId: any) {
     return this.http.get(this.apiUrlInvoice + invoiceId);

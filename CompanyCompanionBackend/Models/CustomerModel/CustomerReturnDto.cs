@@ -9,7 +9,7 @@ namespace CompanyCompanionBackend.Models.CustomerModel
         public string CustomerNip { get; set; } = string.Empty;
         public string CustomerCity { get; set; } = string.Empty;
         public string CustomerAddress { get; set; } = string.Empty;
-        public ICollection<Invoice> Invoices { get; set; }
+        //public ICollection<Invoice> Invoices { get; set; }
 
     }
 }
