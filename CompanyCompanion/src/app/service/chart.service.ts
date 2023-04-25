@@ -5,11 +5,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ChartService {
-  apiUrlInvoice = 'https://localhost:7037/api/Invoice/';
+  apiUrlInvoice = 'https://localhost:7037/api/Dashboard/';
 
   constructor(private http: HttpClient) {}
 
-  GetChartInvoiceData() {
-    return this.http.get(this.apiUrlInvoice + 'chart');
+  getInvoicePaidStatus() {
+    return this.http.get(this.apiUrlInvoice + 'invoice-paid-status');
+  }
+  getProductStatus() {
+    return this.http.get(this.apiUrlInvoice + 'product-status');
   }
 }

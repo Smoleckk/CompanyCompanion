@@ -45,7 +45,6 @@ import { UserCreatePopupComponent } from './user/user-create-popup/user-create-p
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
 import { CustomerUpdatePopupComponent } from './customer/customer-update-popup/customer-update-popup.component';
-import { DashboardInfoComponent } from './dashboard-info/dashboard-info.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -76,7 +75,6 @@ import { MatMenuModule } from '@angular/material/menu';
     CustomerDetailsComponent,
     ProfileDetailsComponent,
     CustomerUpdatePopupComponent,
-    DashboardInfoComponent,
   ],
   imports: [
     BrowserModule,

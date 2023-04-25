@@ -1,15 +1,88 @@
-<!-- <div
-  style="display: flex; width: 80%; margin: auto; justify-content: space-around"
->
-  <div style="width: 50%">
-    <h2>Bar Chart</h2>
-    <canvas id="barchart"></canvas>
+<div class="dashboard-container">
+  <div class="dashboard-top">
+    <mat-card
+      class="dashboard-top-card"
+      style="background-color: darkslategray"
+    >
+      <mat-card-header>
+        <mat-card-title>Invoices</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Number of generated invoices:
+          <b style="font-size: 22px">{{ invoicesNumber }}</b>
+        </p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-top-card" style="background-color: burlywood">
+      <mat-card-header>
+        <mat-card-title>Products</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- <p>Number of new registered products</p> -->
+        <p>
+          Number of sold products:
+          <b style="font-size: 22px">{{ productSoldSum }}</b>
+        </p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-top-card" style="background-color: cadetblue">
+      <mat-card-header>
+        <mat-card-title>Income</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          How much you earned recently:
+          <b style="font-size: 22px">{{ invoicesTotalSum | currency}}</b>
+        </p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-top-card" style="background-color: darkorange">
+      <mat-card-header>
+        <mat-card-title>Best client</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Client which best ordered</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+    </mat-card>
   </div>
-  <div style="width: 30%">
-    <h2>Pie Chart</h2>
-    <canvas id="piechart"></canvas>
+  <div class="dashboard-middle">
+    <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <mat-card-title>Invoice payment status</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-middle-card-content">
+        <canvas id="piechart1"></canvas>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <mat-card-title>Bestseller product</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-middle-card-content">
+        <canvas id="barchart"></canvas>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <mat-card-title>Invoice payment status</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-middle-card-content">
+        <!-- <canvas id="piechart"></canvas> -->
+      </mat-card-content>
+    </mat-card>
   </div>
+</div>
+
+<!-- <div style="width: 30%">
+  <h2>Pie Chart</h2>
+  <canvas id="piechart"></canvas>
+</div>
+<div style="width: 50%">
+  <h2>Bar Chart</h2>
+  <canvas id="barchart"></canvas>
 </div> -->
-<div class="top-section"></div>
-<div class="middle-section"></div>
-<div class="bottom-section"></div>
