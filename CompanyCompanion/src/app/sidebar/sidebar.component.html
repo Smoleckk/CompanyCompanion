@@ -15,13 +15,6 @@
     <mat-nav-list>
       <a
         mat-list-item
-        routerLink="profile"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        ><b>Profile</b></a
-      >
-      <a
-        mat-list-item
         routerLink="invoice-list"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
@@ -63,6 +56,13 @@
         ariaCurrentWhenActive="page"
         >Dashboard</a
       >
+      <a
+        mat-list-item
+        routerLink="dashboard-info"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Dashboard info</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -82,23 +82,42 @@
         <mat-icon *ngIf="isDarkTheme">dark_mode</mat-icon>
         <mat-icon *ngIf="!isDarkTheme">light_mode</mat-icon>
       </mat-slide-toggle>
+      <!-- /////////////////////////// -->
       <button
-        routerLink="/about"
         mat-icon-button
-        class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon"
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
       >
-        <mat-icon>question_mark</mat-icon>
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <button
-        (click)="clearLocal()"
-        routerLink="/welcome"
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with share icon"
-      >
-        <mat-icon>logout</mat-icon>
-      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          routerLink="/about"
+          class="example-icon favorite-icon"
+        >
+          <mat-icon>question_mark</mat-icon>
+          <span>About</span>
+        </button>
+        <button
+          mat-menu-item
+          routerLink="/profile"
+          class="example-icon favorite-icon"
+        >
+          <mat-icon>manage_accounts</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="clearLocal()"
+          routerLink="/welcome"
+          class="example-icon"
+        >
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+      <!-- ////////////// -->
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

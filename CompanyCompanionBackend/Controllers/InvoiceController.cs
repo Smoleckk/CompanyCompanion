@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
+using CompanyCompanionBackend.Models.Charts;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
@@ -20,6 +21,34 @@ namespace CompanyCompanionBackend.Controllers
         {
             _mapper = mapper;
             _context = context;
+        }
+
+        [HttpGet("chart")]
+        [Authorize]
+        public async Task<ActionResult<List<InvoiceChart>>> GetChartData()
+        {
+            var company = await GetCompany();
+            var invoicesPaidAndNonGenerated = company.Invoices.Where(i => i.PaymentStatus == "Paid" && i.IsGenerated == false).ToList();
+            var invoicesUnpaidAndNonGenerated = company.Invoices.Where(i => i.PaymentStatus == "Unpaid" && i.IsGenerated == false).ToList();
+            var invoicesPaidAndGenerated = company.Invoices.Where(i => i.PaymentStatus == "Paid" && i.IsGenerated == true).ToList();
+            var invoicesUnPaidaidAndGenerated = company.Invoices.Where(i => i.PaymentStatus == "Unpaid" && i.IsGenerated == true).ToList();
+
+            List<InvoiceChart> invoiceCharts = new List<InvoiceChart>();
+            invoiceCharts.Add(
+                new InvoiceChart { InvoiceChartName = "invoicesPaidAndNonGenerated", InvoiceChartSum = invoicesPaidAndNonGenerated.Count }
+                );
+            invoiceCharts.Add(
+                new InvoiceChart { InvoiceChartName = "invoicesUnpaidAndNonGenerated", InvoiceChartSum = invoicesUnpaidAndNonGenerated.Count }
+                );
+            invoiceCharts.Add(
+                new InvoiceChart { InvoiceChartName = "invoicesPaidAndGenerated", InvoiceChartSum = invoicesPaidAndGenerated.Count }
+                );
+            invoiceCharts.Add(
+                new InvoiceChart { InvoiceChartName = "invoicesUnPaidaidAndGenerated", InvoiceChartSum = invoicesUnPaidaidAndGenerated.Count }
+                );
+
+
+            return Ok(invoiceCharts);
         }
 
         [HttpGet("get-invoices-header")]
