@@ -18,6 +18,7 @@ import { InvoicePrintPopupComponent } from 'src/app/invoice/invoice-print-popup/
 import { CustomerService } from 'src/app/service/customer.service';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProformaService } from '../../service/proforma.service';
+import { CustomerUpdatePopupComponent } from '../customer-update-popup/customer-update-popup.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -37,16 +38,16 @@ export class CustomerDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.editcustomerId = this.activeRoute.snapshot.paramMap.get('customerId');
-    if (this.editcustomerId != null) {
+    this.editCustomerId = this.activeRoute.snapshot.paramMap.get('customerId');
+    if (this.editCustomerId != null) {
       // this.pageTitle = 'Edit Customer';
       this.isEdit = true;
-      this.SetEditInfo(this.editcustomerId);
+      this.SetEditInfo(this.editCustomerId);
     }
   }
   pageTitle = 'Customer details';
   invoiceDetail!: FormArray<any>;
-  editcustomerId: any;
+  editCustomerId: any;
   isEdit = false;
 
   customerForm = this.builder.group({
@@ -76,6 +77,21 @@ export class CustomerDetailsComponent implements OnInit {
       }
     });
   }
+  updateCustomer(): void {
+    console.log(this.editCustomerId);
+    
+    const popup = this.dialog.open(CustomerUpdatePopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '40%',
+      data:  this.editCustomerId,
+    });
+
+    popup.afterClosed().subscribe(() => {
+      this.SetEditInfo(this.editCustomerId);
+    });
+  }
+
   /////////////////
   displayedColumns: string[] = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
   dataSource = new MatTableDataSource<any>();
@@ -84,7 +100,7 @@ export class CustomerDetailsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   loadInvoices(): void {
-    let getCustomerName= this.customerForm.get('customerName')?.value;
+    let getCustomerName = this.customerForm.get('customerName')?.value;
 
     this.invoiceService
       .GetCustomerInvoices(getCustomerName)

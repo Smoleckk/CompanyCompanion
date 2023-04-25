@@ -2,6 +2,7 @@
 using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,24 @@ namespace CompanyCompanionBackend.Controllers
             return Ok(customer);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CustomerAddDto>> UpdateCustomer(int id, CustomerAddDto customerAddDto)
+        {
+            var customer = await _context.Customers.FirstOrDefaultAsync(
+                c => c.CustomerId == id
+            );
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            customer.CustomerName = customerAddDto.CustomerName;
+            customer.CustomerNip = customerAddDto.CustomerNip;
+            customer.CustomerCity = customerAddDto.CustomerCity;
+            customer.CustomerAddress = customerAddDto.CustomerAddress;
+            await _context.SaveChangesAsync();
+            return Ok(customer);
+        }
         [HttpDelete("{id}")]
         public async Task<ActionResult<Customer>> DeleteCustomer(int id)
         {

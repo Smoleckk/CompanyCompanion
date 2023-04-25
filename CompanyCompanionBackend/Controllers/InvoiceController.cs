@@ -64,6 +64,11 @@ namespace CompanyCompanionBackend.Controllers
             {
                 invoiceAddDto.InvoiceNo = "No" + rnd.Next();
             }
+            else
+            {
+                invoiceAddDto.InvoiceNo = "Not issued";
+
+            }
             Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(
     c => c.CustomerName == invoiceAddDto.CustomerName
 );

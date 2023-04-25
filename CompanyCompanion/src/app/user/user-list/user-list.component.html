@@ -32,10 +32,10 @@
           <a
           mat-icon-button
           *ngIf="!element.isGenerated"
-          (click)="UpdateUser(element.username)"
-          color="primary"
+          (click)="removeUser(element.email)"
+          color="warn"
         >
-          <mat-icon>edit</mat-icon>
+          <mat-icon>delete</mat-icon>
         </a>
         </td>
       </ng-container>

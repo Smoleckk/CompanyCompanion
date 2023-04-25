@@ -73,6 +73,15 @@ body {
 
 .containerpopup {
   margin: auto;
+  mat-card {
+    padding: 10px 20px;
+  }
+  mat-card-header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 40px;
+  }
 }
 
 .itemCompleted {

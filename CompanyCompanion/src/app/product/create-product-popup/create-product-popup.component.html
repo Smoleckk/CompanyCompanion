@@ -1,7 +1,10 @@
 <div class="containerpopup">
   <mat-card>
     <mat-card-header>
-      <h1>Create Product</h1>
+      <h1><b>Add product to inventory</b></h1>
+      <p>
+        Fill in the fields below to add the product to your inventory
+      </p>
     </mat-card-header>
     <mat-card-content>
       <form
@@ -9,37 +12,52 @@
         [formGroup]="createform"
         (ngSubmit)="saveProduct()"
       >
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Name</mat-label>
           <input matInput placeholder="Name" formControlName="name" />
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Price</mat-label>
-          <input type="number" matInput placeholder="Price" formControlName="price" />
+          <input
+            type="number"
+            matInput
+            placeholder="Price"
+            formControlName="price"
+          />
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Vat</mat-label>
-          <input type="number" matInput placeholder="Vat" formControlName="vat" />
+          <input
+            type="number"
+            matInput
+            placeholder="Vat"
+            formControlName="vat"
+          />
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Quantity</mat-label>
-          <input type="number" matInput placeholder="Quantity" formControlName="qty" />
+          <input
+            type="number"
+            matInput
+            placeholder="Quantity"
+            formControlName="qty"
+          />
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Unit</mat-label>
           <input matInput placeholder="Unit" formControlName="unit" />
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Category</mat-label>
           <input matInput placeholder="Category" formControlName="category" />
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="half-width">
           <mat-label>Remarks</mat-label>
           <input matInput placeholder="Remarks" formControlName="remarks" />
         </mat-form-field>
         <div class="form-submit">
           <button mat-raised-button color="primary">Save</button>
-          <a mat-dialog-close mat-raised-button color="accent">Close</a>
+          <!-- <a mat-dialog-close mat-raised-button color="accent">Close</a> -->
         </div>
       </form>
     </mat-card-content>

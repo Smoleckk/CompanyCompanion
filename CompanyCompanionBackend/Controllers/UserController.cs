@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,7 @@ namespace CompanyCompanionBackend.Controllers
         }
 
         [HttpGet, Authorize]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserReturnDto>>> GetUsers()
         {
             var users = GetCompany().Result.Users;
 
@@ -57,7 +58,23 @@ namespace CompanyCompanionBackend.Controllers
 
             return Ok(user);
         }
+        [HttpDelete("{email}")]
+        public async Task<ActionResult<User>> DeleteUser(string email)
+        {
+            var deleteUser = await _context.Users.FirstOrDefaultAsync(
+                c => c.Email == email
+            );
 
+            if (deleteUser == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(deleteUser);
+            await _context.SaveChangesAsync();
+
+            return deleteUser;
+        }
         private void CreatePasswordHash(
             string password,
             out byte[] passwordHash,

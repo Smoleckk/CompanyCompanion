@@ -7,6 +7,7 @@ import { UserService } from '../../service/user.service';
 import { UpdateUserPopupComponent } from '../update-user-popup/update-user-popup.component';
 import { UserCreatePopupComponent } from '../user-create-popup/user-create-popup.component';
 import { User } from '../../models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-list',
@@ -14,11 +15,13 @@ import { User } from '../../models/user';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  constructor(private service: UserService, private dialog: MatDialog) {
+    
+    constructor(private service: UserService, private dialog: MatDialog,private toastrService: ToastrService) {
     this.loadUsers();
   }
   userdata: any;
   dataSource: any;
+  // displayedColumns: string[] = ['username', 'email'];
   displayedColumns: string[] = ['username', 'email', 'action'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,6 +31,8 @@ export class UserListComponent implements OnInit {
   loadUsers() {
     this.service.loadUsers().subscribe((data) => {
       this.userdata = data;
+      console.log(data);
+      
       this.dataSource = new MatTableDataSource(this.userdata);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -37,7 +42,7 @@ export class UserListComponent implements OnInit {
     const popup = this.dialog.open(UpdateUserPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '50%',
+      width: '40%',
       data: {
         usercode: username,
       },
@@ -51,10 +56,18 @@ export class UserListComponent implements OnInit {
     const popup = this.dialog.open(UserCreatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '50%',
+      width: '40%',
     });
     popup.afterClosed().subscribe(() => {
       this.loadUsers();
     });
+  }
+  removeUser(code: any): void {
+    if (confirm('Do you want to remove this User: ' + code)) {
+      this.service.deleteUser(code).subscribe(() => {
+        this.toastrService.success('Deleted successfully', 'Remove User');
+        this.loadUsers();
+      });
+    }
   }
 }

@@ -65,7 +65,7 @@ export class CustomerListComponent {
     const popup = this.dialog.open(CustomerCreatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '50%',
+      width: '40%',
     });
     popup.afterClosed().subscribe(() => {
       this.loadCustomers();

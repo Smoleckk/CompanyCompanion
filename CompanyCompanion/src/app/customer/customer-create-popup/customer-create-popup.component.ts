@@ -30,11 +30,14 @@ export class CustomerCreatePopupComponent {
 
   saveCustomer() {
     if (this.createform.valid) {
-      console.log(this.createform.value);
+      // console.log(this.createform.value);
       this.service.createCustomer(this.createform.value).subscribe(() => {
         this.toastr.success('Created successfully');
         this.dialog.close();
-      });
+      }
+      
+      
+      );
     } else {
       this.toastr.warning('Please check data');
     }

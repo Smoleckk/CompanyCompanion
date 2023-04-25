@@ -44,6 +44,7 @@ import { CustomerCreatePopupComponent } from './customer/customer-create-popup/c
 import { UserCreatePopupComponent } from './user/user-create-popup/user-create-popup.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
+import { CustomerUpdatePopupComponent } from './customer/customer-update-popup/customer-update-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { ProfileDetailsComponent } from './profile/profile-details/profile-detai
     UserCreatePopupComponent,
     CustomerDetailsComponent,
     ProfileDetailsComponent,
+    CustomerUpdatePopupComponent,
   ],
   imports: [
     BrowserModule,
