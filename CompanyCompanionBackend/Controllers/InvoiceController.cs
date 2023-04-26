@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Models.Charts;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
@@ -75,7 +74,8 @@ namespace CompanyCompanionBackend.Controllers
             Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(
     c => c.CustomerName == invoiceAddDto.CustomerName
 );
-
+            invoiceAddDto.DateIssued = invoiceAddDto.DateIssued.Substring(0, 10);
+            invoiceAddDto.DueDate = invoiceAddDto.DueDate.Substring(0, 10);
             var invoice = _mapper.Map<Invoice>(invoiceAddDto);
 
             invoice.Company = await GetCompany();

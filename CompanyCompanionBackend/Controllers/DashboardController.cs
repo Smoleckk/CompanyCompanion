@@ -3,9 +3,7 @@ using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.Charts;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
-using CompanyCompanionBackend.Models.UserModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,6 +56,40 @@ namespace CompanyCompanionBackend.Controllers
 
             return Ok(invoiceGroups);
         }
+        [HttpGet("invoice-date-issued-status")]
+        [Authorize]
+        public async Task<ActionResult<List<InvoiceChart>>> GetInvoiceIssueDateStatus()
+        {
+            var company = await GetCompany();
+
+            var invoiceGroups = company.Invoices.Where(i => i.IsGenerated == true)
+                .GroupBy(i => new { i.DateIssued })
+                .Select(g => new InvoiceChart
+                {
+                    InvoiceChartName = g.Key.DateIssued,
+                    InvoiceChartSum = g.Count()
+                }).OrderByDescending(p => p.InvoiceChartName)
+                .ToList();
+
+            return Ok(invoiceGroups);
+        }
+        [HttpGet("invoice-number-customer-status")]
+        [Authorize]
+        public async Task<ActionResult<List<InvoiceChart>>> GetInvoiceNumberCustomerStatus()
+        {
+            var company = await GetCompany();
+
+            var invoiceGroups = company.Invoices.Where(i => i.IsGenerated == true)
+                .GroupBy(i => new { i.CustomerName })
+                .Select(g => new InvoiceChart
+                {
+                    InvoiceChartName = g.Key.CustomerName,
+                    InvoiceChartSum = g.Count()
+                }).OrderByDescending(p => p.InvoiceChartSum)
+                .ToList();
+
+            return Ok(invoiceGroups);
+        }
         [HttpGet("product-status")]
         [Authorize]
         public async Task<ActionResult<List<ProductChart>>> GetProductStatus()
@@ -65,7 +97,7 @@ namespace CompanyCompanionBackend.Controllers
             var company = await GetCompany();
 
             List<Product> soldProduct = new List<Product>();
-            var invoices = await _context.Invoices.ToListAsync();
+            var invoices = await _context.Invoices.Where(i => i.IsGenerated == true).ToListAsync();
 
             foreach (var invoice in invoices)
             {

@@ -79,6 +79,41 @@ export class DashboardComponent implements OnInit {
     this.invoiceService.GetAllInvoice().subscribe((readInvoices: any) => {
       this.invoicesTotalSum= readInvoices.map((invo: any) => invo.netTotal).reduce((a: any, b: any) => a + b, 0);
     });
+
+    
+    this.chartService.getInvoiceIssueDateStatus().subscribe((result) => {
+      this.chartData = result;
+      if (this.chartData != null) {
+        this.labelData = this.chartData.map(
+          (invo: any) => invo.invoiceChartName
+        );
+        this.realData = this.chartData.map((invo: any) => invo.invoiceChartSum);
+      }
+      this.renderChart(
+        this.labelData,
+        this.realData,
+        'line',
+        'line',
+        'Invoices'
+      );
+    });
+
+    this.chartService.getInvoiceNumberCustomerStatus().subscribe((result) => {
+      this.chartData = result;
+      if (this.chartData != null) {
+        this.labelData = this.chartData.map(
+          (invo: any) => invo.invoiceChartName
+        );
+        this.realData = this.chartData.map((invo: any) => invo.invoiceChartSum);
+      }
+      this.renderChart(
+        this.labelData,
+        this.realData,
+        'doughnut',
+        'doughnut',
+        'Invoices'
+      );
+    });
   }
 
   renderChart(labelData: any, realData: any, type: any, id: any, name: any) {
@@ -91,6 +126,10 @@ export class DashboardComponent implements OnInit {
             label: name,
             data: realData,
             borderWidth: 1,
+            backgroundColor: [
+              'rgb(95, 158, 160)',
+              'rgb(255, 140, 0)',
+            ],
           },
         ],
       },

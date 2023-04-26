@@ -15,6 +15,12 @@ export class ChartService {
   getInvoicePaidTotalStatus() {
     return this.http.get(this.apiUrlInvoice + 'invoice-paid-total-status');
   }
+  getInvoiceIssueDateStatus() {
+    return this.http.get(this.apiUrlInvoice + 'invoice-date-issued-status');
+  }
+  getInvoiceNumberCustomerStatus() {
+    return this.http.get(this.apiUrlInvoice + 'invoice-number-customer-status');
+  }
   getProductStatus() {
     return this.http.get(this.apiUrlInvoice + 'product-status');
   }

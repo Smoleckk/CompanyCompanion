@@ -48,6 +48,7 @@ import { CustomerUpdatePopupComponent } from './customer/customer-update-popup/c
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +105,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    MatTabsModule,
   ],
   providers: [
     {
