@@ -30,12 +30,29 @@ namespace CompanyCompanionBackend.Controllers
         {
             var company = await GetCompany();
 
-            var invoiceGroups = company.Invoices
-                .GroupBy(i => new { i.PaymentStatus, i.IsGenerated })
+            var invoiceGroups = company.Invoices.Where(i => i.IsGenerated == true)
+                .GroupBy(i => new { i.PaymentStatus })
                 .Select(g => new InvoiceChart
                 {
-                    InvoiceChartName = $"Invoices {g.Key.PaymentStatus} And {(!g.Key.IsGenerated ? "Non" : "")}Generated",
+                    InvoiceChartName = $"Number of invoices {g.Key.PaymentStatus}",
                     InvoiceChartSum = g.Count()
+                })
+                .ToList();
+
+            return Ok(invoiceGroups);
+        }
+        [HttpGet("invoice-paid-total-status")]
+        [Authorize]
+        public async Task<ActionResult<List<InvoiceChart>>> GetInvoicePaidTotalStatus()
+        {
+            var company = await GetCompany();
+
+            var invoiceGroups = company.Invoices.Where(i => i.IsGenerated == true)
+                .GroupBy(i => new { i.PaymentStatus })
+                .Select(g => new InvoiceChart
+                {
+                    InvoiceChartName = $"$ Total netto  sum of {g.Key.PaymentStatus} invoices",
+                    InvoiceChartSum = g.Sum(i => i.NetTotal)
                 })
                 .ToList();
 

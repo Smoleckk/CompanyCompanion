@@ -3,7 +3,7 @@
     public class InvoiceChart
     {
         public string InvoiceChartName { get; set; }
-        public int InvoiceChartSum { get; set; }
+        public double InvoiceChartSum { get; set; }
 
 
     }
