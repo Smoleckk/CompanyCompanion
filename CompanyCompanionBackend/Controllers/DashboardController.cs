@@ -32,7 +32,7 @@ namespace CompanyCompanionBackend.Controllers
                 .GroupBy(i => new { i.PaymentStatus })
                 .Select(g => new InvoiceChart
                 {
-                    InvoiceChartName = $"Number of invoices {g.Key.PaymentStatus}",
+                    InvoiceChartName = g.Key.PaymentStatus,
                     InvoiceChartSum = g.Count()
                 })
                 .ToList();
@@ -49,7 +49,7 @@ namespace CompanyCompanionBackend.Controllers
                 .GroupBy(i => new { i.PaymentStatus })
                 .Select(g => new InvoiceChart
                 {
-                    InvoiceChartName = $"$ Total netto  sum of {g.Key.PaymentStatus} invoices",
+                    InvoiceChartName = g.Key.PaymentStatus,
                     InvoiceChartSum = g.Sum(i => i.NetTotal)
                 })
                 .ToList();
