@@ -12,16 +12,16 @@ export class DashboardComponent implements OnInit {
   constructor(
     private chartService: ChartService,
     private invoiceService: InvoiceService
-  ) {}
+  ) { }
 
   chart: any = [];
   chartData: any;
-  labelData: any;
+  labelData: any =[];
   realData: any;
 
   productSoldSum: any;
   invoicesNumber: any;
-
+  bestClient: any;
   invoicesTotalSum: any;
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
       this.renderChart(
         this.labelData,
         this.realData,
-        'pie',
+        'doughnut',
         'piechart2',
         'Total Netto'
       );
@@ -75,12 +75,13 @@ export class DashboardComponent implements OnInit {
         'barchart',
         'Products'
       );
+
     });
     this.invoiceService.GetAllInvoice().subscribe((readInvoices: any) => {
-      this.invoicesTotalSum= readInvoices.map((invo: any) => invo.netTotal).reduce((a: any, b: any) => a + b, 0);
+      this.invoicesTotalSum = readInvoices.map((invo: any) => invo.netTotal).reduce((a: any, b: any) => a + b, 0);
     });
 
-    
+
     this.chartService.getInvoiceIssueDateStatus().subscribe((result) => {
       this.chartData = result;
       if (this.chartData != null) {
@@ -106,14 +107,24 @@ export class DashboardComponent implements OnInit {
         );
         this.realData = this.chartData.map((invo: any) => invo.invoiceChartSum);
       }
+      // this.renderChart(
+      //   this.labelData,
+      //   this.realData,
+      //   'doughnut',
+      //   'doughnut',
+      //   'Invoices'
+      // );
       this.renderChart(
         this.labelData,
         this.realData,
-        'doughnut',
-        'doughnut',
-        'Invoices'
+        'bar',
+        'barchartCustomers',
+        'Products'
       );
+      this.bestClient = this.labelData[0]
     });
+
+    
   }
 
   renderChart(labelData: any, realData: any, type: any, id: any, name: any) {
@@ -134,11 +145,20 @@ export class DashboardComponent implements OnInit {
         ],
       },
       options: {
+        plugins: {
+          legend: {
+              display: false,
+              labels: {
+                  color: 'rgb(255, 99, 132)'
+              }
+          }
+      },
         scales: {
           y: {
             beginAtZero: true,
           },
         },
+
       },
     });
   }

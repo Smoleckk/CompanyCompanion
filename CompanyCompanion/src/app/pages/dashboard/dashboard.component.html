@@ -42,7 +42,7 @@
         <mat-card-title>Best client</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Client which best ordered</p>
+        <p>Client which best ordered  <b style="font-size: 22px">{{ bestClient }}</b></p>
         <mat-divider></mat-divider>
       </mat-card-content>
     </mat-card>
@@ -50,35 +50,59 @@
   <div class="dashboard-middle">
 
     <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <h4>Number of invoices paid/unpaid</h4>
+      </mat-card-header>
       <mat-card-content class="dashboard-middle-card-content">
         <canvas id="piechart1"></canvas>
       </mat-card-content>
     </mat-card>
     <mat-card class="dashboard-middle-card">
-      <mat-card-content class="dashboard-middle-card-content">
-        <canvas id="barchart"></canvas>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="dashboard-middle-card">
-      <mat-card-content class="dashboard-middle-card-content">
-        <canvas id="line"></canvas>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <h4>Netto sum of invoices paid/unpaid</h4>
+      </mat-card-header>
       <mat-card-content class="dashboard-middle-card-content">
         <canvas id="piechart2"></canvas>
       </mat-card-content>
     </mat-card>
-    <mat-card class="dashboard-middle-card">
+    <mat-card class="dashboard-middle-card" style="width:40%">
+      <mat-card-header>
+        <h4>Number of invoices issued by day</h4>
+      </mat-card-header>
+      <mat-card-content class="dashboard-middle-card-content">
+        <canvas id="line"></canvas>
+      </mat-card-content>
+    </mat-card>
+    <!-- <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <h4>Number of invoices issued to customers</h4>
+      </mat-card-header>
       <mat-card-content class="dashboard-middle-card-content">
         <canvas id="doughnut"></canvas>
       </mat-card-content>
+    </mat-card> -->
+    <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <h4>Number of invoices issued to customers</h4>
+      </mat-card-header>
+      <mat-card-content class="dashboard-middle-card-content">
+        <canvas id="barchartCustomers"></canvas>
+      </mat-card-content>
     </mat-card>
-    <mat-tab-group>
+    <mat-card class="dashboard-middle-card">
+      <mat-card-header>
+        <h4>Number of sold products</h4>
+      </mat-card-header>
+      <mat-card-content class="dashboard-middle-card-content">
+        <canvas id="barchart"></canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- <mat-tab-group>
       <mat-tab label="First"> Content 1 </mat-tab>
       <mat-tab label="Second"> Content 2 </mat-tab>
       <mat-tab label="Third"> Content 3 </mat-tab>
-    </mat-tab-group>
+    </mat-tab-group> -->
   </div>
 </div>
 
