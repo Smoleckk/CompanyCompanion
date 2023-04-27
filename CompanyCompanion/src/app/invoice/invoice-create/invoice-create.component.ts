@@ -7,9 +7,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
+import { CustomerCreatePopupComponent } from 'src/app/customer/customer-create-popup/customer-create-popup.component';
 import { ProfileService } from 'src/app/service/profile.service';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProformaService } from '../../service/proforma.service';
@@ -28,7 +30,8 @@ export class CreateInvoiceComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private activeRoute: ActivatedRoute,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.getCustomers();
@@ -54,14 +57,14 @@ export class CreateInvoiceComponent implements OnInit {
     }
     this.breakpoint2 = window.innerWidth <= 850 ? 1 : 2;
     this.breakpoint3 = window.innerWidth <= 850 ? 1 : 3;
-    this.breakpoint4 = window.innerWidth <= 850 ? 1 : 4;
+    this.breakpoint4 = window.innerWidth <= 850 ? 2 : 4;
     this.breakpoint9 = window.innerWidth <= 850 ? 3 : 9;
     this.colspan3 = window.innerWidth <= 850 ? 2 : 3;
   }
   onResize(event: any) {
     this.breakpoint2 = event.target.innerWidth <= 850 ? 1 : 2;
     this.breakpoint3 = event.target.innerWidth <= 850 ? 1 : 3;
-    this.breakpoint4 = event.target.innerWidth <= 850 ? 1 : 4;
+    this.breakpoint4 = event.target.innerWidth <= 850 ? 2 : 4;
     this.breakpoint9 = event.target.innerWidth <= 850 ? 3 : 9;
     this.colspan3 = window.innerWidth <= 850 ? 2 : 3;
   }
@@ -72,8 +75,14 @@ export class CreateInvoiceComponent implements OnInit {
   breakpoint9: any;
   colspan3: any;
   //
-  paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
+
+  issuedStatus = [
+    { name: 'Issued', value: true },
+    { name: 'Not issued', value: false }
+  ];
+  
   paymentStatus: string[] = ['Paid', 'Unpaid'];
+  paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
   pageTitle = 'New invoice';
   invoiceDetail!: FormArray<any>;
   invoiceProduct!: FormGroup<any>;
@@ -89,11 +98,16 @@ export class CreateInvoiceComponent implements OnInit {
     invoiceId: this.builder.control(0),
     invoiceNo: this.builder.control({ value: '', disabled: true }),
     placeOfIssue: this.builder.control(''),
-    dateIssued: this.builder.control((new Date().toISOString(),Validators.required)),
+    dateIssued: this.builder.control(
+      (new Date().toISOString(), Validators.required)
+    ),
     dueDate: this.builder.control(new Date().toISOString()),
-    customerName: this.builder.control(''),
-    customerNip: this.builder.control(''),
-    customerDeliveryAddress: this.builder.control(''),
+    customerName: this.builder.control({ value: '', disabled: true }),
+    customerNip: this.builder.control({ value: '', disabled: true }),
+    customerDeliveryAddress: this.builder.control({
+      value: '',
+      disabled: true,
+    }),
     customerCityCode: this.builder.control(''),
     sellerId: this.builder.control({ value: '', disabled: true }),
     sellerIdName: this.builder.control({ value: '', disabled: true }),
@@ -210,7 +224,9 @@ export class CreateInvoiceComponent implements OnInit {
       if (customData != null) {
         this.invoiceForm.get('sellerIdName')?.setValue(customData.name);
         this.invoiceForm.get('sellerNip')?.setValue(customData.nip);
-        this.invoiceForm.get('sellerDeliveryAddress')?.setValue(customData.city);
+        this.invoiceForm
+          .get('sellerDeliveryAddress')
+          ?.setValue(customData.city);
         this.invoiceForm.get('sellerCityCode')?.setValue(customData.cityCode);
       }
     });
@@ -283,15 +299,30 @@ export class CreateInvoiceComponent implements OnInit {
       this.getProduct = res;
     });
   }
-  CustomerChange() {
-    let customerCode = this.invoiceForm.get('customerName')?.value;
-    this.service.getCustomerByCode(customerCode).subscribe((res) => {
+
+  customerFullName: any = '';
+
+  CustomerChange(event: any) {
+    // let customerCode = this.invoiceForm.get('customerName')?.value;
+    this.service.getCustomerByCode(event.value).subscribe((res) => {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm.get('customerDeliveryAddress')?.setValue(customData.customerAddress + ', ' + customData.customerCity);
+        this.invoiceForm
+          .get('customerDeliveryAddress')
+          ?.setValue(
+            customData.customerAddress + ', ' + customData.customerCity
+          );
         this.invoiceForm.get('customerName')?.setValue(customData.customerName);
         this.invoiceForm.get('customerNip')?.setValue(customData.customerNip);
+        this.customerFullName =
+        customData.customerName +
+        '<br>' +
+        customData.customerAddress +
+        '<br>' +
+        customData.customerCity +
+        '<br> NIP: ' +
+        customData.customerNip;
       }
     });
   }
@@ -357,6 +388,17 @@ export class CreateInvoiceComponent implements OnInit {
       callback: (pdf) => {
         pdf.save('sample.pdf');
       },
+    });
+  }
+
+  createCustomer(): void {
+    const popup = this.dialog.open(CustomerCreatePopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '40%',
+    });
+    popup.afterClosed().subscribe(() => {
+      this.getCustomers();
     });
   }
 }
