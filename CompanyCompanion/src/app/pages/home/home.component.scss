@@ -1,11 +1,24 @@
 .container2 {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  // align-items: start;
+  // text-align: start;
+  margin: auto;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .example-card {
-  max-width: 300px;
+  width: 25%;
+  min-width: 300px;
   margin: 10px;
+}
+.example-card-long{
+  width: 40%;
+  min-width: 400px;
+  margin: 10px;
+}
+a {
+  font-size: 16px;
+  font-weight: 700;
 }

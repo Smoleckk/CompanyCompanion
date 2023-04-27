@@ -9,7 +9,7 @@
     </mat-card-actions>
   </mat-card>
   <div class="container2">
-    <mat-card class="example-card">
+    <mat-card class="example-card-long">
       <mat-card-header>
         <mat-card-title>Seller invoice</mat-card-title>
       </mat-card-header>
@@ -19,12 +19,11 @@
       </mat-card-content>
       <mat-card-actions>
         <a
-          style="font-size: 16px; font-weight: 700; cursor: pointer"
           mat-list-item
           routerLink="invoice-list"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
-          >Invoice list</a
+          >Invoices</a
         >
       </mat-card-actions>
     </mat-card>
@@ -38,18 +37,17 @@
       </mat-card-content>
       <mat-card-actions>
         <a
-          style="font-size: 16px; font-weight: 700; cursor: pointer"
           mat-list-item
           routerLink="proforma-list"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
-          >Proforma list</a
+          >Proformas</a
         >
       </mat-card-actions>
     </mat-card>
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title>Seller invoice</mat-card-title>
+        <mat-card-title>Products</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -57,12 +55,29 @@
       </mat-card-content>
       <mat-card-actions>
         <a
-          style="font-size: 16px; font-weight: 700; cursor: pointer"
           mat-list-item
           routerLink="product-list"
           routerLinkActive="active"
           ariaCurrentWhenActive="page"
-          >Product list</a
+          >Products</a
+        >
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Customers</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          mat-list-item
+          routerLink="product-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Customers</a
         >
       </mat-card-actions>
     </mat-card>

@@ -14,11 +14,11 @@ import { ProfileService } from 'src/app/service/profile.service';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProformaService } from '../../service/proforma.service';
 @Component({
-  selector: 'app-create-invoice',
-  templateUrl: './invoice-create.component.html',
-  styleUrls: ['./invoice-create.component.scss'],
+  selector: 'app-invoice-default',
+  templateUrl: './invoice-default.component.html',
+  styleUrls: ['./invoice-default.component.scss']
 })
-export class CreateInvoiceComponent implements OnInit {
+export class InvoiceDefaultComponent  implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef;
 
   constructor(
@@ -55,14 +55,14 @@ export class CreateInvoiceComponent implements OnInit {
     this.breakpoint2 = window.innerWidth <= 850 ? 1 : 2;
     this.breakpoint3 = window.innerWidth <= 850 ? 1 : 3;
     this.breakpoint4 = window.innerWidth <= 850 ? 1 : 4;
-    this.breakpoint9 = window.innerWidth <= 850 ? 3 : 9;
+    this.breakpoint9 = window.innerWidth <= 850 ? 3 : 10;
     this.colspan3 = window.innerWidth <= 850 ? 2 : 3;
   }
   onResize(event: any) {
     this.breakpoint2 = event.target.innerWidth <= 850 ? 1 : 2;
     this.breakpoint3 = event.target.innerWidth <= 850 ? 1 : 3;
     this.breakpoint4 = event.target.innerWidth <= 850 ? 1 : 4;
-    this.breakpoint9 = event.target.innerWidth <= 850 ? 3 : 9;
+    this.breakpoint9 = event.target.innerWidth <= 850 ? 3 : 10;
     this.colspan3 = window.innerWidth <= 850 ? 2 : 3;
   }
   // breakpoints
