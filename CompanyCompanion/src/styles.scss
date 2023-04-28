@@ -73,8 +73,6 @@ body {
   flex-direction: column;
   width: 100%;
   justify-content: space-between;
-
-
 }
 
 .containerpopup {
@@ -82,7 +80,7 @@ body {
   mat-card {
     padding: 10px 20px;
   }
-  mat-card-header{
+  mat-card-header {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -136,7 +134,14 @@ mat-card {
   border-bottom: 1px solid black;
   margin: 0 !important;
   padding: 0 !important;
-  font-weight: 500 !important;
+  font-weight: 200 !important;
+  font-size: 18px !important;
+
+  b {
+    font-weight: 500 !important;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
 }
 
 .breadcrumb {
