@@ -60,6 +60,14 @@
             <mat-icon>print</mat-icon>
           </a>
           <a
+            *ngIf="element.isGenerated"
+            mat-icon-button
+            (click)="downloadInvoiceSecond(element.invoiceId)"
+            color="accent"
+          >
+            <mat-icon>print</mat-icon>
+          </a>
+          <a
             mat-icon-button
             *ngIf="!element.isGenerated"
             (click)="editInvoice(element.invoiceId)"

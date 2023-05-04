@@ -7,6 +7,7 @@ import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InvoicePrintPopupComponent } from '../invoice-print-popup/invoice-print-popup.component';
 import { InvoiceService } from '../../service/invoice.service';
+import { InvoicePrintSecondPopupComponent } from '../invoice-print-second-popup/invoice-print-second-popup.component';
 
 @Component({
   selector: 'app-invoice-list',
@@ -72,6 +73,16 @@ export class InvoiceListComponent implements OnInit {
 
   downloadInvoice(code: any): void {
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '50%',
+      data: {
+        code: code,
+      },
+    });
+  }
+  downloadInvoiceSecond(code: any): void {
+    const popup = this.dialog.open(InvoicePrintSecondPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',

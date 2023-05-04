@@ -12,11 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from '../../service/invoice.service';
 
 @Component({
-  selector: 'app-invoice-print-popup',
-  templateUrl: './invoice-print-popup.component.html',
-  styleUrls: ['./invoice-print-popup.component.scss'],
+  selector: 'app-invoice-print-second-popup',
+  templateUrl: './invoice-print-second-popup.component.html',
+  styleUrls: ['./invoice-print-second-popup.component.scss'],
 })
-export class InvoicePrintPopupComponent implements OnInit {
+export class InvoicePrintSecondPopupComponent implements OnInit {
   @ViewChild('content', { static: false }) private content!: ElementRef;
   public editdata: any;
   public groupedProducts: any;
@@ -29,7 +29,7 @@ export class InvoicePrintPopupComponent implements OnInit {
     private builder: FormBuilder,
     private service: InvoiceService,
     private toastr: ToastrService,
-    private dialogRef: MatDialogRef<InvoicePrintPopupComponent>,
+    private dialogRef: MatDialogRef<InvoicePrintSecondPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -85,6 +85,7 @@ export class InvoicePrintPopupComponent implements OnInit {
       });
     }
   }
+
   public makePdf(): void {
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFont('helvetica');
