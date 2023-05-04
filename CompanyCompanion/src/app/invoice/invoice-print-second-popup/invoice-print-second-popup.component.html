@@ -1,31 +1,40 @@
 <div class="rightOptions">
   <div class="page" size="A4" id="content" #content>
     <div class="wrapper" *ngIf="editdata">
-      <div class="one">Company Companion!</div>
+      <div class="five">
+        <div class="invoiceHeader">
+          <h2><b>Faktura</b></h2>
+          <h4>Nr: {{ editdata.invoiceNo }}</h4>
+        </div>
+      </div>
+      <div class="one"></div>
       <div class="two">
-        <p class="pborder">Miejsce wystawienia</p>
-        <p>Warszawa</p>
-        <p class="pborder">Data wystawienia</p>
-        <p>03-03-2023</p>
-        <p class="pborder">Data wykonania uslugi</p>
-        <p>03-03-2023</p>
+        <div class="sideBySide2">
+          <p style="width: 130px">Miejsce wystawienia:</p>
+          <p style="width: 60px">Warszawa</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 130px">Data wystawienia:</p>
+          <p style="width: 60px">03-03-2023</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 130px">Data wykonania uslugi:</p>
+          <p style="width: 60px">03-03-2023</p>
+        </div>
       </div>
       <div class="three">
-        <p class="pborder">Sprzedawca</p>
+        <h2 class="pborder">Sprzedawca</h2>
         <p>Uslugi Informatyczne Jan Nowak</p>
         <p>NIP: 716464892</p>
         <p>Kowal 12</p>
         <p>00-001 Warszawa</p>
       </div>
       <div class="four">
-        <p class="pborder">Nabywca</p>
+        <h2 class="pborder">Nabywca</h2>
         <p>Uslugi Informatyczne Jan Nowak</p>
         <p>NIP: 716464892</p>
         <p>Kowal 12</p>
         <p>00-001 Warszawa</p>
-      </div>
-      <div class="five">
-        <p class="invoiceHeader">Faktura {{ editdata.invoiceNo }}</p>
       </div>
       <div class="six">
         <table>
@@ -65,7 +74,7 @@
         </table>
       </div>
       <div class="extra">
-        <table style="position: absolute; right: 80px">
+        <table >
           <thead>
             <tr>
               <th scope="col">Razem</th>
@@ -78,7 +87,7 @@
           <tbody>
             <tr *ngFor="let entry of arrayGroupedProducts">
               <th></th>
-              <th>{{ entry[0]/100 | percent }}</th>
+              <th>{{ entry[0] / 100 | percent }}</th>
               <th>{{ entry[1].nettoSum | currency }}</th>
               <th>{{ entry[1].vatSum | currency }}</th>
               <th>{{ entry[1].bruttoSum | currency }}</th>
@@ -86,28 +95,28 @@
           </tbody>
         </table>
       </div>
-      <div class="seven">
-        <div class="sideBySide">
-          <p style="width: 140px">Sposob platnosc:</p>
+      <div class="six">
+        <div class="sideBySide2">
+          <p style="width: 100px">Razem</p>
+          <p >{{ totalBruttoSum | currency }}</p>
+          <p style="width: 60px;margin-left: 20px;">Slownie:</p>
+          <p>Tysiac dwiescie czterdziesci dwa 10/100 PLN</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 100px">Do zaplaty</p>
+          <p style="font-weight: bold;margin-bottom: 20px;">{{ totalBruttoSum | currency }}</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 100px">Forma platnosc:</p>
           <p>Przelew</p>
         </div>
-        <div class="sideBySide">
-          <p style="width: 140px">Termin platnosc:</p>
+        <div class="sideBySide2">
+          <p style="width: 100px">Termin zaplaty:</p>
           <p>05-03-2023</p>
         </div>
-        <div class="sideBySide">
-          <p style="width: 140px">Numer konta:</p>
+        <div class="sideBySide2">
+          <p style="width: 100px">Numer konta:</p>
           <p>49 1020 2892 2276 3005 0000 0000</p>
-        </div>
-      </div>
-      <div class="eight">
-        <div class="sideBySide">
-          <p style="width: 140px">Do zaplaty</p>
-          <p style="font-weight: bold">{{ totalBruttoSum | currency }}</p>
-        </div>
-        <div class="sideBySide">
-          <p style="width: 60px">Slownie:</p>
-          <p>Tysiac dwiescie czterdziesci dwa 10/100 PLN</p>
         </div>
       </div>
       <div class="nine">
