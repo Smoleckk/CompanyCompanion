@@ -31,7 +31,16 @@
       <p>{{ customerForm.value.customerCity }}, {{ customerForm.value.customerAddress }}</p>
       <h3 style="width: 50%;margin-top: 40px; border-bottom: 1px solid black;letter-spacing: 2px;">Customer invoices</h3>
       <div style="width: 50%"></div>
-      <div class="mat-elevation-z8" style="width: 100%">
+      <mat-form-field style="width: 100%">
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. customer"
+          #input
+        />
+      </mat-form-field>
+      <div class="example-container mat-elevation-z8">
         <table mat-table matSort [dataSource]="dataSource">
           <ng-container matColumnDef="Invoice No">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>

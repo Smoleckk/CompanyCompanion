@@ -15,7 +15,6 @@ import { UpdateProductPopupComponent } from '../update-product-popup/update-prod
 })
 export class ProductListComponent implements OnInit {
   displayedColumns: string[] = [
-    // 'code',
     'name',
     'price',
     'category',
@@ -35,6 +34,33 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
+    this.onResize();
+    window.addEventListener('resize', () => {
+      this.onResize();
+    });
+
+  }
+
+  onResize() {
+    if (window.innerWidth <= 850) {
+      this.displayedColumns = [
+        'name',
+        'price',
+        'action',
+      ];
+    } else {
+      this.displayedColumns = [
+        'name',
+        'price',
+        'category',
+        'remarks',
+        'action',
+      ];
+    }
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   loadProducts(): void {

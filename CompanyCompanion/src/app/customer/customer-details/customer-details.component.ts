@@ -44,6 +44,24 @@ export class CustomerDetailsComponent implements OnInit {
       this.isEdit = true;
       this.SetEditInfo(this.editCustomerId);
     }
+    this.onResize();
+    window.addEventListener('resize', () => {
+      this.onResize();
+    });
+
+  }
+
+  onResize() {
+    if (window.innerWidth <= 850) {
+      this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
+    } else {
+      this.displayedColumns = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   pageTitle = 'Customer details';
   invoiceDetail!: FormArray<any>;

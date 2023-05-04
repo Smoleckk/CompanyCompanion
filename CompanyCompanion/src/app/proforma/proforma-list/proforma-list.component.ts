@@ -22,6 +22,24 @@ export class ProformaListComponent implements OnInit {
 
   ngOnInit(): void {
     this.LoadProforma();
+
+    this.onResize();
+    window.addEventListener('resize', () => {
+      this.onResize();
+    });
+  }
+
+  onResize() {
+    if (window.innerWidth <= 850) {
+      this.displayedColumns = ['Proforma No', 'Customer', 'Action'];
+    } else {
+      this.displayedColumns = ['Proforma No', 'Customer', 'NetTotal', 'Action'];
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   proformaHeader: any;

@@ -14,7 +14,16 @@
         </div>
       </mat-card-actions>
     </mat-card>
-  <div class="mat-elevation-z8">
+    <mat-form-field style="width: 100%">
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. customer"
+        #input
+      />
+    </mat-form-field>
+    <div class="example-container mat-elevation-z8">
     <table mat-table matSort [dataSource]="dataSource">
       <ng-container matColumnDef="username">
         <th mat-header-cell mat-sort-header *matHeaderCellDef>Username</th>

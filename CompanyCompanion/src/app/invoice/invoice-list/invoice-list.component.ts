@@ -29,8 +29,26 @@ export class InvoiceListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadInvoices();
+    
+    this.onResize();
+    window.addEventListener('resize', () => {
+      this.onResize();
+    });
+
   }
 
+  onResize() {
+    if (window.innerWidth <= 850) {
+      this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
+    } else {
+      this.displayedColumns = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   loadInvoices(): void {
     this.invoiceService.GetAllInvoice().subscribe((invoices: any) => {
       this.dataSource.data = invoices;
@@ -62,4 +80,5 @@ export class InvoiceListComponent implements OnInit {
       },
     });
   }
+
 }

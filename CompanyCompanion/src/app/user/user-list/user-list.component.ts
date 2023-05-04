@@ -26,7 +26,26 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {    
+    this.onResize();
+    window.addEventListener('resize', () => {
+      this.onResize();
+    });
+
+  }
+
+  onResize() {
+    if (window.innerWidth <= 850) {
+      this.displayedColumns = ['username', 'email', 'action'];
+    } else {
+      this.displayedColumns = ['username', 'email', 'action'];
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   loadUsers() {
     this.service.loadUsers().subscribe((data) => {
