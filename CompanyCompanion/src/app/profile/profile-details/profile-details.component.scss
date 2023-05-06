@@ -13,4 +13,63 @@
     color:gray;
     margin-left: 10px;
   }
+  .example-card {
+    max-width: 400px;
+  }
   
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    width: 90%;
+  }
+
+  .example-card:hover {
+    max-width: 500px;
+  }
+
+
+  //////////////////////
+.radio-btns {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(1, 200px);
+}
+
+.radio-btns:hover .radio-btns__btn:not(:hover) {
+  filter: grayscale(100%);
+  opacity: 0.75;
+}
+
+.radio-btns:hover .radio-btns__btn:not(:hover)::after {
+  background-color: rgba(#000, 0.5);
+}
+
+@media (min-width: 30rem) {
+  .radio-btns {
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+
+.radio-btns__btn {
+  position: relative;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.radio-btns__btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#000, 0);
+  transition: .3s;
+}
+
+.radio-btns__btn img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+

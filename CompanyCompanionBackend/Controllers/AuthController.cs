@@ -40,6 +40,7 @@ namespace CompanyCompanionBackend.Controllers
                 Nip = request.Nip,
                 City = request.City,
                 CityCode = request.CityCode,
+                Template = request.Template,
             };
             user.Company = company;
 

@@ -12,6 +12,7 @@ namespace CompanyCompanionBackend.Models.CompanyModel
         public string Nip { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string CityCode { get; set; } = string.Empty;
+        public string Template { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public ICollection<User> Users { get; set; }
         public ICollection<Invoice> Invoices { get; set; }

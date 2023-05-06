@@ -52,6 +52,7 @@ export class RegisterComponent {
       nip: ['', Validators.required],
       city: ['', Validators.required],
       cityCode: ['', Validators.required],
+      template: ['', Validators.required],
     });
   }
 
@@ -64,6 +65,7 @@ export class RegisterComponent {
       nip: this.companyForm.value.nip,
       city: this.companyForm.value.city,
       cityCode: this.companyForm.value.cityCode,
+      template: this.companyForm.value.template,
     };
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/service/profile.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { ProfileService } from 'src/app/service/profile.service';
 export class ProfileDetailsComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private toastrService: ToastrService,
   ) {}
   ngOnInit(): void {
       this.SetEditInfo();
@@ -41,5 +43,20 @@ export class ProfileDetailsComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateTemplateFirst(){
+    if (confirm('Do you want to change your template?')) {
+      this.profileService.updateProfile("first").subscribe((res) => {
+        this.toastrService.success('Successfully updated template');
+    })
+    }
+  }
+  updateTemplateSecond(){
+    if (confirm('Do you want to change your template?')) {
+      this.profileService.updateProfile("second").subscribe((res) => {
+        this.toastrService.success('Successfully updated template');
+    })
+    }
   }
 }

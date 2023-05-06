@@ -93,15 +93,6 @@ th {
 
 th {
   height: 40px;
-  // border-top: 1px solid black;
-  // border-left: 1px solid black;
-  // border-right: 1px solid black;
-}
-
-td {
-  // border-bottom: 1px solid black;
-  // border-left: 1px solid black;
-  // border-right: 1px solid black;
 }
 
 .pborder {
@@ -146,7 +137,7 @@ td {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   justify-content: space-around;
 }
 
@@ -157,7 +148,7 @@ td {
 // table
 thead,
 tfoot {
-  background-color: lightgray;
+  // background-color: lightgray;
 }
 
 tbody {
@@ -170,25 +161,28 @@ caption {
 
 table {
   border-collapse: collapse;
-  border: 1px solid black;
   letter-spacing: 1px;
   font-family: sans-serif;
   font-size: 0.8rem;
+  border-bottom: 1px solid black;
 }
 
 td,
 th {
-  border: 1px solid black;
-  padding: 1px 2px;
+  padding: 0.5px 2px;
   height: 20px !important;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
 }
 
 td {
   text-align: center;
   height: 20px !important;
 }
+
+
 th {
-  font-weight: bold;
+  background: lightgrey;
 }
 
 .extra{

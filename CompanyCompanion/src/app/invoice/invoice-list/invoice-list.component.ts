@@ -8,6 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { InvoicePrintPopupComponent } from '../invoice-print-popup/invoice-print-popup.component';
 import { InvoiceService } from '../../service/invoice.service';
 import { InvoicePrintSecondPopupComponent } from '../invoice-print-second-popup/invoice-print-second-popup.component';
+import { AuthService } from 'src/app/service/auth.service';
+import { ProfileService } from 'src/app/service/profile.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-invoice-list',
@@ -19,7 +22,9 @@ export class InvoiceListComponent implements OnInit {
     private invoiceService: InvoiceService,
     private toastrService: ToastrService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private builder: FormBuilder,
+    private profileService: ProfileService
   ) {}
 
   displayedColumns: string[] = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
@@ -30,14 +35,42 @@ export class InvoiceListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadInvoices();
-    
+    this.SetEditInfo();
     this.onResize();
     window.addEventListener('resize', () => {
       this.onResize();
     });
 
   }
+  profileForm = this.builder.group({
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    name: ['', Validators.required],
+    nip: ['', Validators.required],
+    city: ['', Validators.required],
+    cityCode: ['', Validators.required],
+    template: ['', Validators.required],
+  });
 
+  SetEditInfo() {
+    this.profileService.getProfile().subscribe((res) => {
+      let editData: any;
+      editData = res;
+      console.log(editData);
+      
+      if (editData != null) {
+        this.profileForm.setValue({
+          username: editData.username,
+          email: editData.email,
+          name: editData.name,
+          nip: editData.nip,
+          city: editData.city,
+          cityCode: editData.cityCode,
+          template: editData.template,
+        });
+      }
+    });
+  }
   onResize() {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
@@ -72,6 +105,9 @@ export class InvoiceListComponent implements OnInit {
   }
 
   downloadInvoice(code: any): void {
+    // console.log(this.profileForm.value);
+    
+    if(this.profileForm.value.template=="first"){
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
@@ -80,16 +116,19 @@ export class InvoiceListComponent implements OnInit {
         code: code,
       },
     });
+  }else{
+      const popup = this.dialog.open(InvoicePrintSecondPopupComponent, {
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '500ms',
+        width: '50%',
+        data: {
+          code: code,
+        },
+      });
+    }
   }
-  downloadInvoiceSecond(code: any): void {
-    const popup = this.dialog.open(InvoicePrintSecondPopupComponent, {
-      enterAnimationDuration: '1000ms',
-      exitAnimationDuration: '500ms',
-      width: '50%',
-      data: {
-        code: code,
-      },
-    });
-  }
+
+
+
 
 }

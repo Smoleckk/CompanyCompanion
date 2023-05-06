@@ -27,7 +27,7 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet, Authorize]
         public async Task<ActionResult<UserProfile>> GetProfile()
         {
-            var user = await GetCompany();
+            var user = await GetUser();
             if (user == null)
             {
                 return NotFound("user not found.");
@@ -40,12 +40,28 @@ namespace CompanyCompanionBackend.Controllers
                 Nip = user.Company.Nip,
                 City = user.Company.City,
                 CityCode = user.Company.CityCode,
+                Template = user.Company.Template
             };
 
             return Ok(profile);
         }
+        [HttpPut("{template}"), Authorize]
+        public async Task<ActionResult<Company>> UpdateTemplate(string template)
+        {
+            var user = await GetUser();
 
-        private async Task<User> GetCompany()
+            if (user == null)
+            {
+                return NotFound("user not found.");
+            }
+            var company = await GetCompany(user);
+
+            company.Template = template;
+            await _context.SaveChangesAsync();
+            return Ok(company);
+        }
+
+        private async Task<User> GetUser()
         {
             var userName = User?.Identity?.Name;
             var user = await _context.Users
@@ -53,5 +69,12 @@ namespace CompanyCompanionBackend.Controllers
                 .FirstOrDefaultAsync(c => c.Username == userName);
             return user;
         }
+        private async Task<Company> GetCompany(User user)
+        {
+            return await _context.Companies
+                .Include(i => i.ProductMagazines)
+                .FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
+        }
+
     }
 }

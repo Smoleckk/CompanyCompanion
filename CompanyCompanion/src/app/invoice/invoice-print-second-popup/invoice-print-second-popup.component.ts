@@ -36,7 +36,7 @@ export class InvoicePrintSecondPopupComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.code) {
       this.service.GetInvByCode(this.data.code).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         this.editdata = res;
 
         this.groupedProducts = this.editdata.products.reduce(
