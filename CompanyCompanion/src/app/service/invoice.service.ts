@@ -40,6 +40,17 @@ export class InvoiceService {
   GetAllInvoice() {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
   }
+  /////// review
+  GetAllInvoicePaid() {
+    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-paid');
+  }
+  GetAllInvoiceDelay() {
+    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-delay');
+  }
+  GetAllInvoiceDraft() {
+    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
+  }
+  //////////
   GetCustomerInvoices(code:any) {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header/'+code);
   }

@@ -33,6 +33,31 @@ namespace CompanyCompanionBackend.Controllers
             var company = await GetCompany();
             return Ok(company.Invoices);
         }
+        [HttpGet("get-invoices-header-paid")]
+        [Authorize]
+        public async Task<ActionResult<List<Invoice>>> GetInvoicesHeaderPaid()
+        {
+            var company = await GetCompany();
+            return Ok(company.Invoices.Where(e => e.IsGenerated == true && e.PaymentStatus == "Paid"));
+
+        }
+        [HttpGet("get-invoices-header-delay")]
+        [Authorize]
+        public async Task<ActionResult<List<Invoice>>> GetInvoicesHeaderDelay()
+        {
+            var company = await GetCompany();
+            return Ok(company.Invoices.Where(e => DateTime.Parse(e.DueDate) < DateTime.Today && e.PaymentStatus == "Unpaid" && e.IsGenerated == true));
+
+        }
+
+        [HttpGet("get-invoices-header-draft")]
+        [Authorize]
+        public async Task<ActionResult<List<Invoice>>> GetInvoicesHeaderDraft()
+        {
+            var company = await GetCompany();
+            return Ok(company.Invoices.Where(e => e.IsGenerated == false));
+
+        }
         [HttpGet("get-invoices-header/{code}")]
         [Authorize]
         public async Task<ActionResult<List<Invoice>>> GetCustomerInvoicesHeader(string code)
@@ -86,9 +111,6 @@ namespace CompanyCompanionBackend.Controllers
             else
             {
                 invoiceAddDto.InvoiceNo = "Temp/" + invoiceAddDto.DateIssued.Substring(5, 2) + "/" + invoiceAddDto.DateIssued.Substring(0, 4);
-
-                //invoiceAddDto.InvoiceNo = "Not issued";
-
             }
 
             Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(c => c.CustomerName == invoiceAddDto.CustomerName);
@@ -140,11 +162,12 @@ namespace CompanyCompanionBackend.Controllers
             }
 
             var rnd = new Random();
-            if (invoiceDto.IsGenerated)
-            {
-                invoiceDto.InvoiceNo = "No" + rnd.Next();
-            }
-
+            //if (invoiceDto.IsGenerated)
+            //{
+            //    invoiceDto.InvoiceNo = "No" + rnd.Next();
+            //}
+            invoiceDto.DateIssued = invoiceDto.DateIssued.Substring(0, 10);
+            invoiceDto.DueDate = invoiceDto.DueDate.Substring(0, 10);
             // update invoice properties
             _mapper.Map(invoiceDto, invoice);
 

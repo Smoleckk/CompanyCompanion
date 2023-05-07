@@ -1,0 +1,299 @@
+<div class="container">
+    <!-- <h1 class="breadcrumb-header">
+      <b>Review</b>
+    </h1>
+    <mat-card class="breadcrumb">
+      <mat-card-actions class="card">
+        <div [routerLink]="['/']" class="middle">
+          <mat-icon>home</mat-icon>
+          <p class="breadcrumb-p">Home</p>
+        </div>
+        <p class="breadcrumb-p">/Review</p>
+      </mat-card-actions>
+      <mat-card-actions>
+        <div [routerLink]="['/create-invoice']" class="middle">
+          <mat-icon color="primary">add_circle</mat-icon>
+        </div>
+      </mat-card-actions>
+    </mat-card> -->
+    <div style="display: flex; align-items: center;justify-content: space-between;">
+    <h1>
+        <b>Paid invoices</b>   
+    </h1>
+    <mat-form-field >
+        <mat-label>Filter paid</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. customer"
+          #input
+        />
+      </mat-form-field>
+    </div>
+    <div class="example-container mat-elevation-z8">
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="Invoice No">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>
+            Invoice number
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.invoiceNo }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Customer">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.customerName }}, {{ element.customerDeliveryAddress }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Total">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Brutto total</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.total | currency }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="DueDate">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Due date</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.dueDate }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="DateIssued">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Issued date</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.dateIssued }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td  mat-cell *matCellDef="let element">
+            <a
+              *ngIf="element.isGenerated"
+              mat-icon-button
+              (click)="downloadInvoice(element.invoiceId)"
+              color="primary"
+            >
+              <mat-icon>print</mat-icon>
+            </a>
+            <!-- <a
+              *ngIf="element.isGenerated"
+              mat-icon-button
+              (click)="downloadInvoiceSecond(element.invoiceId)"
+              color="accent"
+            >
+              <mat-icon>print</mat-icon>
+            </a> -->
+            <a
+              mat-icon-button
+              *ngIf="!element.isGenerated"
+              (click)="editInvoice(element.invoiceId)"
+              color="primary"
+            >
+              <mat-icon>edit</mat-icon>
+            </a>
+            <a
+              mat-icon-button
+              (click)="removeInvoice(element.invoiceId)"
+              color="warn"
+            >
+              <mat-icon>delete</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+  
+      <mat-paginator
+      style="width: 100%;"
+        [pageSizeOptions]="[10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+
+    <div style="display: flex; align-items: center;justify-content: space-between;margin-top: 20px;">
+        <h1>
+            <b>Delay paid invoices</b>   
+        </h1>
+        <mat-form-field >
+            <mat-label>Filter delay</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilterDelay($event)"
+              placeholder="Ex. customer"
+              #input
+            />
+          </mat-form-field>
+        </div>
+      <div class="example-container mat-elevation-z8">
+        <table mat-table matSort [dataSource]="dataSourceDelay">
+          <ng-container matColumnDef="Invoice No">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Invoice number
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.invoiceNo }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Customer">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerName }}, {{ element.customerDeliveryAddress }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Total">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Brutto total</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.total | currency }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DueDate">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Due date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dueDate }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DateIssued">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Issued date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dateIssued }}
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td  mat-cell *matCellDef="let element">
+              <a
+                *ngIf="element.isGenerated"
+                mat-icon-button
+                (click)="downloadInvoice(element.invoiceId)"
+                color="primary"
+              >
+                <mat-icon>print</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                *ngIf="!element.isGenerated"
+                (click)="editInvoice(element.invoiceId)"
+                color="primary"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                (click)="removeInvoice(element.invoiceId)"
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    
+        <mat-paginator
+        style="width: 100%;"
+          [pageSizeOptions]="[10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+      <div style="display: flex; align-items: center;justify-content: space-between;margin-top: 20px;">
+        <h1>
+            <b>Draft invoices</b>   
+        </h1>
+        <mat-form-field >
+            <mat-label>Filter draft</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilterDraft($event)"
+              placeholder="Ex. customer"
+              #input
+            />
+          </mat-form-field>
+        </div>
+      <div class="example-container mat-elevation-z8">
+        <table mat-table matSort [dataSource]="dataSourceDraft">
+          <ng-container matColumnDef="Invoice No">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Invoice number
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.invoiceNo }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Customer">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerName }}, {{ element.customerDeliveryAddress }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Total">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Brutto total</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.total | currency }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DueDate">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Due date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dueDate }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DateIssued">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Issued date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dateIssued }}
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td  mat-cell *matCellDef="let element">
+              <a
+                *ngIf="element.isGenerated"
+                mat-icon-button
+                (click)="downloadInvoice(element.invoiceId)"
+                color="primary"
+              >
+                <mat-icon>print</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                *ngIf="!element.isGenerated"
+                (click)="editInvoice(element.invoiceId)"
+                color="primary"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                (click)="removeInvoice(element.invoiceId)"
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    
+        <mat-paginator
+        style="width: 100%;"
+          [pageSizeOptions]="[10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+  </div>
+  

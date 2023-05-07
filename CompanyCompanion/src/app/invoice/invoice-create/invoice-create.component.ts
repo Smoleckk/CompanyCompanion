@@ -38,13 +38,15 @@ export class CreateInvoiceComponent implements OnInit {
     this.GetProducts();
     this.ShowInvoiceNumber();
     this.getProfile();
-    this.addProduct();
 
     this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
     if (this.editInvoiceId != null) {
       this.pageTitle = 'Edit Invoice';
       this.isEdit = true;
       this.SetEditInfo(this.editInvoiceId);
+    }else{
+    this.addProduct();
+
     }
     this.invoiceFromProformaId =
       this.activeRoute.snapshot.paramMap.get('proformaId');

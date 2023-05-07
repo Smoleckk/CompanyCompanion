@@ -17,6 +17,7 @@ import { RoleGuard } from './shared/role.guard';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
+import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'invoice-list',
     component: InvoiceListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'invoice-review',
+    component: InvoiceReviewComponent,
     canActivate: [AuthGuard],
   },
   {
