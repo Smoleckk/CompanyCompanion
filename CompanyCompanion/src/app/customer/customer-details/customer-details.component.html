@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="breadcrumb-header">{{ pageTitle }}</h1>
+  <hr>
   <mat-card class="breadcrumb">
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
@@ -31,7 +32,7 @@
       <p>{{ customerForm.value.customerCity }}, {{ customerForm.value.customerAddress }}</p>
       <h3 style="width: 50%;margin-top: 40px; border-bottom: 1px solid black;letter-spacing: 2px;">Customer invoices</h3>
       <div style="width: 50%"></div>
-      <mat-form-field style="width: 100%">
+      <mat-form-field appearance="outline" style="width: 300px">
         <mat-label>Filter</mat-label>
         <input
           matInput

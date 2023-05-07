@@ -34,7 +34,6 @@ $angular-dark-theme: mat.define-dark-theme(
 .darkMode {
   @include mat.all-component-colors($angular-dark-theme);
 }
-
 html,
 body {
   height: 100%;
@@ -50,9 +49,10 @@ body {
 
 .container {
   margin: auto;
-  width: 70%;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  max-width: 1200px;
+  // width: 90%;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .title {
@@ -114,15 +114,14 @@ mat-card {
 
 @media only screen and (max-width: 1500px) {
   .container {
-    width: 85%;
-    margin-top: 70px;
+    // width: 85%;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .container {
-    width: 95%;
-    margin-top: 20px;
+    // width: 95%;
+    // margin-top: 20px;
   }
 
   mat-card {
@@ -131,21 +130,22 @@ mat-card {
 }
 
 .breadcrumb-header {
-  border-bottom: 1px solid black;
   margin: 0 !important;
   padding: 0 !important;
   font-weight: 200 !important;
-  font-size: 18px !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  margin-bottom: 20px !important;
 
   b {
-    font-weight: 500 !important;
-    font-size: 28px;
+    font-weight: 700 !important;
+    font-size: 38px;
     letter-spacing: 1px;
   }
 }
 
 .breadcrumb {
-  margin: 1px 0 20px 0 !important;
+  margin: 20px 0 10px 0 !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between;
@@ -153,6 +153,7 @@ mat-card {
   .card {
     display: flex;
     align-items: center;
+
   }
 
   .middle {

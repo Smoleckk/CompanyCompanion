@@ -1,26 +1,23 @@
 <div class="container">
-    <!-- <h1 class="breadcrumb-header">
-      <b>Review</b>
-    </h1>
-    <mat-card class="breadcrumb">
-      <mat-card-actions class="card">
-        <div [routerLink]="['/']" class="middle">
-          <mat-icon>home</mat-icon>
-          <p class="breadcrumb-p">Home</p>
-        </div>
-        <p class="breadcrumb-p">/Review</p>
-      </mat-card-actions>
-      <mat-card-actions>
-        <div [routerLink]="['/create-invoice']" class="middle">
-          <mat-icon color="primary">add_circle</mat-icon>
-        </div>
-      </mat-card-actions>
-    </mat-card> -->
+  <h1 class="breadcrumb-header">
+    <b>Review,</b> review invoices
+  </h1>
+  <hr>
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+      <p class="breadcrumb-p">/Review</p>
+    </mat-card-actions>
+
+  </mat-card>
     <div style="display: flex; align-items: center;justify-content: space-between;">
     <h1>
         <b>Paid invoices</b>   
     </h1>
-    <mat-form-field >
+    <mat-form-field  appearance="outline" style="width: 300px">
         <mat-label>Filter paid</mat-label>
         <input
           matInput
@@ -116,10 +113,10 @@
     </div>
 
     <div style="display: flex; align-items: center;justify-content: space-between;margin-top: 20px;">
-        <h1>
-            <b>Delay paid invoices</b>   
+        <h1 >
+            <b >Delay paid invoices</b>   
         </h1>
-        <mat-form-field >
+        <mat-form-field  appearance="outline" style="width: 300px">
             <mat-label>Filter delay</mat-label>
             <input
               matInput
@@ -209,7 +206,7 @@
         <h1>
             <b>Draft invoices</b>   
         </h1>
-        <mat-form-field >
+        <mat-form-field  appearance="outline" style="width: 300px">
             <mat-label>Filter draft</mat-label>
             <input
               matInput
