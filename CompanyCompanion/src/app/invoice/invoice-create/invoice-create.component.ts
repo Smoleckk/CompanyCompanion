@@ -308,11 +308,8 @@ export class CreateInvoiceComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm
-          .get('customerDeliveryAddress')
-          ?.setValue(
-            customData.customerAddress + ', ' + customData.customerCity
-          );
+        this.invoiceForm.get('customerDeliveryAddress')?.setValue(customData.customerAddress);
+        this.invoiceForm.get('customerCityCode')?.setValue(customData.customerCity);
         this.invoiceForm.get('customerName')?.setValue(customData.customerName);
         this.invoiceForm.get('customerNip')?.setValue(customData.customerNip);
         this.customerFullName =

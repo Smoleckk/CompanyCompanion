@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
+using CompanyCompanionBackend.Migrations;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,31 +62,47 @@ namespace CompanyCompanionBackend.Controllers
         [Authorize]
         public async Task<ActionResult<Invoice>> SaveInvoice(InvoiceAddDto invoiceAddDto)
         {
-            var rnd = new Random();
+            var company = await GetCompany();
 
+            var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == invoiceAddDto.DateIssued.Substring(0, 7));
             if (invoiceAddDto.IsGenerated)
             {
-                invoiceAddDto.InvoiceNo = "No" + rnd.Next();
+
+
+                if (invoiceCount != null)
+                {
+                    invoiceCount.InvoiceNumber++;
+                    invoiceAddDto.InvoiceNo = invoiceCount.InvoiceNumber.ToString() + "/" + invoiceAddDto.DateIssued.Substring(5, 2) + "/" + invoiceAddDto.DateIssued.Substring(0, 4);
+
+                }
+                else
+                {
+                    var n = new InvoiceCount { DateIssued = invoiceAddDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
+                    company.InvoiceCounts.Add(n);
+                    invoiceAddDto.InvoiceNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
+
+                }
             }
             else
             {
-                invoiceAddDto.InvoiceNo = "Not issued";
+                invoiceAddDto.InvoiceNo = "Temp/" + invoiceAddDto.DateIssued.Substring(5, 2) + "/" + invoiceAddDto.DateIssued.Substring(0, 4);
+
+                //invoiceAddDto.InvoiceNo = "Not issued";
 
             }
-            Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(
-    c => c.CustomerName == invoiceAddDto.CustomerName
-);
+
+            Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(c => c.CustomerName == invoiceAddDto.CustomerName);
             invoiceAddDto.DateIssued = invoiceAddDto.DateIssued.Substring(0, 10);
             invoiceAddDto.DueDate = invoiceAddDto.DueDate.Substring(0, 10);
             var invoice = _mapper.Map<Invoice>(invoiceAddDto);
 
             invoice.Company = await GetCompany();
             customer.Invoices.Add(invoice);
-            //_context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
 
             return Ok(invoice);
         }
+
 
         [HttpDelete("{code}")]
         public async Task<ActionResult<string>> DeleteInvoice(string code)
@@ -165,7 +183,7 @@ namespace CompanyCompanionBackend.Controllers
                 .Include(c => c.Company)
                 .FirstOrDefaultAsync(c => c.Username == userName);
             var company = await _context.Companies
-                .Include(i => i.Invoices)
+                .Include(i => i.Invoices).Include(e => e.InvoiceCounts)
                 .FirstOrDefaultAsync(c => c.CompanyId == user.Company.CompanyId);
             return company;
         }

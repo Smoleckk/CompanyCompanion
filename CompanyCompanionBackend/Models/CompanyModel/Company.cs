@@ -2,6 +2,7 @@
 using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
+using CompanyCompanionBackend.Models.InvoiceCountModel;
 
 namespace CompanyCompanionBackend.Models.CompanyModel
 {
@@ -18,5 +19,6 @@ namespace CompanyCompanionBackend.Models.CompanyModel
         public ICollection<Invoice> Invoices { get; set; }
         public ICollection<Customer> Customers { get; set; }
         public ICollection<ProductMagazine> ProductMagazines { get; set; }
+        public ICollection<InvoiceCount> InvoiceCounts { get; set; }
     }
 }

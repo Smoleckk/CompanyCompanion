@@ -1,5 +1,6 @@
 ﻿using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
@@ -18,6 +19,8 @@ namespace CompanyCompanionBackend.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ProductMagazine> ProductMagazines { get; set; }
+        public DbSet<InvoiceCount> InvoiceCounts { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

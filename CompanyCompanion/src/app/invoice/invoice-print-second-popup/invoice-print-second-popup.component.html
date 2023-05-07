@@ -11,30 +11,30 @@
       <div class="two">
         <div class="sideBySide2">
           <p style="width: 130px">Miejsce wystawienia:</p>
-          <p style="width: 60px">Warszawa</p>
+          <p style="width: 60px">{{ editdata.placeOfIssue }}</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 130px">Data wystawienia:</p>
-          <p style="width: 60px">03-03-2023</p>
+          <p style="width: 60px">{{ editdata.dateIssued }}</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 130px">Data wykonania uslugi:</p>
-          <p style="width: 60px">03-03-2023</p>
+          <p style="width: 60px">{{ editdata.dueDate }}</p>
         </div>
       </div>
       <div class="three">
         <h2 class="pborder">Sprzedawca</h2>
-        <p>Uslugi Informatyczne Jan Nowak</p>
-        <p>NIP: 716464892</p>
-        <p>Kowal 12</p>
-        <p>00-001 Warszawa</p>
+        <p>{{ editdata.customerName }}</p>
+        <p>NIP: {{ editdata.customerNip }}</p>
+        <p>{{ editdata.customerDeliveryAddress }}</p>
+        <p>{{ editdata.customerCityCode }}</p>
       </div>
       <div class="four">
         <h2 class="pborder">Nabywca</h2>
-        <p>Uslugi Informatyczne Jan Nowak</p>
-        <p>NIP: 716464892</p>
-        <p>Kowal 12</p>
-        <p>00-001 Warszawa</p>
+        <p>{{ editdata.sellerIdName }}</p>
+        <p>NIP: {{ editdata.sellerNip }}</p>
+        <p>{{ editdata.sellerDeliveryAddress }}</p>
+        <p>{{ editdata.sellerCityCode }}</p>
       </div>
       <div class="six">
         <table>
@@ -57,16 +57,16 @@
               <td >{{ item.productName }}</td>
               <td >{{ item.unit }}</td>
               <td >{{ item.qty }}</td>
-              <td >{{ item.nettoPrice | currency }}</td>
-              <td >{{ item.nettoPrice * item.qty | currency }}</td>
+              <td >{{ item.nettoPrice | currency:' ':'symbol':'1.2-2' }}</td>
+              <td >{{ item.nettoPrice * item.qty | currency:' ':'symbol':'1.2-2' }}</td>
               <td >{{ item.vat / 100 | percent }}</td>
               <td >
-                {{ (item.nettoPrice * item.qty * item.vat) / 100 | currency }}
+                {{ (item.nettoPrice * item.qty * item.vat) / 100 | currency:' ':'symbol':'1.2-2' }}
               </td>
               <td >
                 {{
                   (item.nettoPrice * item.qty * item.vat) / 100 +
-                    item.nettoPrice * item.qty | currency
+                    item.nettoPrice * item.qty | currency:' ':'symbol':'1.2-2'
                 }}
               </td>
             </tr>
@@ -79,18 +79,18 @@
             <tr>
               <th style="border-left:1px solid black">Razem</th>
               <th >X</th>
-              <th >{{ totalNettoSum | currency }}</th>
-              <th >{{ totalVatSum | currency }}</th>
-              <th >{{ totalBruttoSum | currency }}</th>
+              <th >{{ totalNettoSum | currency:' ':'symbol':'1.2-2' }}</th>
+              <th >{{ totalVatSum | currency:' ':'symbol':'1.2-2' }}</th>
+              <th >{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entry of arrayGroupedProducts">
               <td style="border-left:1px solid black"></td>
               <td>{{ entry[0]/100 | percent }}</td>
-              <td>{{ entry[1].nettoSum | currency }}</td>
-              <td>{{ entry[1].vatSum | currency }}</td>
-              <td>{{ entry[1].bruttoSum | currency }}</td>
+              <td>{{ entry[1].nettoSum | currency:' ':'symbol':'1.2-2' }}</td>
+              <td>{{ entry[1].vatSum | currency:' ':'symbol':'1.2-2' }}</td>
+              <td>{{ entry[1].bruttoSum | currency:' ':'symbol':'1.2-2' }}</td>
             </tr>
           </tbody>
         </table>
@@ -98,25 +98,24 @@
       <div class="six">
         <div class="sideBySide2">
           <p style="width: 100px">Razem</p>
-          <p >{{ totalBruttoSum | currency }}</p>
+          <p >{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</p>
           <p style="width: 60px;margin-left: 20px;">Slownie:</p>
-          <p>Tysiac dwiescie czterdziesci dwa 10/100 PLN</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 100px">Do zaplaty</p>
-          <p style="font-weight: bold;margin-bottom: 20px;">{{ totalBruttoSum | currency }}</p>
+          <p style="font-weight: bold;margin-bottom: 20px;">{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 100px">Forma platnosc:</p>
-          <p>Przelew</p>
+          <p>{{ editdata.paymentType }}</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 100px">Termin zaplaty:</p>
-          <p>05-03-2023</p>
+          <p>????</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 100px">Numer konta:</p>
-          <p>49 1020 2892 2276 3005 0000 0000</p>
+          <p>{{ editdata.accountNumber }}</p>
         </div>
       </div>
       <div class="nine">
