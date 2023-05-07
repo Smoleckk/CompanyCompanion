@@ -8,7 +8,6 @@ import { ToastrService } from 'ngx-toastr';
 import { InvoicePrintPopupComponent } from '../invoice-print-popup/invoice-print-popup.component';
 import { InvoiceService } from '../../service/invoice.service';
 import { InvoicePrintSecondPopupComponent } from '../invoice-print-second-popup/invoice-print-second-popup.component';
-import { AuthService } from 'src/app/service/auth.service';
 import { ProfileService } from 'src/app/service/profile.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -27,7 +26,8 @@ export class InvoiceListComponent implements OnInit {
     private profileService: ProfileService
   ) {}
 
-  displayedColumns: string[] = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+  displayedColumns: string[] = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -56,7 +56,6 @@ export class InvoiceListComponent implements OnInit {
     this.profileService.getProfile().subscribe((res) => {
       let editData: any;
       editData = res;
-      console.log(editData);
       
       if (editData != null) {
         this.profileForm.setValue({
@@ -75,7 +74,7 @@ export class InvoiceListComponent implements OnInit {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
     } else {
-      this.displayedColumns = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+      this.displayedColumns = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
     }
   }
 
@@ -85,6 +84,7 @@ export class InvoiceListComponent implements OnInit {
   }
   loadInvoices(): void {
     this.invoiceService.GetAllInvoice().subscribe((invoices: any) => {
+      console.log(invoices);
       this.dataSource.data = invoices;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -105,8 +105,6 @@ export class InvoiceListComponent implements OnInit {
   }
 
   downloadInvoice(code: any): void {
-    // console.log(this.profileForm.value);
-    
     if(this.profileForm.value.template=="first"){
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
       enterAnimationDuration: '1000ms',
