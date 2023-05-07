@@ -50,7 +50,7 @@ namespace CompanyCompanionBackend.Controllers
                 .Select(g => new InvoiceChart
                 {
                     InvoiceChartName = g.Key.PaymentStatus,
-                    InvoiceChartSum = g.Sum(i => i.NetTotal)
+                    InvoiceChartSum = g.Sum(i => i.Total)
                 })
                 .ToList();
 

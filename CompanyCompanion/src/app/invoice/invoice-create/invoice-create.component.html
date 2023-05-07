@@ -35,22 +35,27 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <div  style="display: flex;justify-content: space-between; margin-right: 10px;">
-                <h4
-                class="margin:0;padding:0"
-                [innerHTML]="customerFullName"
-              ></h4>
-              <a
-                style="width: 150px;"
-                (click)="createCustomer()"
-                mat-raised-button
-                color="primary"
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-right: 10px;
+                "
               >
-                Add client
-                <mat-icon color="#fff">face</mat-icon>
-              </a>
-
-            </div>
+                <h4
+                  class="margin:0;padding:0"
+                  [innerHTML]="customerFullName"
+                ></h4>
+                <a
+                  style="width: 150px"
+                  (click)="createCustomer()"
+                  mat-raised-button
+                  color="primary"
+                >
+                  Add client
+                  <mat-icon color="#fff">face</mat-icon>
+                </a>
+              </div>
             </div>
           </mat-grid-tile>
           <mat-grid-tile>
@@ -100,13 +105,15 @@
                   <mat-option [value]="false">Nie wystawiona</mat-option>
                 </mat-select> -->
                 <mat-select
-                formControlName="isGenerated"
-                placeholder="Issued status"
-              >
-                <mat-option *ngFor="let item of issuedStatus" [value]="item.value"
-                  >{{ item.name }}
-                </mat-option>
-              </mat-select>
+                  formControlName="isGenerated"
+                  placeholder="Issued status"
+                >
+                  <mat-option
+                    *ngFor="let item of issuedStatus"
+                    [value]="item.value"
+                    >{{ item.name }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
               <mat-form-field appearance="outline" class="full-width">
                 <mat-select
@@ -154,10 +161,10 @@
             <h4 style="padding: 0; margin: 0; color: #fff">Vat</h4>
           </mat-grid-tile>
           <mat-grid-tile>
-            <h4 style="padding: 0; margin: 0; color: #fff">Brutto</h4>
+            <h4 style="padding: 0; margin: 0; color: #fff">Netto</h4>
           </mat-grid-tile>
           <mat-grid-tile>
-            <h4 style="padding: 0; margin: 0; color: #fff">Netto</h4>
+            <h4 style="padding: 0; margin: 0; color: #fff">Brutto</h4>
           </mat-grid-tile>
         </mat-grid-list>
 
@@ -253,9 +260,10 @@
                       style="margin-top: 20px"
                     >
                       <input
+                        type="number"
                         matInput
-                        formControlName="bruttoPrice"
-                        placeholder="Brutto Price"
+                        formControlName="nettoPrice"
+                        placeholder="Netto Price"
                       />
                     </mat-form-field>
                   </mat-grid-tile>
@@ -265,13 +273,13 @@
                       style="margin-top: 20px"
                     >
                       <input
-                        type="number"
                         matInput
-                        formControlName="nettoPrice"
-                        placeholder="Netto Price"
+                        formControlName="bruttoPrice"
+                        placeholder="Brutto Price"
                       />
                     </mat-form-field>
                   </mat-grid-tile>
+
                   <mat-icon
                     color="warn"
                     style="
@@ -312,11 +320,11 @@
           <mat-grid-tile style="width: 0; height: 0"> </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Summary Total</mat-label>
+              <mat-label>Summary Netto</mat-label>
               <input
                 matInput
-                placeholder="Summary Total"
-                formControlName="total"
+                placeholder="Summary NetTotal"
+                formControlName="netTotal"
               />
             </mat-form-field>
             <mat-form-field appearance="outline" class="full-width">
@@ -324,11 +332,11 @@
               <input matInput placeholder="Summary Tax" formControlName="tax" />
             </mat-form-field>
             <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Summary NetTotal</mat-label>
+              <mat-label>Summary Brutto</mat-label>
               <input
                 matInput
-                placeholder="Summary NetTotal"
-                formControlName="netTotal"
+                placeholder="Summary Total"
+                formControlName="total"
               />
             </mat-form-field>
           </mat-grid-tile>

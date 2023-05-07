@@ -357,8 +357,8 @@ export class CreateInvoiceComponent implements OnInit {
     let qty = this.invoiceProduct.get('qty')?.value;
     let price = this.invoiceProduct.get('salesPrice')?.value;
     let vat = this.invoiceProduct.get('vat')?.value;
-    let totalBrutto = qty * price;
-    let totalNetto = qty * price * (1 + vat / 100);
+    let totalBrutto = qty * price * (1 + vat / 100);;
+    let totalNetto = qty * price;
     this.invoiceProduct.get('bruttoPrice')?.setValue(totalBrutto);
     this.invoiceProduct.get('nettoPrice')?.setValue(totalNetto);
 
@@ -376,7 +376,7 @@ export class CreateInvoiceComponent implements OnInit {
     });
 
     this.invoiceForm.get('total')?.setValue(sumTotalBrutto);
-    this.invoiceForm.get('tax')?.setValue(sumTotalNetto - sumTotalBrutto);
+    this.invoiceForm.get('tax')?.setValue( sumTotalBrutto-sumTotalNetto);
     this.invoiceForm.get('netTotal')?.setValue(sumTotalNetto);
   }
   makePdf() {

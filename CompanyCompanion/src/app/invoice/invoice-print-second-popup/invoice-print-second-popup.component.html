@@ -45,8 +45,8 @@
               <th >Jm.</th>
               <th >Ilosc</th>
               <th >Cena netto</th>
-              <th >Warosc netto</th>
               <th >Stawka Vat</th>
+              <th >Warosc netto</th>
               <th >Wartosc Vat</th>
               <th >Cena brutto</th>
             </tr>
@@ -57,16 +57,16 @@
               <td >{{ item.productName }}</td>
               <td >{{ item.unit }}</td>
               <td >{{ item.qty }}</td>
-              <td >{{ item.nettoPrice | currency:' ':'symbol':'1.2-2' }}</td>
-              <td >{{ item.nettoPrice * item.qty | currency:' ':'symbol':'1.2-2' }}</td>
+              <td >{{ item.salesPrice | currency:' ':'symbol':'1.2-2' }}</td>
               <td >{{ item.vat / 100 | percent }}</td>
+              <td >{{ item.salesPrice * item.qty | currency:' ':'symbol':'1.2-2' }}</td>
               <td >
-                {{ (item.nettoPrice * item.qty * item.vat) / 100 | currency:' ':'symbol':'1.2-2' }}
+                {{ (item.salesPrice * item.qty * item.vat) / 100 | currency:' ':'symbol':'1.2-2' }}
               </td>
               <td >
                 {{
-                  (item.nettoPrice * item.qty * item.vat) / 100 +
-                    item.nettoPrice * item.qty | currency:' ':'symbol':'1.2-2'
+                  (item.salesPrice * item.qty * item.vat) / 100 +
+                    item.salesPrice * item.qty | currency:' ':'symbol':'1.2-2'
                 }}
               </td>
             </tr>

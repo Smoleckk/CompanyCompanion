@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
 
     });
     this.invoiceService.GetAllInvoice().subscribe((readInvoices: any) => {
-      this.invoicesTotalSum = readInvoices.map((invo: any) => invo.netTotal).reduce((a: any, b: any) => a + b, 0);
+      this.invoicesTotalSum = readInvoices.map((invo: any) => invo.total).reduce((a: any, b: any) => a + b, 0);
     });
 
 
