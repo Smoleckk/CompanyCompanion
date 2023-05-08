@@ -1,6 +1,4 @@
 <div class="container">
-  <h1 class="breadcrumb-header">{{ pageTitle }}</h1>
-  <hr>
   <mat-card class="breadcrumb">
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
@@ -8,9 +6,9 @@
         <p class="breadcrumb-p">Home</p>
       </div>
       <p class="breadcrumb-p middle" [routerLink]="['/customer-list']">
-        /Customers
+         > Customers
       </p>
-      <p class="breadcrumb-p">/Customer</p>
+      <p class="breadcrumb-p"> > {{ customerForm.value.customerName }}</p>
     </mat-card-actions>
     <mat-card-actions>
       <div class="middle">
@@ -20,20 +18,23 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <mat-card>
+  <mat-card style="width:40%; min-width: 400px;">
     <mat-card-content class="customer-details">
-      <h1 style="width: 100%">
-        <b>{{ customerForm.value.customerName }}</b>
-      </h1>
-      <h3 style="width: 50%; border-bottom: 1px solid black;letter-spacing: 2px;">Customer data</h3>
+      <h3 style="border-bottom: 1px solid black;letter-spacing: 2px;">Customer data</h3>
       <div style="width: 50%"></div>
       <p>{{ customerForm.value.customerName }}</p>
       <p>{{ customerForm.value.customerNip }}</p>
       <p>{{ customerForm.value.customerCity }}, {{ customerForm.value.customerAddress }}</p>
-      <h3 style="width: 50%;margin-top: 40px; border-bottom: 1px solid black;letter-spacing: 2px;">Customer invoices</h3>
-      <div style="width: 50%"></div>
+    </mat-card-content>
+  </mat-card>
+  <!-- /////////////////////// -->
+  <mat-card>
+    <div class="mat-card-header-filter">
+      <h2>
+        <b>Paid invoices</b>
+      </h2>
       <mat-form-field appearance="outline" style="width: 300px">
-        <mat-label>Filter</mat-label>
+        <mat-label>Filter invoices</mat-label>
         <input
           matInput
           (keyup)="applyFilter($event)"
@@ -41,26 +42,44 @@
           #input
         />
       </mat-form-field>
-      <div class="example-container mat-elevation-z8">
+    </div>
+    <mat-card-content>
+      <div class="">
         <table mat-table matSort [dataSource]="dataSource">
           <ng-container matColumnDef="Invoice No">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>
               Invoice number
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.invoiceNo }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.invoiceNo }}
+            </td>
           </ng-container>
           <ng-container matColumnDef="Customer">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.customerName }}
+              {{ element.customerName }}, {{ element.customerDeliveryAddress }}
             </td>
           </ng-container>
-          <ng-container matColumnDef="NetTotal">
+          <ng-container matColumnDef="Total">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>
-              Netto total
+              Brutto total
             </th>
             <td mat-cell *matCellDef="let element">
-              {{ element.netTotal | currency }}
+              {{ element.total | currency }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DueDate">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Due date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dueDate }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DateIssued">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Issued date
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dateIssued }}
             </td>
           </ng-container>
 
@@ -68,12 +87,21 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
               <a
+                *ngIf="element.isGenerated"
                 mat-icon-button
                 (click)="downloadInvoice(element.invoiceId)"
                 color="primary"
               >
                 <mat-icon>print</mat-icon>
               </a>
+              <!-- <a
+              *ngIf="element.isGenerated"
+              mat-icon-button
+              (click)="downloadInvoiceSecond(element.invoiceId)"
+              color="accent"
+            >
+              <mat-icon>print</mat-icon>
+            </a> -->
               <a
                 mat-icon-button
                 *ngIf="!element.isGenerated"
@@ -97,7 +125,8 @@
         </table>
 
         <mat-paginator
-          [pageSizeOptions]="[5, 10, 20]"
+          style="width: 100%"
+          [pageSizeOptions]="[10, 20]"
           showFirstLastButtons
           aria-label="Select page of periodic elements"
         >

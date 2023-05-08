@@ -1,13 +1,11 @@
 <div class="container">
-  <h1 class="breadcrumb-header"><b>Customers,</b> all clients in the system</h1>
-  <hr>
   <mat-card class="breadcrumb">
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
         <mat-icon>home</mat-icon>
         <p class="breadcrumb-p">Home</p>
       </div>
-      <p class="breadcrumb-p">/Customers</p>
+      <p class="breadcrumb-p"> > Customer List</p>
     </mat-card-actions>
     <mat-card-actions>
       <div class="middle">
@@ -17,61 +15,79 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <div class="mat-elevation-z8">
-    <table mat-table matSort [dataSource]="dataSource">
-      <!-- <ng-container matColumnDef="customerId">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> customerId </th>
-              <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
-            </ng-container> -->
-      <ng-container matColumnDef="customerName">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
-      </ng-container>
+  <div class="">
+    <mat-card>
+      <div class="mat-card-header-filter">
+        <h2><b>Customers</b></h2>
+        <mat-form-field appearance="outline" style="width: 300px">
+          <mat-label>Search</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. customer"
+            #input
+          />
+        </mat-form-field>
+      </div>
+      <mat-card-content>
+        <table mat-table matSort [dataSource]="dataSource">
+          <ng-container matColumnDef="customerName">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerName }}
+            </td>
+          </ng-container>
 
-      <ng-container matColumnDef="customerNip">
-        <th mat-header-cell *matHeaderCellDef>Nip</th>
-        <td mat-cell *matCellDef="let element">{{ element.customerNip }}</td>
-      </ng-container>
-      <ng-container matColumnDef="customerCity">
-        <th mat-header-cell *matHeaderCellDef>City</th>
-        <td mat-cell *matCellDef="let element">{{ element.customerCity }}</td>
-      </ng-container>
-      <ng-container matColumnDef="customerAddress">
-        <th mat-header-cell *matHeaderCellDef>Address</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.customerAddress }}
-        </td>
-      </ng-container>
+          <ng-container matColumnDef="customerNip">
+            <th mat-header-cell *matHeaderCellDef>Nip</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerNip }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="customerCity">
+            <th mat-header-cell *matHeaderCellDef>City</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerCity }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="customerAddress">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerAddress }}
+            </td>
+          </ng-container>
 
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-          <a
-            color="primary"
-            mat-icon-button
-            (click)="detailsCustomer(element.customerId)"
-          >
-            <mat-icon>info</mat-icon>
-          </a>
-          <a
-            mat-icon-button
-            (click)="deleteCustomer(element.customerId)"
-            color="warn"
-          >
-            <mat-icon>delete</mat-icon>
-          </a>
-        </td>
-      </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <a
+                color="primary"
+                mat-icon-button
+                (click)="detailsCustomer(element.customerId)"
+              >
+                <mat-icon>info</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                (click)="deleteCustomer(element.customerId)"
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
 
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
-      aria-label="Select page of periodic elements"
-    >
-    </mat-paginator>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

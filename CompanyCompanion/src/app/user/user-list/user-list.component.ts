@@ -75,7 +75,7 @@ export class UserListComponent implements OnInit {
     const popup = this.dialog.open(UserCreatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '40%',
+      width: '700px',
     });
     popup.afterClosed().subscribe(() => {
       this.loadUsers();

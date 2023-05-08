@@ -3,7 +3,7 @@
 @include mat.core();
 // light
 $angular-primary-light: mat.define-palette(mat.$teal-palette);
-$angular-accent-light: mat.define-palette(mat.$lime-palette);
+$angular-accent-light: mat.define-palette(mat.$green-palette);
 $angular-warn-light: mat.define-palette(mat.$pink-palette);
 // dark
 $angular-primary-dark: mat.define-palette(mat.$blue-grey-palette);
@@ -49,8 +49,8 @@ body {
 
 .container {
   margin: auto;
-  max-width: 1200px;
-  // width: 90%;
+  // max-width: 1200px;
+  width: 95%;
   margin-top: 20px;
   padding: 10px;
 }
@@ -145,7 +145,7 @@ mat-card {
 }
 
 .breadcrumb {
-  margin: 20px 0 10px 0 !important;
+  margin: 10px 0 10px 0 !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between;
@@ -169,4 +169,9 @@ mat-card {
   font-size: 18px;
   margin: 0 1px !important;
   padding: 0 !important;
+}
+.mat-card-header-filter{
+  display: flex !important;
+  justify-content: space-between;
+  padding: 10px;
 }

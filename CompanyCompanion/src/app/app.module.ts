@@ -52,6 +52,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { InvoiceDefaultComponent } from './invoice/invoice-default/invoice-default.component';
 import { InvoicePrintSecondPopupComponent } from './invoice/invoice-print-second-popup/invoice-print-second-popup.component';
 import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component'; 
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,6 +121,7 @@ import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.
       multi: true,
     },
     MatDatepickerModule,
+    CookieService
   ],
   bootstrap: [AppComponent],
 })

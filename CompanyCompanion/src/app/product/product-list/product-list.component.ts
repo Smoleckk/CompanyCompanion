@@ -77,7 +77,7 @@ export class ProductListComponent implements OnInit {
     const popup = this.dialog.open(UpdateProductPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '40%',
+      width: '700px',
       data: { productMagazineId },
     });
 
@@ -97,7 +97,7 @@ export class ProductListComponent implements OnInit {
     const popup = this.dialog.open(CreateProductPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '40%',
+      width: '700px',
     });
 
     popup.afterClosed().subscribe(() => {

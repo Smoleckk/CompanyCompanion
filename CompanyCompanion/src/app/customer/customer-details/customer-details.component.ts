@@ -55,7 +55,7 @@ export class CustomerDetailsComponent implements OnInit {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
     } else {
-      this.displayedColumns = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+      this.displayedColumns = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
     }
   }
 
@@ -111,7 +111,8 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   /////////////////
-  displayedColumns: string[] = ['Invoice No', 'Customer', 'NetTotal', 'Action'];
+  displayedColumns: string[] = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -148,7 +149,7 @@ export class CustomerDetailsComponent implements OnInit {
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '50%',
+      width: '700px',
       data: {
         code: code,
       },

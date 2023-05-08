@@ -22,3 +22,27 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.nav-list-elem {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+
+  .nav-list-elem-middle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 !important;
+  }
+  p {
+    font-size: 18px;
+    margin: 0 8px !important;
+    padding: 0 !important;
+  }
+}
+
+////////////////////////
+/// 
+mat-icon{
+  cursor: pointer;
+}

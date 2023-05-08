@@ -1,20 +1,28 @@
-<div
-  class="container"
-  style="
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    justify-content: space-around;
-  "
->
-  <mat-card style="width: 90%;  border-radius: 20px">
+<div class="container">
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+      <p class="breadcrumb-p"> > Profile</p>
+    </mat-card-actions>
+  </mat-card>
+  <div class="dashboard-card">
+
+  <mat-card style="width:100%; min-width: 400px;">
+    <mat-card-content class="customer-details">
+<h1 style="font-size: 32px;"><b>Welcome, </b>{{ profileForm.value.username }}! </h1>
+    </mat-card-content>
+  </mat-card>
+  <mat-card style="width:40%; min-width: 400px;">
     <mat-card-content class="customer-details">
       <h2
         style="border-bottom: 1px solid black; width: 100%; text-align: start"
       >
         <b>Company Info</b>
       </h2>
-      <div style="width: 100%">
+      <div >
         <div class="customer-detail">
           <h3>Company Name:</h3>
           <h3 class="customer-detail-info">{{ profileForm.value.name }}</h3>
@@ -32,10 +40,15 @@
           <h3 class="customer-detail-info">{{ profileForm.value.cityCode }}</h3>
         </div>
       </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- /////////////////////// -->
+  <mat-card style="width:55%; min-width: 400px;">
+    <mat-card-content class="customer-details">
       <div style="width: 100%">
         <h2
           style="
-            margin-top: 20px;
             border-bottom: 1px solid black;
             width: 100%;
             text-align: start;
@@ -52,10 +65,14 @@
           <h3 class="customer-detail-info">{{ profileForm.value.email }}</h3>
         </div>
       </div>
+    </mat-card-content>
+  </mat-card>
+  <!-- /////////////////////// -->
+  <mat-card style="width:100%; min-width: 400px;">
+    <mat-card-content class="customer-details">
       <div style="width: 100%">
         <h2
           style="
-            margin-top: 20px;
             border-bottom: 1px solid black;
             width: 100%;
             text-align: start;
@@ -92,4 +109,6 @@
       </div>
     </mat-card-content>
   </mat-card>
+</div>
+
 </div>

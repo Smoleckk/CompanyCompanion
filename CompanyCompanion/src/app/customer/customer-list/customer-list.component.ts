@@ -48,6 +48,11 @@ export class CustomerListComponent {
       this.dataSource.sort = this.sort;
     });
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
   deleteCustomer(code: any): void {
     this.service.deleteCustomerByCode(code).subscribe(() => {
@@ -65,7 +70,7 @@ export class CustomerListComponent {
     const popup = this.dialog.open(CustomerCreatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
-      width: '40%',
+      width: '700px',
     });
     popup.afterClosed().subscribe(() => {
       this.loadCustomers();

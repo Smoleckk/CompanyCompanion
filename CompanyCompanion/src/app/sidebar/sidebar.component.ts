@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class SidebarComponent {
   displaymenu = false;
-  isDarkTheme: boolean = false;
+  isDarkTheme: any;
   roleAdmin = false;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -26,7 +26,13 @@ export class SidebarComponent {
     private route: Router,
     private authService: AuthService,
     private cookieService: CookieService
-  ) {}
+  ) {
+    if (this.getCookie() == 'false') {
+      this.isDarkTheme = false;
+    } else {
+      this.isDarkTheme = true;
+    }
+  }
 
   ngDoCheck(): void {
     if (
@@ -59,24 +65,13 @@ export class SidebarComponent {
       this.roleAdmin = false;
     }
   }
-  setCookie() {
-    // console.log(this.isDarkTheme);
+
+  toogleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
-    console.log(this.isDarkTheme);
-
     this.cookieService.set('isDarkTheme', this.isDarkTheme.toString());
-    this.isDarkTheme = this.getCookie();
   }
-
-  // toogleCookie() {
-  //   this.isDarkTheme = false;
-  //   console.log(this.isDarkTheme);
-  //   this.cookieService.set('isDarkTheme', this.isDarkTheme.toString());
-  //  this.isDarkTheme= this.getCookie();
-
-  // }
   getCookie() {
     const isDarkThemeCookie = this.cookieService.get('isDarkTheme');
-    return Boolean(isDarkThemeCookie);
+    return isDarkThemeCookie;
   }
 }
