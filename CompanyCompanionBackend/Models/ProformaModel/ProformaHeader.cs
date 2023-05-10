@@ -1,15 +1,13 @@
-﻿using CompanyCompanionBackend.Models.InvoiceModel;
-
-namespace CompanyCompanionBackend.Models.Proforma
+﻿namespace CompanyCompanionBackend.Models.ProformaModel
 {
-    public class Proforma
+    public class ProformaHeader
     {
         public string ProformaId { get; set; } = Guid.NewGuid().ToString();
         public string ProformaNo { get; set; } = string.Empty;
         public string PlaceOfIssue { get; set; } = string.Empty;
         public string DateIssued { get; set; } = string.Empty;
         public string DueDate { get; set; } = string.Empty;
-        public DateTime ProformaDate { get; set; } = DateTime.Now;
+        public string InvoiceDate { get; set; } = string.Empty;
         public string CustomerName { get; set; } = string.Empty;
         public string CustomerNip { get; set; } = string.Empty;
         public string customerDeliveryAddress { get; set; } = string.Empty;
@@ -30,7 +28,5 @@ namespace CompanyCompanionBackend.Models.Proforma
         public string CreateUser { get; set; } = string.Empty;
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public bool IsGenerated { get; set; } = false;
-
-        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

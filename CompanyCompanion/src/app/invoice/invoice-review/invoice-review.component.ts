@@ -16,7 +16,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './invoice-review.component.html',
   styleUrls: ['./invoice-review.component.scss']
 })
-export class InvoiceReviewComponent  implements OnInit {
+export class InvoiceReviewComponent implements OnInit {
   constructor(
     private invoiceService: InvoiceService,
     private toastrService: ToastrService,
@@ -24,13 +24,16 @@ export class InvoiceReviewComponent  implements OnInit {
     private dialog: MatDialog,
     private builder: FormBuilder,
     private profileService: ProfileService
-  ) {}
+  ) { }
 
-  displayedColumns: string[] = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+  displayedColumns: string[] = ['Invoice No', 'Customer', 'DueDate', 'DateIssued', 'Total', 'Action'];
 
   dataSource = new MatTableDataSource<any>();
   dataSourceDelay = new MatTableDataSource<any>();
   dataSourceDraft = new MatTableDataSource<any>();
+  isDataSource: any;
+  isDataSourceDelay: any;
+  isDataSourceDraft: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -58,7 +61,7 @@ export class InvoiceReviewComponent  implements OnInit {
     this.profileService.getProfile().subscribe((res) => {
       let editData: any;
       editData = res;
-      
+
       if (editData != null) {
         this.profileForm.setValue({
           username: editData.username,
@@ -76,7 +79,7 @@ export class InvoiceReviewComponent  implements OnInit {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
     } else {
-      this.displayedColumns = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+      this.displayedColumns = ['Invoice No', 'Customer', 'DueDate', 'DateIssued', 'Total', 'Action'];
     }
   }
 
@@ -94,17 +97,19 @@ export class InvoiceReviewComponent  implements OnInit {
   }
   loadInvoices(): void {
     this.invoiceService.GetAllInvoicePaid().subscribe((invoices: any) => {
-      console.log(invoices);
+      this.isDataSource = invoices;
       this.dataSource.data = invoices;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
     this.invoiceService.GetAllInvoiceDelay().subscribe((invoices: any) => {
+      this.isDataSourceDelay = invoices;
       this.dataSourceDelay.data = invoices;
       this.dataSourceDelay.paginator = this.paginator;
       this.dataSourceDelay.sort = this.sort;
     });
     this.invoiceService.GetAllInvoiceDraft().subscribe((invoices: any) => {
+      this.isDataSourceDraft = invoices;
       this.dataSourceDraft.data = invoices;
       this.dataSourceDraft.paginator = this.paginator;
       this.dataSourceDraft.sort = this.sort;
@@ -125,16 +130,16 @@ export class InvoiceReviewComponent  implements OnInit {
   }
 
   downloadInvoice(code: any): void {
-    if(this.profileForm.value.template=="first"){
-    const popup = this.dialog.open(InvoicePrintPopupComponent, {
-      enterAnimationDuration: '1000ms',
-      exitAnimationDuration: '500ms',
-      width: '50%',
-      data: {
-        code: code,
-      },
-    });
-  }else{
+    if (this.profileForm.value.template == "first") {
+      const popup = this.dialog.open(InvoicePrintPopupComponent, {
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '500ms',
+        width: '50%',
+        data: {
+          code: code,
+        },
+      });
+    } else {
       const popup = this.dialog.open(InvoicePrintSecondPopupComponent, {
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '500ms',

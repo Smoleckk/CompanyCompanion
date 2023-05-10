@@ -2,6 +2,7 @@
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
+using CompanyCompanionBackend.Models.ProformaModel;
 using CompanyCompanionBackend.Models.UserModel;
 
 namespace CompanyCompanionBackend.Mapper
@@ -24,6 +25,8 @@ namespace CompanyCompanionBackend.Mapper
             CreateMap<CustomerAddDto, Customer>();
             CreateMap<Customer, CustomerReturnDto>();
             CreateMap<ProductMagazineAddDto, ProductMagazine>();
+            CreateMap<Proforma, ProformaReturnDto>();
+            CreateMap<ProformaAddDto, Proforma>();
 
             CreateMap<User, UserReturnDto>()
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))

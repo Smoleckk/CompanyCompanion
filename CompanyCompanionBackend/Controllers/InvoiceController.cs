@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Migrations;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceCountModel;
@@ -160,12 +159,26 @@ namespace CompanyCompanionBackend.Controllers
             {
                 return NotFound();
             }
+            var company = await GetCompany();
 
-            var rnd = new Random();
-            //if (invoiceDto.IsGenerated)
-            //{
-            //    invoiceDto.InvoiceNo = "No" + rnd.Next();
-            //}
+            if (invoice.IsGenerated == false && invoiceDto.IsGenerated == true)
+            {
+                var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == invoiceDto.DateIssued.Substring(0, 7));
+
+                if (invoiceCount != null)
+                {
+                    invoiceCount.InvoiceNumber++;
+                    invoiceDto.InvoiceNo = invoiceCount.InvoiceNumber.ToString() + "/" + invoiceDto.DateIssued.Substring(5, 2) + "/" + invoiceDto.DateIssued.Substring(0, 4);
+
+                }
+                else
+                {
+                    var n = new InvoiceCount { DateIssued = invoiceDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
+                    company.InvoiceCounts.Add(n);
+                    invoiceDto.InvoiceNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
+
+                }
+            }
             invoiceDto.DateIssued = invoiceDto.DateIssued.Substring(0, 10);
             invoiceDto.DueDate = invoiceDto.DueDate.Substring(0, 10);
             // update invoice properties

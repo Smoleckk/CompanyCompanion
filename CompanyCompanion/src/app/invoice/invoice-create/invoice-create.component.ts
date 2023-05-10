@@ -101,9 +101,10 @@ export class CreateInvoiceComponent implements OnInit {
     invoiceNo: this.builder.control({ value: '', disabled: true }),
     placeOfIssue: this.builder.control(''),
     dateIssued: this.builder.control(
-      (new Date().toISOString(), Validators.required)
+      (new Date().toISOString())
     ),
-    dueDate: this.builder.control(new Date().toISOString()),
+    dueDate: this.builder.control(new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()),
+    invoiceDate: this.builder.control(new Date().toISOString()),
     customerName: this.builder.control({ value: '', disabled: true }),
     customerNip: this.builder.control({ value: '', disabled: true }),
     customerDeliveryAddress: this.builder.control({
@@ -156,6 +157,7 @@ export class CreateInvoiceComponent implements OnInit {
           placeOfIssue: editData.placeOfIssue,
           dateIssued: editData.dateIssued,
           dueDate: editData.dueDate,
+          invoiceDate: editData.invoiceDate,
           customerName: editData.customerName,
           customerNip: editData.customerNip,
           customerDeliveryAddress: editData.customerDeliveryAddress,
@@ -193,6 +195,7 @@ export class CreateInvoiceComponent implements OnInit {
             placeOfIssue: editData.placeOfIssue,
             dateIssued: editData.dateIssued,
             dueDate: editData.dueDate,
+            invoiceDate: editData.invoiceDate,
             customerName: editData.customerName,
             customerNip: editData.customerNip,
             customerDeliveryAddress: editData.customerDeliveryAddress,

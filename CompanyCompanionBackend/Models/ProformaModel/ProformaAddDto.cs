@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
-using CompanyCompanionBackend.Models.CompanyModel;
+﻿using CompanyCompanionBackend.Models.InvoiceModel;
 
-namespace CompanyCompanionBackend.Models.InvoiceModel
+namespace CompanyCompanionBackend.Models.ProformaModel
 {
-    public class Invoice
+    public class ProformaAddDto
     {
-        public int InvoiceId { get; set; }
-        public string InvoiceNo { get; set; } = string.Empty;
+        public string ProformaNo { get; set; } = string.Empty;
         public string PlaceOfIssue { get; set; } = string.Empty;
         public string DateIssued { get; set; } = string.Empty;
         public string DueDate { get; set; } = string.Empty;
@@ -28,12 +26,7 @@ namespace CompanyCompanionBackend.Models.InvoiceModel
         public string AccountNumber { get; set; } = string.Empty;
         public string PaymentDescription { get; set; } = string.Empty;
         public string Remarks { get; set; } = string.Empty;
-        public string CreateUser { get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.Now;
-        public bool IsGenerated { get; set; } = false;
         public List<Product> Products { get; set; } = new List<Product>();
-
-        [JsonIgnore]
-        public Company Company { get; set; }
+        public bool IsGenerated { get; set; } = false;
     }
 }

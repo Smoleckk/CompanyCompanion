@@ -1,103 +1,121 @@
 <div class="rightOptions">
   <div class="page" size="A4" id="content" #content>
     <div class="wrapper" *ngIf="editdata">
-      <div class="one">Company Companion!</div>
+      <div class="five">
+        <div class="invoiceHeader">
+          <h2><b>Proforma</b></h2>
+          <h4>Nr: {{ editdata.proformaNo }}</h4>
+        </div>
+      </div>
+      <div class="one"></div>
       <div class="two">
-        <p class="pborder">Miejsce wystawienia</p>
-        <p>Warszawa</p>
-        <p class="pborder">Data wystawienia</p>
-        <p>03-03-2023</p>
-        <p class="pborder">Data wykonania uslugi</p>
-        <p>03-03-2023</p>
+        <div class="sideBySide2">
+          <p style="width: 130px">Miejsce wystawienia:</p>
+          <p style="width: 60px">{{ editdata.placeOfIssue }}</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 130px">Data wystawienia:</p>
+          <p style="width: 60px">{{ editdata.dateIssued }}</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 130px">Data wykonania uslugi:</p>
+          <p style="width: 60px">???</p>
+        </div>
       </div>
       <div class="three">
-        <p class="pborder">Sprzedawca</p>
-        <p>Uslugi Informatyczne Jan Nowak</p>
-        <p>NIP: 716464892</p>
-        <p>Kowal 12</p>
-        <p>00-001 Warszawa</p>
+        <h2 class="pborder">Sprzedawca</h2>
+        <p>{{ editdata.customerName }}</p>
+        <p>NIP: {{ editdata.customerNip }}</p>
+        <p>{{ editdata.customerDeliveryAddress }}</p>
+        <p>{{ editdata.customerCityCode }}</p>
       </div>
       <div class="four">
-        <p class="pborder">Sprzedawca</p>
-        <p>Uslugi Informatyczne Jan Nowak</p>
-        <p>NIP: 716464892</p>
-        <p>Kowal 12</p>
-        <p>00-001 Warszawa</p>
-      </div>
-      <div class="five">
-        <p class="proformaHeader">Proforma {{ editdata.proformaNo }}</p>
+        <h2 class="pborder">Nabywca</h2>
+        <p>{{ editdata.sellerIdName }}</p>
+        <p>NIP: {{ editdata.sellerNip }}</p>
+        <p>{{ editdata.sellerDeliveryAddress }}</p>
+        <p>{{ editdata.sellerCityCode }}</p>
       </div>
       <div class="six">
         <table>
           <thead>
             <tr>
-              <th scope="col">Kod</th>
-              <th scope="col">Nazwa towaru lub uslugi</th>
-              <th scope="col">Jm.</th>
-              <th scope="col">Ilosc</th>
-              <th scope="col">Cena netto</th>
-              <th scope="col">Warosc netto</th>
-              <th scope="col">Stawka Vat</th>
-              <th scope="col">Cena brutto</th>
+              <th style="border-left:1px solid black">LP</th>
+              <th >Nazwa towaru lub uslugi</th>
+              <th >Jm.</th>
+              <th >Ilosc</th>
+              <th >Cena netto</th>
+              <th >Stawka Vat</th>
+              <th >Warosc netto</th>
+              <th >Wartosc Vat</th>
+              <th >Cena brutto</th>
             </tr>
           </thead>
           <tbody>
-            <!-- *ngFor="let item of details.controls;let i=index" [formGroupName]="i" -->
-            <tr>
-              <th>1</th>
-              <th>Instalacja systemu operacyjnego sdasdasd</th>
-              <th>Szt.</th>
-              <th>1</th>
-              <th>{{ 1000 | currency }}</th>
-              <th>{{ 1000 | currency }}</th>
-              <th>{{ 0.23 | percent }}</th>
-              <th>{{ 1230 | currency }}</th>
-            </tr>
-            <tr>
-              <th>2</th>
-              <th>Instalacja systemu operacyjnego sdasdasd</th>
-              <th>Szt.</th>
-              <th>1</th>
-              <th>{{ 1000 | currency }}</th>
-              <th>{{ 1000 | currency }}</th>
-              <th>{{ 0.23 | percent }}</th>
-              <th>{{ 1230 | currency }}</th>
-            </tr>
-            <tr>
-              <th>3</th>
-              <th>Instalacja systemu operacyjnego sdasdasd</th>
-              <th>Szt.</th>
-              <th>1</th>
-              <th>{{ 1000 | currency }}</th>
-              <th>{{ 1000 | currency }}</th>
-              <th>{{ 0.23 | percent }}</th>
-              <th>{{ 1230 | currency }}</th>
+            <tr *ngFor="let item of editdata.products">
+              <td style="border-left:1px solid black">1</td>
+              <td >{{ item.productName }}</td>
+              <td >{{ item.unit }}</td>
+              <td >{{ item.qty }}</td>
+              <td >{{ item.salesPrice | currency:' ':'symbol':'1.2-2' }}</td>
+              <td >{{ item.vat / 100 | percent }}</td>
+              <td >{{ item.salesPrice * item.qty | currency:' ':'symbol':'1.2-2' }}</td>
+              <td >
+                {{ (item.salesPrice * item.qty * item.vat) / 100 | currency:' ':'symbol':'1.2-2' }}
+              </td>
+              <td >
+                {{
+                  (item.salesPrice * item.qty * item.vat) / 100 +
+                    item.salesPrice * item.qty | currency:' ':'symbol':'1.2-2'
+                }}
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="seven">
-        <div class="sideBySide">
-          <p style="width: 140px">Sposob platnosc:</p>
-          <p>Przelew</p>
-        </div>
-        <div class="sideBySide">
-          <p style="width: 140px">Termin platnosc:</p>
-          <p>05-03-2023</p>
-        </div>
-        <div class="sideBySide">
-          <p style="width: 140px">Numer konta:</p>
-          <p>49 1020 2892 2276 3005 0000 0000</p>
-        </div>
+      <div class="extra">
+        <table style="float:right;">
+          <thead>
+            <tr>
+              <th style="border-left:1px solid black">Razem</th>
+              <th >X</th>
+              <th >{{ totalNettoSum | currency:' ':'symbol':'1.2-2' }}</th>
+              <th >{{ totalVatSum | currency:' ':'symbol':'1.2-2' }}</th>
+              <th >{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entry of arrayGroupedProducts">
+              <td style="border-left:1px solid black"></td>
+              <td>{{ entry[0]/100 | percent }}</td>
+              <td>{{ entry[1].nettoSum | currency:' ':'symbol':'1.2-2' }}</td>
+              <td>{{ entry[1].vatSum | currency:' ':'symbol':'1.2-2' }}</td>
+              <td>{{ entry[1].bruttoSum | currency:' ':'symbol':'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="eight">
-        <div class="sideBySide">
-          <p style="width: 140px">Do zaplaty</p>
-          <p style="font-weight: bold">1 242,10 PLN</p>
+      <div class="six">
+        <div class="sideBySide2">
+          <p style="width: 100px">Razem</p>
+          <p >{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</p>
+          <p style="width: 60px;margin-left: 20px;">Slownie:</p>
         </div>
-        <div class="sideBySide">
-          <p style="width: 60px">Slownie:</p>
-          <p>Tysiac dwiescie czterdziesci dwa 10/100 PLN</p>
+        <div class="sideBySide2">
+          <p style="width: 100px">Do zaplaty</p>
+          <p style="font-weight: bold;margin-bottom: 20px;">{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 100px">Forma platnosc:</p>
+          <p>{{ editdata.paymentType }}</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 100px">Termin zaplaty:</p>
+          <p>{{ editdata.dueDate }}</p>
+        </div>
+        <div class="sideBySide2">
+          <p style="width: 100px">Numer konta:</p>
+          <p>{{ editdata.accountNumber }}</p>
         </div>
       </div>
       <div class="nine">

@@ -43,15 +43,21 @@ export class ProformaService {
   }
   GetProformaHeaderByCode(proformaId: any) {
     return this.http.get(
-      this.apiUrlProforma + 'get-proforma-header-by-code?code=' + proformaId
+      this.apiUrlProforma + 'get-proforma-header-by-code/' + proformaId
     );
-  }
+  } 
   RemoveProforma(proformaId: any) {
     return this.http.delete(
-      this.apiUrlProforma + 'delete-proforma?code=' + proformaId
+      this.apiUrlProforma  + proformaId
     );
   }
   SaveProforma(proformaData: any) {
     return this.http.post(this.apiUrlProforma + 'save-proforma', proformaData);
+  }
+  EditProforma(proformaData: any) {
+    return this.http.put(
+      this.apiUrlProforma + 'proformas/' + proformaData.proformaId,
+      proformaData
+    );
   }
 }

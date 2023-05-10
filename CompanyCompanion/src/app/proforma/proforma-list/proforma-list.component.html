@@ -1,13 +1,11 @@
 <div class="container">
-  <h1 class="breadcrumb-header"><b>Seller proformas,</b> all proformas in the system</h1>
-  <hr>
   <mat-card class="breadcrumb">
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
         <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
+        <p class="breadcrumb-p" >Home</p>
       </div>
-      <p class="breadcrumb-p">/Proformas</p>
+      <p class="breadcrumb-p"> > Proforma List</p>
     </mat-card-actions>
     <mat-card-actions>
       <div [routerLink]="['/create-proforma']" class="middle">
@@ -15,102 +13,117 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <mat-form-field appearance="outline"  >
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Ex. customer"
-      #input
-    />
-    <mat-icon matSuffix>search</mat-icon>
 
-  </mat-form-field>
-  <div class="example-container mat-elevation-z8">
-    <table mat-table matSort [dataSource]="dataSource">
-      <ng-container matColumnDef="Proforma No">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef>
-          Proforma Number
-        </th>
-        <td mat-cell *matCellDef="let element">{{ element.proformaNo }}</td>
-      </ng-container>
-      <ng-container matColumnDef="Customer">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
-        <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
-      </ng-container>
-      <!-- <ng-container matColumnDef="Remarks">
-                <th mat-header-cell mat-sort-header *matHeaderCellDef> Remarks </th>
-                <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Total">
-                <th mat-header-cell mat-sort-header *matHeaderCellDef> Total </th>
-                <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Tax">
-                <th mat-header-cell mat-sort-header *matHeaderCellDef> Tax</th>
-                <td mat-cell *matCellDef="let element"> {{element.tax | currency}} </td>
-            </ng-container> -->
-      <ng-container matColumnDef="NetTotal">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef>NetTotal</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.netTotal | currency }}
-        </td>
-      </ng-container>
+  <div class="">
+    <mat-card>
+      <div class="mat-card-header-filter">
+        <h2>Proformas</h2>
+        <mat-form-field appearance="outline"  >
+          <mat-label>Search</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. customer"
+            #input
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <mat-card-content>
+        <table mat-table matSort [dataSource]="dataSource">
+          <ng-container matColumnDef="Proforma No">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Proforma number
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.proformaNo }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Customer">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerName }}, {{ element.customerDeliveryAddress }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Total">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Brutto total
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.total | currency }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DueDate">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Due date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dueDate }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DateIssued">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Issued date
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.dateIssued }}
+            </td>
+          </ng-container>
 
-      <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-          <a
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <a
+                *ngIf="element.isGenerated"
+                mat-icon-button
+                (click)="ProformaDownload(element.proformaId)"
+                color="primary"
+              >
+                <mat-icon>print</mat-icon>
+              </a>
+              <!-- <a
+            *ngIf="element.isGenerated"
             mat-icon-button
-            (click)="ProformaDownload(element.proformaId)"
-            color="primary"
+            (click)="downloadInvoiceSecond(element.invoiceId)"
+            color="accent"
           >
             <mat-icon>print</mat-icon>
-          </a>
-          <a
-            mat-icon-button
-            *ngIf="!element.isGenerated"
-            (click)="ProformaEdit(element.proformaId)"
-            color="primary"
-          >
-            <mat-icon>edit</mat-icon>
-          </a>
-          <a
-            mat-icon-button
-            *ngIf="!element.isGenerated"
-            (click)="ProformaRemove(element.proformaId)"
-            color="warn"
-          >
-            <mat-icon>delete</mat-icon>
-          </a>
-          <a
-            mat-icon-button
-            *ngIf="element.isGenerated"
-            (click)="GenerateInvoiceFormProforma(element.proformaId)"
-            color="primary"
-          >
-            <mat-icon>bookmarks</mat-icon>
-          </a>
-          <!-- <a mat-raised-button (click)="ProformaDownload(element.proformaId)" color="accent">Show</a>
-                    <a mat-raised-button *ngIf="!element.isGenerated" (click)="ProformaEdit(element.proformaId)"
-                        color="primary">Edit</a>
-                    <a mat-raised-button *ngIf="!element.isGenerated" (click)="ProformaRemove(element.proformaId)"
-                        color="accent">Delete</a> -->
-          <!-- <a mat-raised-button *ngIf="element.isGenerated"
-                        (click)="GenerateInvoiceFormProforma(element.proformaId)" color="accent"> Proforma to
-                        invoice</a> -->
-        </td>
-      </ng-container>
+          </a> -->
+              <a
+                mat-icon-button
+                (click)="ProformaEdit(element.proformaId)"
+                color="primary"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <a
+                mat-icon-button
+                (click)="ProformaRemove(element.proformaId)"
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon>
+              </a>
+              <a
+              mat-icon-button
+              *ngIf="element.isGenerated"
+              (click)="GenerateInvoiceFormProforma(element.proformaId)"
+              color="primary"
+            >
+              <mat-icon>bookmarks</mat-icon>
+            </a>
+            </td>
+          </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
 
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
-      aria-label="Select page of periodic elements"
-    >
-    </mat-paginator>
+        <mat-paginator
+          style="width: 100%"
+          [pageSizeOptions]="[10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

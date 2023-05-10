@@ -20,6 +20,15 @@ export class ProformaListComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+
+
+  proformaHeader: any;
+  dataSource: any;
+  displayedColumns: string[] = ['Proforma No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit(): void {
     this.LoadProforma();
 
@@ -33,27 +42,13 @@ export class ProformaListComponent implements OnInit {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Proforma No', 'Customer', 'Action'];
     } else {
-      this.displayedColumns = ['Proforma No', 'Customer', 'NetTotal', 'Action'];
+      this.displayedColumns = ['Proforma No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
     }
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  proformaHeader: any;
-  dataSource: any;
-  displayedColumns: string[] = [
-    'Proforma No',
-    'Customer',
-    'NetTotal',
-    'Action',
-  ];
-  // , 'Remarks', 'Total', 'Tax',
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
   LoadProforma() {
     this.service.GetAllProforma().subscribe((res) => {
       console.log(res);
