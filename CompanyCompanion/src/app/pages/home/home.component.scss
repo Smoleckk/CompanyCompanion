@@ -10,13 +10,24 @@
 
 .example-card {
   min-width: 300px;
+  max-width: 300px;
   margin: 10px;
 }
-.example-card-long{
+
+.example-card-long {
+  max-width: 400px;
   min-width: 400px;
   margin: 10px;
 }
+
 a {
   font-size: 16px;
   font-weight: 700;
+}
+
+.card-action {
+  display: flex;
+  justify-content: end;
+  height: 100%;
+  align-items: flex-end;
 }

@@ -10,76 +10,80 @@
   <div class="container2">
     <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Invoice List</mat-card-title>
+        <mat-card-title>Invoice</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>All invoices issued in the system</p>
+        <p>Issue invoices the easy way. Connect with customers, calculate taxes and generate invoice numbers - all in
+          one place.</p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/invoice-list']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/invoice-list']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Invoices
         </button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Proforma List</mat-card-title>
+        <mat-card-title>Proforma</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>All proformas issued in the system</p>
+        <p>Set the terms of sale before the actual invoice. Issue proformas, enter order details and automatically
+          calculate the amount.</p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/proforma-list']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/proforma-list']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Navigate
         </button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Product List</mat-card-title>
+        <mat-card-title>Product</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>All products</p>
+        <p>Add products easily and always be prepared for invoicing. Create a product catalog with names, descriptions
+          and prices, then add them to invoices in seconds.</p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/product-list']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/product-list']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Navigate
         </button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Customer List</mat-card-title>
+        <mat-card-title>Customer</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>All customers</p>
+        <p>Manage your customers' data in one place. Add and edit their contact information, addresses and payment
+          information. Issue invoices and proformas with auto-filled customer data and save time.</p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/create-invoice']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/customer-list']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Navigate
         </button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Co workers</mat-card-title>
+        <mat-card-title>Employee</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>All users</p>
+        <p>Add and manage your employees' data in one place. Save time and easily assign employees to invoices.</p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/user-list']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/user-list']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Navigate
         </button>
       </mat-card-actions>
     </mat-card>
@@ -88,13 +92,14 @@
         <mat-card-title>Invoices review</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Summarize all invoices status</p>
+        <p>Easily control the status of your invoices with a clear summary. See how many invoices have already been paid
+          and how many are still outstanding. View a list of all invoices and their statuses to always have an overview.</p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/invoice-review']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/invoice-review']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Navigate
         </button>
       </mat-card-actions>
     </mat-card>
@@ -103,13 +108,14 @@
         <mat-card-title>Dashboard</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Check your company health with charts</p>
+        <p>A clear control panel where you will find a summary of your most important business activities. Quickly and
+          easily check the status of your invoices, proformas, and current balance. </p>
         <mat-divider></mat-divider>
       </mat-card-content>
-      <mat-card-actions>
-        <button [routerLink]="['/dashboard']" mat-raised-button color="primary">
+      <mat-card-actions class="card-action">
+        <button [routerLink]="['/dashboard']" mat-mini-fab color="primary"
+          aria-label="Example icon button with a menu icon">
           <mat-icon>open_in_new</mat-icon>
-          Navigate
         </button>
       </mat-card-actions>
     </mat-card>
