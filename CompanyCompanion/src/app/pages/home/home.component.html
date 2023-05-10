@@ -10,74 +10,107 @@
   <div class="container2">
     <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Seller invoice</mat-card-title>
+        <mat-card-title>Invoice List</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>All invoices issued in the system</p>
         <mat-divider></mat-divider>
       </mat-card-content>
       <mat-card-actions>
-        <a
-          mat-list-item
-          routerLink="invoice-list"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Invoices</a
-        >
+        <button [routerLink]="['/invoice-list']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Invoices
+        </button>
       </mat-card-actions>
     </mat-card>
-    <mat-card class="example-card">
+    <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Proforma invoice</mat-card-title>
+        <mat-card-title>Proforma List</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>All proformas issued in the system</p>
         <mat-divider></mat-divider>
       </mat-card-content>
       <mat-card-actions>
-        <a
-          mat-list-item
-          routerLink="proforma-list"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Proformas</a
-        >
+        <button [routerLink]="['/proforma-list']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Navigate
+        </button>
       </mat-card-actions>
     </mat-card>
-    <mat-card class="example-card">
+    <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Products</mat-card-title>
+        <mat-card-title>Product List</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>All products</p>
         <mat-divider></mat-divider>
       </mat-card-content>
       <mat-card-actions>
-        <a
-          mat-list-item
-          routerLink="product-list"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Products</a
-        >
+        <button [routerLink]="['/product-list']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Navigate
+        </button>
       </mat-card-actions>
     </mat-card>
-    <mat-card class="example-card">
+    <mat-card class="example-card-long">
       <mat-card-header>
-        <mat-card-title>Customers</mat-card-title>
+        <mat-card-title>Customer List</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>All customers</p>
         <mat-divider></mat-divider>
       </mat-card-content>
       <mat-card-actions>
-        <a
-          mat-list-item
-          routerLink="product-list"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Customers</a
-        >
+        <button [routerLink]="['/create-invoice']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Navigate
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card-long">
+      <mat-card-header>
+        <mat-card-title>Co workers</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>All users</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [routerLink]="['/user-list']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Navigate
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card-long">
+      <mat-card-header>
+        <mat-card-title>Invoices review</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Summarize all invoices status</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [routerLink]="['/invoice-review']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Navigate
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card-long">
+      <mat-card-header>
+        <mat-card-title>Dashboard</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Check your company health with charts</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [routerLink]="['/dashboard']" mat-raised-button color="primary">
+          <mat-icon>open_in_new</mat-icon>
+          Navigate
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

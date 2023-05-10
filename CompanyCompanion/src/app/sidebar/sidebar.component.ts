@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ProfileService } from '../service/profile.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -14,6 +15,8 @@ export class SidebarComponent {
   displaymenu = false;
   isDarkTheme: any;
   roleAdmin = false;
+  username: any;
+  sliceUsername: any;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -25,8 +28,11 @@ export class SidebarComponent {
     private breakpointObserver: BreakpointObserver,
     private route: Router,
     private authService: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private profileService: ProfileService
   ) {
+    this.getUsername()
+
     if (this.getCookie() == 'false') {
       this.isDarkTheme = false;
     } else {
@@ -73,5 +79,16 @@ export class SidebarComponent {
   getCookie() {
     const isDarkThemeCookie = this.cookieService.get('isDarkTheme');
     return isDarkThemeCookie;
+  }
+
+  getUsername() {
+    this.profileService.getProfile().subscribe((res) => {
+      let editData: any;
+      editData = res;
+      if (editData != null) {
+        this.username = editData.username;
+        this.sliceUsername = editData.username.slice(0,2).toUpperCase()
+      }
+    });
   }
 }

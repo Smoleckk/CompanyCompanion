@@ -15,7 +15,7 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <mat-form-field appearance="outline" style="width: 300px">
+  <mat-form-field appearance="outline"  >
     <mat-label>Filter</mat-label>
     <input
       matInput
@@ -23,6 +23,8 @@
       placeholder="Ex. customer"
       #input
     />
+    <mat-icon matSuffix>search</mat-icon>
+
   </mat-form-field>
   <div class="example-container mat-elevation-z8">
     <table mat-table matSort [dataSource]="dataSource">

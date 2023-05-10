@@ -23,7 +23,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>insert_drive_file</mat-icon>
+            <mat-icon color="primary">insert_drive_file</mat-icon>
             <p>Invoices</p>
           </div>
         </div>
@@ -37,7 +37,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>bookmark_border</mat-icon>
+            <mat-icon color="primary">bookmark_border</mat-icon>
             <p>Proforma</p>
           </div>
         </div>
@@ -51,7 +51,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>build</mat-icon>
+            <mat-icon color="primary">build</mat-icon>
             <p>Products</p>
           </div>
         </div>
@@ -65,7 +65,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>perm_identity</mat-icon>
+            <mat-icon color="primary">perm_identity</mat-icon>
             <p>Customers</p>
           </div>
         </div>
@@ -79,7 +79,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>supervisor_account</mat-icon>
+            <mat-icon color="primary">supervisor_account</mat-icon>
             <p>Co-workers</p>
           </div>
         </div>
@@ -93,7 +93,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>summarize</mat-icon>
+            <mat-icon color="primary">summarize</mat-icon>
             <p>Invoices review</p>
           </div>
         </div>
@@ -107,7 +107,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon>dashboard</mat-icon>
+            <mat-icon color="primary">dashboard</mat-icon>
             <p>Dashboard</p>
           </div>
         </div>
@@ -127,16 +127,61 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="example-spacer"></span>
+
       <mat-icon (click)="toogleTheme()" *ngIf="isDarkTheme">dark_mode</mat-icon>
-      <mat-icon (click)="toogleTheme()" *ngIf="!isDarkTheme">light_mode</mat-icon>
-      <!-- /////////////////////////// -->
-      <button
+      <mat-icon (click)="toogleTheme()" *ngIf="!isDarkTheme"
+        >light_mode</mat-icon
+      >
+      <a
+        [matMenuTriggerFor]="menu"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          margin-left: 20px;
+        "
+      >
+      <mat-icon>rocket_launch</mat-icon>
+
+        <p
+          style="
+          font-size: 18px;
+          font-weight: 400;
+            margin: 0;
+            padding: 0 5px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+        Hi, {{  username }}
+        </p>
+        <!-- <p
+          style="
+            margin: 0 0 0 20px;
+            padding: 0;
+            background-color: #fff;
+            color: black;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        > -->
+          <!-- {{sliceUsername}} -->
+        <!-- </p> -->
+      </a>
+      <!-- <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
         aria-label="Example icon-button with a menu"
       >
         <mat-icon>more_vert</mat-icon>
-      </button>
+      </button> -->
       <mat-menu #menu="matMenu">
         <button
           mat-menu-item

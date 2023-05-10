@@ -18,9 +18,9 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <mat-card style="width:40%; min-width: 400px;">
+  <mat-card style="width:5%; min-width: 400px;">
     <mat-card-content class="customer-details">
-      <h3 style="border-bottom: 1px solid black;letter-spacing: 2px;">Customer data</h3>
+      <h2 >Customer data</h2>
       <div style="width: 50%"></div>
       <p>{{ customerForm.value.customerName }}</p>
       <p>{{ customerForm.value.customerNip }}</p>
@@ -29,11 +29,11 @@
   </mat-card>
   <!-- /////////////////////// -->
   <mat-card>
-    <div class="mat-card-header-filter">
+    <mat-card-content class="mat-card-header-filter"  >
       <h2>
-        <b>Paid invoices</b>
+        Paid invoices
       </h2>
-      <mat-form-field appearance="outline" style="width: 300px">
+      <mat-form-field appearance="outline"  >
         <mat-label>Filter invoices</mat-label>
         <input
           matInput
@@ -41,8 +41,10 @@
           placeholder="Ex. customer"
           #input
         />
+        <mat-icon matSuffix>search</mat-icon>
+
       </mat-form-field>
-    </div>
+    </mat-card-content>
     <mat-card-content>
       <div class="">
         <table mat-table matSort [dataSource]="dataSource">
