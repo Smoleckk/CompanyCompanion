@@ -45,11 +45,9 @@ export class ProformaService {
     return this.http.get(
       this.apiUrlProforma + 'get-proforma-header-by-code/' + proformaId
     );
-  } 
+  }
   RemoveProforma(proformaId: any) {
-    return this.http.delete(
-      this.apiUrlProforma  + proformaId
-    );
+    return this.http.delete(this.apiUrlProforma + proformaId);
   }
   SaveProforma(proformaData: any) {
     return this.http.post(this.apiUrlProforma + 'save-proforma', proformaData);

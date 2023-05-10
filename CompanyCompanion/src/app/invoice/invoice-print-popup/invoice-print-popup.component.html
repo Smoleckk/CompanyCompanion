@@ -31,30 +31,30 @@
         <table>
           <thead>
             <tr>
-              <th style="border-left:1px solid black">LP</th>
-              <th >Nazwa towaru lub uslugi</th>
-              <th >Jm.</th>
-              <th >Ilosc</th>
-              <th >Cena netto</th>
-              <th >Warosc netto</th>
-              <th >Stawka Vat</th>
-              <th >Wartosc Vat</th>
-              <th >Cena brutto</th>
+              <th style="border-left: 1px solid black">LP</th>
+              <th>Nazwa towaru lub uslugi</th>
+              <th>Jm.</th>
+              <th>Ilosc</th>
+              <th>Cena netto</th>
+              <th>Warosc netto</th>
+              <th>Stawka Vat</th>
+              <th>Wartosc Vat</th>
+              <th>Cena brutto</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of editdata.products">
-              <td style="border-left:1px solid black">1</td>
-              <td >{{ item.productName }}</td>
-              <td >{{ item.unit }}</td>
-              <td >{{ item.qty }}</td>
-              <td >{{ item.nettoPrice | currency }}</td>
-              <td >{{ item.nettoPrice * item.qty | currency }}</td>
-              <td >{{ item.vat / 100 | percent }}</td>
-              <td >
+              <td style="border-left: 1px solid black">1</td>
+              <td>{{ item.productName }}</td>
+              <td>{{ item.unit }}</td>
+              <td>{{ item.qty }}</td>
+              <td>{{ item.nettoPrice | currency }}</td>
+              <td>{{ item.nettoPrice * item.qty | currency }}</td>
+              <td>{{ item.vat / 100 | percent }}</td>
+              <td>
                 {{ (item.nettoPrice * item.qty * item.vat) / 100 | currency }}
               </td>
-              <td >
+              <td>
                 {{
                   (item.nettoPrice * item.qty * item.vat) / 100 +
                     item.nettoPrice * item.qty | currency
@@ -65,20 +65,20 @@
         </table>
       </div>
       <div class="extra">
-        <table style="float:right;">
+        <table style="float: right">
           <thead>
             <tr>
-              <th style="border-left:1px solid black">Razem</th>
-              <th >X</th>
-              <th >{{ totalNettoSum | currency }}</th>
-              <th >{{ totalVatSum | currency }}</th>
-              <th >{{ totalBruttoSum | currency }}</th>
+              <th style="border-left: 1px solid black">Razem</th>
+              <th>X</th>
+              <th>{{ totalNettoSum | currency }}</th>
+              <th>{{ totalVatSum | currency }}</th>
+              <th>{{ totalBruttoSum | currency }}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entry of arrayGroupedProducts">
-              <td style="border-left:1px solid black"></td>
-              <td>{{ entry[0]/100 | percent }}</td>
+              <td style="border-left: 1px solid black"></td>
+              <td>{{ entry[0] / 100 | percent }}</td>
               <td>{{ entry[1].nettoSum | currency }}</td>
               <td>{{ entry[1].vatSum | currency }}</td>
               <td>{{ entry[1].bruttoSum | currency }}</td>

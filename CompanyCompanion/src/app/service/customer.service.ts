@@ -17,8 +17,8 @@ export class CustomerService {
   getCustomerByCode(code: any): Observable<any> {
     return this.http.get(this.apiUrl + code);
   }
-  updateCustomerByCode(data:any,customer: any): Observable<any> {
-    return this.http.put(this.apiUrl+data,customer);
+  updateCustomerByCode(data: any, customer: any): Observable<any> {
+    return this.http.put(this.apiUrl + data, customer);
   }
 
   deleteCustomerByCode(code: any): Observable<any> {

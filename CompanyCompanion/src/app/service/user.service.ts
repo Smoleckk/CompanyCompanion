@@ -19,6 +19,6 @@ export class UserService {
     return this.http.post<User>(this.apiUrl, user);
   }
   deleteUser(userId: any): Observable<User> {
-    return this.http.delete<User>(this.apiUrl+userId);
+    return this.http.delete<User>(this.apiUrl + userId);
   }
 }

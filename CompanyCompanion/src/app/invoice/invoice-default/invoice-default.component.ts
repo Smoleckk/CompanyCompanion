@@ -16,9 +16,9 @@ import { ProformaService } from '../../service/proforma.service';
 @Component({
   selector: 'app-invoice-default',
   templateUrl: './invoice-default.component.html',
-  styleUrls: ['./invoice-default.component.scss']
+  styleUrls: ['./invoice-default.component.scss'],
 })
-export class InvoiceDefaultComponent  implements OnInit {
+export class InvoiceDefaultComponent implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef;
 
   constructor(
@@ -46,8 +46,6 @@ export class InvoiceDefaultComponent  implements OnInit {
     this.invoiceFromProformaId =
       this.activeRoute.snapshot.paramMap.get('proformaId');
     if (this.invoiceFromProformaId != null) {
-      console.log(this.invoiceFromProformaId);
-
       this.pageTitle = 'Invoice from proforma';
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId);
@@ -89,7 +87,9 @@ export class InvoiceDefaultComponent  implements OnInit {
     invoiceId: this.builder.control(0),
     invoiceNo: this.builder.control({ value: '', disabled: true }),
     placeOfIssue: this.builder.control(''),
-    dateIssued: this.builder.control((new Date().toISOString(),Validators.required)),
+    dateIssued: this.builder.control(
+      (new Date().toISOString(), Validators.required)
+    ),
     dueDate: this.builder.control(new Date().toISOString()),
     customerName: this.builder.control(''),
     customerNip: this.builder.control(''),
@@ -116,9 +116,6 @@ export class InvoiceDefaultComponent  implements OnInit {
     this.service.GetInvByCode(invoiceIdCode).subscribe((res) => {
       let editData: any;
       editData = res;
-      console.log(invoiceIdCode);
-      console.log(editData);
-
       editData.products.forEach((product: any) => {
         this.products.push(
           this.builder.group({
@@ -210,7 +207,9 @@ export class InvoiceDefaultComponent  implements OnInit {
       if (customData != null) {
         this.invoiceForm.get('sellerIdName')?.setValue(customData.name);
         this.invoiceForm.get('sellerNip')?.setValue(customData.nip);
-        this.invoiceForm.get('sellerDeliveryAddress')?.setValue(customData.city);
+        this.invoiceForm
+          .get('sellerDeliveryAddress')
+          ?.setValue(customData.city);
         this.invoiceForm.get('sellerCityCode')?.setValue(customData.cityCode);
       }
     });
@@ -242,7 +241,6 @@ export class InvoiceDefaultComponent  implements OnInit {
 
   SaveInvoice() {
     if (this.invoiceForm.valid) {
-      console.log(this.invoiceForm.getRawValue());
       if (this.invoiceFromProformaId != null) {
         this.service
           .SaveInvoice(this.invoiceForm.getRawValue())
@@ -289,7 +287,11 @@ export class InvoiceDefaultComponent  implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm.get('customerDeliveryAddress')?.setValue(customData.customerAddress + ', ' + customData.customerCity);
+        this.invoiceForm
+          .get('customerDeliveryAddress')
+          ?.setValue(
+            customData.customerAddress + ', ' + customData.customerCity
+          );
         this.invoiceForm.get('customerName')?.setValue(customData.customerName);
         this.invoiceForm.get('customerNip')?.setValue(customData.customerNip);
       }
@@ -303,14 +305,11 @@ export class InvoiceDefaultComponent  implements OnInit {
   ProductChange(index: any) {
     this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
-    console.log(this.invoiceProduct.value);
     let productCode = this.invoiceProduct.get('productName')?.value;
-    console.log(productCode);
 
     this.service.GetProductsByName(productCode).subscribe((res) => {
       let prodData: any;
       prodData = res;
-      console.log(prodData);
       if (prodData != null) {
         this.invoiceProduct.get('productName')?.setValue(prodData.name);
         this.invoiceProduct.get('salesPrice')?.setValue(prodData.price);

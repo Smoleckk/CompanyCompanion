@@ -31,7 +31,7 @@ export class SidebarComponent {
     private cookieService: CookieService,
     private profileService: ProfileService
   ) {
-    this.getUsername()
+    this.getUsername();
 
     if (this.getCookie() == 'false') {
       this.isDarkTheme = false;
@@ -87,7 +87,7 @@ export class SidebarComponent {
       editData = res;
       if (editData != null) {
         this.username = editData.username;
-        this.sliceUsername = editData.username.slice(0,2).toUpperCase()
+        this.sliceUsername = editData.username.slice(0, 2).toUpperCase();
       }
     });
   }

@@ -15,8 +15,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-    
-    constructor(private service: UserService, private dialog: MatDialog,private toastrService: ToastrService) {
+  constructor(
+    private service: UserService,
+    private dialog: MatDialog,
+    private toastrService: ToastrService
+  ) {
     this.loadUsers();
   }
   userdata: any;
@@ -26,12 +29,11 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.onResize();
     window.addEventListener('resize', () => {
       this.onResize();
     });
-
   }
 
   onResize() {
@@ -50,8 +52,6 @@ export class UserListComponent implements OnInit {
   loadUsers() {
     this.service.loadUsers().subscribe((data) => {
       this.userdata = data;
-      console.log(data);
-      
       this.dataSource = new MatTableDataSource(this.userdata);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

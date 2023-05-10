@@ -48,14 +48,20 @@ export class CustomerDetailsComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.onResize();
     });
-
   }
 
   onResize() {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
     } else {
-      this.displayedColumns = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+      this.displayedColumns = [
+        'Invoice No',
+        'Customer',
+        'DueDate',
+        'DateIssued',
+        'Total',
+        'Action',
+      ];
     }
   }
 
@@ -81,7 +87,6 @@ export class CustomerDetailsComponent implements OnInit {
     this.service.getCustomerByCode(customerIdCode).subscribe((res) => {
       let editData: any;
       editData = res;
-      // console.log(editData);
 
       if (editData != null) {
         this.customerForm.setValue({
@@ -96,13 +101,11 @@ export class CustomerDetailsComponent implements OnInit {
     });
   }
   updateCustomer(): void {
-    console.log(this.editCustomerId);
-    
     const popup = this.dialog.open(CustomerUpdatePopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '40%',
-      data:  this.editCustomerId,
+      data: this.editCustomerId,
     });
 
     popup.afterClosed().subscribe(() => {
@@ -111,7 +114,14 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   /////////////////
-  displayedColumns: string[] = ['Invoice No', 'Customer','DueDate','DateIssued', 'Total', 'Action'];
+  displayedColumns: string[] = [
+    'Invoice No',
+    'Customer',
+    'DueDate',
+    'DateIssued',
+    'Total',
+    'Action',
+  ];
 
   dataSource = new MatTableDataSource<any>();
 
@@ -124,8 +134,6 @@ export class CustomerDetailsComponent implements OnInit {
     this.invoiceService
       .GetCustomerInvoices(getCustomerName)
       .subscribe((invoices: any) => {
-        // console.log(invoices);
-
         this.dataSource.data = invoices;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

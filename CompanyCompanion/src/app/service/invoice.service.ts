@@ -51,8 +51,8 @@ export class InvoiceService {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
   }
   //////////
-  GetCustomerInvoices(code:any) {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header/'+code);
+  GetCustomerInvoices(code: any) {
+    return this.http.get(this.apiUrlInvoice + 'get-invoices-header/' + code);
   }
   GetInvByCode(invoiceId: any) {
     return this.http.get(this.apiUrlInvoice + invoiceId);

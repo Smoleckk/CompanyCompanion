@@ -34,11 +34,8 @@ export class ProformaPrintPopupComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data.code);
-    
     if (this.data.code) {
       this.service.GetProformaHeaderByCode(this.data.code).subscribe((res) => {
-        console.log(res);
         this.editdata = res;
 
         this.groupedProducts = this.editdata.products.reduce(

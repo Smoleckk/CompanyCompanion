@@ -12,11 +12,11 @@ export class DashboardComponent implements OnInit {
   constructor(
     private chartService: ChartService,
     private invoiceService: InvoiceService
-  ) { }
+  ) {}
 
   chart: any = [];
   chartData: any;
-  labelData: any =[];
+  labelData: any = [];
   realData: any;
 
   productSoldSum: any;
@@ -75,12 +75,12 @@ export class DashboardComponent implements OnInit {
         'barchart',
         'Products'
       );
-
     });
     this.invoiceService.GetAllInvoice().subscribe((readInvoices: any) => {
-      this.invoicesTotalSum = readInvoices.map((invo: any) => invo.total).reduce((a: any, b: any) => a + b, 0);
+      this.invoicesTotalSum = readInvoices
+        .map((invo: any) => invo.total)
+        .reduce((a: any, b: any) => a + b, 0);
     });
-
 
     this.chartService.getInvoiceIssueDateStatus().subscribe((result) => {
       this.chartData = result;
@@ -121,10 +121,8 @@ export class DashboardComponent implements OnInit {
         'barchartCustomers',
         'Products'
       );
-      this.bestClient = this.labelData[0]
+      this.bestClient = this.labelData[0];
     });
-
-    
   }
 
   renderChart(labelData: any, realData: any, type: any, id: any, name: any) {
@@ -137,28 +135,24 @@ export class DashboardComponent implements OnInit {
             label: name,
             data: realData,
             borderWidth: 1,
-            backgroundColor: [
-              'rgb(95, 158, 160)',
-              'rgb(255, 140, 0)',
-            ],
+            backgroundColor: ['rgb(95, 158, 160)', 'rgb(255, 140, 0)'],
           },
         ],
       },
       options: {
         plugins: {
           legend: {
-              display: false,
-              labels: {
-                  color: 'rgb(255, 99, 132)'
-              }
-          }
-      },
+            display: false,
+            labels: {
+              color: 'rgb(255, 99, 132)',
+            },
+          },
+        },
         scales: {
           y: {
             beginAtZero: true,
           },
         },
-
       },
     });
   }

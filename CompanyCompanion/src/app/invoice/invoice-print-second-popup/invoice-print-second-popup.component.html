@@ -40,33 +40,44 @@
         <table>
           <thead>
             <tr>
-              <th style="border-left:1px solid black">LP</th>
-              <th >Nazwa towaru lub uslugi</th>
-              <th >Jm.</th>
-              <th >Ilosc</th>
-              <th >Cena netto</th>
-              <th >Stawka Vat</th>
-              <th >Warosc netto</th>
-              <th >Wartosc Vat</th>
-              <th >Cena brutto</th>
+              <th style="border-left: 1px solid black">LP</th>
+              <th>Nazwa towaru lub uslugi</th>
+              <th>Jm.</th>
+              <th>Ilosc</th>
+              <th>Cena netto</th>
+              <th>Stawka Vat</th>
+              <th>Warosc netto</th>
+              <th>Wartosc Vat</th>
+              <th>Cena brutto</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of editdata.products">
-              <td style="border-left:1px solid black">1</td>
-              <td >{{ item.productName }}</td>
-              <td >{{ item.unit }}</td>
-              <td >{{ item.qty }}</td>
-              <td >{{ item.salesPrice | currency:' ':'symbol':'1.2-2' }}</td>
-              <td >{{ item.vat / 100 | percent }}</td>
-              <td >{{ item.salesPrice * item.qty | currency:' ':'symbol':'1.2-2' }}</td>
-              <td >
-                {{ (item.salesPrice * item.qty * item.vat) / 100 | currency:' ':'symbol':'1.2-2' }}
+              <td style="border-left: 1px solid black">1</td>
+              <td>{{ item.productName }}</td>
+              <td>{{ item.unit }}</td>
+              <td>{{ item.qty }}</td>
+              <td>
+                {{ item.salesPrice | currency : " " : "symbol" : "1.2-2" }}
               </td>
-              <td >
+              <td>{{ item.vat / 100 | percent }}</td>
+              <td>
+                {{
+                  item.salesPrice * item.qty
+                    | currency : " " : "symbol" : "1.2-2"
+                }}
+              </td>
+              <td>
+                {{
+                  (item.salesPrice * item.qty * item.vat) / 100
+                    | currency : " " : "symbol" : "1.2-2"
+                }}
+              </td>
+              <td>
                 {{
                   (item.salesPrice * item.qty * item.vat) / 100 +
-                    item.salesPrice * item.qty | currency:' ':'symbol':'1.2-2'
+                    item.salesPrice * item.qty
+                    | currency : " " : "symbol" : "1.2-2"
                 }}
               </td>
             </tr>
@@ -74,23 +85,31 @@
         </table>
       </div>
       <div class="extra">
-        <table style="float:right;">
+        <table style="float: right">
           <thead>
             <tr>
-              <th style="border-left:1px solid black">Razem</th>
-              <th >X</th>
-              <th >{{ totalNettoSum | currency:' ':'symbol':'1.2-2' }}</th>
-              <th >{{ totalVatSum | currency:' ':'symbol':'1.2-2' }}</th>
-              <th >{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</th>
+              <th style="border-left: 1px solid black">Razem</th>
+              <th>X</th>
+              <th>{{ totalNettoSum | currency : " " : "symbol" : "1.2-2" }}</th>
+              <th>{{ totalVatSum | currency : " " : "symbol" : "1.2-2" }}</th>
+              <th>
+                {{ totalBruttoSum | currency : " " : "symbol" : "1.2-2" }}
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entry of arrayGroupedProducts">
-              <td style="border-left:1px solid black"></td>
-              <td>{{ entry[0]/100 | percent }}</td>
-              <td>{{ entry[1].nettoSum | currency:' ':'symbol':'1.2-2' }}</td>
-              <td>{{ entry[1].vatSum | currency:' ':'symbol':'1.2-2' }}</td>
-              <td>{{ entry[1].bruttoSum | currency:' ':'symbol':'1.2-2' }}</td>
+              <td style="border-left: 1px solid black"></td>
+              <td>{{ entry[0] / 100 | percent }}</td>
+              <td>
+                {{ entry[1].nettoSum | currency : " " : "symbol" : "1.2-2" }}
+              </td>
+              <td>
+                {{ entry[1].vatSum | currency : " " : "symbol" : "1.2-2" }}
+              </td>
+              <td>
+                {{ entry[1].bruttoSum | currency : " " : "symbol" : "1.2-2" }}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -98,12 +117,14 @@
       <div class="six">
         <div class="sideBySide2">
           <p style="width: 100px">Razem</p>
-          <p >{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</p>
-          <p style="width: 60px;margin-left: 20px;">Slownie:</p>
+          <p>{{ totalBruttoSum | currency : " " : "symbol" : "1.2-2" }}</p>
+          <p style="width: 60px; margin-left: 20px">Slownie:</p>
         </div>
         <div class="sideBySide2">
           <p style="width: 100px">Do zaplaty</p>
-          <p style="font-weight: bold;margin-bottom: 20px;">{{ totalBruttoSum | currency:' ':'symbol':'1.2-2' }}</p>
+          <p style="font-weight: bold; margin-bottom: 20px">
+            {{ totalBruttoSum | currency : " " : "symbol" : "1.2-2" }}
+          </p>
         </div>
         <div class="sideBySide2">
           <p style="width: 100px">Forma platnosc:</p>

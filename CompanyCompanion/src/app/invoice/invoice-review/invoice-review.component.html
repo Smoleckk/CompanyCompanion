@@ -14,7 +14,12 @@
       <h2>Paid invoices</h2>
       <mat-form-field appearance="outline">
         <mat-label>Filter paid</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. customer" #input />
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. customer"
+          #input
+        />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
@@ -23,47 +28,84 @@
         <table mat-table matSort [dataSource]="dataSource">
           <ng-container matColumnDef="Invoice No">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Number</th>
-            <td mat-cell *matCellDef="let element">{{ element.invoiceNo }} {{element.proformaNo}}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.invoiceNo }} {{ element.proformaNo }}
+            </td>
           </ng-container>
           <ng-container matColumnDef="Customer">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
-            <td mat-cell *matCellDef="let element">{{ element.customerName }}, {{ element.customerDeliveryAddress }}
+            <td mat-cell *matCellDef="let element">
+              {{ element.customerName }}, {{ element.customerDeliveryAddress }}
             </td>
           </ng-container>
           <ng-container matColumnDef="Total">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef>Brutto total</th>
-            <td mat-cell *matCellDef="let element">{{ element.total | currency }}</td>
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Brutto total
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.total | currency }}
+            </td>
           </ng-container>
           <ng-container matColumnDef="DueDate">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Due date</th>
             <td mat-cell *matCellDef="let element">{{ element.dueDate }}</td>
           </ng-container>
           <ng-container matColumnDef="DateIssued">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef>Issued date</th>
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>
+              Issued date
+            </th>
             <td mat-cell *matCellDef="let element">{{ element.dateIssued }}</td>
           </ng-container>
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a *ngIf="element.invoiceId  && element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
-                color="primary">
+              <a
+                *ngIf="element.invoiceId && element.isGenerated"
+                mat-icon-button
+                (click)="downloadInvoice(element.invoiceId)"
+                color="primary"
+              >
                 <mat-icon>print</mat-icon>
               </a>
-              <a *ngIf="element.proformaId  && element.isGenerated" mat-icon-button (click)="ProformaDownload(element.proformaId)"
-                color="primary">
+              <a
+                *ngIf="element.proformaId && element.isGenerated"
+                mat-icon-button
+                (click)="ProformaDownload(element.proformaId)"
+                color="primary"
+              >
                 <mat-icon>print</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="element.invoiceId && !element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
+              <a
+                mat-icon-button
+                *ngIf="element.invoiceId && !element.isGenerated"
+                (click)="editInvoice(element.invoiceId)"
+                color="primary"
+              >
                 <mat-icon>edit</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="element.proformaId && !element.isGenerated" (click)="ProformaEdit(element.proformaId)" color="primary">
+              <a
+                mat-icon-button
+                *ngIf="element.proformaId && !element.isGenerated"
+                (click)="ProformaEdit(element.proformaId)"
+                color="primary"
+              >
                 <mat-icon>edit</mat-icon>
               </a>
-              
-              <a mat-icon-button *ngIf="element.invoiceId"  (click)="removeInvoice(element.invoiceId)" color="warn">
+
+              <a
+                mat-icon-button
+                *ngIf="element.invoiceId"
+                (click)="removeInvoice(element.invoiceId)"
+                color="warn"
+              >
                 <mat-icon>delete</mat-icon>
               </a>
-              <a mat-icon-button  *ngIf="element.proformaId"  (click)="ProformaRemove(element.proformaId)" color="warn">
+              <a
+                mat-icon-button
+                *ngIf="element.proformaId"
+                (click)="ProformaRemove(element.proformaId)"
+                color="warn"
+              >
                 <mat-icon>delete</mat-icon>
               </a>
             </td>
@@ -71,33 +113,36 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-        <mat-paginator style="width: 100%" [pageSizeOptions]="[10, 20]" showFirstLastButtons
-          aria-label="Select page of periodic elements">
+        <mat-paginator
+          style="width: 100%"
+          [pageSizeOptions]="[10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
         </mat-paginator>
       </div>
     </mat-card-content>
   </mat-card>
 
-
   <mat-card *ngIf="dataSourceDelay.data.length !== 0">
     <div class="mat-card-header-filter">
-      <h2>
-        Delay invoices
-      </h2>
+      <h2>Delay invoices</h2>
       <mat-form-field appearance="outline">
         <mat-label>Filter delay</mat-label>
-        <input matInput (keyup)="applyFilterDelay($event)" placeholder="Ex. customer" #input />
+        <input
+          matInput
+          (keyup)="applyFilterDelay($event)"
+          placeholder="Ex. customer"
+          #input
+        />
         <mat-icon matSuffix>search</mat-icon>
-
       </mat-form-field>
     </div>
     <mat-card-content>
       <div>
         <table mat-table matSort [dataSource]="dataSourceDelay">
           <ng-container matColumnDef="Invoice No">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef>
-              Number
-            </th>
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Number</th>
             <td mat-cell *matCellDef="let element">
               {{ element.invoiceNo }}
             </td>
@@ -134,25 +179,53 @@
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a *ngIf="element.invoiceId  && element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
-                color="primary">
+              <a
+                *ngIf="element.invoiceId && element.isGenerated"
+                mat-icon-button
+                (click)="downloadInvoice(element.invoiceId)"
+                color="primary"
+              >
                 <mat-icon>print</mat-icon>
               </a>
-              <a *ngIf="element.proformaId  && element.isGenerated" mat-icon-button (click)="ProformaDownload(element.proformaId)"
-                color="primary">
+              <a
+                *ngIf="element.proformaId && element.isGenerated"
+                mat-icon-button
+                (click)="ProformaDownload(element.proformaId)"
+                color="primary"
+              >
                 <mat-icon>print</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="element.invoiceId && !element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
+              <a
+                mat-icon-button
+                *ngIf="element.invoiceId && !element.isGenerated"
+                (click)="editInvoice(element.invoiceId)"
+                color="primary"
+              >
                 <mat-icon>edit</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="element.proformaId && !element.isGenerated" (click)="ProformaEdit(element.proformaId)" color="primary">
+              <a
+                mat-icon-button
+                *ngIf="element.proformaId && !element.isGenerated"
+                (click)="ProformaEdit(element.proformaId)"
+                color="primary"
+              >
                 <mat-icon>edit</mat-icon>
               </a>
-              
-              <a mat-icon-button *ngIf="element.invoiceId"  (click)="removeInvoice(element.invoiceId)" color="warn">
+
+              <a
+                mat-icon-button
+                *ngIf="element.invoiceId"
+                (click)="removeInvoice(element.invoiceId)"
+                color="warn"
+              >
                 <mat-icon>delete</mat-icon>
               </a>
-              <a mat-icon-button  *ngIf="element.proformaId"  (click)="ProformaRemove(element.proformaId)" color="warn">
+              <a
+                mat-icon-button
+                *ngIf="element.proformaId"
+                (click)="ProformaRemove(element.proformaId)"
+                color="warn"
+              >
                 <mat-icon>delete</mat-icon>
               </a>
             </td>
@@ -162,8 +235,12 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
-        <mat-paginator style="width: 100%" [pageSizeOptions]="[10, 20]" showFirstLastButtons
-          aria-label="Select page of periodic elements">
+        <mat-paginator
+          style="width: 100%"
+          [pageSizeOptions]="[10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
         </mat-paginator>
       </div>
     </mat-card-content>
@@ -171,23 +248,23 @@
 
   <mat-card *ngIf="dataSourceDraft.data.length !== 0">
     <div class="mat-card-header-filter">
-      <h2>
-        Draft invoices
-      </h2>
+      <h2>Draft invoices</h2>
       <mat-form-field appearance="outline">
         <mat-label>Filter draft</mat-label>
-        <input matInput (keyup)="applyFilterDraft($event)" placeholder="Ex. customer" #input />
+        <input
+          matInput
+          (keyup)="applyFilterDraft($event)"
+          placeholder="Ex. customer"
+          #input
+        />
         <mat-icon matSuffix>search</mat-icon>
-
       </mat-form-field>
     </div>
     <mat-card-content>
       <div>
         <table mat-table matSort [dataSource]="dataSourceDraft">
           <ng-container matColumnDef="Invoice No">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef>
-              Number
-            </th>
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Number</th>
             <td mat-cell *matCellDef="let element">
               {{ element.invoiceNo }}
             </td>
@@ -224,25 +301,53 @@
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a *ngIf="element.invoiceId  && element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
-                color="primary">
+              <a
+                *ngIf="element.invoiceId && element.isGenerated"
+                mat-icon-button
+                (click)="downloadInvoice(element.invoiceId)"
+                color="primary"
+              >
                 <mat-icon>print</mat-icon>
               </a>
-              <a *ngIf="element.proformaId  && element.isGenerated" mat-icon-button (click)="ProformaDownload(element.proformaId)"
-                color="primary">
+              <a
+                *ngIf="element.proformaId && element.isGenerated"
+                mat-icon-button
+                (click)="ProformaDownload(element.proformaId)"
+                color="primary"
+              >
                 <mat-icon>print</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="element.invoiceId && !element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
+              <a
+                mat-icon-button
+                *ngIf="element.invoiceId && !element.isGenerated"
+                (click)="editInvoice(element.invoiceId)"
+                color="primary"
+              >
                 <mat-icon>edit</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="element.proformaId && !element.isGenerated" (click)="ProformaEdit(element.proformaId)" color="primary">
+              <a
+                mat-icon-button
+                *ngIf="element.proformaId && !element.isGenerated"
+                (click)="ProformaEdit(element.proformaId)"
+                color="primary"
+              >
                 <mat-icon>edit</mat-icon>
               </a>
-              
-              <a mat-icon-button *ngIf="element.invoiceId"  (click)="removeInvoice(element.invoiceId)" color="warn">
+
+              <a
+                mat-icon-button
+                *ngIf="element.invoiceId"
+                (click)="removeInvoice(element.invoiceId)"
+                color="warn"
+              >
                 <mat-icon>delete</mat-icon>
               </a>
-              <a mat-icon-button  *ngIf="element.proformaId"  (click)="ProformaRemove(element.proformaId)" color="warn">
+              <a
+                mat-icon-button
+                *ngIf="element.proformaId"
+                (click)="ProformaRemove(element.proformaId)"
+                color="warn"
+              >
                 <mat-icon>delete</mat-icon>
               </a>
             </td>
@@ -252,28 +357,47 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
-        <mat-paginator style="width: 100%" [pageSizeOptions]="[10, 20]" showFirstLastButtons
-          aria-label="Select page of periodic elements">
+        <mat-paginator
+          style="width: 100%"
+          [pageSizeOptions]="[10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
         </mat-paginator>
       </div>
     </mat-card-content>
   </mat-card>
 
-
   <mat-card
-    *ngIf="dataSource.data.length === 0 && dataSourceDelay.data.length === 0 && dataSourceDraft.data.length === 0 ">
-    <mat-card-content style="display: flex; justify-content:center; flex-direction:column; align-items:center;text-align:center; width:70%;margin:auto">
-      <h2> Oto widok zbiorczej listy dokumentow wystawionych w systemie. </h2>
+    *ngIf="
+      dataSource.data.length === 0 &&
+      dataSourceDelay.data.length === 0 &&
+      dataSourceDraft.data.length === 0
+    "
+  >
+    <mat-card-content
+      style="
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 70%;
+        margin: auto;
+      "
+    >
+      <h2>Oto widok zbiorczej listy dokumentow wystawionych w systemie.</h2>
       <p>
-        Na razie w tym miejscu nie ma jeszcze żadnych dokumentów.
-        Ale nie martw się, nic straconego! To wspaniałe miejsce, gdzie możesz łatwo i szybko wystawić swoje pierwsze
-        dokumenty!
-        <br><br>
-        Dlatego zacznijmy! Kliknij przycisk "Nowa faktura" lub "Nowa proforma" i stwórz swój pierwszy dokument.
-        Wystawiaj faktury, twórz proformy, dodawaj szkice - wszystko w jednym miejscu! Z naszą pomocą będziesz miał
-        więcej czasu na rozwijanie swojego biznesu, a mniej czasu na ręczne wystawianie faktur.
+        Na razie w tym miejscu nie ma jeszcze żadnych dokumentów. Ale nie martw
+        się, nic straconego! To wspaniałe miejsce, gdzie możesz łatwo i szybko
+        wystawić swoje pierwsze dokumenty!
+        <br /><br />
+        Dlatego zacznijmy! Kliknij przycisk "Nowa faktura" lub "Nowa proforma" i
+        stwórz swój pierwszy dokument. Wystawiaj faktury, twórz proformy,
+        dodawaj szkice - wszystko w jednym miejscu! Z naszą pomocą będziesz miał
+        więcej czasu na rozwijanie swojego biznesu, a mniej czasu na ręczne
+        wystawianie faktur.
       </p>
     </mat-card-content>
   </mat-card>
-
 </div>

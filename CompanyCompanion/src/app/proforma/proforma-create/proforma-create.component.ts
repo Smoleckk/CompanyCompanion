@@ -33,7 +33,7 @@ export class ProformaCreateComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private profileService: ProfileService,
     private dialog: MatDialog
-  ) { }
+  ) {}
   ngOnInit(): void {
     this.getCustomers();
     this.GetProducts();
@@ -47,13 +47,10 @@ export class ProformaCreateComponent implements OnInit {
       this.SetEditInfo(this.editProformaId);
     } else {
       this.addProduct();
-
     }
     this.proformaFromProformaId =
       this.activeRoute.snapshot.paramMap.get('proformaId');
     if (this.proformaFromProformaId != null) {
-      console.log(this.proformaFromProformaId);
-
       this.pageTitle = 'Proforma from proforma';
       this.isEdit = true;
       this.SetEditInfoProforma(this.proformaFromProformaId);
@@ -81,7 +78,7 @@ export class ProformaCreateComponent implements OnInit {
 
   issuedStatus = [
     { name: 'Issued', value: true },
-    { name: 'Not issued', value: false }
+    { name: 'Not issued', value: false },
   ];
 
   paymentStatus: string[] = ['Paid', 'Unpaid'];
@@ -98,13 +95,13 @@ export class ProformaCreateComponent implements OnInit {
   editProformaDetail: any;
 
   proformaForm = this.builder.group({
-    proformaId: this.builder.control("0"),
+    proformaId: this.builder.control('0'),
     proformaNo: this.builder.control({ value: '', disabled: true }),
     placeOfIssue: this.builder.control(''),
-    dateIssued: this.builder.control(
-      (new Date().toISOString())
+    dateIssued: this.builder.control(new Date().toISOString()),
+    dueDate: this.builder.control(
+      new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()
     ),
-    dueDate: this.builder.control(new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()),
     invoiceDate: this.builder.control(new Date().toISOString()),
     customerName: this.builder.control({ value: '', disabled: true }),
     customerNip: this.builder.control({ value: '', disabled: true }),
@@ -131,56 +128,55 @@ export class ProformaCreateComponent implements OnInit {
   });
 
   SetEditInfo(proformaIdCode: any) {
-    this.serviceProforma.GetProformaHeaderByCode(proformaIdCode).subscribe((res) => {
-      let editData: any;
-      editData = res;
-      console.log(proformaIdCode);
-      console.log(editData);
-
-      editData.products.forEach((product: any) => {
-        this.products.push(
-          this.builder.group({
-            productCode: [product.productCode],
-            productName: [product.productName],
-            qty: [product.qty],
-            unit: [product.unit],
-            salesPrice: [product.salesPrice],
-            vat: [product.vat],
-            bruttoPrice: [product.bruttoPrice],
-            nettoPrice: [product.nettoPrice],
-          })
-        );
-      });
-      if (editData != null) {
-        this.proformaForm.patchValue({
-          proformaId: editData.proformaId,
-          proformaNo: editData.proformaNo,
-          placeOfIssue: editData.placeOfIssue,
-          dateIssued: editData.dateIssued,
-          dueDate: editData.dueDate,
-          invoiceDate: editData.invoiceDate,
-          customerName: editData.customerName,
-          customerNip: editData.customerNip,
-          customerDeliveryAddress: editData.customerDeliveryAddress,
-          customerCityCode: editData.customerCityCode,
-          sellerId: editData.sellerId,
-          sellerIdName: editData.sellerIdName,
-          sellerNip: editData.sellerNip,
-          sellerDeliveryAddress: editData.sellerDeliveryAddress,
-          sellerCityCode: editData.sellerCityCode,
-          total: editData.total,
-          tax: editData.tax,
-          netTotal: editData.netTotal,
-          paymentStatus: editData.paymentStatus,
-          paymentType: editData.paymentType,
-          accountNumber: editData.accountNumber,
-          paymentDescription: editData.paymentDescription,
-          remarks: editData.remarks,
-          products: [],
-          isGenerated: editData.isGenerated,
+    this.serviceProforma
+      .GetProformaHeaderByCode(proformaIdCode)
+      .subscribe((res) => {
+        let editData: any;
+        editData = res;
+        editData.products.forEach((product: any) => {
+          this.products.push(
+            this.builder.group({
+              productCode: [product.productCode],
+              productName: [product.productName],
+              qty: [product.qty],
+              unit: [product.unit],
+              salesPrice: [product.salesPrice],
+              vat: [product.vat],
+              bruttoPrice: [product.bruttoPrice],
+              nettoPrice: [product.nettoPrice],
+            })
+          );
         });
-      }
-    });
+        if (editData != null) {
+          this.proformaForm.patchValue({
+            proformaId: editData.proformaId,
+            proformaNo: editData.proformaNo,
+            placeOfIssue: editData.placeOfIssue,
+            dateIssued: editData.dateIssued,
+            dueDate: editData.dueDate,
+            invoiceDate: editData.invoiceDate,
+            customerName: editData.customerName,
+            customerNip: editData.customerNip,
+            customerDeliveryAddress: editData.customerDeliveryAddress,
+            customerCityCode: editData.customerCityCode,
+            sellerId: editData.sellerId,
+            sellerIdName: editData.sellerIdName,
+            sellerNip: editData.sellerNip,
+            sellerDeliveryAddress: editData.sellerDeliveryAddress,
+            sellerCityCode: editData.sellerCityCode,
+            total: editData.total,
+            tax: editData.tax,
+            netTotal: editData.netTotal,
+            paymentStatus: editData.paymentStatus,
+            paymentType: editData.paymentType,
+            accountNumber: editData.accountNumber,
+            paymentDescription: editData.paymentDescription,
+            remarks: editData.remarks,
+            products: [],
+            isGenerated: editData.isGenerated,
+          });
+        }
+      });
   }
 
   SetEditInfoProforma(proformaId: any) {
@@ -233,7 +229,9 @@ export class ProformaCreateComponent implements OnInit {
         this.proformaForm
           .get('sellerDeliveryAddress')
           ?.patchValue(customData.city);
-        this.proformaForm.get('sellerCityCode')?.patchValue(customData.cityCode);
+        this.proformaForm
+          .get('sellerCityCode')
+          ?.patchValue(customData.cityCode);
       }
     });
   }
@@ -261,32 +259,8 @@ export class ProformaCreateComponent implements OnInit {
     this.products.removeAt(lessonIndex);
     this.SummaryCalculation();
   }
-
-  // SaveProforma() {
-  //   if (this.proformaForm.valid) {
-  //     console.log(this.proformaForm.getRawValue());
-
-  //     this.serviceProforma
-  //       .SaveProforma(this.proformaForm.getRawValue())
-  //       .subscribe((res) => {
-  //         if (this.isEdit) {
-  //           this.toastr.success('Created Edited', 'Proforma No');
-  //         } else {
-  //           this.toastr.success('Created Successfully', 'Proforma No');
-  //         }
-  //         this.router.navigate(['/proforma-list']);
-  //       });
-  //   } else {
-  //     this.toastr.warning(
-  //       'Please enter values in all mandatory field',
-  //       'Validation'
-  //     );
-  //   }
-  //   // console.log(this.proformaForm.value);
-  // }
   SaveProforma() {
     if (this.proformaForm.valid) {
-      console.log(this.proformaForm.getRawValue());
       if (this.isEdit) {
         this.serviceProforma
           .EditProforma(this.proformaForm.getRawValue())
@@ -328,10 +302,18 @@ export class ProformaCreateComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.proformaForm.get('customerDeliveryAddress')?.patchValue(customData.customerAddress);
-        this.proformaForm.get('customerCityCode')?.patchValue(customData.customerCity);
-        this.proformaForm.get('customerName')?.patchValue(customData.customerName);
-        this.proformaForm.get('customerNip')?.patchValue(customData.customerNip);
+        this.proformaForm
+          .get('customerDeliveryAddress')
+          ?.patchValue(customData.customerAddress);
+        this.proformaForm
+          .get('customerCityCode')
+          ?.patchValue(customData.customerCity);
+        this.proformaForm
+          .get('customerName')
+          ?.patchValue(customData.customerName);
+        this.proformaForm
+          .get('customerNip')
+          ?.patchValue(customData.customerNip);
         this.customerFullName =
           customData.customerName +
           '<br>' +
@@ -351,14 +333,10 @@ export class ProformaCreateComponent implements OnInit {
   ProductChange(index: any) {
     this.proformaDetail = this.proformaForm.controls['products'] as FormArray;
     this.proformaProduct = this.proformaDetail.at(index) as FormGroup;
-    console.log(this.proformaProduct.value);
     let productCode = this.proformaProduct.get('productName')?.value;
-    console.log(productCode);
-
     this.service.GetProductsByName(productCode).subscribe((res) => {
       let prodData: any;
       prodData = res;
-      console.log(prodData);
       if (prodData != null) {
         this.proformaProduct.get('productName')?.patchValue(prodData.name);
         this.proformaProduct.get('salesPrice')?.patchValue(prodData.price);
@@ -375,7 +353,7 @@ export class ProformaCreateComponent implements OnInit {
     let qty = this.proformaProduct.get('qty')?.value;
     let price = this.proformaProduct.get('salesPrice')?.value;
     let vat = this.proformaProduct.get('vat')?.value;
-    let totalBrutto = qty * price * (1 + vat / 100);;
+    let totalBrutto = qty * price * (1 + vat / 100);
     let totalNetto = qty * price;
     this.proformaProduct.get('bruttoPrice')?.patchValue(totalBrutto);
     this.proformaProduct.get('nettoPrice')?.patchValue(totalNetto);

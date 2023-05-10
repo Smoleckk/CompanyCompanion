@@ -44,15 +44,12 @@ export class CreateInvoiceComponent implements OnInit {
       this.pageTitle = 'Edit Invoice';
       this.isEdit = true;
       this.SetEditInfo(this.editInvoiceId);
-    }else{
-    this.addProduct();
-
+    } else {
+      this.addProduct();
     }
     this.invoiceFromProformaId =
       this.activeRoute.snapshot.paramMap.get('proformaId');
     if (this.invoiceFromProformaId != null) {
-      console.log(this.invoiceFromProformaId);
-
       this.pageTitle = 'Invoice from proforma';
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId);
@@ -80,9 +77,9 @@ export class CreateInvoiceComponent implements OnInit {
 
   issuedStatus = [
     { name: 'Issued', value: true },
-    { name: 'Not issued', value: false }
+    { name: 'Not issued', value: false },
   ];
-  
+
   paymentStatus: string[] = ['Paid', 'Unpaid'];
   paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
   pageTitle = 'New invoice';
@@ -100,10 +97,10 @@ export class CreateInvoiceComponent implements OnInit {
     invoiceId: this.builder.control(0),
     invoiceNo: this.builder.control({ value: '', disabled: true }),
     placeOfIssue: this.builder.control(''),
-    dateIssued: this.builder.control(
-      (new Date().toISOString())
+    dateIssued: this.builder.control(new Date().toISOString()),
+    dueDate: this.builder.control(
+      new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()
     ),
-    dueDate: this.builder.control(new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()),
     invoiceDate: this.builder.control(new Date().toISOString()),
     customerName: this.builder.control({ value: '', disabled: true }),
     customerNip: this.builder.control({ value: '', disabled: true }),
@@ -133,9 +130,6 @@ export class CreateInvoiceComponent implements OnInit {
     this.service.GetInvByCode(invoiceIdCode).subscribe((res) => {
       let editData: any;
       editData = res;
-      console.log(invoiceIdCode);
-      console.log(editData);
-
       editData.products.forEach((product: any) => {
         this.products.push(
           this.builder.group({
@@ -263,7 +257,6 @@ export class CreateInvoiceComponent implements OnInit {
 
   SaveInvoice() {
     if (this.invoiceForm.valid) {
-      console.log(this.invoiceForm.getRawValue());
       if (this.invoiceFromProformaId != null) {
         this.service
           .SaveInvoice(this.invoiceForm.getRawValue())
@@ -313,18 +306,24 @@ export class CreateInvoiceComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm.get('customerDeliveryAddress')?.patchValue(customData.customerAddress);
-        this.invoiceForm.get('customerCityCode')?.patchValue(customData.customerCity);
-        this.invoiceForm.get('customerName')?.patchValue(customData.customerName);
+        this.invoiceForm
+          .get('customerDeliveryAddress')
+          ?.patchValue(customData.customerAddress);
+        this.invoiceForm
+          .get('customerCityCode')
+          ?.patchValue(customData.customerCity);
+        this.invoiceForm
+          .get('customerName')
+          ?.patchValue(customData.customerName);
         this.invoiceForm.get('customerNip')?.patchValue(customData.customerNip);
         this.customerFullName =
-        customData.customerName +
-        '<br>' +
-        customData.customerAddress +
-        '<br>' +
-        customData.customerCity +
-        '<br> NIP: ' +
-        customData.customerNip;
+          customData.customerName +
+          '<br>' +
+          customData.customerAddress +
+          '<br>' +
+          customData.customerCity +
+          '<br> NIP: ' +
+          customData.customerNip;
       }
     });
   }
@@ -336,14 +335,11 @@ export class CreateInvoiceComponent implements OnInit {
   ProductChange(index: any) {
     this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
-    console.log(this.invoiceProduct.value);
     let productCode = this.invoiceProduct.get('productName')?.value;
-    console.log(productCode);
 
     this.service.GetProductsByName(productCode).subscribe((res) => {
       let prodData: any;
       prodData = res;
-      console.log(prodData);
       if (prodData != null) {
         this.invoiceProduct.get('productName')?.patchValue(prodData.name);
         this.invoiceProduct.get('salesPrice')?.patchValue(prodData.price);
@@ -360,7 +356,7 @@ export class CreateInvoiceComponent implements OnInit {
     let qty = this.invoiceProduct.get('qty')?.value;
     let price = this.invoiceProduct.get('salesPrice')?.value;
     let vat = this.invoiceProduct.get('vat')?.value;
-    let totalBrutto = qty * price * (1 + vat / 100);;
+    let totalBrutto = qty * price * (1 + vat / 100);
     let totalNetto = qty * price;
     this.invoiceProduct.get('bruttoPrice')?.patchValue(totalBrutto);
     this.invoiceProduct.get('nettoPrice')?.patchValue(totalNetto);
@@ -379,7 +375,7 @@ export class CreateInvoiceComponent implements OnInit {
     });
 
     this.invoiceForm.get('total')?.patchValue(sumTotalBrutto);
-    this.invoiceForm.get('tax')?.patchValue( sumTotalBrutto-sumTotalNetto);
+    this.invoiceForm.get('tax')?.patchValue(sumTotalBrutto - sumTotalNetto);
     this.invoiceForm.get('netTotal')?.patchValue(sumTotalNetto);
   }
   makePdf() {

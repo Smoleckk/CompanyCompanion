@@ -38,16 +38,11 @@ export class ProductListComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.onResize();
     });
-
   }
 
   onResize() {
     if (window.innerWidth <= 850) {
-      this.displayedColumns = [
-        'name',
-        'price',
-        'action',
-      ];
+      this.displayedColumns = ['name', 'price', 'action'];
     } else {
       this.displayedColumns = [
         'name',
@@ -65,8 +60,6 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(): void {
     this.service.GetProducts().subscribe((data: any) => {
-      console.log(data);
-      
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

@@ -29,7 +29,7 @@ export class AuthService {
       const _atodata = atob(_extractedtoken);
       const _finaldata = JSON.parse(_atodata);
       const role = _finaldata[Object.keys(_finaldata)[1]];
-      // console.log(_finaldata[Object.keys(_finaldata)[1]]);
+      // //console.log(_finaldata[Object.keys(_finaldata)[1]]);
       if (role === 'Admin') {
         return true;
       }

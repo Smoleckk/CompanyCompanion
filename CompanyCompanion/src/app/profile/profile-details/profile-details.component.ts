@@ -12,10 +12,10 @@ export class ProfileDetailsComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private profileService: ProfileService,
-    private toastrService: ToastrService,
+    private toastrService: ToastrService
   ) {}
   ngOnInit(): void {
-      this.SetEditInfo();
+    this.SetEditInfo();
   }
 
   pageTitle = 'Profile';
@@ -45,18 +45,18 @@ export class ProfileDetailsComponent implements OnInit {
     });
   }
 
-  updateTemplateFirst(){
+  updateTemplateFirst() {
     if (confirm('Do you want to change your template?')) {
-      this.profileService.updateProfile("first").subscribe((res) => {
+      this.profileService.updateProfile('first').subscribe((res) => {
         this.toastrService.success('Successfully updated template');
-    })
+      });
     }
   }
-  updateTemplateSecond(){
+  updateTemplateSecond() {
     if (confirm('Do you want to change your template?')) {
-      this.profileService.updateProfile("second").subscribe((res) => {
+      this.profileService.updateProfile('second').subscribe((res) => {
         this.toastrService.success('Successfully updated template');
-    })
+      });
     }
   }
 }

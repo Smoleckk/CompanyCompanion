@@ -3,9 +3,9 @@
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
         <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p" >Home</p>
+        <p class="breadcrumb-p">Home</p>
       </div>
-      <p class="breadcrumb-p"> > Proforma List</p>
+      <p class="breadcrumb-p">> Proforma List</p>
     </mat-card-actions>
     <mat-card-actions>
       <div [routerLink]="['/create-proforma']" class="middle">
@@ -18,7 +18,7 @@
     <mat-card>
       <div class="mat-card-header-filter">
         <h2>Proformas</h2>
-        <mat-form-field appearance="outline"  >
+        <mat-form-field appearance="outline">
           <mat-label>Search</mat-label>
           <input
             matInput
@@ -102,13 +102,13 @@
                 <mat-icon>delete</mat-icon>
               </a>
               <a
-              mat-icon-button
-              *ngIf="element.isGenerated"
-              (click)="GenerateInvoiceFormProforma(element.proformaId)"
-              color="primary"
-            >
-              <mat-icon>bookmarks</mat-icon>
-            </a>
+                mat-icon-button
+                *ngIf="element.isGenerated"
+                (click)="GenerateInvoiceFormProforma(element.proformaId)"
+                color="primary"
+              >
+                <mat-icon>bookmarks</mat-icon>
+              </a>
             </td>
           </ng-container>
 

@@ -51,7 +51,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { InvoiceDefaultComponent } from './invoice/invoice-default/invoice-default.component';
 import { InvoicePrintSecondPopupComponent } from './invoice/invoice-print-second-popup/invoice-print-second-popup.component';
-import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component'; 
+import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
 import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
@@ -121,7 +121,7 @@ import { CookieService } from 'ngx-cookie-service';
       multi: true,
     },
     MatDatepickerModule,
-    CookieService
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

@@ -40,8 +40,6 @@ export class CustomerListComponent {
 
   loadCustomers(): void {
     this.service.getCustomers().subscribe((data) => {
-      console.log(data);
-
       this.customerData = data;
       this.dataSource = new MatTableDataSource(this.customerData);
       this.dataSource.paginator = this.paginator;
@@ -53,7 +51,6 @@ export class CustomerListComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
   deleteCustomer(code: any): void {
     this.service.deleteCustomerByCode(code).subscribe(() => {
       this.toastr.success('Deleted successfully');
@@ -63,7 +60,6 @@ export class CustomerListComponent {
   detailsCustomer(code: any): void {
     // this.router.navigate(['customer/${code}']);
     this.router.navigateByUrl('/customer/' + code);
-
   }
 
   createCustomer(): void {

@@ -16,7 +16,7 @@ import { ProformaPrintPopupComponent } from 'src/app/proforma/proforma-print-pop
 @Component({
   selector: 'app-invoice-review',
   templateUrl: './invoice-review.component.html',
-  styleUrls: ['./invoice-review.component.scss']
+  styleUrls: ['./invoice-review.component.scss'],
 })
 export class InvoiceReviewComponent implements OnInit {
   constructor(
@@ -26,11 +26,17 @@ export class InvoiceReviewComponent implements OnInit {
     private dialog: MatDialog,
     private builder: FormBuilder,
     private profileService: ProfileService,
-    private proformaService: ProformaService,
+    private proformaService: ProformaService
+  ) {}
 
-  ) { }
-
-  displayedColumns: string[] = ['Invoice No', 'Customer', 'DueDate', 'DateIssued', 'Total', 'Action'];
+  displayedColumns: string[] = [
+    'Invoice No',
+    'Customer',
+    'DueDate',
+    'DateIssued',
+    'Total',
+    'Action',
+  ];
 
   dataSource = new MatTableDataSource<any>();
   dataSourceDelay = new MatTableDataSource<any>();
@@ -49,7 +55,6 @@ export class InvoiceReviewComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.onResize();
     });
-
   }
   profileForm = this.builder.group({
     username: ['', Validators.required],
@@ -83,7 +88,14 @@ export class InvoiceReviewComponent implements OnInit {
     if (window.innerWidth <= 850) {
       this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
     } else {
-      this.displayedColumns = ['Invoice No', 'Customer', 'DueDate', 'DateIssued', 'Total', 'Action'];
+      this.displayedColumns = [
+        'Invoice No',
+        'Customer',
+        'DueDate',
+        'DateIssued',
+        'Total',
+        'Action',
+      ];
     }
   }
 
@@ -111,13 +123,11 @@ export class InvoiceReviewComponent implements OnInit {
       for (var product of res) {
         data.push(product);
       }
-      //  console.log(data)
       this.dataSource.data = data;
       this.isDataSource = data;
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
     this.invoiceService.GetAllInvoiceDelay().subscribe((invoices: any) => {
       this.isDataSourceDelay = invoices;
@@ -168,7 +178,7 @@ export class InvoiceReviewComponent implements OnInit {
   }
 
   downloadInvoice(code: any): void {
-    if (this.profileForm.value.template == "first") {
+    if (this.profileForm.value.template == 'first') {
       const popup = this.dialog.open(InvoicePrintPopupComponent, {
         enterAnimationDuration: '1000ms',
         exitAnimationDuration: '500ms',
@@ -188,8 +198,4 @@ export class InvoiceReviewComponent implements OnInit {
       });
     }
   }
-
-
-
-
 }

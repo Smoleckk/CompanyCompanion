@@ -12,7 +12,7 @@ export class ProfileService {
   getProfile() {
     return this.http.get(this.apiUrlPrfile);
   }
-  updateProfile(template:string) {
-    return this.http.put(this.apiUrlPrfile + template,template );
+  updateProfile(template: string) {
+    return this.http.put(this.apiUrlPrfile + template, template);
   }
 }
