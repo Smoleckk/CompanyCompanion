@@ -151,7 +151,7 @@ export class CreateInvoiceComponent implements OnInit {
         );
       });
       if (editData != null) {
-        this.invoiceForm.setValue({
+        this.invoiceForm.patchValue({
           invoiceId: editData.invoiceId,
           invoiceNo: editData.invoiceNo,
           placeOfIssue: editData.placeOfIssue,
@@ -189,7 +189,7 @@ export class CreateInvoiceComponent implements OnInit {
         let editData: any;
         editData = res;
         if (editData != null) {
-          this.invoiceForm.setValue({
+          this.invoiceForm.patchValue({
             invoiceId: editData.proformaId,
             invoiceNo: editData.proformaNo,
             placeOfIssue: editData.placeOfIssue,
@@ -227,12 +227,12 @@ export class CreateInvoiceComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm.get('sellerIdName')?.setValue(customData.name);
-        this.invoiceForm.get('sellerNip')?.setValue(customData.nip);
+        this.invoiceForm.get('sellerIdName')?.patchValue(customData.name);
+        this.invoiceForm.get('sellerNip')?.patchValue(customData.nip);
         this.invoiceForm
           .get('sellerDeliveryAddress')
-          ?.setValue(customData.city);
-        this.invoiceForm.get('sellerCityCode')?.setValue(customData.cityCode);
+          ?.patchValue(customData.city);
+        this.invoiceForm.get('sellerCityCode')?.patchValue(customData.cityCode);
       }
     });
   }
@@ -313,10 +313,10 @@ export class CreateInvoiceComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.invoiceForm.get('customerDeliveryAddress')?.setValue(customData.customerAddress);
-        this.invoiceForm.get('customerCityCode')?.setValue(customData.customerCity);
-        this.invoiceForm.get('customerName')?.setValue(customData.customerName);
-        this.invoiceForm.get('customerNip')?.setValue(customData.customerNip);
+        this.invoiceForm.get('customerDeliveryAddress')?.patchValue(customData.customerAddress);
+        this.invoiceForm.get('customerCityCode')?.patchValue(customData.customerCity);
+        this.invoiceForm.get('customerName')?.patchValue(customData.customerName);
+        this.invoiceForm.get('customerNip')?.patchValue(customData.customerNip);
         this.customerFullName =
         customData.customerName +
         '<br>' +
@@ -345,10 +345,10 @@ export class CreateInvoiceComponent implements OnInit {
       prodData = res;
       console.log(prodData);
       if (prodData != null) {
-        this.invoiceProduct.get('productName')?.setValue(prodData.name);
-        this.invoiceProduct.get('salesPrice')?.setValue(prodData.price);
-        this.invoiceProduct.get('vat')?.setValue(prodData.vat);
-        this.invoiceProduct.get('unit')?.setValue(prodData.unit);
+        this.invoiceProduct.get('productName')?.patchValue(prodData.name);
+        this.invoiceProduct.get('salesPrice')?.patchValue(prodData.price);
+        this.invoiceProduct.get('vat')?.patchValue(prodData.vat);
+        this.invoiceProduct.get('unit')?.patchValue(prodData.unit);
         this.ItemCalculation(index);
       }
     });
@@ -362,8 +362,8 @@ export class CreateInvoiceComponent implements OnInit {
     let vat = this.invoiceProduct.get('vat')?.value;
     let totalBrutto = qty * price * (1 + vat / 100);;
     let totalNetto = qty * price;
-    this.invoiceProduct.get('bruttoPrice')?.setValue(totalBrutto);
-    this.invoiceProduct.get('nettoPrice')?.setValue(totalNetto);
+    this.invoiceProduct.get('bruttoPrice')?.patchValue(totalBrutto);
+    this.invoiceProduct.get('nettoPrice')?.patchValue(totalNetto);
 
     this.SummaryCalculation();
   }
@@ -378,9 +378,9 @@ export class CreateInvoiceComponent implements OnInit {
       sumTotalNetto = sumTotalNetto + x.nettoPrice;
     });
 
-    this.invoiceForm.get('total')?.setValue(sumTotalBrutto);
-    this.invoiceForm.get('tax')?.setValue( sumTotalBrutto-sumTotalNetto);
-    this.invoiceForm.get('netTotal')?.setValue(sumTotalNetto);
+    this.invoiceForm.get('total')?.patchValue(sumTotalBrutto);
+    this.invoiceForm.get('tax')?.patchValue( sumTotalBrutto-sumTotalNetto);
+    this.invoiceForm.get('netTotal')?.patchValue(sumTotalNetto);
   }
   makePdf() {
     let pdf = new jsPDF('p', 'pt', 'a4');
