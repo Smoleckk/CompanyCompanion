@@ -16,7 +16,7 @@
   <mat-card>
     <mat-card-content style="padding: 10px 30px">
       <form [formGroup]="proformaForm" (ngSubmit)="SaveProforma()">
-        <mat-grid-list [cols]="breakpoint4" (window:resize)="onResize($event)" rowHeight="200px">
+        <mat-grid-list [cols]="breakpoint4" (window:resize)="onResize($event)" rowHeight="300px">
           <mat-grid-tile [colspan]="2">
             <div class="middlerows2">
               <mat-form-field appearance="outline" class="full-width">
@@ -121,7 +121,7 @@
           <ng-container formArrayName="products">
             <ng-container *ngFor="let detailForm of products.controls; let i = index">
               <div [formGroupName]="i">
-                <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="50px"
+                <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="90px"
                   style="text-align: center; align-items: center">
                   <mat-grid-tile [colspan]="colspan3">
                     <mat-form-field appearance="outline" style="width: 100%; margin-top: 20px">
@@ -188,7 +188,7 @@
         </a>
         <!-- </mat-card> -->
 
-        <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="70px">
+        <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="90px">
           <mat-grid-tile style="width: 0; height: 0"> </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="full-width">
@@ -207,7 +207,7 @@
         </mat-grid-list>
 
         <!-- Details -->
-        <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="70px">
+        <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="90px">
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Account Number</mat-label>
@@ -222,7 +222,7 @@
           </mat-grid-tile>
         </mat-grid-list>
         <!-- //////////// -->
-        <mat-grid-list [cols]="1" (window:resize)="onResize($event)" rowHeight="70px">
+        <mat-grid-list [cols]="1" (window:resize)="onResize($event)" rowHeight="90px">
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Remarks</mat-label>

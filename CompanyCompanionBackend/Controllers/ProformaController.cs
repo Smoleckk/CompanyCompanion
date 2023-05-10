@@ -69,13 +69,13 @@ namespace CompanyCompanionBackend.Controllers
                 {
                     var n = new ProformaCount { DateIssued = proformaAddDto.DateIssued.Substring(0, 7), ProformaNumber = 1 };
                     company.ProformaCounts.Add(n);
-                    proformaAddDto.ProformaNo = n.ProformaNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
+                    proformaAddDto.ProformaNo = n.ProformaNumber.ToString() + "/PROF/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
 
                 }
             }
             else
             {
-                proformaAddDto.ProformaNo = "Temp/" + proformaAddDto.DateIssued.Substring(5, 2) + "/" + proformaAddDto.DateIssued.Substring(0, 4);
+                proformaAddDto.ProformaNo = "Temp/PROF/" + proformaAddDto.DateIssued.Substring(5, 2) + "/" + proformaAddDto.DateIssued.Substring(0, 4);
             }
 
             Customer customer = await _context.Customers.Include(i => i.Proformas).FirstOrDefaultAsync(c => c.CustomerName == proformaAddDto.CustomerName);

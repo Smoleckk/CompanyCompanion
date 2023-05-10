@@ -152,7 +152,7 @@ export class ProformaCreateComponent implements OnInit {
         );
       });
       if (editData != null) {
-        this.proformaForm.setValue({
+        this.proformaForm.patchValue({
           proformaId: editData.proformaId,
           proformaNo: editData.proformaNo,
           placeOfIssue: editData.placeOfIssue,
@@ -190,7 +190,7 @@ export class ProformaCreateComponent implements OnInit {
         let editData: any;
         editData = res;
         if (editData != null) {
-          this.proformaForm.setValue({
+          this.proformaForm.patchValue({
             proformaId: editData.proformaId,
             proformaNo: editData.proformaNo,
             placeOfIssue: editData.placeOfIssue,
@@ -228,12 +228,12 @@ export class ProformaCreateComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.proformaForm.get('sellerIdName')?.setValue(customData.name);
-        this.proformaForm.get('sellerNip')?.setValue(customData.nip);
+        this.proformaForm.get('sellerIdName')?.patchValue(customData.name);
+        this.proformaForm.get('sellerNip')?.patchValue(customData.nip);
         this.proformaForm
           .get('sellerDeliveryAddress')
-          ?.setValue(customData.city);
-        this.proformaForm.get('sellerCityCode')?.setValue(customData.cityCode);
+          ?.patchValue(customData.city);
+        this.proformaForm.get('sellerCityCode')?.patchValue(customData.cityCode);
       }
     });
   }
@@ -328,10 +328,10 @@ export class ProformaCreateComponent implements OnInit {
       let customData: any;
       customData = res;
       if (customData != null) {
-        this.proformaForm.get('customerDeliveryAddress')?.setValue(customData.customerAddress);
-        this.proformaForm.get('customerCityCode')?.setValue(customData.customerCity);
-        this.proformaForm.get('customerName')?.setValue(customData.customerName);
-        this.proformaForm.get('customerNip')?.setValue(customData.customerNip);
+        this.proformaForm.get('customerDeliveryAddress')?.patchValue(customData.customerAddress);
+        this.proformaForm.get('customerCityCode')?.patchValue(customData.customerCity);
+        this.proformaForm.get('customerName')?.patchValue(customData.customerName);
+        this.proformaForm.get('customerNip')?.patchValue(customData.customerNip);
         this.customerFullName =
           customData.customerName +
           '<br>' +
@@ -360,10 +360,10 @@ export class ProformaCreateComponent implements OnInit {
       prodData = res;
       console.log(prodData);
       if (prodData != null) {
-        this.proformaProduct.get('productName')?.setValue(prodData.name);
-        this.proformaProduct.get('salesPrice')?.setValue(prodData.price);
-        this.proformaProduct.get('vat')?.setValue(prodData.vat);
-        this.proformaProduct.get('unit')?.setValue(prodData.unit);
+        this.proformaProduct.get('productName')?.patchValue(prodData.name);
+        this.proformaProduct.get('salesPrice')?.patchValue(prodData.price);
+        this.proformaProduct.get('vat')?.patchValue(prodData.vat);
+        this.proformaProduct.get('unit')?.patchValue(prodData.unit);
         this.ItemCalculation(index);
       }
     });
@@ -377,8 +377,8 @@ export class ProformaCreateComponent implements OnInit {
     let vat = this.proformaProduct.get('vat')?.value;
     let totalBrutto = qty * price * (1 + vat / 100);;
     let totalNetto = qty * price;
-    this.proformaProduct.get('bruttoPrice')?.setValue(totalBrutto);
-    this.proformaProduct.get('nettoPrice')?.setValue(totalNetto);
+    this.proformaProduct.get('bruttoPrice')?.patchValue(totalBrutto);
+    this.proformaProduct.get('nettoPrice')?.patchValue(totalNetto);
 
     this.SummaryCalculation();
   }
@@ -393,9 +393,9 @@ export class ProformaCreateComponent implements OnInit {
       sumTotalNetto = sumTotalNetto + x.nettoPrice;
     });
 
-    this.proformaForm.get('total')?.setValue(sumTotalBrutto);
-    this.proformaForm.get('tax')?.setValue(sumTotalBrutto - sumTotalNetto);
-    this.proformaForm.get('netTotal')?.setValue(sumTotalNetto);
+    this.proformaForm.get('total')?.patchValue(sumTotalBrutto);
+    this.proformaForm.get('tax')?.patchValue(sumTotalBrutto - sumTotalNetto);
+    this.proformaForm.get('netTotal')?.patchValue(sumTotalNetto);
   }
   makePdf() {
     let pdf = new jsPDF('p', 'pt', 'a4');

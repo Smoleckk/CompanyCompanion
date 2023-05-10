@@ -22,8 +22,8 @@
       <div class="">
         <table mat-table matSort [dataSource]="dataSource">
           <ng-container matColumnDef="Invoice No">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef>Invoice number</th>
-            <td mat-cell *matCellDef="let element">{{ element.invoiceNo }}</td>
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Number</th>
+            <td mat-cell *matCellDef="let element">{{ element.invoiceNo }} {{element.proformaNo}}</td>
           </ng-container>
           <ng-container matColumnDef="Customer">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>Customer</th>
@@ -45,22 +45,25 @@
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a *ngIf="element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
+              <a *ngIf="element.invoiceId  && element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
                 color="primary">
                 <mat-icon>print</mat-icon>
               </a>
-              <!-- <a
-              *ngIf="element.isGenerated"
-              mat-icon-button
-              (click)="downloadInvoiceSecond(element.invoiceId)"
-              color="accent"
-            >
-              <mat-icon>print</mat-icon>
-            </a> -->
-              <a mat-icon-button *ngIf="!element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
+              <a *ngIf="element.proformaId  && element.isGenerated" mat-icon-button (click)="ProformaDownload(element.proformaId)"
+                color="primary">
+                <mat-icon>print</mat-icon>
+              </a>
+              <a mat-icon-button *ngIf="element.invoiceId && !element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
                 <mat-icon>edit</mat-icon>
               </a>
-              <a mat-icon-button (click)="removeInvoice(element.invoiceId)" color="warn">
+              <a mat-icon-button *ngIf="element.proformaId && !element.isGenerated" (click)="ProformaEdit(element.proformaId)" color="primary">
+                <mat-icon>edit</mat-icon>
+              </a>
+              
+              <a mat-icon-button *ngIf="element.invoiceId"  (click)="removeInvoice(element.invoiceId)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </a>
+              <a mat-icon-button  *ngIf="element.proformaId"  (click)="ProformaRemove(element.proformaId)" color="warn">
                 <mat-icon>delete</mat-icon>
               </a>
             </td>
@@ -93,7 +96,7 @@
         <table mat-table matSort [dataSource]="dataSourceDelay">
           <ng-container matColumnDef="Invoice No">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>
-              Invoice number
+              Number
             </th>
             <td mat-cell *matCellDef="let element">
               {{ element.invoiceNo }}
@@ -131,14 +134,25 @@
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a *ngIf="element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
+              <a *ngIf="element.invoiceId  && element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
                 color="primary">
                 <mat-icon>print</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="!element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
+              <a *ngIf="element.proformaId  && element.isGenerated" mat-icon-button (click)="ProformaDownload(element.proformaId)"
+                color="primary">
+                <mat-icon>print</mat-icon>
+              </a>
+              <a mat-icon-button *ngIf="element.invoiceId && !element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
                 <mat-icon>edit</mat-icon>
               </a>
-              <a mat-icon-button (click)="removeInvoice(element.invoiceId)" color="warn">
+              <a mat-icon-button *ngIf="element.proformaId && !element.isGenerated" (click)="ProformaEdit(element.proformaId)" color="primary">
+                <mat-icon>edit</mat-icon>
+              </a>
+              
+              <a mat-icon-button *ngIf="element.invoiceId"  (click)="removeInvoice(element.invoiceId)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </a>
+              <a mat-icon-button  *ngIf="element.proformaId"  (click)="ProformaRemove(element.proformaId)" color="warn">
                 <mat-icon>delete</mat-icon>
               </a>
             </td>
@@ -172,7 +186,7 @@
         <table mat-table matSort [dataSource]="dataSourceDraft">
           <ng-container matColumnDef="Invoice No">
             <th mat-header-cell mat-sort-header *matHeaderCellDef>
-              Invoice number
+              Number
             </th>
             <td mat-cell *matCellDef="let element">
               {{ element.invoiceNo }}
@@ -210,14 +224,25 @@
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a *ngIf="element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
+              <a *ngIf="element.invoiceId  && element.isGenerated" mat-icon-button (click)="downloadInvoice(element.invoiceId)"
                 color="primary">
                 <mat-icon>print</mat-icon>
               </a>
-              <a mat-icon-button *ngIf="!element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
+              <a *ngIf="element.proformaId  && element.isGenerated" mat-icon-button (click)="ProformaDownload(element.proformaId)"
+                color="primary">
+                <mat-icon>print</mat-icon>
+              </a>
+              <a mat-icon-button *ngIf="element.invoiceId && !element.isGenerated" (click)="editInvoice(element.invoiceId)" color="primary">
                 <mat-icon>edit</mat-icon>
               </a>
-              <a mat-icon-button (click)="removeInvoice(element.invoiceId)" color="warn">
+              <a mat-icon-button *ngIf="element.proformaId && !element.isGenerated" (click)="ProformaEdit(element.proformaId)" color="primary">
+                <mat-icon>edit</mat-icon>
+              </a>
+              
+              <a mat-icon-button *ngIf="element.invoiceId"  (click)="removeInvoice(element.invoiceId)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </a>
+              <a mat-icon-button  *ngIf="element.proformaId"  (click)="ProformaRemove(element.proformaId)" color="warn">
                 <mat-icon>delete</mat-icon>
               </a>
             </td>

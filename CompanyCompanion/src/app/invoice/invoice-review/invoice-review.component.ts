@@ -10,6 +10,8 @@ import { InvoiceService } from '../../service/invoice.service';
 import { InvoicePrintSecondPopupComponent } from '../invoice-print-second-popup/invoice-print-second-popup.component';
 import { ProfileService } from 'src/app/service/profile.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ProformaService } from 'src/app/service/proforma.service';
+import { ProformaPrintPopupComponent } from 'src/app/proforma/proforma-print-popup/proforma-print-popup.component';
 
 @Component({
   selector: 'app-invoice-review',
@@ -23,7 +25,9 @@ export class InvoiceReviewComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private builder: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private proformaService: ProformaService,
+
   ) { }
 
   displayedColumns: string[] = ['Invoice No', 'Customer', 'DueDate', 'DateIssued', 'Total', 'Action'];
@@ -102,6 +106,19 @@ export class InvoiceReviewComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+    this.proformaService.GetAllProforma().subscribe((res: any) => {
+      const data = this.dataSource.data;
+      for (var product of res) {
+        data.push(product);
+      }
+      //  console.log(data)
+      this.dataSource.data = data;
+      this.isDataSource = data;
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+    });
     this.invoiceService.GetAllInvoiceDelay().subscribe((invoices: any) => {
       this.isDataSourceDelay = invoices;
       this.dataSourceDelay.data = invoices;
@@ -127,6 +144,27 @@ export class InvoiceReviewComponent implements OnInit {
 
   editInvoice(invoiceId: any): void {
     this.router.navigateByUrl(`/edit-invoice/${invoiceId}`);
+  }
+  ProformaRemove(proformaId: any) {
+    if (confirm('Do you want to remove this Proforma :' + proformaId)) {
+      this.proformaService.RemoveProforma(proformaId).subscribe((res) => {
+        this.toastrService.success('Deleted Successfully', 'Remove Proforma');
+        this.loadInvoices();
+      });
+    }
+  }
+  ProformaEdit(proformaId: any) {
+    this.router.navigateByUrl('/edit-proforma/' + proformaId);
+  }
+  ProformaDownload(code: any) {
+    const popup = this.dialog.open(ProformaPrintPopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '50%',
+      data: {
+        code: code,
+      },
+    });
   }
 
   downloadInvoice(code: any): void {
