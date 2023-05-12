@@ -32,6 +32,7 @@ export class CreateInvoiceComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private profileService: ProfileService,
     private dialog: MatDialog
+    
   ) {}
   ngOnInit(): void {
     this.getCustomers();
@@ -90,8 +91,10 @@ export class CreateInvoiceComponent implements OnInit {
   editInvoiceId: any;
   invoiceFromProformaId: any;
   isEdit = false;
+  invoiceNoIsEdit:any;
   isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
+  customerFullName: any = '';
 
   invoiceForm = this.builder.group({
     invoiceId: this.builder.control(0),
@@ -130,6 +133,17 @@ export class CreateInvoiceComponent implements OnInit {
     this.service.GetInvByCode(invoiceIdCode).subscribe((res) => {
       let editData: any;
       editData = res;
+      this.invoiceNoIsEdit = editData.invoiceNo
+
+      this.customerFullName =
+      editData.customerName +
+      '<br>' +
+      editData.customerDeliveryAddress +
+      '<br>' +
+      editData.customerCityCode +
+      '<br> NIP: ' +
+      editData.customerNip;
+
       editData.products.forEach((product: any) => {
         this.products.push(
           this.builder.group({
@@ -183,6 +197,7 @@ export class CreateInvoiceComponent implements OnInit {
         let editData: any;
         editData = res;
         if (editData != null) {
+          
           this.invoiceForm.patchValue({
             invoiceId: editData.proformaId,
             invoiceNo: editData.proformaNo,
@@ -298,7 +313,6 @@ export class CreateInvoiceComponent implements OnInit {
     });
   }
 
-  customerFullName: any = '';
 
   CustomerChange(event: any) {
     // let customerCode = this.invoiceForm.get('customerName')?.value;

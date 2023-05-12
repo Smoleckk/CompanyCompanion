@@ -16,6 +16,26 @@
   <mat-card>
     <mat-card-content style="padding: 10px 30px">
       <form [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
+        <!-- ///////////// -->
+
+        <div style="width: 100%">
+          <mat-form-field *ngIf="!editInvoiceId" appearance="outline">
+            <mat-select
+              formControlName="isGenerated"
+              placeholder="Czy chcesz wystawić fakture? Po wystawieniu zostaenie jej przypisany numer"
+            >
+              <mat-option *ngFor="let item of issuedStatus" [value]="item.value"
+                >{{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <h2 *ngIf="editInvoiceId" style="padding: 0; margin: 0">
+            Faktura: {{ invoiceNoIsEdit }}
+          </h2>
+        </div>
+
+        <!-- ////////////////// -->
         <mat-grid-list
           [cols]="breakpoint4"
           (window:resize)="onResize($event)"
@@ -23,23 +43,23 @@
         >
           <mat-grid-tile [colspan]="2">
             <div class="middlerows2">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-select
-                  formControlName="isGenerated"
-                  placeholder="Issued status"
-                >
-                  <mat-option
-                    *ngFor="let item of issuedStatus"
-                    [value]="item.value"
-                    >{{ item.name }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="full-width">
+              <mat-form-field  appearance="outline" class="full-width">
                 <mat-select
                   (selectionChange)="CustomerChange($event)"
-                  placeholder="Select Client"
+                  placeholder="Select or add new client"
                 >
+                  <mat-option >
+                    <a
+                      style="width: 200px"
+                      (click)="createCustomer()"
+                      mat-raised-button
+                      color="primary"
+                    >
+                      <mat-icon color="#fff">add</mat-icon>
+                      Add new client
+                    </a>
+                  </mat-option>
+                  <mat-option disabled="true"> Client list: </mat-option>
                   <mat-option
                     *ngFor="let item of getCustomer"
                     [value]="item.customerId"
@@ -54,10 +74,14 @@
                   display: flex;
                   justify-content: space-between;
                   margin-right: 10px;
+                  height: 160px;
                 "
               >
-                <!-- <h4 class="margin:0;padding:0" [innerHTML]="customerFullName"></h4> -->
-                <a
+                <h4
+                  class="margin:0;padding:0"
+                  [innerHTML]="customerFullName"
+                ></h4>
+                <!-- <a
                   style="width: 150px"
                   (click)="createCustomer()"
                   mat-raised-button
@@ -65,7 +89,7 @@
                 >
                   Add client
                   <mat-icon color="#fff">face</mat-icon>
-                </a>
+                </a> -->
               </div>
             </div>
           </mat-grid-tile>
