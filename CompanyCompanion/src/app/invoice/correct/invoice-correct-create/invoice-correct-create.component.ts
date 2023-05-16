@@ -131,7 +131,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
     this.service.GetInvByCode(invoiceIdCode).subscribe((res) => {
       let editData: any;
       console.log(res);
-      
+
       editData = res;
       this.invoiceNoIsEdit = editData.invoiceCorrectNo;
 
@@ -155,11 +155,11 @@ export class InvoiceCorrectCreateComponent implements OnInit {
             vat: [product.vat],
             bruttoPrice: [product.bruttoPrice],
             nettoPrice: [product.nettoPrice],
-            isActual:[product.isActual]
+            isActual: [product.isActual],
           })
         );
       });
-    this.SummaryCalculation();
+      this.SummaryCalculation();
 
       if (editData != null) {
         this.invoiceForm.patchValue({
@@ -194,8 +194,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
           isGenerated: editData.isGenerated,
         });
       }
-    this.ShowInvoiceNumber();
-
+      this.ShowInvoiceNumber();
     });
   }
 
@@ -230,7 +229,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
       vat: this.builder.control(0),
       bruttoPrice: this.builder.control({ value: 0, disabled: true }),
       nettoPrice: this.builder.control({ value: 0, disabled: true }),
-      isActual:false
+      isActual: false,
     });
     // let customerCode = this.invoiceForm.get("customerId")?.value;
     // if (customerCode != null && customerCode != '') {
@@ -248,8 +247,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
       vat: this.builder.control(0),
       bruttoPrice: this.builder.control({ value: 0, disabled: true }),
       nettoPrice: this.builder.control({ value: 0, disabled: true }),
-      isActual:true
-
+      isActual: true,
     });
     this.products.push(detailFormCorrect);
 
@@ -267,7 +265,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   SaveInvoice() {
     if (this.invoiceForm.valid) {
       console.log(this.invoiceForm.getRawValue());
-      
+
       if (this.isEdit) {
         this.service
           .EditInvoice(this.invoiceForm.getRawValue())
@@ -333,8 +331,32 @@ export class InvoiceCorrectCreateComponent implements OnInit {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }
+  calcBruttoCorrect(index: any) {
+    this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
+
+    let index1 = this.invoiceDetail.at(index - 1).get('bruttoPrice')?.value;
+    index1 = index1 !== null ? index1 : 0;
+
+    let index2 = this.invoiceDetail.at(index).get('bruttoPrice')?.value;
+    index2 = index2 !== null ? index2 : 0;
+
+    return index2 - index1;
+  }
+  calcNettoCorrect(index: any) {
+    this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
+
+    let index1 = this.invoiceDetail.at(index - 1).get('nettoPrice')?.value;
+    index1 = index1 !== null ? index1 : 0;
+
+    let index2 = this.invoiceDetail.at(index).get('nettoPrice')?.value;
+    index2 = index2 !== null ? index2 : 0;
+
+    return index2 - index1;
+  }
 
   ProductChange(index: any) {
+    console.log(index);
+
     this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
     let productCode = this.invoiceProduct.get('productName')?.value;
@@ -359,6 +381,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
     let price = this.invoiceProduct.get('salesPrice')?.value;
     let vat = this.invoiceProduct.get('vat')?.value;
     let totalBrutto = qty * price * (1 + vat / 100);
+    totalBrutto = Number(totalBrutto.toFixed(2));
     let totalNetto = qty * price;
     this.invoiceProduct.get('bruttoPrice')?.patchValue(totalBrutto);
     this.invoiceProduct.get('nettoPrice')?.patchValue(totalNetto);
@@ -370,36 +393,46 @@ export class InvoiceCorrectCreateComponent implements OnInit {
     let sumTotalBrutto = 0;
     let sumTotalNetto = 0;
     array.forEach((x: any) => {
-      if(!x.isActual){
-        sumTotalBrutto = sumTotalBrutto + x.bruttoPrice;
-
-      }
-    });
-    array.forEach((x: any) => {
-      if(!x.isActual){
-        sumTotalNetto = sumTotalNetto + x.nettoPrice;
-
-      }
-    });
-    this.invoiceForm.get('total')?.patchValue(sumTotalBrutto);
-    this.invoiceForm.get('tax')?.patchValue(sumTotalBrutto - sumTotalNetto);
-    this.invoiceForm.get('netTotal')?.patchValue(sumTotalNetto);
-
-    sumTotalBrutto=0;
-    sumTotalNetto=0;
-    array.forEach((x: any) => {
-      if(x.isActual){
+      if (!x.isActual) {
         sumTotalBrutto = sumTotalBrutto + x.bruttoPrice;
       }
     });
     array.forEach((x: any) => {
-      if(x.isActual){
+      if (!x.isActual) {
         sumTotalNetto = sumTotalNetto + x.nettoPrice;
       }
     });
-    this.invoiceForm.get('totalCorrect')?.patchValue(sumTotalBrutto);
-    this.invoiceForm.get('taxCorrect')?.patchValue(sumTotalBrutto - sumTotalNetto);
-    this.invoiceForm.get('netTotalCorrect')?.patchValue(sumTotalNetto);
+    this.invoiceForm
+      .get('total')
+      ?.patchValue(Number(sumTotalBrutto.toFixed(2)));
+    this.invoiceForm
+      .get('tax')
+      ?.patchValue(Number((sumTotalBrutto - sumTotalNetto).toFixed(2)));
+    this.invoiceForm
+      .get('netTotal')
+      ?.patchValue(Number(sumTotalNetto.toFixed(2)));
+
+    sumTotalBrutto = 0;
+    sumTotalNetto = 0;
+    array.forEach((x: any) => {
+      if (x.isActual) {
+        sumTotalBrutto = sumTotalBrutto + x.bruttoPrice;
+      }
+    });
+    array.forEach((x: any) => {
+      if (x.isActual) {
+        sumTotalNetto = sumTotalNetto + x.nettoPrice;
+      }
+    });
+    this.invoiceForm
+      .get('totalCorrect')
+      ?.patchValue(Number(sumTotalBrutto.toFixed(2)));
+    this.invoiceForm
+      .get('taxCorrect')
+      ?.patchValue(Number((sumTotalBrutto - sumTotalNetto).toFixed(2)));
+    this.invoiceForm
+      .get('netTotalCorrect')
+      ?.patchValue(Number(sumTotalNetto.toFixed(2)));
   }
 
   ///////////

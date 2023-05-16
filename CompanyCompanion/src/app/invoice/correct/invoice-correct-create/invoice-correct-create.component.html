@@ -30,7 +30,6 @@
             </mat-select>
           </mat-form-field>
 
-
           <h2 *ngIf="isGeneratedShow" style="padding: 0; margin: 0">
             Faktura: {{ invoiceNoIsEdit }}
           </h2>
@@ -239,8 +238,18 @@
               *ngFor="let detailForm of products.controls; let i = index"
             >
               <div [formGroupName]="i">
-                <h4 *ngIf="i%2===0" style="margin:0;padding:0;color:red">Przed korektą</h4>
-                <h4 *ngIf="i%2===1" style="margin:0;padding:0;color:green">Po korekcie</h4>
+                <h4
+                  *ngIf="i % 2 === 0"
+                  style="margin: 0; padding: 0; color: red"
+                >
+                  Przed korektą
+                </h4>
+                <h4
+                  *ngIf="i % 2 === 1"
+                  style="margin: 0; padding: 0; color: green"
+                >
+                  Po korekcie
+                </h4>
                 <mat-grid-list
                   [cols]="breakpoint9"
                   (window:resize)="onResize($event)"
@@ -361,6 +370,41 @@
                     delete_forever</mat-icon
                   >
                 </mat-grid-list>
+                <!-- /////////////////////////////// -->
+
+                <h4 *ngIf="i % 2 === 1" style="margin: 0; padding: 0">
+                  Korekta
+                </h4>
+                <mat-grid-list
+                  [cols]="breakpoint9"
+                  (window:resize)="onResize($event)"
+                  rowHeight="70px"
+                  style="text-align: center; align-items: center"
+                  *ngIf="i % 2 === 1"
+                >
+                  <mat-grid-tile [colspan]="colspan3"> </mat-grid-tile>
+                  <mat-grid-tile> </mat-grid-tile>
+                  <mat-grid-tile> </mat-grid-tile>
+                  <mat-grid-tile> </mat-grid-tile>
+                  <mat-grid-tile> </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                    >
+                      <input matInput value="{{ calcNettoCorrect(i) }}" disabled="true"/>
+                    </mat-form-field>
+                    <!-- <h1>{{ calcNettoCorrect(i) }}</h1> -->
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                    appearance="outline"
+                  >
+                    <input matInput value="{{ calcBruttoCorrect(i) }}" disabled="true"/>
+                  </mat-form-field>
+                    <!-- <h1>{{ calcBruttoCorrect(i) }}</h1> -->
+                  </mat-grid-tile>
+                </mat-grid-list>
+                <!-- /////////////////////////////// -->
               </div>
             </ng-container>
           </ng-container>
@@ -423,7 +467,11 @@
             </mat-form-field>
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Summary Tax Correct</mat-label>
-              <input matInput placeholder="Summary TaxCorrect" formControlName="taxCorrect" />
+              <input
+                matInput
+                placeholder="Summary TaxCorrect"
+                formControlName="taxCorrect"
+              />
             </mat-form-field>
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Summary Brutto Correct</mat-label>

@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/service/profile.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InvoiceCorrectService } from 'src/app/service/invoice-correct.service';
+import { InvoiceCorrectSecondPopupComponent } from '../invoice-correct-second-popup/invoice-correct-second-popup.component';
 
 @Component({
   selector: 'app-invoice-correct-list',
@@ -117,24 +118,24 @@ export class InvoiceCorrectListComponent  implements OnInit {
   }
 
   downloadInvoice(code: any): void {
-    // if (this.profileForm.value.template == 'first') {
-    //   const popup = this.dialog.open(InvoicePrintPopupComponent, {
-    //     enterAnimationDuration: '1000ms',
-    //     exitAnimationDuration: '500ms',
-    //     width: '50%',
-    //     data: {
-    //       code: code,
-    //     },
-    //   });
-    // } else {
-    //   const popup = this.dialog.open(InvoicePrintSecondPopupComponent, {
-    //     enterAnimationDuration: '1000ms',
-    //     exitAnimationDuration: '500ms',
-    //     width: '50%',
-    //     data: {
-    //       code: code,
-    //     },
-    //   });
-    // }
+    if (this.profileForm.value.template == 'first') {
+      const popup = this.dialog.open(InvoiceCorrectSecondPopupComponent, {
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '500ms',
+        width: '50%',
+        data: {
+          code: code,
+        },
+      });
+    } else {
+      const popup = this.dialog.open(InvoiceCorrectSecondPopupComponent, {
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '500ms',
+        width: '50%',
+        data: {
+          code: code,
+        },
+      });
+    }
   }
 }

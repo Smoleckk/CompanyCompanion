@@ -1,0 +1,243 @@
+<div class="rightOptions">
+    <div class="page" size="A4" id="content" #content>
+      <div class="wrapper" *ngIf="editdata">
+        <div class="five">
+          <div class="invoiceHeader">
+            <h2><b>Faktura korekta</b></h2>
+            <h4>Nr: {{ editdata.invoiceCorrectNo }}</h4>
+          </div>
+        </div>
+        <div class="one">
+            <div class="sideBySide2">
+                <p style="width: 130px">Numer faktury do korekty</p>
+                <p style="width: 60px">{{ editdata.invoiceCorrectAfterNoFrom }}</p>
+              </div>
+              <div class="sideBySide2">
+                <p style="width: 130px">Data korekty:</p>
+                <p style="width: 60px">{{ editdata.invoiceDateCorrectAfter }}</p>
+              </div>
+              <div class="sideBySide2">
+                <p style="width: 130px">Powod korekty:</p>
+                <p style="width: 60px"> {{ editdata.issueCorrectAfter }}</p>
+              </div>
+        </div>
+        <div class="two">
+          <div class="sideBySide2">
+            <p style="width: 130px">Miejsce wystawienia:</p>
+            <p style="width: 60px">{{ editdata.placeOfIssue }}</p>
+          </div>
+          <div class="sideBySide2">
+            <p style="width: 130px">Data wystawienia:</p>
+            <p style="width: 60px">{{ editdata.dateIssued }}</p>
+          </div>
+          <div class="sideBySide2">
+            <p style="width: 130px">Data wykonania uslugi:</p>
+            <p style="width: 60px">???</p>
+          </div>
+        </div>
+        <div class="three">
+          <h2 class="pborder">Sprzedawca</h2>
+          <p>{{ editdata.customerName }}</p>
+          <p>NIP: {{ editdata.customerNip }}</p>
+          <p>{{ editdata.customerDeliveryAddress }}</p>
+          <p>{{ editdata.customerCityCode }}</p>
+        </div>
+        <div class="four">
+          <h2 class="pborder">Nabywca</h2>
+          <p>{{ editdata.sellerIdName }}</p>
+          <p>NIP: {{ editdata.sellerNip }}</p>
+          <p>{{ editdata.sellerDeliveryAddress }}</p>
+          <p>{{ editdata.sellerCityCode }}</p>
+        </div>
+        <div class="six">
+          <table>
+            <thead>
+              <tr>
+                <th style="border-left: 1px solid black">LP</th>
+                <th>Nazwa towaru lub uslugi</th>
+                <th>Jm.</th>
+                <th>Ilosc</th>
+                <th>Cena netto</th>
+                <th>Stawka Vat</th>
+                <th>Warosc netto</th>
+                <th>Wartosc Vat</th>
+                <th>Cena brutto</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let item of editdata.products; let i = index">
+                <td *ngIf="i%2==0" style="border-left: 1px solid black">{{i}}</td>
+                <td *ngIf="i%2==0">{{ item.productName }}</td>
+                <td *ngIf="i%2==0">{{ item.unit }}</td>
+                <td *ngIf="i%2==0">{{ item.qty }}</td>
+                <td *ngIf="i%2==0">
+                  {{ item.salesPrice | currency : " " : "symbol" : "1.2-2" }}
+                </td>
+                <td *ngIf="i%2==0">{{ item.vat / 100 | percent }}</td>
+                <td *ngIf="i%2==0">
+                  {{
+                    item.salesPrice * item.qty
+                      | currency : " " : "symbol" : "1.2-2"
+                  }}
+                </td>
+                <td *ngIf="i%2==0">
+                  {{
+                    (item.salesPrice * item.qty * item.vat) / 100
+                      | currency : " " : "symbol" : "1.2-2"
+                  }}
+                </td>
+                <td *ngIf="i%2==0">
+                  {{
+                    (item.salesPrice * item.qty * item.vat) / 100 +
+                      item.salesPrice * item.qty
+                      | currency : " " : "symbol" : "1.2-2"
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="margin-top: 20px;">
+            <thead>
+              <tr>
+                <th style="border-left: 1px solid black">LP</th>
+                <th>Nazwa towaru lub uslugi</th>
+                <th>Jm.</th>
+                <th>Ilosc</th>
+                <th>Cena netto</th>
+                <th>Stawka Vat</th>
+                <th>Warosc netto</th>
+                <th>Wartosc Vat</th>
+                <th>Cena brutto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of editdata.products; let i = index">
+                <td *ngIf="i%2==1" style="border-left: 1px solid black">{{i}}</td>
+                <td *ngIf="i%2==1">{{ item.productName }}</td>
+                <td *ngIf="i%2==1">{{ item.unit }}</td>
+                <td *ngIf="i%2==1">{{ item.qty }}</td>
+                <td *ngIf="i%2==1">
+                  {{ item.salesPrice | currency : " " : "symbol" : "1.2-2" }}
+                </td>
+                <td *ngIf="i%2==1">{{ item.vat / 100 | percent }}</td>
+                <td *ngIf="i%2==1">
+                  {{
+                    item.salesPrice * item.qty
+                      | currency : " " : "symbol" : "1.2-2"
+                  }}
+                </td>
+                <td *ngIf="i%2==1">
+                  {{
+                    (item.salesPrice * item.qty * item.vat) / 100
+                      | currency : " " : "symbol" : "1.2-2"
+                  }}
+                </td>
+                <td *ngIf="i%2==1">
+                  {{
+                    (item.salesPrice * item.qty * item.vat) / 100 +
+                      item.salesPrice * item.qty
+                      | currency : " " : "symbol" : "1.2-2"
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+        <div class="extra">
+          <table style="float: right">
+            <thead>
+              <tr>
+                <th style="border-left: 1px solid black">Razem</th>
+                <th>X</th>
+                <th>{{ totalNettoSumCorrectAfter  - totalNettoSumCorrectBefore| currency : " " : "symbol" : "1.2-2" }}</th>
+                <th>{{ totalVatSumCorrectAfter - totalVatSumCorrectBefore | currency : " " : "symbol" : "1.2-2" }}</th>
+                <th>
+                  {{ totalBruttoSumCorrectAfter - totalBruttoSumCorrectBefore| currency : " " : "symbol" : "1.2-2" }}
+                </th>
+              </tr>
+            </thead>
+            <thead>
+                <tr>
+                  <th style="border-left: 1px solid black">Przed korekta</th>
+                  <th>X</th>
+                  <th>{{ totalNettoSumCorrectBefore | currency : " " : "symbol" : "1.2-2" }}</th>
+                  <th>{{ totalVatSumCorrectBefore | currency : " " : "symbol" : "1.2-2" }}</th>
+                  <th>
+                    {{ totalBruttoSumCorrectBefore | currency : " " : "symbol" : "1.2-2" }}
+                  </th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th style="border-left: 1px solid black">Po korekcie</th>
+                  <th>X</th>
+                  <th>{{ totalNettoSumCorrectAfter | currency : " " : "symbol" : "1.2-2" }}</th>
+                  <th>{{ totalVatSumCorrectAfter | currency : " " : "symbol" : "1.2-2" }}</th>
+                  <th>
+                    {{ totalBruttoSumCorrectAfter | currency : " " : "symbol" : "1.2-2" }}
+                  </th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr *ngFor="let entry of result; let i=index">
+                <td style="border-left: 1px solid black"></td>
+                <td>{{ entry[0] / 100 | percent }}</td>
+                <td>
+                  {{ entry[1].nettoSum | currency : " " : "symbol" : "1.2-2" }}
+                </td>
+                <td>
+                  {{ entry[1].vatSum | currency : " " : "symbol" : "1.2-2" }}
+                </td>
+                <td>
+                  {{ entry[1].bruttoSum | currency : " " : "symbol" : "1.2-2" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="six">
+          <div class="sideBySide2">
+            <p style="width: 100px">Razem</p>
+            <p>{{ totalBruttoSumCorrectAfter - totalBruttoSumCorrectBefore | currency : " " : "symbol" : "1.2-2" }}</p>
+            <p style="width: 60px; margin-left: 20px">Slownie:</p>
+          </div>
+          <div class="sideBySide2">
+            <p style="width: 100px">Do zaplaty</p>
+            <p style="font-weight: bold; margin-bottom: 20px">
+              {{ totalBruttoSumCorrectAfter - totalBruttoSumCorrectBefore | currency : " " : "symbol" : "1.2-2" }}
+            </p>
+          </div>
+          <div class="sideBySide2">
+            <p style="width: 100px">Forma platnosc:</p>
+            <p>{{ editdata.paymentType }}</p>
+          </div>
+          <div class="sideBySide2">
+            <p style="width: 100px">Termin zaplaty:</p>
+            <p>{{ editdata.dueDate }}</p>
+          </div>
+          <div class="sideBySide2">
+            <p style="width: 100px">Numer konta:</p>
+            <p>{{ editdata.accountNumber }}</p>
+          </div>
+        </div>
+        <div class="nine">
+          <div class="signature">
+            <p>Podpis osoby upowaznionej do wystawienia</p>
+          </div>
+        </div>
+        <div class="ten">
+          <div class="signature">
+            <p>Podpis osoby upowaznionej do odbioru</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="download">
+      <a (click)="makePdf()" mat-raised-button color="primary">Download</a>
+    </div>
+  </div>
+  

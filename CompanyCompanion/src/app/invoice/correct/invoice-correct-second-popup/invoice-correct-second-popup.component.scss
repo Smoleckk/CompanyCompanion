@@ -1,0 +1,190 @@
+body {
+    background: rgb(204, 204, 204);
+  }
+  
+  .page[size="A4"] {
+    background: white;
+    max-width: 600px;
+    min-height: 840px;
+    min-width: 600px;
+    min-height: 840px;
+    display: block;
+    // margin: 0 auto;
+    // margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+  }
+  
+  @media print {
+    body,
+    page[size="A4"] {
+      margin: 0;
+      box-shadow: 0;
+    }
+  }
+  
+  .wrapper {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // gap: 10px;
+    grid-column-gap: 3rem;
+    grid-auto-rows: minmax(60px, auto);
+  }
+  
+  .one {
+    grid-column: 1 / 2;
+    // grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    // background-color: aqua;
+  }
+  
+  .two {
+    grid-column: 2 / 3;
+    // grid-row: 1;
+    // background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  .three,
+  .four {
+    margin-top: 0.5rem;
+  }
+  
+  .five {
+    grid-column: 1 / 3;
+  }
+  .six {
+    // background-color: aqua;
+    margin-top: 1.5rem;
+    grid-column: 1 / 3;
+  }
+  
+  .invoiceHeader {
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+    }
+  }
+  
+  p {
+    margin: 0;
+    font-size: 10px;
+    line-height: 16px;
+  }
+  
+  td,
+  th {
+    margin: 0;
+    padding: 0;
+    font-size: 9px;
+    line-height: 8px;
+  }
+  
+  th {
+    height: 40px;
+  }
+  
+  .pborder {
+    border-bottom: 0.1px solid black;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .seven,
+  .eight {
+    margin-top: 3rem;
+  }
+  
+  .sideBySide {
+    display: flex;
+    flex: wrap;
+    border-top: 2px solid black;
+  }
+  .sideBySide2 {
+    display: flex;
+    flex: wrap;
+  }
+  
+  .nine,
+  .ten {
+    margin-top: 5rem;
+  }
+  
+  .signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid black;
+  
+    p {
+      font-size: 6px;
+    }
+  }
+  
+  .rightOptions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-around;
+  }
+  
+  .download {
+    padding: 20px;
+  }
+  
+  // table
+  thead,
+  tfoot {
+    background-color: lightslategray;
+  }
+  
+  tbody {
+  }
+  
+  caption {
+    padding: 10px;
+    caption-side: bottom;
+  }
+  table {
+    border-collapse: collapse;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    border-bottom: 1px solid black;
+  }
+  
+  td,
+  th {
+    padding: 0.5px 2px;
+    height: 20px !important;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+  }
+  
+  td {
+    text-align: center;
+    height: 20px !important;
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  .extra {
+    grid-column: 1/3;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  
