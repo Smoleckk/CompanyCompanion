@@ -2,7 +2,8 @@
 @import "@angular/material/theming";
 @include mat.core();
 // light
-$angular-primary-light: mat.define-palette(mat.$teal-palette);
+// $angular-primary-light: mat.define-palette(mat.$teal-palette);
+$angular-primary-light: mat.define-palette(mat.$blue-grey-palette);
 $angular-accent-light: mat.define-palette(mat.$green-palette);
 $angular-warn-light: mat.define-palette(mat.$pink-palette);
 // dark
@@ -38,7 +39,6 @@ html,
 body {
   height: 100%;
 }
-
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -49,7 +49,7 @@ body {
 
 .container {
   margin: auto;
-  // max-width: 1200px;
+  max-width: 1500px;
   width: 95%;
   margin-top: 20px;
   padding: 10px;

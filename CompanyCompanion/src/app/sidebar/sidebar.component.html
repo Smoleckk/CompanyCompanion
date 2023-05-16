@@ -16,20 +16,6 @@
     <mat-nav-list>
       <a
         mat-list-item
-        routerLink="invoice-correct-list"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        class="nav-list-elem"
-      >
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon color="primary">insert_drive_file</mat-icon>
-            <p>Corrects</p>
-          </div>
-        </div>
-      </a>
-      <a
-        mat-list-item
         routerLink="invoice-list"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
@@ -37,7 +23,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">insert_drive_file</mat-icon>
+            <mat-icon >insert_drive_file</mat-icon>
             <p>Invoices</p>
           </div>
         </div>
@@ -51,11 +37,25 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">bookmark_border</mat-icon>
+            <mat-icon >description</mat-icon>
             <p>Proforma</p>
           </div>
         </div>
       </a>
+      <a
+      mat-list-item
+      routerLink="invoice-correct-list"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      class="nav-list-elem"
+    >
+      <div>
+        <div class="nav-list-elem-middle">
+          <mat-icon >summarize</mat-icon>
+          <p>Corrects</p>
+        </div>
+      </div>
+    </a>
       <a
         mat-list-item
         routerLink="product-list"
@@ -65,7 +65,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">build</mat-icon>
+            <mat-icon >build</mat-icon>
             <p>Products</p>
           </div>
         </div>
@@ -79,7 +79,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">perm_identity</mat-icon>
+            <mat-icon >perm_identity</mat-icon>
             <p>Customers</p>
           </div>
         </div>
@@ -93,7 +93,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">supervisor_account</mat-icon>
+            <mat-icon >supervisor_account</mat-icon>
             <p>Co-workers</p>
           </div>
         </div>
@@ -107,8 +107,8 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">summarize</mat-icon>
-            <p>Invoices review</p>
+            <mat-icon >file_copy</mat-icon>
+            <p>Rreview</p>
           </div>
         </div>
       </a>
@@ -121,7 +121,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon color="primary">dashboard</mat-icon>
+            <mat-icon >dashboard</mat-icon>
             <p>Dashboard</p>
           </div>
         </div>
