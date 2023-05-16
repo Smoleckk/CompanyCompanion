@@ -18,6 +18,8 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
 import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
+import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
+import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -35,6 +37,21 @@ const routes: Routes = [
   },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  {
+    path: 'invoice-correct-list',
+    component: InvoiceCorrectListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-correct',
+    component: InvoiceCorrectCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-correct/:invoiceId',
+    component: InvoiceCorrectCreateComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'invoice-list',
     component: InvoiceListComponent,

@@ -16,6 +16,20 @@
     <mat-nav-list>
       <a
         mat-list-item
+        routerLink="invoice-correct-list"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        class="nav-list-elem"
+      >
+        <div>
+          <div class="nav-list-elem-middle">
+            <mat-icon color="primary">insert_drive_file</mat-icon>
+            <p>Corrects</p>
+          </div>
+        </div>
+      </a>
+      <a
+        mat-list-item
         routerLink="invoice-list"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"

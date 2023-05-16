@@ -1,4 +1,5 @@
 ﻿using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.InvoiceCorrectModel;
 using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
@@ -18,6 +19,7 @@ namespace CompanyCompanionBackend.Models.CompanyModel
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public ICollection<User> Users { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<InvoiceCorrect> InvoicesCorrect { get; set; }
         public ICollection<Proforma> Proformas { get; set; }
         public ICollection<Customer> Customers { get; set; }
         public ICollection<ProductMagazine> ProductMagazines { get; set; }

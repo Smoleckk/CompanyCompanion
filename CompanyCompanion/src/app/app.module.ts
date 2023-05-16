@@ -53,6 +53,8 @@ import { InvoiceDefaultComponent } from './invoice/invoice-default/invoice-defau
 import { InvoicePrintSecondPopupComponent } from './invoice/invoice-print-second-popup/invoice-print-second-popup.component';
 import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
 import { CookieService } from 'ngx-cookie-service';
+import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
+import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +85,8 @@ import { CookieService } from 'ngx-cookie-service';
     InvoiceDefaultComponent,
     InvoicePrintSecondPopupComponent,
     InvoiceReviewComponent,
+    InvoiceCorrectListComponent,
+    InvoiceCorrectCreateComponent,
   ],
   imports: [
     BrowserModule,

@@ -107,7 +107,7 @@ namespace CompanyCompanionBackend.Controllers
 
             if (proforma.IsGenerated == false && proformaDto.IsGenerated == true)
             {
-                var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == proformaDto.DateIssued.Substring(0, 7));
+                var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == proformaDto.DateIssued.Substring(0, 7) && i.Name == "Proforma");
 
                 if (invoiceCount != null)
                 {
@@ -117,7 +117,7 @@ namespace CompanyCompanionBackend.Controllers
                 }
                 else
                 {
-                    var n = new InvoiceCount { DateIssued = proformaDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
+                    var n = new InvoiceCount {Name="Proforma", DateIssued = proformaDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
                     company.InvoiceCounts.Add(n);
                     proformaDto.ProformaNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
 

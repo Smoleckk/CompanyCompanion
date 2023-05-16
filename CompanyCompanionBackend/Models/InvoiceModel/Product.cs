@@ -1,4 +1,6 @@
-﻿namespace CompanyCompanionBackend.Models.InvoiceModel
+﻿using CompanyCompanionBackend.Models.InvoiceCorrectModel;
+
+namespace CompanyCompanionBackend.Models.InvoiceModel
 {
     public class Product
     {
@@ -11,5 +13,6 @@
         public double Vat { get; set; }
         public double BruttoPrice { get; set; }
         public double NettoPrice { get; set; }
+        public bool IsActual { get; set; } = true;
     }
 }

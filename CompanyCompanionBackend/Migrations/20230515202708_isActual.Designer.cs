@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyCompanionBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230506201022_invoiceCount")]
-    partial class invoiceCount
+    [Migration("20230515202708_isActual")]
+    partial class isActual
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,6 +97,145 @@ namespace CompanyCompanionBackend.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCorrectModel.InvoiceCorrect", b =>
+                {
+                    b.Property<int>("InvoiceCorrectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceCorrectId"), 1L, 1);
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreateUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerCityCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerDeliveryAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerNip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateIssued")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DueDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceCorrectNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceCorrectNoFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceDateCorrect")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsGenerated")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IssueCorrect")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("NetTotal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("NetTotalCorrect")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PaymentDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceOfIssue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerCityCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerDeliveryAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerIdName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerNip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TaxCorrect")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalCorrect")
+                        .HasColumnType("float");
+
+                    b.HasKey("InvoiceCorrectId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("InvoicesCorrect");
+                });
+
             modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCountModel.InvoiceCount", b =>
                 {
                     b.Property<int>("InvoiceCountId")
@@ -115,11 +254,40 @@ namespace CompanyCompanionBackend.Migrations
                     b.Property<int>("InvoiceNumber")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("InvoiceCountId");
 
                     b.HasIndex("CompanyId");
 
                     b.ToTable("InvoiceCounts");
+                });
+
+            modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCountModel.ProformaCount", b =>
+                {
+                    b.Property<int>("ProformaCountId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProformaCountId"), 1L, 1);
+
+                    b.Property<int?>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DateIssued")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProformaNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProformaCountId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("ProformaCounts");
                 });
 
             modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceModel.Invoice", b =>
@@ -171,8 +339,9 @@ namespace CompanyCompanionBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("InvoiceDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("InvoiceDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InvoiceNo")
                         .IsRequired()
@@ -250,8 +419,14 @@ namespace CompanyCompanionBackend.Migrations
                     b.Property<double>("BruttoPrice")
                         .HasColumnType("float");
 
+                    b.Property<int?>("InvoiceCorrectId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsActual")
+                        .HasColumnType("bit");
 
                     b.Property<double>("NettoPrice")
                         .HasColumnType("float");
@@ -263,6 +438,9 @@ namespace CompanyCompanionBackend.Migrations
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProformaId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Qty")
                         .HasColumnType("float");
@@ -279,7 +457,11 @@ namespace CompanyCompanionBackend.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("InvoiceCorrectId");
+
                     b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ProformaId");
 
                     b.ToTable("Products");
                 });
@@ -327,6 +509,124 @@ namespace CompanyCompanionBackend.Migrations
                     b.ToTable("ProductMagazines");
                 });
 
+            modelBuilder.Entity("CompanyCompanionBackend.Models.ProformaModel.Proforma", b =>
+                {
+                    b.Property<int>("ProformaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProformaId"), 1L, 1);
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreateUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerCityCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerNip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateIssued")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DueDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsGenerated")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("NetTotal")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PaymentDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceOfIssue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProformaNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerCityCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerIdName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerNip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<string>("customerDeliveryAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sellerDeliveryAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProformaId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Proformas");
+                });
+
             modelBuilder.Entity("CompanyCompanionBackend.Models.UserModel.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -372,10 +672,32 @@ namespace CompanyCompanionBackend.Migrations
                         .HasForeignKey("CompanyId");
                 });
 
+            modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCorrectModel.InvoiceCorrect", b =>
+                {
+                    b.HasOne("CompanyCompanionBackend.Models.CompanyModel.Company", "Company")
+                        .WithMany("InvoicesCorrect")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CompanyCompanionBackend.Models.CustomerModel.Customer", null)
+                        .WithMany("InvoicesCorrect")
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCountModel.InvoiceCount", b =>
                 {
                     b.HasOne("CompanyCompanionBackend.Models.CompanyModel.Company", null)
                         .WithMany("InvoiceCounts")
+                        .HasForeignKey("CompanyId");
+                });
+
+            modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCountModel.ProformaCount", b =>
+                {
+                    b.HasOne("CompanyCompanionBackend.Models.CompanyModel.Company", null)
+                        .WithMany("ProformaCounts")
                         .HasForeignKey("CompanyId");
                 });
 
@@ -396,9 +718,17 @@ namespace CompanyCompanionBackend.Migrations
 
             modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceModel.Product", b =>
                 {
+                    b.HasOne("CompanyCompanionBackend.Models.InvoiceCorrectModel.InvoiceCorrect", null)
+                        .WithMany("Products")
+                        .HasForeignKey("InvoiceCorrectId");
+
                     b.HasOne("CompanyCompanionBackend.Models.InvoiceModel.Invoice", null)
                         .WithMany("Products")
                         .HasForeignKey("InvoiceId");
+
+                    b.HasOne("CompanyCompanionBackend.Models.ProformaModel.Proforma", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ProformaId");
                 });
 
             modelBuilder.Entity("CompanyCompanionBackend.Models.ProdMagazine.ProductMagazine", b =>
@@ -406,6 +736,21 @@ namespace CompanyCompanionBackend.Migrations
                     b.HasOne("CompanyCompanionBackend.Models.CompanyModel.Company", null)
                         .WithMany("ProductMagazines")
                         .HasForeignKey("CompanyId");
+                });
+
+            modelBuilder.Entity("CompanyCompanionBackend.Models.ProformaModel.Proforma", b =>
+                {
+                    b.HasOne("CompanyCompanionBackend.Models.CompanyModel.Company", "Company")
+                        .WithMany("Proformas")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CompanyCompanionBackend.Models.CustomerModel.Customer", null)
+                        .WithMany("Proformas")
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("CompanyCompanionBackend.Models.UserModel.User", b =>
@@ -427,7 +772,13 @@ namespace CompanyCompanionBackend.Migrations
 
                     b.Navigation("Invoices");
 
+                    b.Navigation("InvoicesCorrect");
+
                     b.Navigation("ProductMagazines");
+
+                    b.Navigation("ProformaCounts");
+
+                    b.Navigation("Proformas");
 
                     b.Navigation("Users");
                 });
@@ -435,9 +786,23 @@ namespace CompanyCompanionBackend.Migrations
             modelBuilder.Entity("CompanyCompanionBackend.Models.CustomerModel.Customer", b =>
                 {
                     b.Navigation("Invoices");
+
+                    b.Navigation("InvoicesCorrect");
+
+                    b.Navigation("Proformas");
+                });
+
+            modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceCorrectModel.InvoiceCorrect", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("CompanyCompanionBackend.Models.InvoiceModel.Invoice", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("CompanyCompanionBackend.Models.ProformaModel.Proforma", b =>
                 {
                     b.Navigation("Products");
                 });

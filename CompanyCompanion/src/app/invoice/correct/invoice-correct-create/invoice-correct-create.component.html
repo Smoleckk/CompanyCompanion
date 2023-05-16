@@ -1,0 +1,486 @@
+<div class="container">
+  <!-- <h1 class="breadcrumb-header">{{ pageTitle }}</h1>
+    <hr> -->
+  <mat-card class="breadcrumb">
+    <mat-card-actions class="card">
+      <div [routerLink]="['/']" class="middle">
+        <mat-icon>home</mat-icon>
+        <p class="breadcrumb-p">Home</p>
+      </div>
+      <p class="breadcrumb-p middle" [routerLink]="['/invoice-list']">
+        /Invoices
+      </p>
+      <p class="breadcrumb-p">/Invoice</p>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-content style="padding: 10px 30px">
+      <form [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
+        <!-- ///////////// -->
+
+        <div style="width: 100%">
+          <mat-form-field *ngIf="!isGeneratedShow" appearance="outline">
+            <mat-select
+              formControlName="isGenerated"
+              placeholder="Czy chcesz wystawić fakture? Po wystawieniu zostaenie jej przypisany numer"
+            >
+              <mat-option *ngFor="let item of issuedStatus" [value]="item.value"
+                >{{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <h2 *ngIf="isGeneratedShow" style="padding: 0; margin: 0">
+            Faktura: {{ invoiceNoIsEdit }}
+          </h2>
+        </div>
+
+        <!-- ////////////////// -->
+        <mat-grid-list
+          [cols]="breakpoint4"
+          (window:resize)="onResize($event)"
+          rowHeight="300px"
+        >
+          <mat-grid-tile>
+            <div class="middlerows2">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-select
+                  (selectionChange)="CustomerChange($event)"
+                  placeholder="Select or add new client"
+                >
+                  <mat-option>
+                    <a
+                      style="width: 200px"
+                      (click)="createCustomer()"
+                      mat-raised-button
+                      color="primary"
+                    >
+                      <mat-icon color="#fff">add</mat-icon>
+                      Add new client
+                    </a>
+                  </mat-option>
+                  <mat-option disabled="true"> Client list: </mat-option>
+                  <mat-option
+                    *ngFor="let item of getCustomer"
+                    [value]="item.customerId"
+                  >
+                    {{ item.customerName }}, {{ item.customerNip }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-right: 10px;
+                  height: 160px;
+                "
+              >
+                <h4
+                  class="margin:0;padding:0"
+                  [innerHTML]="customerFullName"
+                ></h4>
+                <!-- <a
+                    style="width: 150px"
+                    (click)="createCustomer()"
+                    mat-raised-button
+                    color="primary"
+                  >
+                    Add client
+                    <mat-icon color="#fff">face</mat-icon>
+                  </a> -->
+              </div>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="middlerows">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>InvoiceDateCorrect</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker5"
+                  formControlName="invoiceDateCorrect"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker5"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker5></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>InvoiceCorrectNoFrom</mat-label>
+                <input
+                  matInput
+                  placeholder="InvoiceCorrectNoFrom"
+                  formControlName="invoiceCorrectNoFrom"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>IssueCorrect</mat-label>
+                <input
+                  matInput
+                  placeholder="IssueCorrect"
+                  formControlName="issueCorrect"
+                />
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="middlerows">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Issued date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker1"
+                  formControlName="dateIssued"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker1"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Sold date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker3"
+                  formControlName="invoiceDate"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker3"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>due (paid) Date </mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker2"
+                  formControlName="dueDate"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker2"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="middlerows">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Place of issue</mat-label>
+                <input
+                  matInput
+                  placeholder="Place of issue"
+                  formControlName="placeOfIssue"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-select
+                  formControlName="paymentStatus"
+                  placeholder="Payment status"
+                >
+                  <mat-option *ngFor="let item of paymentStatus" [value]="item"
+                    >{{ item }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-select
+                  formControlName="paymentType"
+                  placeholder="Payment type"
+                >
+                  <mat-option *ngFor="let item of paymentType" [value]="item"
+                    >{{ item }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <!-- Table of products -->
+        <mat-grid-list
+          [cols]="breakpoint9"
+          (window:resize)="onResize($event)"
+          rowHeight="35px"
+          style="background-color: #009688; margin-bottom: 5px"
+        >
+          <mat-grid-tile [colspan]="colspan3">
+            <h4 style="padding: 0; margin: 0; color: #fff">Name</h4>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h4 style="padding: 0; margin: 0; color: #fff">Quantity</h4>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h4 style="padding: 0; margin: 0; color: #fff">Unit</h4>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h4 style="padding: 0; margin: 0; color: #fff">Price</h4>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h4 style="padding: 0; margin: 0; color: #fff">Vat</h4>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h4 style="padding: 0; margin: 0; color: #fff">Netto</h4>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <h4 style="padding: 0; margin: 0; color: #fff">Brutto</h4>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <div class="" [formGroup]="invoiceForm">
+          <ng-container formArrayName="products">
+            <ng-container
+              *ngFor="let detailForm of products.controls; let i = index"
+            >
+              <div [formGroupName]="i">
+                <h4 *ngIf="i%2===0" style="margin:0;padding:0;color:red">Przed korektą</h4>
+                <h4 *ngIf="i%2===1" style="margin:0;padding:0;color:green">Po korekcie</h4>
+                <mat-grid-list
+                  [cols]="breakpoint9"
+                  (window:resize)="onResize($event)"
+                  rowHeight="70px"
+                  style="text-align: center; align-items: center"
+                >
+                  <mat-grid-tile [colspan]="colspan3">
+                    <mat-form-field
+                      appearance="outline"
+                      style="width: 100%; margin-top: 20px"
+                    >
+                      <mat-select
+                        (selectionChange)="ProductChange(i)"
+                        formControlName="productName"
+                        placeholder="Name"
+                      >
+                        <mat-option
+                          *ngFor="let item of getProduct"
+                          [value]="item.name"
+                        >
+                          {{ item.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                      style="margin-top: 20px"
+                    >
+                      <input
+                        type="number"
+                        (change)="ItemCalculation(i)"
+                        matInput
+                        formControlName="qty"
+                        placeholder="qty"
+                      />
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                      style="margin-top: 20px"
+                    >
+                      <input
+                        (change)="ItemCalculation(i)"
+                        matInput
+                        formControlName="unit"
+                        placeholder="Unit"
+                      />
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                      style="margin-top: 20px"
+                    >
+                      <input
+                        type="number"
+                        (change)="ItemCalculation(i)"
+                        matInput
+                        formControlName="salesPrice"
+                        placeholder="salesPrice"
+                      />
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                      style="margin-top: 20px"
+                    >
+                      <input
+                        type="number"
+                        (change)="ItemCalculation(i)"
+                        matInput
+                        formControlName="vat"
+                        placeholder="Vat"
+                      />
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                      style="margin-top: 20px"
+                    >
+                      <input
+                        type="number"
+                        matInput
+                        formControlName="nettoPrice"
+                        placeholder="Netto Price"
+                      />
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-form-field
+                      appearance="outline"
+                      style="margin-top: 20px"
+                    >
+                      <input
+                        matInput
+                        formControlName="bruttoPrice"
+                        placeholder="Brutto Price"
+                      />
+                    </mat-form-field>
+                  </mat-grid-tile>
+
+                  <mat-icon
+                    color="warn"
+                    style="
+                      z-index: 100;
+                      position: absolute;
+                      right: -25px;
+                      top: 10px;
+                      cursor: pointer;
+                    "
+                    (click)="deletePProduct(i)"
+                  >
+                    delete_forever</mat-icon
+                  >
+                </mat-grid-list>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <a
+          style="width: 150px"
+          (click)="addProduct()"
+          mat-raised-button
+          color="primary"
+        >
+          Add product
+          <mat-icon color="#fff">add</mat-icon>
+        </a>
+        <!-- </mat-card> -->
+
+        <mat-grid-list
+          [cols]="breakpoint2"
+          (window:resize)="onResize($event)"
+          rowHeight="90px"
+        >
+          <mat-grid-tile style="width: 0; height: 0"> </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Summary Netto</mat-label>
+              <input
+                matInput
+                placeholder="Summary NetTotal"
+                formControlName="netTotal"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Summary Tax</mat-label>
+              <input matInput placeholder="Summary Tax" formControlName="tax" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Summary Brutto</mat-label>
+              <input
+                matInput
+                placeholder="Summary Total"
+                formControlName="total"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list
+          [cols]="breakpoint2"
+          (window:resize)="onResize($event)"
+          rowHeight="90px"
+        >
+          <mat-grid-tile style="width: 0; height: 0"> </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Summary Netto Correct</mat-label>
+              <input
+                matInput
+                placeholder="Summary NetTotalCorrect"
+                formControlName="netTotalCorrect"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Summary Tax Correct</mat-label>
+              <input matInput placeholder="Summary TaxCorrect" formControlName="taxCorrect" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Summary Brutto Correct</mat-label>
+              <input
+                matInput
+                placeholder="Summary Total Correct"
+                formControlName="totalCorrect"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <!-- Details -->
+        <mat-grid-list
+          [cols]="breakpoint2"
+          (window:resize)="onResize($event)"
+          rowHeight="90px"
+        >
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Account Number</mat-label>
+              <input
+                matInput
+                placeholder="Account Number"
+                formControlName="accountNumber"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Payment Description</mat-label>
+              <input
+                matInput
+                placeholder="Account Number"
+                formControlName="paymentDescription"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <!-- //////////// -->
+        <mat-grid-list
+          [cols]="1"
+          (window:resize)="onResize($event)"
+          rowHeight="90px"
+        >
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Remarks</mat-label>
+              <input matInput placeholder="Remarks" formControlName="remarks" />
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <div class="form-submit">
+          <button mat-raised-button color="primary">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

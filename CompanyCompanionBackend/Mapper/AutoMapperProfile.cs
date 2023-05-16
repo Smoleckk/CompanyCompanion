@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.InvoiceCorrectModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.ProformaModel;
@@ -22,6 +23,8 @@ namespace CompanyCompanionBackend.Mapper
 
             CreateMap<InvoiceAddDto, Invoice>();
             CreateMap<Invoice, InvoiceReturnDto>();
+            CreateMap<InvoiceCorrectAddDto, InvoiceCorrect>();
+            CreateMap<InvoiceCorrect, InvoiceCorrectReturnDto>();
             CreateMap<CustomerAddDto, Customer>();
             CreateMap<Customer, CustomerReturnDto>();
             CreateMap<ProductMagazineAddDto, ProductMagazine>();

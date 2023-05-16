@@ -1,5 +1,6 @@
 ﻿using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
+using CompanyCompanionBackend.Models.InvoiceCorrectModel;
 using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
@@ -17,6 +18,7 @@ namespace CompanyCompanionBackend.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceCorrect> InvoicesCorrect { get; set; }
         public DbSet<Proforma> Proformas { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -27,6 +29,7 @@ namespace CompanyCompanionBackend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Company>().HasMany(c => c.Users).WithOne(e => e.Company);
             //.OnDelete(DeleteBehavior.SetNull);
 
@@ -34,6 +37,7 @@ namespace CompanyCompanionBackend.Data
             //.OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Company>().HasMany(c => c.Invoices).WithOne(e => e.Company);
+            modelBuilder.Entity<Company>().HasMany(c => c.InvoicesCorrect).WithOne(e => e.Company);
             //.OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Company>().HasMany(c => c.Users).WithOne(e => e.Company);
 

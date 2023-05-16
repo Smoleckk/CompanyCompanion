@@ -1,4 +1,5 @@
-﻿using CompanyCompanionBackend.Models.InvoiceModel;
+﻿using CompanyCompanionBackend.Models.InvoiceCorrectModel;
+using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProformaModel;
 
 namespace CompanyCompanionBackend.Models.CustomerModel
@@ -12,6 +13,7 @@ namespace CompanyCompanionBackend.Models.CustomerModel
         public string CustomerAddress { get; set; } = string.Empty;
         public DateTime CustomerCreatedDate { get; set; } = DateTime.Now;
         public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<InvoiceCorrect> InvoicesCorrect { get; set; }
         public ICollection<Proforma> Proformas { get; set; }
     }
 }
