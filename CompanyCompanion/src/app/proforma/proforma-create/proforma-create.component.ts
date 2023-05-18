@@ -93,6 +93,8 @@ export class ProformaCreateComponent implements OnInit {
   isEdit = false;
   isGeneratedShow: boolean = false;
   editProformaDetail: any;
+  proformaNoIsEdit:any;
+
 
   proformaForm = this.builder.group({
     proformaId: this.builder.control('0'),
@@ -133,6 +135,8 @@ export class ProformaCreateComponent implements OnInit {
       .subscribe((res) => {
         let editData: any;
         editData = res;
+      this.proformaNoIsEdit = editData.proformaNo
+
         editData.products.forEach((product: any) => {
           this.products.push(
             this.builder.group({

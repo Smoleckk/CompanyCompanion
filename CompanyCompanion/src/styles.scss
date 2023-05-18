@@ -35,13 +35,25 @@ $angular-dark-theme: mat.define-dark-theme(
 .darkMode {
   @include mat.all-component-colors($angular-dark-theme);
 }
+
 html,
 body {
   height: 100%;
 }
+html * {
+  // font-family: 'Courier New', Courier, monospace;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif !important;
+}
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 @import "toaster";
@@ -53,10 +65,12 @@ body {
   width: 95%;
   margin-top: 20px;
   padding: 10px;
+  min-height: 1.5vh;
 }
 
 .title {
   font-size: 44px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .middlerows {
@@ -153,7 +167,6 @@ mat-card {
   .card {
     display: flex;
     align-items: center;
-
   }
 
   .middle {
@@ -170,7 +183,7 @@ mat-card {
   margin: 0 1px !important;
   padding: 0 !important;
 }
-.mat-card-header-filter{
+.mat-card-header-filter {
   display: flex !important;
   justify-content: space-between;
   padding: 10px;

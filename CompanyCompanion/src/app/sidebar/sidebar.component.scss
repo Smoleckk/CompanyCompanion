@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 250px;
 }
 
 .sidenav .mat-toolbar {
@@ -46,4 +46,6 @@
 mat-icon {
   cursor: pointer;
   margin-right: 10px;
+  margin-left: 20px !important;
+
 }

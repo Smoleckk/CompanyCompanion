@@ -13,7 +13,7 @@
       <p class="breadcrumb-p">/Invoice</p>
     </mat-card-actions>
   </mat-card>
-  <mat-card>
+  <div>
     <mat-card-content style="padding: 10px 30px">
       <form [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
         <!-- ///////////// -->
@@ -39,7 +39,7 @@
         <mat-grid-list
           [cols]="breakpoint4"
           (window:resize)="onResize($event)"
-          rowHeight="300px"
+          rowHeight="250px"
         >
           <mat-grid-tile [colspan]="2">
             <div class="middlerows2">
@@ -74,7 +74,7 @@
                   display: flex;
                   justify-content: space-between;
                   margin-right: 10px;
-                  height: 160px;
+                  height: 130px;
                 "
               >
                 <h4
@@ -175,7 +175,7 @@
           [cols]="breakpoint9"
           (window:resize)="onResize($event)"
           rowHeight="35px"
-          style="background-color: #009688; margin-bottom: 5px"
+          style="background-color: #607d8b; margin-bottom: 5px"
         >
           <mat-grid-tile [colspan]="colspan3">
             <h4 style="padding: 0; margin: 0; color: #fff">Name</h4>
@@ -209,7 +209,7 @@
                 <mat-grid-list
                   [cols]="breakpoint9"
                   (window:resize)="onResize($event)"
-                  rowHeight="70px"
+                  rowHeight="50px"
                   style="text-align: center; align-items: center"
                 >
                   <mat-grid-tile [colspan]="colspan3">
@@ -347,7 +347,7 @@
         <mat-grid-list
           [cols]="breakpoint2"
           (window:resize)="onResize($event)"
-          rowHeight="90px"
+          rowHeight="70px"
         >
           <mat-grid-tile style="width: 0; height: 0"> </mat-grid-tile>
           <mat-grid-tile>
@@ -378,7 +378,7 @@
         <mat-grid-list
           [cols]="breakpoint2"
           (window:resize)="onResize($event)"
-          rowHeight="90px"
+          rowHeight="70px"
         >
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="full-width">
@@ -405,7 +405,7 @@
         <mat-grid-list
           [cols]="1"
           (window:resize)="onResize($event)"
-          rowHeight="90px"
+          rowHeight="70px"
         >
           <mat-grid-tile>
             <mat-form-field appearance="outline" class="full-width">
@@ -420,5 +420,5 @@
         </div>
       </form>
     </mat-card-content>
-  </mat-card>
+  </div>
 </div>

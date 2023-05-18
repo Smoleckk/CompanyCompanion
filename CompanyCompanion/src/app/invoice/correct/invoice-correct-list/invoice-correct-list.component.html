@@ -5,7 +5,7 @@
           <mat-icon>home</mat-icon>
           <p class="breadcrumb-p">Home</p>
         </div>
-        <p class="breadcrumb-p">> Invoice List</p>
+        <p class="breadcrumb-p">> Correct List</p>
       </mat-card-actions>
       <mat-card-actions>
         <div [routerLink]="['/create-correct']" class="middle">
@@ -17,7 +17,7 @@
     <div class="">
       <mat-card>
         <div class="mat-card-header-filter">
-          <h2>Invoices</h2>
+          <h2>Corrects</h2>
           <mat-form-field appearance="outline">
             <mat-label>Search</mat-label>
             <input
@@ -33,7 +33,7 @@
           <table mat-table matSort [dataSource]="dataSource">
             <ng-container matColumnDef="Invoice Correct No">
               <th mat-header-cell mat-sort-header *matHeaderCellDef>
-                Invoice correct number
+                Correct number
               </th>
               <td mat-cell *matCellDef="let element">
                 {{ element.invoiceCorrectNo }}
@@ -50,7 +50,7 @@
                 Brutto total
               </th>
               <td mat-cell *matCellDef="let element">
-                {{ element.total | currency }}
+                {{ element.totalCorrect - element.total | currency }}
               </td>
             </ng-container>
             <ng-container matColumnDef="DueDate">

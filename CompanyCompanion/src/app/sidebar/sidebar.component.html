@@ -11,7 +11,9 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar style="cursor: pointer" routerLink="">Company C</mat-toolbar>
+    <mat-toolbar style="cursor: pointer" routerLink="">
+      <h1 style="margin: 40px 0; font-weight: 700;">Fakturio</h1></mat-toolbar
+    >
 
     <mat-nav-list>
       <a
@@ -23,7 +25,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >insert_drive_file</mat-icon>
+            <mat-icon>insert_drive_file</mat-icon>
             <p>Invoices</p>
           </div>
         </div>
@@ -37,25 +39,25 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >description</mat-icon>
+            <mat-icon>description</mat-icon>
             <p>Proforma</p>
           </div>
         </div>
       </a>
       <a
-      mat-list-item
-      routerLink="invoice-correct-list"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-      class="nav-list-elem"
-    >
-      <div>
-        <div class="nav-list-elem-middle">
-          <mat-icon >summarize</mat-icon>
-          <p>Corrects</p>
+        mat-list-item
+        routerLink="invoice-correct-list"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        class="nav-list-elem"
+      >
+        <div>
+          <div class="nav-list-elem-middle">
+            <mat-icon>summarize</mat-icon>
+            <p>Corrects</p>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
       <a
         mat-list-item
         routerLink="product-list"
@@ -65,7 +67,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >build</mat-icon>
+            <mat-icon>build</mat-icon>
             <p>Products</p>
           </div>
         </div>
@@ -79,7 +81,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >perm_identity</mat-icon>
+            <mat-icon>perm_identity</mat-icon>
             <p>Customers</p>
           </div>
         </div>
@@ -93,7 +95,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >supervisor_account</mat-icon>
+            <mat-icon>supervisor_account</mat-icon>
             <p>Co-workers</p>
           </div>
         </div>
@@ -107,8 +109,8 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >file_copy</mat-icon>
-            <p>Rreview</p>
+            <mat-icon>file_copy</mat-icon>
+            <p>Review</p>
           </div>
         </div>
       </a>
@@ -121,7 +123,7 @@
       >
         <div>
           <div class="nav-list-elem-middle">
-            <mat-icon >dashboard</mat-icon>
+            <mat-icon>dashboard</mat-icon>
             <p>Dashboard</p>
           </div>
         </div>
@@ -130,16 +132,10 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-      >
+
         <!-- *ngIf="isHandset$ | async" -->
 
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+        <mat-icon (click)="drawer.toggle()">menu</mat-icon>
       <span class="example-spacer"></span>
 
       <mat-icon (click)="toogleTheme()" *ngIf="isDarkTheme">dark_mode</mat-icon>
