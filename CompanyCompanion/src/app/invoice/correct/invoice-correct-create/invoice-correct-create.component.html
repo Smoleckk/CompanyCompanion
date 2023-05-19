@@ -208,7 +208,7 @@
           [cols]="breakpoint9"
           (window:resize)="onResize($event)"
           rowHeight="35px"
-          style="background-color: #009688; margin-bottom: 5px"
+          style="background-color: #607d8b; margin-bottom: 5px"
         >
           <mat-grid-tile [colspan]="colspan3">
             <h4 style="padding: 0; margin: 0; color: #fff">Name</h4>
@@ -356,7 +356,7 @@
                     </mat-form-field>
                   </mat-grid-tile>
 
-                  <mat-icon
+                  <mat-icon *ngIf="i % 2 === 0"
                     color="warn"
                     style="
                       z-index: 100;

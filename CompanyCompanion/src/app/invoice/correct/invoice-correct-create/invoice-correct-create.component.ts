@@ -257,8 +257,8 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   }
 
   deletePProduct(lessonIndex: number) {
-    this.products.removeAt(lessonIndex);
     this.products.removeAt(lessonIndex + 1);
+    this.products.removeAt(lessonIndex);
     this.SummaryCalculation();
   }
 

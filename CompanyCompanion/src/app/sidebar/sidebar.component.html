@@ -168,30 +168,7 @@
         >
           Hi, {{ username }}
         </p>
-        <!-- <p
-          style="
-            margin: 0 0 0 20px;
-            padding: 0;
-            background-color: #fff;
-            color: black;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          "
-        > -->
-        <!-- {{sliceUsername}} -->
-        <!-- </p> -->
       </a>
-      <!-- <button
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with a menu"
-      >
-        <mat-icon>more_vert</mat-icon>
-      </button> -->
       <mat-menu #menu="matMenu">
         <button
           mat-menu-item
@@ -222,6 +199,37 @@
       <!-- ////////////// -->
     </mat-toolbar>
     <router-outlet></router-outlet>
+    <!-- <div style="background-color: red; margin:0;position:absolute;width:100%;bottom:0;">
+      <p>asdasd</p>
+    </div> -->
+    <!-- <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li><a href="#">about us</a></li>
+              <li><a href="#">our services</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>get help</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">shipping</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="#"><mat-icon>rocket_launch</mat-icon></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+   </footer> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
 
