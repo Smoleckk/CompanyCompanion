@@ -56,6 +56,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 import { InvoiceCorrectSecondPopupComponent } from './invoice/correct/invoice-correct-second-popup/invoice-correct-second-popup.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +90,7 @@ import { InvoiceCorrectSecondPopupComponent } from './invoice/correct/invoice-co
     InvoiceCorrectListComponent,
     InvoiceCorrectCreateComponent,
     InvoiceCorrectSecondPopupComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
