@@ -1,19 +1,5 @@
 <div class="container">
-    <mat-card class="breadcrumb">
-      <mat-card-actions class="card">
-        <div [routerLink]="['/']" class="middle">
-          <mat-icon>home</mat-icon>
-          <p class="breadcrumb-p">Home</p>
-        </div>
-        <p class="breadcrumb-p">> Correct List</p>
-      </mat-card-actions>
-      <mat-card-actions>
-        <div [routerLink]="['/create-correct']" class="middle">
-          <mat-icon color="primary">add_circle</mat-icon>
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  
+<app-breadcrumb headerDetail="Correct List" link="/create-correct" ></app-breadcrumb>
     <div class="">
       <mat-card>
         <div class="mat-card-header-filter">
@@ -79,14 +65,6 @@
                 >
                   <mat-icon>print</mat-icon>
                 </a>
-                <!-- <a
-              *ngIf="element.isGenerated"
-              mat-icon-button
-              (click)="downloadInvoiceSecond(element.invoiceCorrectId)"
-              color="accent"
-            >
-              <mat-icon>print</mat-icon>
-            </a> -->
                 <a
                   mat-icon-button
                   (click)="editInvoice(element.invoiceCorrectId)"

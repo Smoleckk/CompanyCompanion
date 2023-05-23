@@ -1,23 +1,8 @@
 <div class="container">
-  <!-- <h1 class="breadcrumb-header">{{ pageTitle }}</h1>
-  <hr> -->
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p middle" [routerLink]="['/invoice-list']">
-        /Invoices
-      </p>
-      <p class="breadcrumb-p">/Invoice</p>
-    </mat-card-actions>
-  </mat-card>
+  <app-breadcrumb header="Invices" headerDetail=" > Invoice" link="/invoice-list" [isAddButton]="false"></app-breadcrumb>
   <div>
     <mat-card-content style="padding: 10px 30px">
       <form [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
-        <!-- ///////////// -->
-
         <div style="width: 100%">
           <mat-form-field *ngIf="!editInvoiceId" appearance="outline">
             <mat-select

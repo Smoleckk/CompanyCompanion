@@ -1,18 +1,6 @@
 <div class="container">
-  <!-- <h1 class="breadcrumb-header">{{ pageTitle }}</h1>
-  <hr> -->
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p middle" [routerLink]="['/proforma-list']">
-        /Proformas
-      </p>
-      <p class="breadcrumb-p">> Proforma</p>
-    </mat-card-actions>
-  </mat-card>
+  <app-breadcrumb header="Proformas" headerDetail=" > Proforma" link="/proforma-list" [isAddButton]="false"></app-breadcrumb>
+
   <mat-card>
     <mat-card-content style="padding: 10px 30px">
       <form [formGroup]="proformaForm" (ngSubmit)="SaveProforma()">

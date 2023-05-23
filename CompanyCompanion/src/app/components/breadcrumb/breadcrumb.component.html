@@ -1,14 +1,26 @@
-<mat-card class="breadcrumb">
+
+  <mat-card class="breadcrumb">
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
         <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
+        <p class="breadcrumb-p">Home > </p>
       </div>
-      <p class="breadcrumb-p">> {{header}}</p>
+      <p class="breadcrumb-p middle" [routerLink]="link">
+        {{header}}
+      </p>
+      <p class="breadcrumb-p">{{headerDetail}}</p>
     </mat-card-actions>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="isAddButton">
       <div [routerLink]="link" class="middle">
         <mat-icon color="primary">add_circle</mat-icon>
+      </div>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="isPopup">
+      <div class="middle" >
+        <!-- [click]="popupAction" -->
+        <mat-icon (click)="akcja()" color="primary"
+          >trash</mat-icon
+        >
       </div>
     </mat-card-actions>
   </mat-card>

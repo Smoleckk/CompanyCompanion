@@ -1,13 +1,6 @@
 <div class="container">
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p">> Profile</p>
-    </mat-card-actions>
-  </mat-card>
+<app-breadcrumb headerDetail="Dashboard" [isAddButton]="false" ></app-breadcrumb>
+
   <div class="dashboard-top">
     <mat-card
       class="dashboard-top-card"

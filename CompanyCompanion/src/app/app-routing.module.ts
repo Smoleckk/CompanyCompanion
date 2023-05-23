@@ -27,85 +27,94 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
-  { path: 'user-list', component: UserListComponent, canActivate: [RoleGuard] },
+  {
+    path: 'user-list', component: UserListComponent,
+    // canActivate: [RoleGuard] 
+  },
   {
     path: 'product-list',
     component: ProductListComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  {
+    path: '', component: HomeComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'about', component: AboutComponent,
+    // canActivate: [AuthGuard]
+  },
   {
     path: 'invoice-correct-list',
     component: InvoiceCorrectListComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'create-correct',
     component: InvoiceCorrectCreateComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'edit-correct/:invoiceId',
     component: InvoiceCorrectCreateComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'invoice-list',
     component: InvoiceListComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'invoice-review',
     component: InvoiceReviewComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'create-invoice',
     component: CreateInvoiceComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'edit-invoice/:invoiceId',
     component: CreateInvoiceComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'invoice-from-proforma/:proformaId',
     component: CreateInvoiceComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'proforma-list',
     component: ProformaListComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'create-proforma',
     component: ProformaCreateComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'edit-proforma/:proformaId',
     component: ProformaCreateComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'customer-list',
     component: CustomerListComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'customer/:customerId',
     component: CustomerDetailsComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'profile',
     component: ProfileDetailsComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
 ];
 
@@ -113,4 +122,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

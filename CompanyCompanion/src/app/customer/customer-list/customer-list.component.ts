@@ -24,6 +24,7 @@ export class CustomerListComponent {
     'action',
   ];
 
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

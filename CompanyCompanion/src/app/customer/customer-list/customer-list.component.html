@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card class="breadcrumb">
+  <!-- <mat-card class="breadcrumb">
     <mat-card-actions class="card">
       <div [routerLink]="['/']" class="middle">
         <mat-icon>home</mat-icon>
@@ -14,7 +14,9 @@
         >
       </div>
     </mat-card-actions>
-  </mat-card>
+  </mat-card> -->
+<app-breadcrumb headerDetail="Customer List" [isAddButton]="false" [isPopup]="true" [akcja]="createCustomer" ></app-breadcrumb>
+
   <div class="">
     <mat-card>
       <div class="mat-card-header-filter">
