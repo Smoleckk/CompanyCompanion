@@ -86,7 +86,7 @@ namespace CompanyCompanionBackend.Controllers
 
             if (response.Success == false)
                 return NotFound(response.Message);
-            return Ok(response.Data); ;
+            return Ok(response.Data);
         }
 
         [HttpGet("{code}")]
@@ -114,7 +114,7 @@ namespace CompanyCompanionBackend.Controllers
 
 
         [HttpDelete("{code}")]
-        public async Task<ActionResult<string>> DeleteInvoice(string code)
+        public async Task<ActionResult<Invoice>> DeleteInvoice(string code)
         {
             var response = await _invoiceService.DeleteInvoice(code);
 
