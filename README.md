@@ -102,13 +102,3 @@ W ramach implementacji modułu faktur, zastosowano szereg mechanizmów zabezpiec
 Raporty w aplikacji umożliwia użytkownikom dostęp do prostego dashboardu, w którym prezentowane są wykresy oraz podstawowe informacje związane z działaniem systemu. Dashboard ten umożliwia użytkownikowi na szybkie i łatwe zrozumienie kluczowych aspektów działania aplikacji. Dzięki wykresom i statystykom, użytkownik może na przykład zobaczyć, ile faktur zostało wygenerowanych, czy jaki jest jego dochód.
 
 ![image](https://github.com/Smoleckk/CompanyCompanion/assets/73690548/07b303b1-13bc-4f92-8dfa-b2d25a7610fa)
-
-10. Wnioski
-
-W ramach projektu wykonano aplikację internetową do wystawiania dokumentów sprzedażowych, składającą się z trzech modułów: zarządzania klientami, zarządzania produktami oraz modułu pozwalającego na wystawianie faktur. Ponadto, zaimplementowano moduł autoryzacji, który umożliwia użytkownikom rejestrację i logowanie do systemu.
-
-Wszystkie moduły zostały wykonane zgodnie z najlepszymi praktykami programistycznymi, z uwzględnieniem dobrych wzorców projektowych oraz odpowiednich zabezpieczeń. Wszystkie formularze w systemie zostały poddane walidacji, co pozwala na uniknięcie błędów i usprawnienie procesu obsługi klienta.
-
-Dodatkowo, w aplikacji zaimplementowano moduł raportowania, który umożliwia użytkownikom dostęp do prostego dashboardu z wykresami i podstawowymi informacjami związanymi z działaniem systemu. Dzięki temu użytkownicy mogą łatwo monitorować kluczowe aspekty działania systemu i szybko podejmować decyzje.
-
-Wnioski z projektu są bardzo pozytywne. Aplikacja internetowa do wystawiania dokumentów sprzedażowych została wykonana zgodnie z wymaganiami, spełniając wszystkie postawione przed nią cele. Implementacja wszystkich modułów, w tym modułu raportowania, umożliwia prostą i intuicyjną obsługę systemu, a także pozwala na łatwe rozszerzanie jego funkcjonalności.
