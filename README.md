@@ -22,7 +22,7 @@ Widok schematu bazy danych, który przedstawia relacje między poszczególnymi o
 
 Schemat bazy danych został zaprojektowany tak, aby umożliwić skuteczne zarządzanie klientami i produktami oraz umożliwić wystawianie faktur z uwzględnieniem powiązań między nimi. W schemacie przedstawione są relacje między tabelami, takie jak klucze obce, które umożliwiają przypisanie klientów do faktur oraz produktów do faktur. Ponadto, zastosowano mechanizmy indeksowania, które przyspieszają wykonywanie zapytań na bazie danych i umożliwiają jej efektywne wykorzystanie.
 
-<img src="https://github.com/Smoleckk/CompanyCompanion/assets/73690548/5bb78c33-9eec-4e65-90fb-046b840d3fc3">
+![image](https://github.com/Smoleckk/CompanyCompanion/assets/73690548/1aa65bb8-6afa-4bd6-9e90-42c621f79de3)
 
 4. Bezpieczny dostęp do danych
 
