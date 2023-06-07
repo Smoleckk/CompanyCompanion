@@ -1,4 +1,8 @@
 using CompanyCompanionBackend.Data;
+using CompanyCompanionBackend.Services.AuthIService;
+using CompanyCompanionBackend.Services.CustomerIService;
+using CompanyCompanionBackend.Services.InvoiceIService;
+using CompanyCompanionBackend.Services.ProductMagazinesService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +61,11 @@ builder.Services.AddCors(
             }
         )
 );
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICustomerService,CustomerService>();
+builder.Services.AddScoped<IInvoiceService,InvoiceService>();
+builder.Services.AddScoped<IPoducctMagazinesService, PoducctMagazinesService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

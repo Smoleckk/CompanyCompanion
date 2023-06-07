@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
+using CompanyCompanionBackend.Services.ProductMagazinesService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace CompanyCompanionBackend.Controllers
 {
@@ -14,12 +17,13 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class ProductMagazinesController : ControllerBase
     {
-        private readonly IMapper _mapper;
+        private readonly IPoducctMagazinesService _poducctMagazinesService;
         private readonly DataContext _context;
 
-        public ProductMagazinesController(IMapper mapper, DataContext context)
+        public ProductMagazinesController(IPoducctMagazinesService poducctMagazinesService, DataContext context)
         {
-            _mapper = mapper;
+
+            _poducctMagazinesService = poducctMagazinesService;
             _context = context;
         }
 
@@ -28,59 +32,37 @@ namespace CompanyCompanionBackend.Controllers
         {
             var user = await GetUser();
             var company = await GetCompany(user);
-            return Ok(company.ProductMagazines);
+            var response = await _poducctMagazinesService.GetProductMagazines(company);
+
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductMagazine>> GetProductMagazine(int id)
         {
-            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
-                c => c.ProductMagazineId == id
-            );
-
-            if (productMagazine == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(productMagazine);
+            var response = await _poducctMagazinesService.GetProductMagazine(id);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
         [HttpGet("name/{name}")]
         public async Task<ActionResult<ProductMagazine>> GetProductMagazineByName(string name)
-        {
-            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
-                c => c.Name == name
-            );
-
-            if (productMagazine == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(productMagazine);
+        {     
+            var response = await _poducctMagazinesService.GetProductMagazineByName(name);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
         [HttpPut]
         public async Task<ActionResult<ProductMagazine>> UpdateProductMagazine(ProductMagazine productUpdate)
         {
-            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
-                c => c.ProductMagazineId == productUpdate.ProductMagazineId
-            );
+            var response = await _poducctMagazinesService.UpdateProductMagazine(productUpdate);
 
-            if (productMagazine == null)
-            {
-                return NotFound();
-            }
-            productMagazine.Name = productUpdate.Name;
-            productMagazine.Price = productUpdate.Price;
-            productMagazine.Vat = productUpdate.Vat;
-            productMagazine.Qty = productUpdate.Qty;
-            productMagazine.Unit = productUpdate.Unit;
-            productMagazine.Category = productUpdate.Category;
-            productMagazine.Remarks = productUpdate.Remarks;
-
-            await _context.SaveChangesAsync();
-
-            return Ok(productMagazine);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpPost, Authorize]
@@ -90,30 +72,21 @@ namespace CompanyCompanionBackend.Controllers
         {
             var user = await GetUser();
             var company = await GetCompany(user);
+            var response = await _poducctMagazinesService.PostProductMagazine(company, productMagazineAddDto);
 
-            var productMagazine = _mapper.Map<ProductMagazine>(productMagazineAddDto);
-            company.ProductMagazines.Add(productMagazine);
-            await _context.SaveChangesAsync();
-
-            return Ok(productMagazine);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<ProductMagazine>> DeleteProductMagazine(int id)
         {
-            var productMagazine = await _context.ProductMagazines.FirstOrDefaultAsync(
-                c => c.ProductMagazineId == id
-            );
+            var response = await _poducctMagazinesService.DeleteProductMagazine(id);
 
-            if (productMagazine == null)
-            {
-                return NotFound();
-            }
-
-            _context.ProductMagazines.Remove(productMagazine);
-            await _context.SaveChangesAsync();
-
-            return productMagazine;
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         private async Task<User> GetUser()

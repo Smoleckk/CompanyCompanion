@@ -4,6 +4,8 @@ using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
+using CompanyCompanionBackend.Models.UserModel;
+using CompanyCompanionBackend.Services.InvoiceIService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +16,12 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class InvoiceController : ControllerBase
     {
-        private readonly IMapper _mapper;
+        private readonly IInvoiceService _invoiceService;
         private readonly DataContext _context;
 
-        public InvoiceController(IMapper mapper, DataContext context)
+        public InvoiceController(IInvoiceService invoiceService, DataContext context)
         {
-            _mapper = mapper;
+            _invoiceService = invoiceService;
             _context = context;
         }
 
@@ -30,22 +32,36 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<ActionResult<List<Invoice>>> GetInvoicesHeader()
         {
             var company = await GetCompany();
-            return Ok(company.Invoices);
+            var response = await _invoiceService.GetInvoicesHeader(company);
+
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
         [HttpGet("get-invoices-header-paid")]
         [Authorize]
         public async Task<ActionResult<List<Invoice>>> GetInvoicesHeaderPaid()
         {
+
             var company = await GetCompany();
-            return Ok(company.Invoices.Where(e => e.IsGenerated == true && e.PaymentStatus == "Paid"));
+            var response = await _invoiceService.GetInvoicesHeaderPaid(company);
+
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
 
         }
         [HttpGet("get-invoices-header-delay")]
         [Authorize]
         public async Task<ActionResult<List<Invoice>>> GetInvoicesHeaderDelay()
         {
+
             var company = await GetCompany();
-            return Ok(company.Invoices.Where(e => DateTime.Parse(e.DueDate) < DateTime.Today && e.PaymentStatus == "Unpaid" && e.IsGenerated == true));
+            var response = await _invoiceService.GetInvoicesHeaderDelay(company);
+
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
 
         }
 
@@ -54,7 +70,11 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<ActionResult<List<Invoice>>> GetInvoicesHeaderDraft()
         {
             var company = await GetCompany();
-            return Ok(company.Invoices.Where(e => e.IsGenerated == false));
+            var response = await _invoiceService.GetInvoicesHeaderDraft(company);
+
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
 
         }
         [HttpGet("get-invoices-header/{code}")]
@@ -62,154 +82,56 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<ActionResult<List<Invoice>>> GetCustomerInvoicesHeader(string code)
         {
             var company = await GetCompany();
-            return Ok(company.Invoices.Where(i => i.CustomerName == code));
+            var response = await _invoiceService.GetCustomerInvoicesHeader(company,code);
+
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data); ;
         }
 
         [HttpGet("{code}")]
         public async Task<ActionResult<InvoiceReturnDto>> GetInvoiceByCode(string code)
         {
-            var invoice = await _context.Invoices
-                .Include(c => c.Products)
-                .FirstOrDefaultAsync(c => c.InvoiceId == int.Parse(code));
+            var response = await _invoiceService.GetInvoiceByCode(code);
 
-            if (invoice == null)
-            {
-                return NotFound("Invoice not found.");
-            }
-
-            var invoiceReturnDto = _mapper.Map<InvoiceReturnDto>(invoice);
-
-            return Ok(invoiceReturnDto);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpPost("save-invoice")]
         [Authorize]
         public async Task<ActionResult<Invoice>> SaveInvoice(InvoiceAddDto invoiceAddDto)
         {
+
             var company = await GetCompany();
+            var response = await _invoiceService.SaveInvoice(company,invoiceAddDto);
 
-            var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == invoiceAddDto.DateIssued.Substring(0, 7) && i.Name =="Invoice");
-            if (invoiceAddDto.IsGenerated)
-            {
-
-
-                if (invoiceCount != null)
-                {
-                    invoiceCount.InvoiceNumber++;
-                    invoiceAddDto.InvoiceNo = invoiceCount.InvoiceNumber.ToString() + "/" + invoiceAddDto.DateIssued.Substring(5, 2) + "/" + invoiceAddDto.DateIssued.Substring(0, 4);
-
-                }
-                else
-                {
-                    var n = new InvoiceCount {Name="Invoice", DateIssued = invoiceAddDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
-                    company.InvoiceCounts.Add(n);
-                    invoiceAddDto.InvoiceNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
-
-                }
-            }
-            else
-            {
-                invoiceAddDto.InvoiceNo = "Temp/" + invoiceAddDto.DateIssued.Substring(5, 2) + "/" + invoiceAddDto.DateIssued.Substring(0, 4);
-            }
-
-            Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(c => c.CustomerName == invoiceAddDto.CustomerName);
-            invoiceAddDto.DateIssued = invoiceAddDto.DateIssued.Substring(0, 10);
-            invoiceAddDto.DueDate = invoiceAddDto.DueDate.Substring(0, 10);
-            var invoice = _mapper.Map<Invoice>(invoiceAddDto);
-
-            invoice.Company = await GetCompany();
-            customer.Invoices.Add(invoice);
-            await _context.SaveChangesAsync();
-
-            return Ok(invoice);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
 
         [HttpDelete("{code}")]
         public async Task<ActionResult<string>> DeleteInvoice(string code)
         {
-            var invoice = await _context.Invoices
-                .Include(c => c.Products)
-                .FirstOrDefaultAsync(x => x.InvoiceId == int.Parse(code));
+            var response = await _invoiceService.DeleteInvoice(code);
 
-            if (invoice == null)
-            {
-                return NotFound("Invoice not found");
-            }
-
-            foreach (var product in invoice.Products)
-            {
-                _context.Products.Remove(product);
-            }
-
-            _context.Invoices.Remove(invoice);
-            await _context.SaveChangesAsync();
-
-            return Ok(code);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpPut("invoices/{id}")]
         public async Task<IActionResult> UpdateInvoice(int id, [FromBody] InvoiceAddDto invoiceDto)
         {
-            Invoice invoice = await _context.Invoices
-                .Include(i => i.Products)
-                .SingleOrDefaultAsync(i => i.InvoiceId == id);
-
-            if (invoice == null)
-            {
-                return NotFound();
-            }
             var company = await GetCompany();
+            var response = await _invoiceService.UpdateInvoice(company,id,invoiceDto);
 
-            if (invoice.IsGenerated == false && invoiceDto.IsGenerated == true)
-            {
-                var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == invoiceDto.DateIssued.Substring(0, 7));
-
-                if (invoiceCount != null)
-                {
-                    invoiceCount.InvoiceNumber++;
-                    invoiceDto.InvoiceNo = invoiceCount.InvoiceNumber.ToString() + "/" + invoiceDto.DateIssued.Substring(5, 2) + "/" + invoiceDto.DateIssued.Substring(0, 4);
-
-                }
-                else
-                {
-                    var n = new InvoiceCount { DateIssued = invoiceDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
-                    company.InvoiceCounts.Add(n);
-                    invoiceDto.InvoiceNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
-
-                }
-            }
-            invoiceDto.DateIssued = invoiceDto.DateIssued.Substring(0, 10);
-            invoiceDto.DueDate = invoiceDto.DueDate.Substring(0, 10);
-            // update invoice properties
-            _mapper.Map(invoiceDto, invoice);
-
-            // remove products not present in the DTO
-            var productsToRemove = invoice.Products
-                .Where(p => !invoiceDto.Products.Any(pd => pd.ProductId == p.ProductId))
-                .ToList();
-            _context.RemoveRange(productsToRemove);
-
-            // update existing products or add new ones
-            foreach (var productDto in invoiceDto.Products)
-            {
-                var product = invoice.Products.FirstOrDefault(
-                    p => p.ProductId == productDto.ProductId
-                );
-
-                if (product != null)
-                {
-                    _mapper.Map(productDto, product);
-                }
-                else
-                {
-                    invoice.Products.Add(_mapper.Map<Product>(productDto));
-                }
-            }
-
-            await _context.SaveChangesAsync();
-
-            return Ok(invoice);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         private async Task<Company> GetCompany()

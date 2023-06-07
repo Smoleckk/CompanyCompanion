@@ -2,6 +2,7 @@
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.UserModel;
 using CompanyCompanionBackend.Models.UserModel.Auth;
+using CompanyCompanionBackend.Services.AuthIService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,105 +16,38 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IConfiguration configuration;
-        private readonly DataContext context;
+        private readonly IAuthService _authService;
 
-        public AuthController(IConfiguration configuration, DataContext context)
+        public AuthController(IAuthService authService)
         {
-            this.configuration = configuration;
-            this.context = context;
-        }
-
-        [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserRegisterDto request)
-        {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-            User user = new User();
-            user.Username = request.Username;
-            user.Email = request.Email;
-            user.Role = "Admin";
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-            Company company = new Company
-            {
-                Name = request.Name,
-                Nip = request.Nip,
-                City = request.City,
-                CityCode = request.CityCode,
-                Template = request.Template,
-            };
-            user.Company = company;
-
-            context.Companies.Add(company);
-            context.Users.Add(user);
-            context.SaveChanges();
-
-            return Ok(user);
+            _authService=authService;
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserLogin request)
+        public async Task<ActionResult<User>> Login(UserLogin request)
         {
-            var findUser = context.Users.FirstOrDefault(c => c.Username == request.Username);
-            if (findUser == null)
-            {
-                return BadRequest("User not found.");
-            }
-            if (!VerifyPasswordHash(request.Password, findUser.PasswordHash, findUser.PasswordSalt))
-            {
-                return BadRequest("Wrong password.");
-            }
-            string token = CreateToken(findUser);
-            TokenResponse tokenResponse = new TokenResponse { jwtToken = token, };
+            var response = await _authService.Login(request);
+            //if (!response.Success)
+            //{
+            //    return BadRequest("Wrong Credentials");
+            //}
 
-            return Ok(tokenResponse);
-            ;
+            return Ok(response);
         }
 
-        private string CreateToken(User user)
+        [HttpPost("register")]
+        public async Task<ActionResult<TokenResponse>> Register(UserRegisterDto request)
         {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role)
-            };
+            var response = await _authService.Register(request);
+            //if (!response.Success)
+            //{
+            //    return BadRequest(response);
+            //}
 
-            var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value!)
-            );
+            return Ok(response);
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds
-            );
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
         }
 
-        private void CreatePasswordHash(
-            string password,
-            out byte[] passwordHash,
-            out byte[] passwordSalt
-        )
-        {
-            using (var hmac = new HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
-        }
 
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512(passwordSalt))
-            {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                return passwordHash.SequenceEqual(passwordHash);
-            }
-        }
     }
 }
