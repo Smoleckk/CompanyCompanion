@@ -53,7 +53,7 @@ namespace CompanyCompanionBackend.Services.AuthIService
             var findUser = context.Users.FirstOrDefault(c => c.Username == request.Username);
             if (findUser == null)
             {
-                return new TokenResponse { jwtToken = "User not found" };;
+                return new TokenResponse { jwtToken = "User not found" }; ;
             }
             if (!VerifyPasswordHash(request.Password, findUser.PasswordHash, findUser.PasswordSalt))
             {
@@ -62,8 +62,8 @@ namespace CompanyCompanionBackend.Services.AuthIService
             string token = CreateToken(findUser);
             TokenResponse tokenResponse = new TokenResponse { jwtToken = token };
 
-            return new TokenResponse { jwtToken = token }; 
-            
+            return new TokenResponse { jwtToken = token };
+
         }
 
         private string CreateToken(User user)

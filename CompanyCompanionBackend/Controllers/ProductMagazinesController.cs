@@ -49,7 +49,7 @@ namespace CompanyCompanionBackend.Controllers
         }
         [HttpGet("name/{name}")]
         public async Task<ActionResult<ProductMagazine>> GetProductMagazineByName(string name)
-        {     
+        {
             var response = await _poducctMagazinesService.GetProductMagazineByName(name);
             if (response.Success == false)
                 return NotFound(response.Message);

@@ -66,8 +66,8 @@ builder.Services.AddCors(
 );
 
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<ICustomerService,CustomerService>();
-builder.Services.AddScoped<IInvoiceService,InvoiceService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IPoducctMagazinesService, PoducctMagazinesService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IInvoiceCorrectService, InvoiceCorrectService>();

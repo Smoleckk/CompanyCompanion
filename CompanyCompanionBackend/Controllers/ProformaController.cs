@@ -38,7 +38,7 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet("get-proforma-header-by-code/{code}")]
         public async Task<ActionResult<ProformaHeader>> GetProformaHeaderByCode(int code)
         {
-            var response = await _proformaService.GetProformaHeaderByCode( code);
+            var response = await _proformaService.GetProformaHeaderByCode(code);
 
             if (response.Success == false)
                 return NotFound(response.Message);

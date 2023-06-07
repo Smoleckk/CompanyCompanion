@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyCompanionBackend.Services.ProfileIService
 {
-    public class ProfileService :IProfileService
+    public class ProfileService : IProfileService
     {
         private readonly IMapper _mapper;
         private readonly DataContext _context;
@@ -44,7 +44,7 @@ namespace CompanyCompanionBackend.Services.ProfileIService
             response.Data = profile;
             return response;
         }
-        public async Task<ServiceResponse<Company>> UpdateTemplate(Company company,string template)
+        public async Task<ServiceResponse<Company>> UpdateTemplate(Company company, string template)
         {
             var response = new ServiceResponse<Company>();
             company.Template = template;

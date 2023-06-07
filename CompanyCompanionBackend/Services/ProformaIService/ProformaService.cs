@@ -55,12 +55,9 @@ namespace CompanyCompanionBackend.Services.ProformaIService
             var response = new ServiceResponse<Proforma>();
 
             var proformaCount = company.ProformaCounts.FirstOrDefault(i => i.DateIssued == proformaAddDto.DateIssued.Substring(0, 7));
-            //Random rnd = new Random();
 
             if (proformaAddDto.IsGenerated)
             {
-                //proformaAddDto.ProformaNo = "PNo" + rnd.Next();
-
                 if (proformaCount != null)
                 {
                     proformaCount.ProformaNumber++;
@@ -85,7 +82,7 @@ namespace CompanyCompanionBackend.Services.ProformaIService
             proformaAddDto.DueDate = proformaAddDto.DueDate.Substring(0, 10);
             var proforma = _mapper.Map<Proforma>(proformaAddDto);
 
-            proforma.Company =company;
+            proforma.Company = company;
             customer.Proformas.Add(proforma);
             await _context.SaveChangesAsync();
 
@@ -121,7 +118,7 @@ namespace CompanyCompanionBackend.Services.ProformaIService
                 }
                 else
                 {
-                    var n = new InvoiceCount { Name="Proforma", DateIssued = proformaDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
+                    var n = new InvoiceCount { Name = "Proforma", DateIssued = proformaDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
                     company.InvoiceCounts.Add(n);
                     proformaDto.ProformaNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
 

@@ -11,7 +11,7 @@ using System;
 
 namespace CompanyCompanionBackend.Services.CustomerIService
 {
-    public class CustomerService :ICustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
@@ -56,7 +56,7 @@ namespace CompanyCompanionBackend.Services.CustomerIService
             return response;
         }
 
-        public async Task<ServiceResponse<Customer>> PostCustomer(User user,CustomerAddDto customerAddDto)
+        public async Task<ServiceResponse<Customer>> PostCustomer(User user, CustomerAddDto customerAddDto)
         {
             var response = new ServiceResponse<Customer>();
             Customer customerBase = await _context.Customers.FirstOrDefaultAsync(
@@ -69,7 +69,7 @@ namespace CompanyCompanionBackend.Services.CustomerIService
                 return response;
             }
 
-           // var user = await GetUserWithCompany();
+            // var user = await GetUserWithCompany();
             Company company = user.Company;
             var customer = _mapper.Map<Customer>(customerAddDto);
             company.Customers.Add(customer);
@@ -89,7 +89,7 @@ namespace CompanyCompanionBackend.Services.CustomerIService
 
             if (customer == null)
             {
-                 response.Success = false;
+                response.Success = false;
                 response.Message = "customer not exist";
                 return response;
             }

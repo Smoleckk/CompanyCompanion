@@ -45,7 +45,7 @@ namespace CompanyCompanionBackend.Controllers
                 return NotFound("User not found.");
             }
             var company = await GetCompany(user);
-            var response = await _profileService.UpdateTemplate(company,template);
+            var response = await _profileService.UpdateTemplate(company, template);
 
             if (response.Success == false)
                 return NotFound(response.Message);

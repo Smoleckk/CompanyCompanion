@@ -82,7 +82,7 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<ActionResult<List<Invoice>>> GetCustomerInvoicesHeader(string code)
         {
             var company = await GetCompany();
-            var response = await _invoiceService.GetCustomerInvoicesHeader(company,code);
+            var response = await _invoiceService.GetCustomerInvoicesHeader(company, code);
 
             if (response.Success == false)
                 return NotFound(response.Message);
@@ -105,7 +105,7 @@ namespace CompanyCompanionBackend.Controllers
         {
 
             var company = await GetCompany();
-            var response = await _invoiceService.SaveInvoice(company,invoiceAddDto);
+            var response = await _invoiceService.SaveInvoice(company, invoiceAddDto);
 
             if (response.Success == false)
                 return NotFound(response.Message);
@@ -127,7 +127,7 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<IActionResult> UpdateInvoice(int id, [FromBody] InvoiceAddDto invoiceDto)
         {
             var company = await GetCompany();
-            var response = await _invoiceService.UpdateInvoice(company,id,invoiceDto);
+            var response = await _invoiceService.UpdateInvoice(company, id, invoiceDto);
 
             if (response.Success == false)
                 return NotFound(response.Message);

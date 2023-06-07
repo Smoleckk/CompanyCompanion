@@ -1,14 +1,9 @@
-﻿using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Models.CompanyModel;
+﻿
 using CompanyCompanionBackend.Models.UserModel;
 using CompanyCompanionBackend.Models.UserModel.Auth;
 using CompanyCompanionBackend.Services.AuthIService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
+
 
 namespace CompanyCompanionBackend.Controllers
 {
@@ -20,7 +15,7 @@ namespace CompanyCompanionBackend.Controllers
 
         public AuthController(IAuthService authService)
         {
-            _authService=authService;
+            _authService = authService;
         }
 
         [HttpPost("login")]

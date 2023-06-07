@@ -80,11 +80,11 @@ namespace CompanyCompanionBackend.Services.InvoiceIService
             return response;
         }
 
-        public async Task<ServiceResponse<Invoice>> SaveInvoice(Company company,InvoiceAddDto invoiceAddDto)
+        public async Task<ServiceResponse<Invoice>> SaveInvoice(Company company, InvoiceAddDto invoiceAddDto)
         {
             var response = new ServiceResponse<Invoice>();
 
-            var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == invoiceAddDto.DateIssued.Substring(0, 7) && i.Name =="Invoice");
+            var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == invoiceAddDto.DateIssued.Substring(0, 7) && i.Name == "Invoice");
             if (invoiceAddDto.IsGenerated)
             {
 
@@ -97,7 +97,7 @@ namespace CompanyCompanionBackend.Services.InvoiceIService
                 }
                 else
                 {
-                    var n = new InvoiceCount { Name="Invoice", DateIssued = invoiceAddDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
+                    var n = new InvoiceCount { Name = "Invoice", DateIssued = invoiceAddDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
                     company.InvoiceCounts.Add(n);
                     invoiceAddDto.InvoiceNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
 
