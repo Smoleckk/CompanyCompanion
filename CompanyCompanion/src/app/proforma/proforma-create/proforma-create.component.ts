@@ -94,6 +94,8 @@ export class ProformaCreateComponent implements OnInit {
   isGeneratedShow: boolean = false;
   editProformaDetail: any;
   proformaNoIsEdit:any;
+  isTempProformaNumber:any = false;
+
 
 
   proformaForm = this.builder.group({
@@ -136,6 +138,16 @@ export class ProformaCreateComponent implements OnInit {
         let editData: any;
         editData = res;
       this.proformaNoIsEdit = editData.proformaNo
+      this.isTempProformaNumber = this.proformaNoIsEdit.indexOf('Temp') === 0
+      this.customerFullName =
+      editData.customerName +
+      '<br>' +
+      editData.customerDeliveryAddress +
+      '<br>' +
+      editData.customerCityCode +
+      '<br> NIP: ' +
+      editData.customerNip;
+
 
         editData.products.forEach((product: any) => {
           this.products.push(
@@ -215,7 +227,7 @@ export class ProformaCreateComponent implements OnInit {
             paymentDescription: editData.paymentDescription,
             remarks: editData.remarks,
             products: [],
-            isGenerated: false,
+            isGenerated: editData.isGenerated,
           });
         }
       });
@@ -266,13 +278,16 @@ export class ProformaCreateComponent implements OnInit {
   SaveProforma() {
     if (this.proformaForm.valid) {
       if (this.isEdit) {
+        console.log(this.proformaForm.getRawValue());
         this.serviceProforma
           .EditProforma(this.proformaForm.getRawValue())
+          
           .subscribe(() => {
             this.toastr.success('Created Edited', 'Proforma No');
             this.router.navigate(['/proforma-list']);
           });
       } else {
+        console.log(this.proformaForm.getRawValue());
         this.serviceProforma
           .SaveProforma(this.proformaForm.getRawValue())
           .subscribe(() => {

@@ -95,6 +95,8 @@ export class CreateInvoiceComponent implements OnInit {
   isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
   customerFullName: any = '';
+  customerHoldOnlyName: any = '';
+  isTempInvoiceNumber:any = false;
 
   invoiceForm = this.builder.group({
     invoiceId: this.builder.control(0),
@@ -134,7 +136,7 @@ export class CreateInvoiceComponent implements OnInit {
       let editData: any;
       editData = res;
       this.invoiceNoIsEdit = editData.invoiceNo
-
+      this.isTempInvoiceNumber = this.invoiceNoIsEdit.indexOf('Temp') === 0
       this.customerFullName =
       editData.customerName +
       '<br>' +
@@ -143,6 +145,7 @@ export class CreateInvoiceComponent implements OnInit {
       editData.customerCityCode +
       '<br> NIP: ' +
       editData.customerNip;
+      this.customerHoldOnlyName =  editData.customerName;
 
       editData.products.forEach((product: any) => {
         this.products.push(
@@ -273,6 +276,7 @@ export class CreateInvoiceComponent implements OnInit {
   SaveInvoice() {
     if (this.invoiceForm.valid) {
       if (this.invoiceFromProformaId != null) {
+        console.log(this.invoiceForm.getRawValue());
         this.service
           .SaveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
@@ -280,6 +284,8 @@ export class CreateInvoiceComponent implements OnInit {
             this.router.navigate(['/invoice-list']);
           });
       } else if (this.isEdit) {
+        console.log(this.invoiceForm.getRawValue());
+
         this.service
           .EditInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
@@ -287,6 +293,8 @@ export class CreateInvoiceComponent implements OnInit {
             this.router.navigate(['/invoice-list']);
           });
       } else {
+        console.log(this.invoiceForm.getRawValue());
+
         this.service
           .SaveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
@@ -338,6 +346,7 @@ export class CreateInvoiceComponent implements OnInit {
           customData.customerCity +
           '<br> NIP: ' +
           customData.customerNip;
+          this.customerHoldOnlyName =  customData.customerName
       }
     });
   }

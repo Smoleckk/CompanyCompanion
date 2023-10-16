@@ -30,9 +30,26 @@
             </mat-select>
           </mat-form-field>
 
-          <h2 *ngIf="editInvoiceId" style="padding: 0; margin: 0">
-            Faktura: {{ invoiceNoIsEdit }}
-          </h2>
+          <div class="" style="display: flex">
+            <mat-form-field
+              *ngIf="editInvoiceId && isTempInvoiceNumber"
+              appearance="outline"
+            >
+              <mat-select
+                formControlName="isGenerated"
+                placeholder="Czy chcesz wystawić fakture? Po wystawieniu zostaenie jej przypisany numer"
+              >
+                <mat-option
+                  *ngFor="let item of issuedStatus"
+                  [value]="item.value"
+                  >{{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <h2 *ngIf="editInvoiceId" style="padding: 0; margin: 0">
+              Faktura: {{ invoiceNoIsEdit }}
+            </h2>
+          </div>
         </div>
 
         <!-- ////////////////// -->
@@ -43,12 +60,12 @@
         >
           <mat-grid-tile [colspan]="2">
             <div class="middlerows2">
-              <mat-form-field  appearance="outline" class="full-width">
+              <mat-form-field appearance="outline" class="full-width">
                 <mat-select
                   (selectionChange)="CustomerChange($event)"
-                  placeholder="Select or add new client"
+                  [placeholder]="customerHoldOnlyName != '' ? customerHoldOnlyName: 'Select or add new client'"
                 >
-                  <mat-option >
+                  <mat-option>
                     <a
                       style="width: 200px"
                       (click)="createCustomer()"
@@ -59,10 +76,11 @@
                       Add new client
                     </a>
                   </mat-option>
-                  <mat-option disabled="true"> Client list: </mat-option>
+                  <!-- <mat-option disabled="true"> Client list: </mat-option> -->
                   <mat-option
                     *ngFor="let item of getCustomer"
                     [value]="item.customerId"
+                    [disabled]="item.customerName == customerHoldOnlyName"
                   >
                     {{ item.customerName }}, {{ item.customerNip }}
                   </mat-option>

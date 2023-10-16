@@ -63,6 +63,7 @@ export class ProformaListComponent implements OnInit {
   }
   LoadProforma() {
     this.service.GetAllProforma().subscribe((res) => {
+      console.log(res);
       this.proformaHeader = res;
       this.dataSource = new MatTableDataSource(this.proformaHeader);
       this.dataSource.paginator = this.paginator;

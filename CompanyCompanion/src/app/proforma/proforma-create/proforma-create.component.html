@@ -30,9 +30,29 @@
                     </mat-select>
                   </mat-form-field>
         
-                  <h2 *ngIf="editProformaId" style="padding: 0; margin: 0">
+                  <!-- <h2 *ngIf="editProformaId" style="padding: 0; margin: 0">
                     Faktura: {{ proformaNoIsEdit }}
-                  </h2>
+                  </h2> -->
+                  <div class="" style="display: flex">
+                    <mat-form-field
+                      *ngIf="editProformaId && isTempProformaNumber"
+                      appearance="outline"
+                    >
+                      <mat-select
+                        formControlName="isGenerated"
+                        placeholder="Czy chcesz wystawić fakture? Po wystawieniu zostaenie jej przypisany numer"
+                      >
+                        <mat-option
+                          *ngFor="let item of issuedStatus"
+                          [value]="item.value"
+                          >{{ item.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <h2 *ngIf="editProformaId" style="padding: 0; margin: 0">
+                      Faktura: {{ proformaNoIsEdit }}
+                    </h2>
+                  </div>
                 </div>
         
                 <!-- ////////////////// -->
