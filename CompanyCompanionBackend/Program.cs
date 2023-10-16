@@ -1,4 +1,11 @@
 using CompanyCompanionBackend.Data;
+using CompanyCompanionBackend.Services.AuthIService;
+using CompanyCompanionBackend.Services.CustomerIService;
+using CompanyCompanionBackend.Services.InvoiceCorrectIService;
+using CompanyCompanionBackend.Services.InvoiceIService;
+using CompanyCompanionBackend.Services.ProductMagazinesService;
+using CompanyCompanionBackend.Services.ProfileIService;
+using CompanyCompanionBackend.Services.ProformaIService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +64,14 @@ builder.Services.AddCors(
             }
         )
 );
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+builder.Services.AddScoped<IPoducctMagazinesService, PoducctMagazinesService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<IInvoiceCorrectService, InvoiceCorrectService>();
+builder.Services.AddScoped<IProformaService, ProformaService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

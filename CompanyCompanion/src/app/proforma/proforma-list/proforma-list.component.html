@@ -1,18 +1,6 @@
 <div class="container">
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p">> Proforma List</p>
-    </mat-card-actions>
-    <mat-card-actions>
-      <div [routerLink]="['/create-proforma']" class="middle">
-        <mat-icon color="primary">add_circle</mat-icon>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+<app-breadcrumb headerDetail="Proforma List" link="/create-proforma" [isAddButton]="true" ></app-breadcrumb>
+
 
   <div class="">
     <mat-card>

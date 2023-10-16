@@ -4,6 +4,7 @@ using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
+using CompanyCompanionBackend.Services.CustomerIService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,85 +15,64 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly ICustomerService _customerService;
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public CustomerController(DataContext context, IMapper mapper)
+        public CustomerController(DataContext context, ICustomerService customerService)
         {
+            _customerService = customerService;
             _context = context;
-            _mapper = mapper;
+
         }
 
         [HttpGet, Authorize]
         public async Task<ActionResult<IEnumerable<CustomerReturnDto>>> GetCustomers()
         {
             var user = await GetUserWithCompany();
-            var customers = user.Company.Customers;
+            var response = await _customerService.GetCustomers(user);
 
-            var customersReturn = _mapper.Map<IEnumerable<CustomerReturnDto>>(customers);
-
-            return Ok(customersReturn);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerReturnDto>> GetCustomer(int id)
         {
-            Customer customer = await _context.Customers.Include(i => i.Invoices).FirstOrDefaultAsync(
-                c => c.CustomerId == id
-            );
-
-            //if (customer == null)
-            //{
-            //    return NotFound();
-            //}
-            var customersReturn = _mapper.Map<CustomerReturnDto>(customer);
-            return Ok(customer);
+            var response = await _customerService.GetCustomer(id);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpPost, Authorize]
         public async Task<ActionResult<Customer>> PostCustomer(CustomerAddDto customerAddDto)
         {
             var user = await GetUserWithCompany();
-            Company company = user.Company;
-            var customer = _mapper.Map<Customer>(customerAddDto);
-            company.Customers.Add(customer);
-            await _context.SaveChangesAsync();
+            var response = await _customerService.PostCustomer(user, customerAddDto);
 
-            return Ok(customer);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<CustomerAddDto>> UpdateCustomer(int id, CustomerAddDto customerAddDto)
         {
-            var customer = await _context.Customers.FirstOrDefaultAsync(
-                c => c.CustomerId == id
-            );
+            var response = await _customerService.UpdateCustomer(id, customerAddDto);
 
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            customer.CustomerName = customerAddDto.CustomerName;
-            customer.CustomerNip = customerAddDto.CustomerNip;
-            customer.CustomerCity = customerAddDto.CustomerCity;
-            customer.CustomerAddress = customerAddDto.CustomerAddress;
-            await _context.SaveChangesAsync();
-            return Ok(customer);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult<Customer>> DeleteCustomer(int id)
         {
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.CustomerId == id);
+            var response = await _customerService.DeleteCustomer(id);
 
-            if (customer == null)
-            {
-                return NotFound();
-            }
-
-            _context.Customers.Remove(customer);
-            await _context.SaveChangesAsync();
-
-            return customer;
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         private async Task<User> GetUserWithCompany()

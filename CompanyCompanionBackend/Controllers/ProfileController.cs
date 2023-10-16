@@ -5,6 +5,7 @@ using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.Profile;
 using CompanyCompanionBackend.Models.UserModel;
+using CompanyCompanionBackend.Services.ProfileIService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,12 +16,12 @@ namespace CompanyCompanionBackend.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        private readonly IMapper _mapper;
+        private readonly IProfileService _profileService;
         private readonly DataContext _context;
 
-        public ProfileController(IMapper mapper, DataContext context)
+        public ProfileController(IProfileService profileService, DataContext context)
         {
-            _mapper = mapper;
+            _profileService = profileService;
             _context = context;
         }
 
@@ -28,22 +29,11 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<ActionResult<UserProfile>> GetProfile()
         {
             var user = await GetUser();
-            if (user == null)
-            {
-                return NotFound("user not found.");
-            }
-            UserProfile profile = new UserProfile
-            {
-                Username = user.Username,
-                Email = user.Email,
-                Name = user.Company.Name,
-                Nip = user.Company.Nip,
-                City = user.Company.City,
-                CityCode = user.Company.CityCode,
-                Template = user.Company.Template
-            };
+            var response = await _profileService.GetProfile(user);
 
-            return Ok(profile);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
         [HttpPut("{template}"), Authorize]
         public async Task<ActionResult<Company>> UpdateTemplate(string template)
@@ -52,13 +42,14 @@ namespace CompanyCompanionBackend.Controllers
 
             if (user == null)
             {
-                return NotFound("user not found.");
+                return NotFound("User not found.");
             }
             var company = await GetCompany(user);
+            var response = await _profileService.UpdateTemplate(company, template);
 
-            company.Template = template;
-            await _context.SaveChangesAsync();
-            return Ok(company);
+            if (response.Success == false)
+                return NotFound(response.Message);
+            return Ok(response.Data);
         }
 
         private async Task<User> GetUser()

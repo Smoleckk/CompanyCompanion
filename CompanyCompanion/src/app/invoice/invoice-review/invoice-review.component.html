@@ -1,13 +1,5 @@
 <div class="container">
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p">> Review</p>
-    </mat-card-actions>
-  </mat-card>
+  <app-breadcrumb headerDetail="Review" [isAddButton]="false" ></app-breadcrumb>
 
   <mat-card *ngIf="dataSource.data.length !== 0">
     <div class="mat-card-header-filter">
