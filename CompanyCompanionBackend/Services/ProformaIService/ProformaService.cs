@@ -6,7 +6,6 @@ using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ProformaModel;
 using CompanyCompanionBackend.Models.ServiceResponseModel;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyCompanionBackend.Services.ProformaIService
@@ -108,19 +107,21 @@ namespace CompanyCompanionBackend.Services.ProformaIService
 
             if (proforma.IsGenerated == false && proformaDto.IsGenerated == true)
             {
-                var invoiceCount = company.InvoiceCounts.FirstOrDefault(i => i.DateIssued == proformaDto.DateIssued.Substring(0, 7) && i.Name == "Proforma");
+                var invoiceCount = company.ProformaCounts.FirstOrDefault(i => i.DateIssued == proformaDto.DateIssued.Substring(0, 7));
 
                 if (invoiceCount != null)
                 {
-                    invoiceCount.InvoiceNumber++;
-                    proformaDto.ProformaNo = invoiceCount.InvoiceNumber.ToString() + "/" + proformaDto.DateIssued.Substring(5, 2) + "/" + proformaDto.DateIssued.Substring(0, 4);
+                    invoiceCount.ProformaNumber++;
+                    //proformaDto.ProformaNo = invoiceCount.InvoiceNumber.ToString() + "/" + proformaDto.DateIssued.Substring(5, 2) + "/" + proformaDto.DateIssued.Substring(0, 4);
+                    proformaDto.ProformaNo = invoiceCount.ProformaNumber.ToString() + "/PROF/" + proformaDto.DateIssued.Substring(5, 2) + "/" + proformaDto.DateIssued.Substring(0, 4);
 
                 }
                 else
                 {
-                    var n = new InvoiceCount { Name = "Proforma", DateIssued = proformaDto.DateIssued.Substring(0, 7), InvoiceNumber = 1 };
-                    company.InvoiceCounts.Add(n);
-                    proformaDto.ProformaNo = n.InvoiceNumber.ToString() + "/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
+                    var n = new ProformaCount { DateIssued = proformaDto.DateIssued.Substring(0, 7), ProformaNumber = 1 };
+                    company.ProformaCounts.Add(n);
+                    proformaDto.ProformaNo = n.ProformaNumber.ToString() + "/PROF/" + n.DateIssued.Substring(5, 2) + "/" + n.DateIssued.Substring(0, 4);
+
 
                 }
             }
