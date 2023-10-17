@@ -1,3 +1,4 @@
+using BIRService;
 using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Services.AuthIService;
 using CompanyCompanionBackend.Services.CustomerIService;
@@ -15,6 +16,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Daj klucz servisowy z ustawieñ
+var birKey = builder.Configuration.GetSection("BIRService").Value;
+builder.Services.AddTransient<IBIRSearchService>(x => new BIRSearchService(birKey));
 
 builder.Services.AddControllers();
 

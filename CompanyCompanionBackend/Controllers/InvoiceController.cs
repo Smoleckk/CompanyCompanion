@@ -1,10 +1,7 @@
-﻿using AutoMapper;
+﻿using BIRService;
 using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
-using CompanyCompanionBackend.Models.CustomerModel;
-using CompanyCompanionBackend.Models.InvoiceCountModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
-using CompanyCompanionBackend.Models.UserModel;
 using CompanyCompanionBackend.Services.InvoiceIService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +15,12 @@ namespace CompanyCompanionBackend.Controllers
     {
         private readonly IInvoiceService _invoiceService;
         private readonly DataContext _context;
-
-        public InvoiceController(IInvoiceService invoiceService, DataContext context)
+        private IBIRSearchService _service;
+        public InvoiceController(IInvoiceService invoiceService, DataContext context, IBIRSearchService birSearchService)
         {
             _invoiceService = invoiceService;
             _context = context;
+            _service = birSearchService;
         }
 
 
@@ -132,6 +130,12 @@ namespace CompanyCompanionBackend.Controllers
             if (response.Success == false)
                 return NotFound(response.Message);
             return Ok(response.Data);
+        }
+        [HttpGet("regon/{nip}")]
+        public async Task<IActionResult> Regon(string nip)
+        {
+            var actual = await _service.GetCompanyDataByNipIdAsync(nip);
+            return Ok(actual);
         }
 
         private async Task<Company> GetCompany()
