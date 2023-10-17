@@ -1,5 +1,4 @@
-﻿using BIRService;
-using CompanyCompanionBackend.Data;
+﻿using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Services.InvoiceIService;
@@ -15,12 +14,10 @@ namespace CompanyCompanionBackend.Controllers
     {
         private readonly IInvoiceService _invoiceService;
         private readonly DataContext _context;
-        private IBIRSearchService _service;
-        public InvoiceController(IInvoiceService invoiceService, DataContext context, IBIRSearchService birSearchService)
+        public InvoiceController(IInvoiceService invoiceService, DataContext context)
         {
             _invoiceService = invoiceService;
             _context = context;
-            _service = birSearchService;
         }
 
 
@@ -131,12 +128,7 @@ namespace CompanyCompanionBackend.Controllers
                 return NotFound(response.Message);
             return Ok(response.Data);
         }
-        [HttpGet("regon/{nip}")]
-        public async Task<IActionResult> Regon(string nip)
-        {
-            var actual = await _service.GetCompanyDataByNipIdAsync(nip);
-            return Ok(actual);
-        }
+
 
         private async Task<Company> GetCompany()
         {

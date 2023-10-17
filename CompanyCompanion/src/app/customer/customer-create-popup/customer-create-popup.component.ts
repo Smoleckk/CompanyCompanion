@@ -23,10 +23,11 @@ export class CustomerCreatePopupComponent {
 
   createform = this.builder.group({
     customerName: ['', Validators.required],
-    customerNip: ['', Validators.required],
+    customerNip: [, Validators.required],
     customerCity: ['', Validators.required],
     customerAddress: ['', Validators.required],
   });
+  
 
   saveCustomer() {
     if (this.createform.valid) {
@@ -37,5 +38,22 @@ export class CustomerCreatePopupComponent {
     } else {
       this.toastr.warning('Please check data');
     }
+  }
+  getRegon() {
+    this.service.getRegon(this.createform.value.customerNip).subscribe(
+      (data) => {
+        this.createform.patchValue({
+          customerName: data.nazwa,
+          customerNip: data.nip,
+          customerCity: data.ulica + " " + data.nrNieruchomosci,
+          customerAddress: data.kodPocztowy + " " + data.miejscowosc
+        });
+        this.toastr.success('Super, udało się uzupełnić podmiot');
+        console.log(data);
+      },
+      (error) => {
+        this.toastr.error(error.error);
+      }
+    );
   }
 }

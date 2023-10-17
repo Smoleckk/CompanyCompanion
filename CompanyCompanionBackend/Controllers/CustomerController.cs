@@ -1,8 +1,6 @@
-﻿using AutoMapper;
+﻿using BIRService;
 using CompanyCompanionBackend.Data;
-using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
-using CompanyCompanionBackend.Models.ProdMagazine;
 using CompanyCompanionBackend.Models.UserModel;
 using CompanyCompanionBackend.Services.CustomerIService;
 using Microsoft.AspNetCore.Authorization;
@@ -17,11 +15,13 @@ namespace CompanyCompanionBackend.Controllers
     {
         private readonly ICustomerService _customerService;
         private readonly DataContext _context;
+        private IBIRSearchService _service;
 
-        public CustomerController(DataContext context, ICustomerService customerService)
+        public CustomerController(DataContext context, ICustomerService customerService, IBIRSearchService birSearchService)
         {
             _customerService = customerService;
             _context = context;
+            _service = birSearchService;
 
         }
 
@@ -74,7 +74,21 @@ namespace CompanyCompanionBackend.Controllers
                 return NotFound(response.Message);
             return Ok(response.Data);
         }
-
+        [HttpGet("regon/{nip}")]
+        public async Task<IActionResult> GetRegon(string nip)
+        {
+            var actual = await _service.GetCompanyDataByNipIdAsync(nip);
+            if (actual.Errors.Count > 0)
+            {
+                string errorLogs = "";
+                foreach (var error in actual.Errors)
+                {
+                    errorLogs += error.ErrorMessagePl + " ";
+                }
+                return NotFound(errorLogs);
+            }
+            return Ok(actual);
+        }
         private async Task<User> GetUserWithCompany()
         {
             var userName = User?.Identity?.Name;

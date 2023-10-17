@@ -16,7 +16,10 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>NIP</mat-label>
-          <input matInput placeholder="NIP" formControlName="customerNip" />
+          <input matInput placeholder="NIP" formControlName="customerNip" />          
+          <a mat-icon-button matSuffix color="primary" (click)="getRegon()">
+            <mat-icon>search</mat-icon>
+          </a>
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>City</mat-label>

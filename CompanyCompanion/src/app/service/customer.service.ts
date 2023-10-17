@@ -28,4 +28,7 @@ export class CustomerService {
   createCustomer(customer: any): Observable<any> {
     return this.http.post(this.apiUrl, customer);
   }
+  getRegon(code: any): Observable<any> {
+    return this.http.get(this.apiUrl+ "regon/" + code);
+  }
 }
