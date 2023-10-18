@@ -20,6 +20,7 @@ import { ProfileDetailsComponent } from './profile/profile-details/profile-detai
 import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
 import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
+import { ParentComponent } from './zabawa/parent/parent.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -114,6 +115,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileDetailsComponent,
+     canActivate: [AuthGuard],
+  },
+  {
+    path: 'zabawa',
+    component: ParentComponent,
      canActivate: [AuthGuard],
   },
 ];

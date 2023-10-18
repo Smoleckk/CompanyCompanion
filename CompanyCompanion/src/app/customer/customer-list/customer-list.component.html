@@ -1,22 +1,5 @@
 <div class="container">
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p">> Customer List</p>
-    </mat-card-actions>
-    <mat-card-actions>
-      <div class="middle">
-        <mat-icon (click)="createCustomer()" color="primary"
-          >add_circle</mat-icon
-        >
-      </div>
-    </mat-card-actions>
-  </mat-card>
-<!-- <app-breadcrumb headerDetail="Customer List" [isAddButton]="false" [isPopup]="true" [akcja]="createCustomer" ></app-breadcrumb> -->
-
+<app-breadcrumb headerDetail="Customer List" (callParent)="createCustomer()" ></app-breadcrumb>
   <div class="">
     <mat-card>
       <div class="mat-card-header-filter">

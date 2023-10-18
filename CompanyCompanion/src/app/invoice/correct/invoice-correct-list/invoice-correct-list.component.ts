@@ -117,6 +117,10 @@ export class InvoiceCorrectListComponent  implements OnInit {
     this.router.navigateByUrl(`/edit-correct/${invoiceId}`);
   }
 
+  addCorrect(): void {
+    this.router.navigateByUrl(`/create-correct`);
+  }
+
   downloadInvoice(code: any): void {
     if (this.profileForm.value.template == 'first') {
       const popup = this.dialog.open(InvoiceCorrectSecondPopupComponent, {

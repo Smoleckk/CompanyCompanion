@@ -1,18 +1,5 @@
 <div class="container">
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p">> Co-worker List</p>
-    </mat-card-actions>
-    <mat-card-actions>
-      <div class="middle">
-        <mat-icon (click)="createUser()" color="primary">add_circle</mat-icon>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+  <app-breadcrumb headerDetail="Co-worker List"  (callParent)="createUser()"></app-breadcrumb>
   <div class="">
     <mat-card>
       <div class="mat-card-header-filter">

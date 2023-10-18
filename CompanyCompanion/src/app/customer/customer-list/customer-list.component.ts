@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,6 +14,8 @@ import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-
   styleUrls: ['./customer-list.component.scss'],
 })
 export class CustomerListComponent {
+
+
   customerData: any;
   dataSource: any;
   displayedColumns: string[] = [

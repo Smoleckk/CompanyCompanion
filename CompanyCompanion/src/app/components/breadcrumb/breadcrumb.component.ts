@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input  ,Output, EventEmitter} from '@angular/core';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
@@ -7,12 +7,20 @@ import { Action } from 'rxjs/internal/scheduler/Action';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent {
+  @Output() callParent = new EventEmitter<string>();
+
+  callParentFunction() {
+    this.callParent.emit();
+  }
+
 
   @Input() link: any;
   @Input() header: any;
   @Input() headerDetail: any;
   @Input() isAddButton: boolean = true;
   @Input() isPopup: boolean = false;
+
+  
   @Input()
   akcja!: () => void;
 }

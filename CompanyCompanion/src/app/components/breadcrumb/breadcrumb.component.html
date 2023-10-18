@@ -11,16 +11,10 @@
       <p class="breadcrumb-p">{{headerDetail}}</p>
     </mat-card-actions>
     <mat-card-actions *ngIf="isAddButton">
-      <div [routerLink]="link" class="middle">
-        <mat-icon color="primary">add_circle</mat-icon>
-      </div>
-    </mat-card-actions>
-    <mat-card-actions *ngIf="isPopup">
       <div class="middle" >
-        <!-- [click]="popupAction" -->
-        <mat-icon color="red" (click)="akcja()" color="primary"
+        <mat-icon (click)="callParentFunction()" color="primary"
           >add_circle</mat-icon
         >
       </div>
     </mat-card-actions>
-  </mat-card>
+  </mat-card> 

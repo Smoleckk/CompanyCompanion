@@ -115,6 +115,10 @@ export class InvoiceListComponent implements OnInit {
   editInvoice(invoiceId: any): void {
     this.router.navigateByUrl(`/edit-invoice/${invoiceId}`);
   }
+  
+  addInvoice(): void {
+    this.router.navigateByUrl(`/create-invoice`);
+  }
 
   downloadInvoice(code: any): void {
     if (this.profileForm.value.template == 'first') {

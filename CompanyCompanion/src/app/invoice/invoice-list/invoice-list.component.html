@@ -1,6 +1,5 @@
 <div class="container">
-<app-breadcrumb headerDetail="Invoice List" link="/create-invoice" [isAddButton]="true" ></app-breadcrumb>
-
+<app-breadcrumb headerDetail="Invoice List" (callParent)="addInvoice()" ></app-breadcrumb>
   <div class="">
     <mat-card>
       <div class="mat-card-header-filter">

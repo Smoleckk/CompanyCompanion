@@ -1,21 +1,5 @@
 <div class="container">
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home</p>
-      </div>
-      <p class="breadcrumb-p middle" [routerLink]="['/customer-list']">
-        > Customers
-      </p>
-      <p class="breadcrumb-p">> {{ customerForm.value.customerName }}</p>
-    </mat-card-actions>
-    <mat-card-actions>
-      <div class="middle">
-        <mat-icon (click)="updateCustomer()" color="primary">edit</mat-icon>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+  <app-breadcrumb  header="Customers" link="/customer-list" headerDetail="> {{customerForm.value.customerName}}"  (callParent)="updateCustomer()" ></app-breadcrumb>
   <mat-card style="width: 5%; min-width: 400px">
     <mat-card-content class="customer-details">
       <h2>Customer data</h2>

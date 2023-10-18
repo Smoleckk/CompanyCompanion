@@ -57,6 +57,8 @@ import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-l
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 import { InvoiceCorrectSecondPopupComponent } from './invoice/correct/invoice-correct-second-popup/invoice-correct-second-popup.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ParentComponent } from './zabawa/parent/parent.component';
+import { ChildComponent } from './zabawa/child/child.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +93,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     InvoiceCorrectCreateComponent,
     InvoiceCorrectSecondPopupComponent,
     BreadcrumbComponent,
+    ParentComponent,
+    ChildComponent,
   ],
   imports: [
     BrowserModule,
