@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,8 +14,7 @@ import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-
   styleUrls: ['./customer-list.component.scss'],
 })
 export class CustomerListComponent {
-
-
+  
   customerData: any;
   dataSource: any;
   displayedColumns: string[] = [
@@ -25,8 +24,28 @@ export class CustomerListComponent {
     'customerAddress',
     'action',
   ];
-
-  
+  columns: any = [
+    {
+      matColumnDef: 'customerName',
+      matHeaderCellDef: 'Name',
+      matCellDef: 'customerName',
+    },
+    {
+      matColumnDef: 'customerNip',
+      matHeaderCellDef: 'Nip',
+      matCellDef: 'customerNip',
+    },
+    {
+      matColumnDef: 'customerCity',
+      matHeaderCellDef: 'City',
+      matCellDef: 'customerCity',
+    },
+    {
+      matColumnDef: 'customerAddress',
+      matHeaderCellDef: 'Address',
+      matCellDef: 'customerAddress',
+    },
+  ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -61,7 +80,6 @@ export class CustomerListComponent {
     });
   }
   detailsCustomer(code: any): void {
-    // this.router.navigate(['customer/${code}']);
     this.router.navigateByUrl('/customer/' + code);
   }
 

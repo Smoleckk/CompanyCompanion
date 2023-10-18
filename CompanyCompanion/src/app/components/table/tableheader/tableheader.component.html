@@ -1,0 +1,13 @@
+<div class="mat-card-header-filter">
+    <h2>{{header}}</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="callParentFunction($event)"
+        placeholder={{searchPlaceholder}}
+        #input
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
