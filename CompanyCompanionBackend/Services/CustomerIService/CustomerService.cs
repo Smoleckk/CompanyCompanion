@@ -4,10 +4,7 @@ using CompanyCompanionBackend.Models.CompanyModel;
 using CompanyCompanionBackend.Models.CustomerModel;
 using CompanyCompanionBackend.Models.ServiceResponseModel;
 using CompanyCompanionBackend.Models.UserModel;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace CompanyCompanionBackend.Services.CustomerIService
 {
@@ -60,12 +57,12 @@ namespace CompanyCompanionBackend.Services.CustomerIService
         {
             var response = new ServiceResponse<Customer>();
             Customer customerBase = await _context.Customers.FirstOrDefaultAsync(
-         c => c.CustomerName == customerAddDto.CustomerName
+         c => c.CustomerNip == customerAddDto.CustomerNip
      );
             if (customerBase != null)
             {
                 response.Success = false;
-                response.Message = "customer already exist";
+                response.Message = "Customer already exist with nip: " + customerBase.CustomerNip;
                 return response;
             }
 

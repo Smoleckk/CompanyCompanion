@@ -77,6 +77,8 @@ namespace CompanyCompanionBackend.Controllers
         [HttpGet("regon/{nip}")]
         public async Task<IActionResult> GetRegon(string nip)
         {
+            if (string.IsNullOrEmpty(nip))
+                return BadRequest("Proszę podać NIP");
             var actual = await _service.GetCompanyDataByNipIdAsync(nip);
             if (actual.Errors.Count > 0)
             {

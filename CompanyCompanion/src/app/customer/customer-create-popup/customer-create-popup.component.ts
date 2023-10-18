@@ -1,5 +1,5 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -23,37 +23,57 @@ export class CustomerCreatePopupComponent {
 
   createform = this.builder.group({
     customerName: ['', Validators.required],
-    customerNip: [, Validators.required],
+    customerNip: [
+      ,
+      [
+        Validators.required,
+        (control: AbstractControl) => {
+          const value = control.value;
+
+          // Check if the NIP is exactly 10 characters and contains only digits
+          if (value && (isNaN(value) || value.toString().length !== 10)) {
+            return { invalidNip: true };
+          }
+
+          return null;
+        },
+      ],
+    ],
     customerCity: ['', Validators.required],
     customerAddress: ['', Validators.required],
   });
-  
 
   saveCustomer() {
-    if (this.createform.valid) {
+    if (this.createform && this.createform.valid) {
       this.service.createCustomer(this.createform.value).subscribe(() => {
         this.toastr.success('Created successfully');
         this.dialog.close();
-      });
+      },
+      (error) => {
+        this.toastr.error(error.error);
+      }
+      );
     } else {
       this.toastr.warning('Please check data');
     }
   }
   getRegon() {
-    this.service.getRegon(this.createform.value.customerNip).subscribe(
-      (data) => {
-        this.createform.patchValue({
-          customerName: data.nazwa,
-          customerNip: data.nip,
-          customerCity: data.ulica + " " + data.nrNieruchomosci,
-          customerAddress: data.kodPocztowy + " " + data.miejscowosc
-        });
-        this.toastr.success('Super, udało się uzupełnić podmiot');
-        console.log(data);
-      },
-      (error) => {
-        this.toastr.error(error.error);
+      // if (this.createform.value.customerNip?.length === 10) {
+        this.service.getRegon(this.createform.value.customerNip).subscribe(
+          (data) => {
+            this.createform.patchValue({
+              customerName: data.nazwa,
+              customerNip: data.nip,
+              customerCity: data.ulica + ' ' + data.nrNieruchomosci,
+              customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
+            });
+            this.toastr.success('Super, udało się uzupełnić podmiot');
+            console.log(data);
+          },
+          (error) => {
+            this.toastr.error(error.error);
+          }
+        );
       }
-    );
-  }
+    // }
 }
