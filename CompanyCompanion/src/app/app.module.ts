@@ -65,9 +65,8 @@ import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn
 import { TablecontentComponent } from './components/table/tablecontent/tablecontent.component';
 import { CustomerPopupComponent } from './components/customer-popup/customer-popup.component';
 import { FormFieldComponent } from './components/form-field/form-field.component';
-// import { ProductPopupComponent } from './components/product-popup/product-popup.component';
-import { ProductPopupComponent } from './components/product-popup/product-popup.component';
 import { FormsPopupComponent } from './components/forms-popup/forms-popup.component';
+import { Registerv2Component } from './auth/registerv2/registerv2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,8 +109,8 @@ import { FormsPopupComponent } from './components/forms-popup/forms-popup.compon
     TablecontentComponent,
     CustomerPopupComponent,
     FormFieldComponent,
-    ProductPopupComponent,
     FormsPopupComponent,
+    Registerv2Component,
   ],
   imports: [
     BrowserModule,
