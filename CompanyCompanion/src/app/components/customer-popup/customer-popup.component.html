@@ -5,7 +5,7 @@
       <p>{{someInfo}}</p>
     </mat-card-header>
     <mat-card-content>
-      <form class="form middlerows" [formGroup]="form" (ngSubmit)="callParentFunction()">
+      <form [formGroup]="form" (ngSubmit)="callParentFunction()">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>NIP</mat-label>
           <input matInput placeholder="NIP" formControlName="customerNip" />
@@ -17,21 +17,10 @@
             <mat-icon>search</mat-icon>
           </a>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" formControlName="customerName" />
-          <mat-error *ngIf="form.get('customerName')?.hasError('required')">Wymagane pole</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>City</mat-label>
-          <input matInput placeholder="City" formControlName="customerCity" />
-          <mat-error *ngIf="form.get('customerCity')?.hasError('required')">Wymagane pole</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Address" formControlName="customerAddress" />
-          <mat-error *ngIf="form.get('customerAddress')?.hasError('required')">Wymagane pole</mat-error>
-        </mat-form-field>
+        <app-form-field [form]="form" label="Name" conrolName="customerName" cssClass="full-width"></app-form-field>
+        <app-form-field [form]="form" label="City" conrolName="customerCity" cssClass="full-width"></app-form-field>
+        <app-form-field [form]="form" label="Address" conrolName="customerAddress" cssClass="full-width">
+        </app-form-field>
 
         <div class="form-submit">
           <button mat-raised-button color="primary">{{buttonName}}</button>
@@ -39,5 +28,4 @@
       </form>
     </mat-card-content>
   </mat-card>
-
 </div>
