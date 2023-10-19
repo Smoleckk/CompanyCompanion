@@ -29,8 +29,6 @@ export class CustomerCreatePopupComponent {
         Validators.required,
         (control: AbstractControl) => {
           const value = control.value;
-
-          // Check if the NIP is exactly 10 characters and contains only digits
           if (value && (isNaN(value) || value.toString().length !== 10)) {
             return { invalidNip: true };
           }
@@ -45,35 +43,34 @@ export class CustomerCreatePopupComponent {
 
   saveCustomer() {
     if (this.createform && this.createform.valid) {
-      this.service.createCustomer(this.createform.value).subscribe(() => {
-        this.toastr.success('Created successfully');
-        this.dialog.close();
-      },
-      (error) => {
-        this.toastr.error(error.error);
-      }
+      this.service.createCustomer(this.createform.value).subscribe(
+        () => {
+          this.toastr.success('Created successfully');
+          this.dialog.close();
+        },
+        (error) => {
+          this.toastr.error(error.error);
+        }
       );
     } else {
       this.toastr.warning('Please check data');
     }
   }
   getRegon() {
-      // if (this.createform.value.customerNip?.length === 10) {
-        this.service.getRegon(this.createform.value.customerNip).subscribe(
-          (data) => {
-            this.createform.patchValue({
-              customerName: data.nazwa,
-              customerNip: data.nip,
-              customerCity: data.ulica + ' ' + data.nrNieruchomosci,
-              customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
-            });
-            this.toastr.success('Super, udało się uzupełnić podmiot');
-            console.log(data);
-          },
-          (error) => {
-            this.toastr.error(error.error);
-          }
-        );
+    this.service.getRegon(this.createform.value.customerNip).subscribe(
+      (data) => {
+        this.createform.patchValue({
+          customerName: data.nazwa,
+          customerNip: data.nip,
+          customerCity: data.ulica + ' ' + data.nrNieruchomosci,
+          customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
+        });
+        this.toastr.success('Super, udało się uzupełnić podmiot');
+        console.log(data);
+      },
+      (error) => {
+        this.toastr.error(error.error);
       }
-    // }
+    );
+  }
 }

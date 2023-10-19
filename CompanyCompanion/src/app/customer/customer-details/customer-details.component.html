@@ -3,17 +3,17 @@
     header="Customers"
     link="/customer-list"
     headerDetail="> {{ customerForm.value.customerName }}"
-    (callParent)="updateCustomer()"
+    [isAddButton]="false"
   ></app-breadcrumb>
   <mat-card style="width: 5%; min-width: 400px">
     <mat-card-content class="customer-details">
-      <div> 
+      <div>
         <h2>Customer data</h2>
         <app-tableactionbutton
           color="primary"
           icon="edit"
           (callParent)="updateCustomer()"
-          style="position: absolute; right:0;top:0;"
+          style="position: absolute; right: 0; top: 0"
         >
         </app-tableactionbutton>
       </div>

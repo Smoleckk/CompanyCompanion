@@ -1,5 +1,5 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -11,14 +11,6 @@ import { InvoiceService } from 'src/app/service/invoice.service';
   styleUrls: ['./customer-update-popup.component.scss'],
 })
 export class CustomerUpdatePopupComponent implements OnInit {
-  editdata: any;
-  updateform = this.builder.group({
-    customerName: ['', Validators.required],
-    customerNip: ['', Validators.required],
-    customerCity: ['', Validators.required],
-    customerAddress: ['', Validators.required],
-  });
-
   constructor(
     private builder: FormBuilder,
     private service: CustomerService,
@@ -26,6 +18,27 @@ export class CustomerUpdatePopupComponent implements OnInit {
     private dialog: MatDialogRef<CustomerUpdatePopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+  editdata: any;
+  updateform = this.builder.group({
+    customerName: ['', Validators.required],
+    customerNip: [
+      ,
+      [
+        Validators.required,
+        (control: AbstractControl) => {
+          const value = control.value;
+          if (value && (isNaN(value) || value.toString().length !== 10)) {
+            return { invalidNip: true };
+          }
+
+          return null;
+        },
+      ],
+    ],
+    customerCity: ['', Validators.required],
+    customerAddress: ['', Validators.required],
+  });
 
   ngOnInit(): void {
     if (this.data) {
@@ -52,5 +65,22 @@ export class CustomerUpdatePopupComponent implements OnInit {
     } else {
       this.toastr.warning('Please check the data');
     }
+  }
+  getRegon() {
+    this.service.getRegon(this.updateform.value.customerNip).subscribe(
+      (data) => {
+        this.updateform.patchValue({
+          customerName: data.nazwa,
+          customerNip: data.nip,
+          customerCity: data.ulica + ' ' + data.nrNieruchomosci,
+          customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
+        });
+        this.toastr.success('Super, udało się uzupełnić podmiot');
+        console.log(data);
+      },
+      (error) => {
+        this.toastr.error(error.error);
+      }
+    );
   }
 }
