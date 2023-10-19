@@ -22,10 +22,10 @@ namespace CompanyCompanionBackend.Controllers
         public async Task<ActionResult<User>> Login(UserLogin request)
         {
             var response = await _authService.Login(request);
-            //if (!response.Success)
-            //{
-            //    return BadRequest("Wrong Credentials");
-            //}
+            if (!response.Success)
+            {
+                return BadRequest("Wrong Credentials");
+            }
 
             return Ok(response);
         }

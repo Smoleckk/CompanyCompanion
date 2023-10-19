@@ -21,9 +21,11 @@ import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.
 import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 import { ParentComponent } from './zabawa/parent/parent.component';
+import { Registerv2Component } from './auth/registerv2/registerv2.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: Registerv2Component },
+  // { path: 'register2', component: Registerv2Component },
   { path: 'welcome', component: WelcomeComponent },
   {
     path: 'dashboard',

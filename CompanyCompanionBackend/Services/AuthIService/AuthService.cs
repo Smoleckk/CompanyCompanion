@@ -1,8 +1,8 @@
 ﻿using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
-using CompanyCompanionBackend.Models.UserModel.Auth;
+using CompanyCompanionBackend.Models.ServiceResponseModel;
 using CompanyCompanionBackend.Models.UserModel;
-using Microsoft.AspNetCore.Mvc;
+using CompanyCompanionBackend.Models.UserModel.Auth;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -48,21 +48,32 @@ namespace CompanyCompanionBackend.Services.AuthIService
             return user;
         }
 
-        public async Task<TokenResponse> Login(UserLogin request)
+        public async Task<ServiceResponse<TokenResponse>> Login(UserLogin request)
         {
+            var response = new ServiceResponse<TokenResponse>();
             var findUser = context.Users.FirstOrDefault(c => c.Username == request.Username);
             if (findUser == null)
             {
-                return new TokenResponse { jwtToken = "User not found" }; ;
+                response.Success = false;
+                response.Message = "User not found ";
+                return response;
             }
+            //return new TokenResponse { jwtToken = "User not found" }; ;
             if (!VerifyPasswordHash(request.Password, findUser.PasswordHash, findUser.PasswordSalt))
             {
-                return new TokenResponse { jwtToken = "Wrong password." };
+                response.Success = false;
+                response.Message = "Wrong password ";
+                return response;
+                //return new TokenResponse { jwtToken = "Wrong password." };
             }
             string token = CreateToken(findUser);
             TokenResponse tokenResponse = new TokenResponse { jwtToken = token };
 
-            return new TokenResponse { jwtToken = token };
+            response.Success = true;
+            response.Message = "Success";
+            response.Data = tokenResponse;
+            return response;
+            //return new TokenResponse { jwtToken = token };
 
         }
 

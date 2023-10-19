@@ -56,9 +56,11 @@ namespace CompanyCompanionBackend.Services.CustomerIService
         public async Task<ServiceResponse<Customer>> PostCustomer(User user, CustomerAddDto customerAddDto)
         {
             var response = new ServiceResponse<Customer>();
-            Customer customerBase = await _context.Customers.FirstOrDefaultAsync(
-         c => c.CustomerNip == customerAddDto.CustomerNip
-     );
+            Company company = user.Company;
+            Customer customerBase = company.Customers.FirstOrDefault(c => c.CustomerNip == customerAddDto.CustomerNip);
+            //       Customer customerBase = await _context.Customers.FirstOrDefaultAsync(
+            //    c => c.CustomerNip == customerAddDto.CustomerNip
+            //);
             if (customerBase != null)
             {
                 response.Success = false;
@@ -67,7 +69,6 @@ namespace CompanyCompanionBackend.Services.CustomerIService
             }
 
             // var user = await GetUserWithCompany();
-            Company company = user.Company;
             var customer = _mapper.Map<Customer>(customerAddDto);
             company.Customers.Add(customer);
             await _context.SaveChangesAsync();
