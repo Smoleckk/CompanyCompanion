@@ -64,7 +64,6 @@ import { TableactionbuttonComponent } from './components/table/tableactionbutton
 import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn.component';
 import { TablecontentComponent } from './components/table/tablecontent/tablecontent.component';
 import { CustomerPopupComponent } from './components/customer-popup/customer-popup.component';
-import { FormFieldFullComponent } from './components/form-field-full/form-field-full.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +105,6 @@ import { FormFieldFullComponent } from './components/form-field-full/form-field-
     TablecolumnComponent,
     TablecontentComponent,
     CustomerPopupComponent,
-    FormFieldFullComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, Input  ,Output, EventEmitter} from '@angular/core';
-
+import { OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-popup',
@@ -14,7 +15,7 @@ export class CustomerPopupComponent {
 
   @Output() callParent = new EventEmitter<String>();
   @Output() callGetRegonParent = new EventEmitter<String>();
-
+  constructor(private builder: FormBuilder) {}
   callParentFunction() {
     this.callParent.emit();
   }
@@ -22,4 +23,5 @@ export class CustomerPopupComponent {
   callGetRegon() {
     this.callGetRegonParent.emit();
   }
+
 }
