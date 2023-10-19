@@ -17,6 +17,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./invoice-list.component.scss'],
 })
 export class InvoiceListComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(
     private invoiceService: InvoiceService,
     private toastrService: ToastrService,
@@ -26,19 +29,43 @@ export class InvoiceListComponent implements OnInit {
     private profileService: ProfileService
   ) {}
 
-  displayedColumns: string[] = [
-    'Invoice No',
-    'Customer',
-    'DueDate',
-    'DateIssued',
-    'Total',
-    'Action',
-  ];
-
   dataSource = new MatTableDataSource<any>();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  displayedColumns: string[] = [
+    'invoiceNo',
+    'customerName',
+    'dueDate',
+    'dateIssued',
+    'total',
+    'action',
+  ];
+  columns: any = [
+    {
+      matColumnDef: 'invoiceNo',
+      matHeaderCellDef: 'Invoice number',
+      matCellDef: 'invoiceNo',
+    },
+    {
+      matColumnDef: 'customerName',
+      matHeaderCellDef: 'Customer',
+      matCellDef: 'customerName',
+    },
+    {
+      matColumnDef: 'total',
+      matHeaderCellDef: 'Brutto total',
+      matCellDef: 'total',
+    },
+    {
+      matColumnDef: 'dueDate',
+      matHeaderCellDef: 'Due date',
+      matCellDef: 'dueDate',
+    },
+    {
+      matColumnDef: 'dateIssued',
+      matHeaderCellDef: 'Issued date',
+      matCellDef: 'dateIssued',
+    },
+  ];
 
   ngOnInit(): void {
     this.loadInvoices();
@@ -48,6 +75,7 @@ export class InvoiceListComponent implements OnInit {
       this.onResize();
     });
   }
+
   profileForm = this.builder.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
@@ -78,15 +106,15 @@ export class InvoiceListComponent implements OnInit {
   }
   onResize() {
     if (window.innerWidth <= 850) {
-      this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
+      this.displayedColumns = ['invoiceNo', 'customerName', 'action'];
     } else {
       this.displayedColumns = [
-        'Invoice No',
-        'Customer',
-        'DueDate',
-        'DateIssued',
-        'Total',
-        'Action',
+        'invoiceNo',
+        'customerName',
+        'dueDate',
+        'dateIssued',
+        'total',
+        'action',
       ];
     }
   }
@@ -115,7 +143,7 @@ export class InvoiceListComponent implements OnInit {
   editInvoice(invoiceId: any): void {
     this.router.navigateByUrl(`/edit-invoice/${invoiceId}`);
   }
-  
+
   addInvoice(): void {
     this.router.navigateByUrl(`/create-invoice`);
   }

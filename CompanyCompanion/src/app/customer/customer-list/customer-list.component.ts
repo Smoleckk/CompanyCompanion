@@ -14,9 +14,19 @@ import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-
   styleUrls: ['./customer-list.component.scss'],
 })
 export class CustomerListComponent {
-  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(
+    private service: CustomerService,
+    private dialog: MatDialog,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
+
   customerData: any;
-  dataSource: any;
+  dataSource = new MatTableDataSource<any>();
+  
   displayedColumns: string[] = [
     'customerName',
     'customerNip',
@@ -46,15 +56,7 @@ export class CustomerListComponent {
       matCellDef: 'customerAddress',
     },
   ];
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
-    private service: CustomerService,
-    private dialog: MatDialog,
-    private toastr: ToastrService,
-    private router: Router
-  ) {}
 
   ngOnInit(): void {
     this.loadCustomers();
