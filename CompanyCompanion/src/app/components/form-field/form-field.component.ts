@@ -12,4 +12,5 @@ export class FormFieldComponent {
   @Input() label: any;
   @Input() conrolName: any;
   @Input() cssClass: string;
+  @Input() type: string;
 }

@@ -1,6 +1,5 @@
 <mat-form-field [class]="cssClass" [formGroup]="form" appearance="outline">
   <mat-label>{{label}}</mat-label>
-  <input matInput [placeholder]="label" [formControlName]="conrolName" />
+  <input matInput [placeholder]="label" [formControlName]="conrolName" [type]="type"/>
   <mat-error *ngIf="form.get('customerAddress')?.hasError('required')">Wymagane pole</mat-error>
 </mat-form-field>
-<!-- class="full-width"  -->

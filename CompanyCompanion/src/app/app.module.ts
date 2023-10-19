@@ -65,6 +65,9 @@ import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn
 import { TablecontentComponent } from './components/table/tablecontent/tablecontent.component';
 import { CustomerPopupComponent } from './components/customer-popup/customer-popup.component';
 import { FormFieldComponent } from './components/form-field/form-field.component';
+// import { ProductPopupComponent } from './components/product-popup/product-popup.component';
+import { UserPopupComponent } from './components/user-popup/user-popup.component';
+import { ProductPopupComponent } from './components/product-popup/product-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +110,8 @@ import { FormFieldComponent } from './components/form-field/form-field.component
     TablecontentComponent,
     CustomerPopupComponent,
     FormFieldComponent,
+    UserPopupComponent,
+    ProductPopupComponent,
   ],
   imports: [
     BrowserModule,
