@@ -67,6 +67,11 @@ export class InvoiceListComponent implements OnInit {
     },
   ];
 
+  actionButtons = [
+    { color: 'primary', icon: 'print', function: (invoiceId:any) => this.downloadInvoice(invoiceId) },
+    { color: 'primary', icon: 'edit', function: (invoiceId:any) => this.editInvoice(invoiceId) },
+    { color: 'warn', icon: 'delete', function: (invoiceId:any) => this.removeInvoice(invoiceId) }
+  ];
   ngOnInit(): void {
     this.loadInvoices();
     this.SetEditInfo();

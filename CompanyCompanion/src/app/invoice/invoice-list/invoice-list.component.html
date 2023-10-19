@@ -1,36 +1,8 @@
 <div class="container">
 <app-breadcrumb headerDetail="Invoice List" (callParent)="addInvoice()" ></app-breadcrumb>
-  <div class="">
     <mat-card>
-      <app-tableheader header="Invoices" searchPlaceholder="Ex. customer" (callParent)="applyFilter($event)">
+      <app-tableheader header="Invoices" searchPlaceholder="Ex. invoices" (callParent)="applyFilter($event)">
       </app-tableheader>
-      <mat-card-content>
-        <table mat-table matSort [dataSource]="dataSource">
-          <ng-container *ngFor="let column of columns" [matColumnDef]="column.matColumnDef">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ column.matHeaderCellDef }}</th>
-            <td mat-cell *matCellDef="let element">{{ element[column.matCellDef] }}</td>
-          </ng-container>
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-              <app-tableactionbutton color="primary" icon="print" (callParent)="downloadInvoice(element.invoiceId)">
-              </app-tableactionbutton>
-              <app-tableactionbutton color="primary" icon="edit" (callParent)="editInvoice(element.invoiceId)">
-              </app-tableactionbutton>
-              <app-tableactionbutton color="warn" icon="delete" (callParent)="removeInvoice(element.invoiceId)">
-              </app-tableactionbutton>
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-        <mat-paginator
-          [pageSizeOptions]="[10, 20]"
-          showFirstLastButtons
-          aria-label="Select page of periodic elements"
-        >
-        </mat-paginator>
-      </mat-card-content>
+      <app-tablecontent [dataSource]="dataSource" [columns]="columns" [actionButtons]="actionButtons" [displayedColumns]="displayedColumns"></app-tablecontent>
     </mat-card>
-  </div>
 </div>

@@ -62,6 +62,7 @@ import { ChildComponent } from './zabawa/child/child.component';
 import { TableheaderComponent } from './components/table/tableheader/tableheader.component';
 import { TableactionbuttonComponent } from './components/table/tableactionbutton/tableactionbutton.component';
 import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn.component';
+import { TablecontentComponent } from './components/table/tablecontent/tablecontent.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn
     TableheaderComponent,
     TableactionbuttonComponent,
     TablecolumnComponent,
+    TablecontentComponent,
   ],
   imports: [
     BrowserModule,
