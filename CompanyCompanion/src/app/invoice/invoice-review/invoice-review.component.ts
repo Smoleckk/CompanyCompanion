@@ -19,6 +19,9 @@ import { ProformaPrintPopupComponent } from 'src/app/proforma/proforma-print-pop
   styleUrls: ['./invoice-review.component.scss'],
 })
 export class InvoiceReviewComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(
     private invoiceService: InvoiceService,
     private toastrService: ToastrService,
@@ -29,15 +32,6 @@ export class InvoiceReviewComponent implements OnInit {
     private proformaService: ProformaService
   ) {}
 
-  displayedColumns: string[] = [
-    'Invoice No',
-    'Customer',
-    'DueDate',
-    'DateIssued',
-    'Total',
-    'Action',
-  ];
-
   dataSource = new MatTableDataSource<any>();
   dataSourceDelay = new MatTableDataSource<any>();
   dataSourceDraft = new MatTableDataSource<any>();
@@ -45,8 +39,48 @@ export class InvoiceReviewComponent implements OnInit {
   isDataSourceDelay: any;
   isDataSourceDraft: any;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  displayedColumns: string[] = [
+    'invoiceNo',
+    'customerName',
+    'dueDate',
+    'dateIssued',
+    'total',
+    'action',
+  ];
+  columns: any = [
+    {
+      matColumnDef: 'invoiceNo',
+      matHeaderCellDef: 'Invoice number',
+      matCellDef: 'invoiceNo',
+    },
+    {
+      matColumnDef: 'customerName',
+      matHeaderCellDef: 'Customer',
+      matCellDef: 'customerName',
+    },
+    {
+      matColumnDef: 'total',
+      matHeaderCellDef: 'Brutto total',
+      matCellDef: 'total',
+    },
+    {
+      matColumnDef: 'dueDate',
+      matHeaderCellDef: 'Due date',
+      matCellDef: 'dueDate',
+    },
+    {
+      matColumnDef: 'dateIssued',
+      matHeaderCellDef: 'Issued date',
+      matCellDef: 'dateIssued',
+    },
+  ];
+
+  actionButtons = [
+    { color: 'primary', icon: 'print', function: (element:any) => this.downloadInvoice(element.invoiceId) },
+    { color: 'primary', icon: 'edit', function: (element:any) => this.editInvoice(element.invoiceId) },
+    { color: 'warn', icon: 'delete', function: (element:any) => this.removeInvoice(element.invoiceId) }
+  ];
+
 
   ngOnInit(): void {
     this.loadInvoices();
@@ -86,15 +120,15 @@ export class InvoiceReviewComponent implements OnInit {
   }
   onResize() {
     if (window.innerWidth <= 850) {
-      this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
+      this.displayedColumns = ['invoiceNo', 'customerName', 'dueDate'];
     } else {
       this.displayedColumns = [
-        'Invoice No',
-        'Customer',
-        'DueDate',
-        'DateIssued',
-        'Total',
-        'Action',
+        'invoiceNo',
+        'customerName',
+        'dueDate',
+        'dateIssued',
+        'total',
+        'action',
       ];
     }
   }
@@ -118,17 +152,17 @@ export class InvoiceReviewComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    this.proformaService.GetAllProforma().subscribe((res: any) => {
-      const data = this.dataSource.data;
-      for (var product of res) {
-        data.push(product);
-      }
-      this.dataSource.data = data;
-      this.isDataSource = data;
-      this.dataSource.data = data;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    // this.proformaService.GetAllProforma().subscribe((res: any) => {
+    //   const data = this.dataSource.data;
+    //   for (var product of res) {
+    //     data.push(product);
+    //   }
+    //   this.dataSource.data = data;
+    //   this.isDataSource = data;
+    //   this.dataSource.data = data;
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    // });
     this.invoiceService.GetAllInvoiceDelay().subscribe((invoices: any) => {
       this.isDataSourceDelay = invoices;
       this.dataSourceDelay.data = invoices;

@@ -26,6 +26,8 @@ import { CustomerUpdatePopupComponent } from '../customer-update-popup/customer-
   styleUrls: ['./customer-details.component.scss'],
 })
 export class CustomerDetailsComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private builder: FormBuilder,
     private service: CustomerService,
@@ -36,7 +38,6 @@ export class CustomerDetailsComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog
   ) {}
-
   ngOnInit(): void {
     this.editCustomerId = this.activeRoute.snapshot.paramMap.get('customerId');
     if (this.editCustomerId != null) {
@@ -49,18 +50,61 @@ export class CustomerDetailsComponent implements OnInit {
       this.onResize();
     });
   }
+  dataSource = new MatTableDataSource<any>();
 
+  displayedColumns: string[] = [
+    'invoiceNo',
+    'customerName',
+    'dueDate',
+    'dateIssued',
+    'total',
+    'action',
+  ];
+  columns: any = [
+    {
+      matColumnDef: 'invoiceNo',
+      matHeaderCellDef: 'Invoice number',
+      matCellDef: 'invoiceNo',
+    },
+    {
+      matColumnDef: 'customerName',
+      matHeaderCellDef: 'Customer',
+      matCellDef: 'customerName',
+    },
+    {
+      matColumnDef: 'total',
+      matHeaderCellDef: 'Brutto total',
+      matCellDef: 'total',
+    },
+    {
+      matColumnDef: 'dueDate',
+      matHeaderCellDef: 'Due date',
+      matCellDef: 'dueDate',
+    },
+    {
+      matColumnDef: 'dateIssued',
+      matHeaderCellDef: 'Issued date',
+      matCellDef: 'dateIssued',
+    },
+  ];
+
+  actionButtons = [
+    { color: 'primary', icon: 'print', function: (element:any) => this.downloadInvoice(element.invoiceId) },
+    { color: 'primary', icon: 'edit', function: (element:any) => this.editInvoice(element.invoiceId) },
+    { color: 'warn', icon: 'delete', function: (element:any) => this.removeInvoice(element.invoiceId) }
+  ];
+  
   onResize() {
     if (window.innerWidth <= 850) {
-      this.displayedColumns = ['Invoice No', 'Customer', 'Action'];
+      this.displayedColumns = ['invoiceNo', 'customerName', 'action'];
     } else {
       this.displayedColumns = [
-        'Invoice No',
-        'Customer',
-        'DueDate',
-        'DateIssued',
-        'Total',
-        'Action',
+        'invoiceNo',
+        'customerName',
+        'dueDate',
+        'dateIssued',
+        'total',
+        'action',
       ];
     }
   }
@@ -73,6 +117,7 @@ export class CustomerDetailsComponent implements OnInit {
   invoiceDetail!: FormArray<any>;
   editCustomerId: any;
   isEdit = false;
+  customerInvoices: any;
 
   customerForm = this.builder.group({
     customerId: ['', Validators.required],
@@ -81,7 +126,6 @@ export class CustomerDetailsComponent implements OnInit {
     customerCity: ['', Validators.required],
     customerAddress: ['', Validators.required],
   });
-  customerInvoices: any;
 
   SetEditInfo(customerIdCode: any) {
     this.service.getCustomerByCode(customerIdCode).subscribe((res) => {
@@ -100,33 +144,6 @@ export class CustomerDetailsComponent implements OnInit {
       }
     });
   }
-  updateCustomer(): void {
-    const popup = this.dialog.open(CustomerUpdatePopupComponent, {
-      enterAnimationDuration: '1000ms',
-      exitAnimationDuration: '500ms',
-      width: '40%',
-      data: this.editCustomerId,
-    });
-
-    popup.afterClosed().subscribe(() => {
-      this.SetEditInfo(this.editCustomerId);
-    });
-  }
-
-  /////////////////
-  displayedColumns: string[] = [
-    'Invoice No',
-    'Customer',
-    'DueDate',
-    'DateIssued',
-    'Total',
-    'Action',
-  ];
-
-  dataSource = new MatTableDataSource<any>();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
   loadInvoices(): void {
     let getCustomerName = this.customerForm.get('customerName')?.value;
@@ -139,7 +156,6 @@ export class CustomerDetailsComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
   }
-
   removeInvoice(invoiceId: any): void {
     if (confirm('Do you want to remove this invoice: ' + invoiceId)) {
       this.invoiceService.RemoveInvoice(invoiceId).subscribe(() => {
@@ -148,11 +164,22 @@ export class CustomerDetailsComponent implements OnInit {
       });
     }
   }
-
   editInvoice(invoiceId: any): void {
     this.router.navigateByUrl(`/edit-invoice/${invoiceId}`);
   }
+  
+  updateCustomer(): void {
+    const popup = this.dialog.open(CustomerUpdatePopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '40%',
+      data: this.editCustomerId,
+    });
 
+    popup.afterClosed().subscribe(() => {
+      this.SetEditInfo(this.editCustomerId);
+    });
+  }
   downloadInvoice(code: any): void {
     const popup = this.dialog.open(InvoicePrintPopupComponent, {
       enterAnimationDuration: '1000ms',

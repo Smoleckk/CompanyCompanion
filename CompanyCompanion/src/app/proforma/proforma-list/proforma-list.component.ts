@@ -13,26 +13,58 @@ import { ProformaPrintPopupComponent } from '../proforma-print-popup/proforma-pr
   styleUrls: ['./proforma-list.component.scss'],
 })
 export class ProformaListComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private service: ProformaService,
     private toastr: ToastrService,
     private router: Router,
     private dialog: MatDialog
   ) {}
-
   proformaHeader: any;
   dataSource: any;
-  displayedColumns: string[] = [
-    'Proforma No',
-    'Customer',
-    'DueDate',
-    'DateIssued',
-    'Total',
-    'Action',
-  ];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  displayedColumns: string[] = [
+    'proformaNo',
+    'customer',
+    'dueDate',
+    'dateIssued',
+    'total',
+    'action',
+  ];
+  columns: any = [
+    {
+      matColumnDef: 'proformaNo',
+      matHeaderCellDef: 'Proforma number',
+      matCellDef: 'proformaNo',
+    },
+    {
+      matColumnDef: 'customer',
+      matHeaderCellDef: 'Customer',
+      matCellDef: 'customer',
+    },
+    {
+      matColumnDef: 'dueDate',
+      matHeaderCellDef: 'Due Date',
+      matCellDef: 'dueDate',
+    },
+    {
+      matColumnDef: 'dateIssued',
+      matHeaderCellDef: 'Issued date',
+      matCellDef: 'dateIssued',
+    },
+    {
+      matColumnDef: 'total',
+      matHeaderCellDef: 'Brutto total',
+      matCellDef: 'total',
+    },
+  ];
+  actionButtons = [
+    { color: 'primary', icon: 'edit', function: (element:any) => this.ProformaEdit(element.proformaId) },
+    { color: 'primary', icon: 'print', function: (element:any) => this.ProformaDownload(element.proformaId) },
+    { color: 'warn', icon: 'delete', function: (element:any) => this.ProformaRemove(element.proformaId) },
+    { color: 'primary', icon: 'bookmarks', function: (element:any) => this.GenerateInvoiceFormProforma(element.proformaId) }
+  ];
 
   ngOnInit(): void {
     this.LoadProforma();
@@ -45,15 +77,15 @@ export class ProformaListComponent implements OnInit {
 
   onResize() {
     if (window.innerWidth <= 850) {
-      this.displayedColumns = ['Proforma No', 'Customer', 'Action'];
+      this.displayedColumns = ['proformaNo', 'customer', 'action'];
     } else {
       this.displayedColumns = [
-        'Proforma No',
-        'Customer',
-        'DueDate',
-        'DateIssued',
-        'Total',
-        'Action',
+        'proformaNo',
+        'customer',
+        'dueDate',
+        'dateIssued',
+        'total',
+        'action',
       ];
     }
   }
@@ -83,6 +115,9 @@ export class ProformaListComponent implements OnInit {
   }
   GenerateInvoiceFormProforma(proformaId: any) {
     this.router.navigateByUrl('/invoice-from-proforma/' + proformaId);
+  }
+  addProforma(): void {
+    this.router.navigateByUrl(`/create-proforma`);
   }
   ProformaDownload(code: any) {
     const popup = this.dialog.open(ProformaPrintPopupComponent, {

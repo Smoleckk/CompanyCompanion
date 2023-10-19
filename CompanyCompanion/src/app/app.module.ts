@@ -63,6 +63,7 @@ import { TableheaderComponent } from './components/table/tableheader/tableheader
 import { TableactionbuttonComponent } from './components/table/tableactionbutton/tableactionbutton.component';
 import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn.component';
 import { TablecontentComponent } from './components/table/tablecontent/tablecontent.component';
+import { CustomerPopupComponent } from './components/customer-popup/customer-popup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +104,7 @@ import { TablecontentComponent } from './components/table/tablecontent/tablecont
     TableactionbuttonComponent,
     TablecolumnComponent,
     TablecontentComponent,
+    CustomerPopupComponent,
   ],
   imports: [
     BrowserModule,

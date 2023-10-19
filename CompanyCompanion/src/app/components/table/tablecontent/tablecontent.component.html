@@ -8,7 +8,7 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngFor="let action of actionButtons">
-            <app-tableactionbutton [color]="action.color" [icon]="action.icon" (callParent)="action.function(element.invoiceId)">
+            <app-tableactionbutton [color]="action.color" [icon]="action.icon" (callParent)="action.function(element)">
             </app-tableactionbutton>
           </ng-container>
         </td>

@@ -14,6 +14,16 @@ import { UpdateProductPopupComponent } from '../update-product-popup/update-prod
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  constructor(
+    private service: InvoiceService,
+    private dialog: MatDialog,
+    private toastrService: ToastrService
+  ) {}
+
+  dataSource!: MatTableDataSource<any>;
+
   displayedColumns: string[] = [
     'name',
     'price',
@@ -21,17 +31,33 @@ export class ProductListComponent implements OnInit {
     'remarks',
     'action',
   ];
-  dataSource!: MatTableDataSource<any>;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(
-    private service: InvoiceService,
-    private dialog: MatDialog,
-    private toastrService: ToastrService
-  ) {}
-
+  columns: any = [
+    {
+      matColumnDef: 'name',
+      matHeaderCellDef: 'Name',
+      matCellDef: 'name',
+    },
+    {
+      matColumnDef: 'price',
+      matHeaderCellDef: 'Price',
+      matCellDef: 'price',
+    },
+    {
+      matColumnDef: 'category',
+      matHeaderCellDef: 'Category',
+      matCellDef: 'category',
+    },
+    {
+      matColumnDef: 'remarks',
+      matHeaderCellDef: 'Remarks',
+      matCellDef: 'remarks',
+    },
+  ];
+  actionButtons = [
+    { color: 'primary', icon: 'edit', function: (element:any) => this.updateProduct(element.productMagazineId) },
+    { color: 'warn', icon: 'delete', function: (element:any) => this.removeProduct(element.productMagazineId) }
+  ];
+  
   ngOnInit(): void {
     this.loadProducts();
     this.onResize();

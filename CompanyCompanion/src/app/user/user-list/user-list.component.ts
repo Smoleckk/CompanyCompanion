@@ -8,6 +8,7 @@ import { UpdateUserPopupComponent } from '../update-user-popup/update-user-popup
 import { UserCreatePopupComponent } from '../user-create-popup/user-create-popup.component';
 import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
+import { ProfileService } from 'src/app/service/profile.service';
 
 @Component({
   selector: 'app-user-list',
@@ -15,21 +16,40 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private service: UserService,
     private dialog: MatDialog,
-    private toastrService: ToastrService
-  ) {
-    this.loadUsers();
-  }
+    private toastrService: ToastrService,
+    private profileService: ProfileService
+  ) {}
   userdata: any;
   dataSource: any;
-  // displayedColumns: string[] = ['username', 'email'];
+
   displayedColumns: string[] = ['username', 'email', 'action'];
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  columns: any = [
+    {
+      matColumnDef: 'username',
+      matHeaderCellDef: 'Username',
+      matCellDef: 'username',
+    },
+    {
+      matColumnDef: 'email',
+      matHeaderCellDef: 'Email',
+      matCellDef: 'email',
+    }
+  ];
+  actionButtons = [
+    {
+      color: 'warn',
+      icon: 'delete',
+      function: (element: any) => this.removeUser(element.email),
+    },
+  ];
 
   ngOnInit(): void {
+    this.loadUsers();
     this.onResize();
     window.addEventListener('resize', () => {
       this.onResize();
@@ -48,15 +68,22 @@ export class UserListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  
   loadUsers() {
     this.service.loadUsers().subscribe((data) => {
       this.userdata = data;
-      this.dataSource = new MatTableDataSource(this.userdata);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.profileService.getProfile().subscribe((res) => {
+        let editData: any = res;
+        if (editData != null) {
+          this.userdata = this.userdata.filter((u: any) => u.username !== editData.username);
+          this.dataSource = new MatTableDataSource(this.userdata);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      });
     });
   }
+  
   UpdateUser(username: any) {
     const popup = this.dialog.open(UpdateUserPopupComponent, {
       enterAnimationDuration: '1000ms',

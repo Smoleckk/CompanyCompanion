@@ -26,7 +26,7 @@ export class CustomerListComponent {
 
   customerData: any;
   dataSource = new MatTableDataSource<any>();
-  
+
   displayedColumns: string[] = [
     'customerName',
     'customerNip',
@@ -56,7 +56,18 @@ export class CustomerListComponent {
       matCellDef: 'customerAddress',
     },
   ];
-
+  actionButtons = [
+    {
+      color: 'primary',
+      icon: 'info',
+      function: (element: any) => this.detailsCustomer(element.customerId),
+    },
+    {
+      color: 'warn',
+      icon: 'delete',
+      function: (element: any) => this.deleteCustomer(element.customerId),
+    },
+  ];
 
   ngOnInit(): void {
     this.loadCustomers();
