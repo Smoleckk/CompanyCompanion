@@ -46,6 +46,6 @@ export class AuthService {
   }
 
   updateUser(username: any, inputdata: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl + '/' + username, inputdata);
+    return this.http.put<any>(this.apiUrl +  username, inputdata);
   }
 }

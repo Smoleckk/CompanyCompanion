@@ -10,7 +10,7 @@ export class FormFieldComponent {
   @Input()
   public form: FormGroup;
   @Input() label: any;
-  @Input() conrolName: any;
+  @Input() controlName: any;
   @Input() cssClass: string;
   @Input() type: string;
 }

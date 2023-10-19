@@ -17,9 +17,15 @@ export class UserCreatePopupComponent {
     private toastr: ToastrService,
     private dialog: MatDialogRef<UserCreatePopupComponent>
   ) {}
+  ngOnInit(): void {}
 
   editdata: any;
-  ngOnInit(): void {}
+
+  fields = [
+    { label: 'Username', controlName: 'username', type: 'text', cssStyle: 'full-width' },
+    { label: 'Email', controlName: 'email', type: 'email', cssStyle: 'full-width' },
+    { label: 'Password', controlName: 'password', type: 'password', cssStyle: 'full-width' }
+  ];
 
   createform = this.builder.group({
     username: ['', Validators.required],

@@ -46,6 +46,11 @@ export class UserListComponent implements OnInit {
       icon: 'delete',
       function: (element: any) => this.removeUser(element.email),
     },
+    // {
+    //   color: 'primary',
+    //   icon: 'edit',
+    //   function: (element: any) => this.updateUser(element.email),
+    // },
   ];
 
   ngOnInit(): void {
@@ -84,7 +89,7 @@ export class UserListComponent implements OnInit {
     });
   }
   
-  UpdateUser(username: any) {
+  updateUser(username: any) {
     const popup = this.dialog.open(UpdateUserPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',

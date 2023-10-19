@@ -1,3 +1,30 @@
+<!-- <div class="containerpopup">
+    <mat-card>
+        <mat-card-header>
+            <h1><b>{{header}}</b></h1>
+            <p>{{someInfo}}</p>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="callParentFunction()">
+                <app-form-field [form]="form" label="Name" controlName="name" cssClass="full-width"></app-form-field>
+                <app-form-field [form]="form" label="Price" controlName="price" cssClass="full-width" type="number">
+                </app-form-field>
+                <app-form-field [form]="form" label="Vat" controlName="vat" cssClass="full-width" type="number">
+                </app-form-field>
+                <app-form-field [form]="form" label="Quantity" controlName="qty" cssClass="full-width" type="number">
+                </app-form-field>
+                <app-form-field [form]="form" label="Unit" controlName="unit" cssClass="full-width"></app-form-field>
+                <app-form-field [form]="form" label="Category" controlName="category" cssClass="full-width">
+                </app-form-field>
+                <app-form-field [form]="form" label="Remarks" controlName="remarks" cssClass="full-width">
+                </app-form-field>
+                <div class="form-submit">
+                    <button mat-raised-button color="primary">Save</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div> -->
 <div class="containerpopup">
     <mat-card>
         <mat-card-header>
@@ -6,18 +33,11 @@
         </mat-card-header>
         <mat-card-content>
             <form [formGroup]="form" (ngSubmit)="callParentFunction()">
-                <app-form-field [form]="form" label="Name" conrolName="name" cssClass="full-width"></app-form-field>
-                <app-form-field [form]="form" label="Price" conrolName="price" cssClass="full-width" type="number">
-                </app-form-field>
-                <app-form-field [form]="form" label="Vat" conrolName="vat" cssClass="full-width" type="number">
-                </app-form-field>
-                <app-form-field [form]="form" label="Quantity" conrolName="qty" cssClass="full-width" type="number">
-                </app-form-field>
-                <app-form-field [form]="form" label="Unit" conrolName="unit" cssClass="full-width"></app-form-field>
-                <app-form-field [form]="form" label="Category" conrolName="category" cssClass="full-width">
-                </app-form-field>
-                <app-form-field [form]="form" label="Remarks" conrolName="remarks" cssClass="full-width">
-                </app-form-field>
+                <div *ngFor="let field of fields">
+                    <app-form-field [form]="form" [label]="field.label" [controlName]="field.controlName"
+                        [cssClass]="field.cssClass" [type]="field.type">
+                    </app-form-field>
+                </div>
                 <div class="form-submit">
                     <button mat-raised-button color="primary">Save</button>
                 </div>

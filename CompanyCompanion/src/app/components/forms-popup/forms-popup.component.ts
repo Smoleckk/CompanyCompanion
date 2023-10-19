@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
-  selector: 'app-product-popup',
-  templateUrl: './product-popup.component.html',
-  styleUrls: ['./product-popup.component.scss']
+  selector: 'app-forms-popup',
+  templateUrl: './forms-popup.component.html',
+  styleUrls: ['./forms-popup.component.scss']
 })
-export class ProductPopupComponent {
+export class FormsPopupComponent {
   @Input() form: any;
   @Input() header: any;
   @Input() someInfo: any;

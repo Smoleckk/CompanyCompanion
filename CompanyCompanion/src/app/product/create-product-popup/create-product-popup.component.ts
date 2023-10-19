@@ -10,6 +10,15 @@ import { InvoiceService } from 'src/app/service/invoice.service';
   styleUrls: ['./create-product-popup.component.scss'],
 })
 export class CreateProductPopupComponent implements OnInit {
+  constructor(
+    private builder: FormBuilder,
+    private service: InvoiceService,
+    private toastr: ToastrService,
+    private dialog: MatDialogRef<CreateProductPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+  ngOnInit(): void {}
+
   editdata: any;
   createform = this.builder.group({
     name: ['', Validators.required],
@@ -21,15 +30,16 @@ export class CreateProductPopupComponent implements OnInit {
     remarks: ['', Validators.required],
   });
 
-  constructor(
-    private builder: FormBuilder,
-    private service: InvoiceService,
-    private toastr: ToastrService,
-    private dialog: MatDialogRef<CreateProductPopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  fields = [
+    {  label: 'Name', controlName: 'name', cssClass: 'full-width' ,type: 'text'},
+    {  label: 'Price', controlName: 'price', cssClass: 'full-width', type: 'number' },
+    {  label: 'Vat', controlName: 'vat', cssClass: 'full-width', type: 'number' },
+    {  label: 'Quantity', controlName: 'qty', cssClass: 'full-width', type: 'number' },
+    {  label: 'Unit', controlName: 'unit', cssClass: 'full-width',type: 'text' },
+    {  label: 'Category', controlName: 'category', cssClass: 'full-width',type: 'text' },
+    {  label: 'Remarks', controlName: 'remarks', cssClass: 'full-width',type: 'text' }
+  ];
 
-  ngOnInit(): void {}
 
   saveProduct(): void {
     if (this.createform.valid) {

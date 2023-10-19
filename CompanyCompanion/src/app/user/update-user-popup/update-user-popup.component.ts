@@ -17,8 +17,6 @@ export class UpdateUserPopupComponent implements OnInit {
     private toastr: ToastrService,
     private dialog: MatDialogRef<UpdateUserPopupComponent>
   ) {}
-
-  editdata: any;
   ngOnInit(): void {
     if (this.data.username != null && this.data.username != '') {
       this.service.getByName(this.data.username).subscribe((res) => {
@@ -28,11 +26,19 @@ export class UpdateUserPopupComponent implements OnInit {
     }
   }
 
+  editdata: any;
+  fields = [
+    { label: 'Username', controlName: 'username', type: 'text', cssStyle: 'full-width' }
+  ]
+
   updateform = this.builder.group({
     username: this.builder.control('', Validators.required),
   });
+
   updateuser() {
     if (this.updateform.valid) {
+      console.log(this.updateform.value.username, this.updateform.value);
+      
       this.service
         .updateUser(this.updateform.value.username, this.updateform.value)
         .subscribe(() => {
