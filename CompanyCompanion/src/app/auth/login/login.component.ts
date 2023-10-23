@@ -16,11 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   hideMenu = true;
-  messageclass = '';
-  message = '';
-  Customerid: any;
-  editdata: any;
-  responsedata: any;
 
   loginform = this.builder.group({
     username: ['', Validators.required],
@@ -46,9 +41,13 @@ export class LoginComponent implements OnInit {
     if (this.loginform.valid) {
       this.service.proceedLogin(this.loginform.value).subscribe(
         (result) => {
-          this.responsedata = result;
-          localStorage.setItem('token', this.responsedata.jwtToken);
-          this.route.navigate(['']);
+          if (result.message === 'Success' || result.success === true) {
+            localStorage.setItem('token', result.data.jwtToken);
+            this.toaster.success('Witamy w fakturio!');
+            this.route.navigate(['']);
+          } else {
+            this.toaster.warning('Something went wrong, try again later.');
+          }
         },
         () => {
           this.toaster.warning('Wrong credentials');

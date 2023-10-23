@@ -18,6 +18,14 @@
             </app-form-field>
             <app-form-field [form]="createform" label="Password" controlName="password" cssClass="full-width"
                 type="password"></app-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Confirm password" formControlName="confirmPassword"
+                    >
+                    <mat-error *ngIf="createform.get('confirmPassword')?.hasError('matching')">
+                        Password must match.
+                        </mat-error>
+                        <mat-error *ngIf="createform.get('confirmPassword')?.hasError('required')">Wymagane pole</mat-error>
+            </mat-form-field>
             <h1>Company info</h1>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>NIP, ex: 7162312129</mat-label>
@@ -30,14 +38,14 @@
                     <mat-icon>search</mat-icon>
                 </a>
             </mat-form-field>
-            <app-form-field [form]="createform"  label="Company name" controlName="name" cssClass="full-width"
+            <app-form-field [form]="createform" label="Company name" controlName="name" cssClass="full-width"
                 type="text">
             </app-form-field>
-            <app-form-field [form]="createform" label="Company city, ex: Niepodległości 27" controlName="city" cssClass="full-width"
-                type="text">
+            <app-form-field [form]="createform" label="Company city, ex: Niepodległości 27" controlName="city"
+                cssClass="full-width" type="text">
             </app-form-field>
-            <app-form-field [form]="createform" label="Company city code, ex: 23942, Warszawa" controlName="cityCode" cssClass="full-width"
-                type="text"></app-form-field>
+            <app-form-field [form]="createform" label="Company city code, ex: 23942, Warszawa" controlName="cityCode"
+                cssClass="full-width" type="text"></app-form-field>
             <div class="form-submit">
                 <button mat-raised-button color="primary">Register</button>
             </div>
