@@ -20,7 +20,7 @@ import { ProfileDetailsComponent } from './profile/profile-details/profile-detai
 import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
 import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
-import { ParentComponent } from './zabawa/parent/parent.component';
+// import { ParentComponent } from './zabawa/parent/parent.component';
 import { Registerv2Component } from './auth/registerv2/registerv2.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -119,11 +119,11 @@ const routes: Routes = [
     component: ProfileDetailsComponent,
      canActivate: [AuthGuard],
   },
-  {
-    path: 'zabawa',
-    component: ParentComponent,
-     canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'zabawa',
+  //   component: ParentComponent,
+  //    canActivate: [AuthGuard],
+  // },
 ];
 
 @NgModule({

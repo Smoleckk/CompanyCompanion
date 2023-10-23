@@ -1,0 +1,16 @@
+{
+  "login": {
+    "loginForm": "Formularz logowania",
+    "username": "Imie",
+    "password": "Haslo",
+    "loginButton": "Zaloguj się",
+    "member": "Nie jestes czlonkiem?",
+    "signUp": "Zarejestruj się teraz!",
+    "failedLogin": "Złe dane logowania"
+  },
+  "welcome":{
+    "title":"Fakturio",
+    "subTitle":"Intuicyjna i łatwa w użyciu aplikacja zaprojektowana, aby pomóc małym"
+
+  }
+}

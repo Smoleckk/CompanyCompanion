@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private builder: FormBuilder,
     private service: AuthService,
     private toaster: ToastrService,
-    private route: Router
+    private route: Router,
+    private readonly translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +48,18 @@ export class LoginComponent implements OnInit {
     if (this.loginform.valid) {
       this.service.proceedLogin(this.loginform.value).subscribe(
         (result) => {
-          this.responsedata = result;
-          localStorage.setItem('token', this.responsedata.jwtToken);
+          // console.log(result.data.jwtToken);
+          
+          // this.responsedata = result;
+          // console.log("looool");
+          // console.log(result.data.jwtToken);
+          
+          localStorage.setItem('token', result.data.jwtToken);
           this.route.navigate(['']);
         },
         () => {
-          this.toaster.warning('Wrong credentials');
+          // console.log(this.translocoService.translate('failedLogin'));
+          this.toaster.warning(this.translocoService.translate('login.failedLogin'));
         }
       );
     }

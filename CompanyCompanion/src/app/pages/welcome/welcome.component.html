@@ -1,13 +1,16 @@
 <section style="min-height: 40vh">
   <div class="text-box">
-    <h1>Company Companion</h1>
-    <p>
+    <h1 *transloco="let t"> {{t("welcome.title")}}</h1>
+    <!-- <p>
       Intuicyjna i łatwa w użyciu aplikacja zaprojektowana, aby pomóc małym
       firmom w łatwym zarządzaniu codziennymi operacjami. Dzięki intuicyjnemu
       interfejsowi i wszechstronnym funkcjom.<br />
       Ta aplikacja upraszcza proces tworzenia i zarządzania fakturami i
       magazynami, umożliwiając firmom pozostanie zorganizowanym i
       skoncentrowanym na rozwoju.
+    </p> -->
+    <p *transloco="let t">
+      {{t("welcome.subTitle")}}
     </p>
     <a href="/register" class="hero-btn">Zarejestruj się!</a>
   </div>

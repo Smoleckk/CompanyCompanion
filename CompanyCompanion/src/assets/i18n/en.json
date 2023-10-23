@@ -1,0 +1,17 @@
+{
+  "login": {
+    "loginForm": "Login Form",
+    "username": "Username",
+    "password": "Password",
+    "loginButton":"Login",
+    "member":"Not a member?",
+    "signUp":"Sign up now!",
+    "failedLogin":"Wrong credentials"
+  },
+  "welcome":{
+    "title":"Fakturio",
+    "subTitle":"An intuitive and easy-to-use app designed to help little ones",
+    "register":"Register"
+
+  }
+}
