@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private builder: FormBuilder,
     private service: AuthService,
     private toaster: ToastrService,
-    private route: Router
+    private route: Router,
+    private readonly translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {

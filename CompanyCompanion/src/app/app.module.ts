@@ -57,8 +57,8 @@ import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-l
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 import { InvoiceCorrectSecondPopupComponent } from './invoice/correct/invoice-correct-second-popup/invoice-correct-second-popup.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { ParentComponent } from './zabawa/parent/parent.component';
-import { ChildComponent } from './zabawa/child/child.component';
+// import { ParentComponent } from './zabawa/parent/parent.component';
+// import { ChildComponent } from './zabawa/child/child.component';
 import { TableheaderComponent } from './components/table/tableheader/tableheader.component';
 import { TableactionbuttonComponent } from './components/table/tableactionbutton/tableactionbutton.component';
 import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn.component';
@@ -67,6 +67,8 @@ import { CustomerPopupComponent } from './components/customer-popup/customer-pop
 import { FormFieldComponent } from './components/form-field/form-field.component';
 import { FormsPopupComponent } from './components/forms-popup/forms-popup.component';
 import { Registerv2Component } from './auth/registerv2/registerv2.component';
+import { TranslocoRootModule } from './transloco-root.module';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,8 +103,8 @@ import { Registerv2Component } from './auth/registerv2/registerv2.component';
     InvoiceCorrectCreateComponent,
     InvoiceCorrectSecondPopupComponent,
     BreadcrumbComponent,
-    ParentComponent,
-    ChildComponent,
+    // ParentComponent,
+    // ChildComponent,
     TableheaderComponent,
     TableactionbuttonComponent,
     TablecolumnComponent,
@@ -111,6 +113,7 @@ import { Registerv2Component } from './auth/registerv2/registerv2.component';
     FormFieldComponent,
     FormsPopupComponent,
     Registerv2Component,
+    LanguageSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,6 +144,7 @@ import { Registerv2Component } from './auth/registerv2/registerv2.component';
     MatCardModule,
     MatMenuModule,
     MatTabsModule,
+    TranslocoRootModule,
   ],
   providers: [
     {

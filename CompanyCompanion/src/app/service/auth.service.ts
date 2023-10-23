@@ -24,12 +24,11 @@ export class AuthService {
 
   haveAccess(): boolean {
     const loggintoken = localStorage.getItem('token') || '';
-    if (loggintoken !== '') {
+    if (loggintoken !== '' && loggintoken!== undefined && loggintoken !== null) {
       const _extractedtoken = loggintoken.split('.')[1];
       const _atodata = atob(_extractedtoken);
       const _finaldata = JSON.parse(_atodata);
       const role = _finaldata[Object.keys(_finaldata)[1]];
-      // //console.log(_finaldata[Object.keys(_finaldata)[1]]);
       if (role === 'Admin') {
         return true;
       }
