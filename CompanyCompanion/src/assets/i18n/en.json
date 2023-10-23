@@ -3,15 +3,49 @@
     "loginForm": "Login Form",
     "username": "Username",
     "password": "Password",
-    "loginButton":"Login",
-    "member":"Not a member?",
-    "signUp":"Sign up now!",
-    "failedLogin":"Wrong credentials"
+    "loginButton": "Login",
+    "member": "Not a member?",
+    "signUp": "Sign up now!",
+    "failedLogin": "Wrong credentials"
   },
-  "welcome":{
-    "title":"Fakturio",
-    "subTitle":"An intuitive and easy-to-use app designed to help little ones",
-    "register":"Register"
-
+  "welcome": {
+    "title": "Fakturio",
+    "subTitle": "An intuitive and user-friendly application designed to help small businesses easily manage their daily operations. With an intuitive interface and versatile features. <br/> This application simplifies the process of creating and managing invoices and inventories, allowing businesses to stay organized and focused on growth.",
+    "register": "Sign Up!",
+    "systemFeatures": "System Features!",
+    "effectiveness": "EFFECTIVENESS",
+    "safety": "SAFETY",
+    "availability": "AVAILABILITY",
+    "offerHeader": "What We Offer!",
+    "offerParam": "Create invoices, control your inventory, and manage your business, all in one place!",
+    "offerHeaderFirst": "Invoicing and Quoting",
+    "offerParamFirst": "Our application allows users to quickly and easily create proforma invoices and commercial quotes. This enables users to save time and focus on other important business tasks. The application allows for adding customers, creating invoice and quote templates, and automatic calculation of amounts, taxes, and discounts.",
+    "offerHeaderSecond": "Inventory Management",
+    "offerParamSecond": "Our application also provides tools for inventory management and monitoring stock levels. This allows users to quickly check stock status, add and remove products, and create reports related to their inventory. The application also enables the creation of orders and tracking their status.",
+    "offerHeaderThird": "Secure Login and Data Storage",
+    "offerParamThird": "Our application ensures secure user login and data storage. All data is stored in the cloud, allowing users to access it from anywhere in the world. The application also offers data backup functionality, so users don't have to worry about losing important information. All connections to the application are encrypted, ensuring the security of transmitted data.",
+    "userHeader": "What Our Users Say?",
+    "userParam": "Join our satisfied customers and try Fakturio today!",
+    "userOpinionFirst": "Our company has been using CompanyCompanion for several months, and we are very satisfied. Invoicing is now much easier and faster, and inventory control has never been so straightforward. We highly recommend it!",
+    "userNameFirst": "Customer from the furniture industry",
+    "userOpinionSecond": "CompanyCompanion has helped us streamline our operations from day one. The invoicing process has become easier, and inventory management is now more efficient. We recommend this application to every entrepreneur.",
+    "userNameSecond": "Customer from the food industry",
+    "aboutUsHeader": "About Us!",
+    "aboutUsParam": "We are a team of experienced specialists creating simple tools for small businesses. Our mission is to simplify the management of invoices, quotes, and inventory. CompanyCompanion is a solution designed for small business owners to make their work efficient and enjoyable."
+  },
+  "register": {
+    "title": "Build Your Profile",
+    "subTitle": "This information will let us know more about you.",
+    "personalInfo": "Personal info",
+    "userName": "User Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "companyInfo": "Company info",
+    "nip": "NIP, ex: 7162312129",
+    "companyName": "Company name",
+    "companyCity": "Company city, ex: Niepodległości 27",
+    "cityCode": "Company city code, ex: 23942, Warszawa",
+    "registerButton": "Register"
   }
 }

@@ -8,9 +8,44 @@
     "signUp": "Zarejestruj się teraz!",
     "failedLogin": "Złe dane logowania"
   },
-  "welcome":{
-    "title":"Fakturio",
-    "subTitle":"Intuicyjna i łatwa w użyciu aplikacja zaprojektowana, aby pomóc małym"
-
+  "welcome": {
+    "title": "Fakturio",
+    "subTitle": "Intuicyjna i łatwa w użyciu aplikacja zaprojektowana, aby pomóc małym firmom w łatwym zarządzaniu codziennymi operacjami. Dzięki intuicyjnemu interfejsowi i wszechstronnym funkcjom. Ta aplikacja upraszcza proces tworzenia i zarządzania fakturami i magazynami, umożliwiając firmom pozostanie zorganizowanym i skoncentrowanym na rozwoju.",
+    "register": "Zarejestruj się!",
+    "systemFeatures": "Cechy systemu!",
+    "effectiveness": "EFEKTYWNOSC",
+    "safety": "BEZPIECZEŃSTWO",
+    "availability": "DOSTEPNOSC",
+    "offerHeader": "Co oferujemy!",
+    "offerParam": "Wystawiaj faktury, kontroluj magazyn i zarządzaj swoim biznesem - wszystko w jednym miejscu!",
+    "offerHeaderFirst": "Wystawianie faktur i ofert",
+    "offerParamFirst": "Nasza aplikacja pozwala użytkownikom na szybkie i łatwe wystawianie faktur proform i ofert handlowych. Dzięki temu użytkownicy mogą zyskać na czasie i skupić się na innych ważnych zadaniach biznesowych. Aplikacja umożliwia dodawanie klientów, tworzenie szablonów faktur i ofert, a także automatyczne obliczanie kwot, podatków i rabatów.",
+    "offerHeaderSecond": "Zarządzanie magazynem",
+    "offerParamSecond": "Nasza aplikacja oferuje również narzędzia do zarządzania magazynem i kontrolowania poziomów zapasów. Dzięki temu użytkownicy mogą szybko sprawdzić stan magazynowy, dodawać i usuwać produkty oraz tworzyć raporty związane z ich zapasami. Aplikacja umożliwia również tworzenie zamówień i śledzenie ich statusu.",
+    "offerHeaderThird": "Bezpieczne logowanie i przechowywanie danych",
+    "offerParamThird": "Nasza aplikacja zapewnia bezpieczne logowanie i przechowywanie danych użytkowników. Wszystkie dane są przechowywane w chmurze, co oznacza, że ​​użytkownicy mogą mieć do nich dostęp z dowolnego miejsca na świecie. Aplikacja oferuje również funkcję backupu danych, dzięki czemu użytkownicy nie muszą się martwić o utratę ważnych informacji. Wszystkie połączenia z aplikacją są szyfrowane, co zapewnia bezpieczeństwoprzesyłanych danych.",
+    "userHeader": "Co mówią użytkownicy?",
+    "userParam": "Dołącz do grona naszych zadowolonych klientów i wypróbuj Fakturio już dziś!",
+    "userOpinionFirst": "Nasza firma korzysta z CompanyCompanion od kilku miesięcy i jesteśmy bardzo zadowoleni. Wystawianie faktur jest teraz dużo łatwiejsze i szybsze, a kontrola magazynu nigdy nie była tak prosta. Polecamy!",
+    "userNameFirst": "Klient z branży meblowej",
+    "userOpinionSecond": "CompanyCompanion pomógł nam usprawnić naszą działalność od pierwszego dnia. Proces wystawiania faktur stał się łatwiejszy, a zarządzanie magazynem jest teraz bardziej efektywne. Polecam tę aplikację każdemu przedsiębiorcy.",
+    "userNameSecond": "Klient z branży spożywczej",
+    "aboutUsHeader": "O nas!",
+    "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była efektywna i przyjemna."
+  },
+  "register": {
+    "title": "Utwórz Profil",
+    "subTitle": "Te informacje pozwolą nam dowiedzieć się więcej o Tobie.",
+    "personalInfo": "Dane osobowe",
+    "userName": "Nazwa użytkownika",
+    "email": "E-mail",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "companyInfo": "Dane firmy",
+    "nip": "NIP, np. 7162312129",
+    "companyName": "Nazwa firmy",
+    "companyCity": "Miasto firmy, np. Niepodległości 27",
+    "cityCode": "Kod miasta firmy, np. 23942, Warszawa",
+    "registerButton": "Zarejestruj się"
   }
 }
