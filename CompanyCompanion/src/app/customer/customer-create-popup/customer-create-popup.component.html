@@ -1,8 +1,9 @@
 <app-customer-popup
+*transloco="let t"
   [form]="createform"
-  header="Add Customer to database"
-  someInfo="Fill in the fields below to add the customer to your database"
-  buttonName="Save"
+  [header]="t('customer.header')"
+  [someInfo]="t('customer.someInfo')"
+  [buttonName]="t('buttons.save')"
   (callParent)="saveCustomer()"
   (callGetRegonParent)="getRegon()"
 ></app-customer-popup>

@@ -1,52 +1,6 @@
 <div class="container">
-  <app-breadcrumb headerDetail="Review" [isAddButton]="false" ></app-breadcrumb>
-
-  <mat-card *ngIf="dataSource.data.length !== 0">
-    <app-tableheader header="Paid invoices" searchPlaceholder="Ex. paid invoices" (callParent)="applyFilter($event)">
-    </app-tableheader>
-    <app-tablecontent [dataSource]="dataSource" [columns]="columns" [actionButtons]="actionButtons" [displayedColumns]="displayedColumns"></app-tablecontent>
-  </mat-card>
-  <mat-card *ngIf="dataSourceDelay.data.length !== 0">
-    <app-tableheader header="Delay invoices" searchPlaceholder="Ex. delay invoices" (callParent)="applyFilter($event)">
-    </app-tableheader>
-    <app-tablecontent [dataSource]="dataSourceDelay" [columns]="columns" [actionButtons]="actionButtons" [displayedColumns]="displayedColumns"></app-tablecontent>
-  </mat-card>
-  <mat-card *ngIf="dataSourceDraft.data.length !== 0">
-    <app-tableheader header="Draft invoices" searchPlaceholder="Ex. draft invoices" (callParent)="applyFilter($event)">
-    </app-tableheader>
-    <app-tablecontent [dataSource]="dataSourceDraft" [columns]="columns" [actionButtons]="actionButtons" [displayedColumns]="displayedColumns"></app-tablecontent>
-  </mat-card>
-
-  <mat-card
-    *ngIf="
-      dataSource.data.length === 0 &&
-      dataSourceDelay.data.length === 0 &&
-      dataSourceDraft.data.length === 0
-    "
-  >
-    <mat-card-content
-      style="
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 70%;
-        margin: auto;
-      "
-    >
-      <h2>Oto widok zbiorczej listy dokumentow wystawionych w systemie.</h2>
-      <p>
-        Na razie w tym miejscu nie ma jeszcze żadnych dokumentów. Ale nie martw
-        się, nic straconego! To wspaniałe miejsce, gdzie możesz łatwo i szybko
-        wystawić swoje pierwsze dokumenty!
-        <br /><br />
-        Dlatego zacznijmy! Kliknij przycisk "Nowa faktura" lub "Nowa proforma" i
-        stwórz swój pierwszy dokument. Wystawiaj faktury, twórz proformy,
-        dodawaj szkice - wszystko w jednym miejscu! Z naszą pomocą będziesz miał
-        więcej czasu na rozwijanie swojego biznesu, a mniej czasu na ręczne
-        wystawianie faktur.
-      </p>
-    </mat-card-content>
-  </mat-card>
+  <app-breadcrumb headerDetail="Review" [isAddButton]="false"></app-breadcrumb>
+  <app-invoice-table few="paid"></app-invoice-table>
+  <app-invoice-table few="delay"></app-invoice-table>
+  <app-invoice-table few="draft"></app-invoice-table>
 </div>

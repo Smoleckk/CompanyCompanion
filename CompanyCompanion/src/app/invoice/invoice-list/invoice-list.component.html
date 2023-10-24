@@ -1,8 +1,4 @@
 <div class="container">
 <app-breadcrumb headerDetail="Invoice List" (callParent)="addInvoice()" ></app-breadcrumb>
-    <mat-card>
-      <app-tableheader header="Invoices" searchPlaceholder="Ex. invoices" (callParent)="applyFilter($event)">
-      </app-tableheader>
-      <app-tablecontent [dataSource]="dataSource" [columns]="columns" [actionButtons]="actionButtons" [displayedColumns]="displayedColumns"></app-tablecontent>
-    </mat-card>
+    <app-invoice-table few="all"></app-invoice-table>
 </div>

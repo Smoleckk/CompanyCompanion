@@ -1,20 +1,12 @@
-<div class="container">
-  <app-breadcrumb
-    header="Customers"
-    link="/customer-list"
-    headerDetail="> {{ customerForm.value.customerName }}"
-    [isAddButton]="false"
-  ></app-breadcrumb>
+<div class="container" *transloco="let t">
+  <app-breadcrumb header="Customers" link="/customer-list" headerDetail="> {{ customerForm.value.customerName }}"
+    [isAddButton]="false"></app-breadcrumb>
   <mat-card style="width: 5%; min-width: 400px">
     <mat-card-content class="customer-details">
       <div>
-        <h2>Customer data</h2>
-        <app-tableactionbutton
-          color="primary"
-          icon="edit"
-          (callParent)="updateCustomer()"
-          style="position: absolute; right: 0; top: 0"
-        >
+        <h2>{{ t("customerTableHeader.customerDetailInfo") }}</h2>
+        <app-tableactionbutton color="primary" icon="edit" (callParent)="updateCustomer()"
+          style="position: absolute; right: 0; top: 0">
         </app-tableactionbutton>
       </div>
       <p>{{ customerForm.value.customerName }}</p>
@@ -23,18 +15,5 @@
       <p>{{ customerForm.value.customerAddress }}</p>
     </mat-card-content>
   </mat-card>
-  <mat-card>
-    <app-tableheader
-      header="Invoices"
-      searchPlaceholder="Ex. customer"
-      (callParent)="applyFilter($event)"
-    >
-    </app-tableheader>
-    <app-tablecontent
-      [dataSource]="dataSource"
-      [columns]="columns"
-      [actionButtons]="actionButtons"
-      [displayedColumns]="displayedColumns"
-    ></app-tablecontent>
-  </mat-card>
+  <app-invoice-table  few="few" [isCustomer]="isCustomer" *ngIf="isCustomer !== undefined"></app-invoice-table>
 </div>

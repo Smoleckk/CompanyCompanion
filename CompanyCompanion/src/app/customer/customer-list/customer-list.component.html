@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" *transloco="let t">
   <app-breadcrumb
-    headerDetail="Customer List"
+    [headerDetail]="t('customerTableHeader.customerHeader')"
     (callParent)="createCustomer()"
   ></app-breadcrumb>
   <mat-card>
     <app-tableheader
-      header="Customers"
+      [header]="t('customerTableHeader.customerHeader')"
       searchPlaceholder="Ex. customer"
       (callParent)="applyFilter($event)"
     >

@@ -1,6 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from 'src/app/service/invoice.service';
 
@@ -15,6 +16,7 @@ export class CreateProductPopupComponent implements OnInit {
     private service: InvoiceService,
     private toastr: ToastrService,
     private dialog: MatDialogRef<CreateProductPopupComponent>,
+    private readonly translocoService: TranslocoService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   ngOnInit(): void {}
@@ -31,13 +33,13 @@ export class CreateProductPopupComponent implements OnInit {
   });
 
   fields = [
-    {  label: 'Name', controlName: 'name', cssClass: 'full-width' ,type: 'text'},
-    {  label: 'Price', controlName: 'price', cssClass: 'full-width', type: 'number' },
-    {  label: 'Vat', controlName: 'vat', cssClass: 'full-width', type: 'number' },
-    {  label: 'Quantity', controlName: 'qty', cssClass: 'full-width', type: 'number' },
-    {  label: 'Unit', controlName: 'unit', cssClass: 'full-width',type: 'text' },
-    {  label: 'Category', controlName: 'category', cssClass: 'full-width',type: 'text' },
-    {  label: 'Remarks', controlName: 'remarks', cssClass: 'full-width',type: 'text' }
+    {  label: this.translocoService.translate('productTableHeader.name'), controlName: 'name', cssClass: 'full-width' ,type: 'text'},
+    {  label: this.translocoService.translate('productTableHeader.price'), controlName: 'price', cssClass: 'full-width', type: 'number' },
+    {  label: this.translocoService.translate('productTableHeader.vat'), controlName: 'vat', cssClass: 'full-width', type: 'number' },
+    {  label: this.translocoService.translate('productTableHeader.qty'), controlName: 'qty', cssClass: 'full-width', type: 'number' },
+    {  label: this.translocoService.translate('productTableHeader.unit'), controlName: 'unit', cssClass: 'full-width',type: 'text' },
+    {  label: this.translocoService.translate('productTableHeader.category'), controlName: 'category', cssClass: 'full-width',type: 'text' },
+    {  label: this.translocoService.translate('productTableHeader.remarks'), controlName: 'remarks', cssClass: 'full-width',type: 'text' }
   ];
 
 

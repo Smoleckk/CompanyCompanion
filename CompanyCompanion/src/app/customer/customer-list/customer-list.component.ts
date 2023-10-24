@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-create-popup.component';
@@ -21,7 +22,9 @@ export class CustomerListComponent {
     private service: CustomerService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private readonly translocoService: TranslocoService
+
   ) {}
 
   customerData: any;
@@ -37,22 +40,22 @@ export class CustomerListComponent {
   columns: any = [
     {
       matColumnDef: 'customerName',
-      matHeaderCellDef: 'Name',
+      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerName'),
       matCellDef: 'customerName',
     },
     {
       matColumnDef: 'customerNip',
-      matHeaderCellDef: 'Nip',
+      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerNip'),
       matCellDef: 'customerNip',
     },
     {
       matColumnDef: 'customerCity',
-      matHeaderCellDef: 'City',
+      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerCity'),
       matCellDef: 'customerCity',
     },
     {
       matColumnDef: 'customerAddress',
-      matHeaderCellDef: 'Address',
+      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerAddress'),
       matCellDef: 'customerAddress',
     },
   ];

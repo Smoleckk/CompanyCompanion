@@ -40,6 +40,31 @@ export class InvoiceService {
   GetAllInvoice() {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
   }
+  ///////////lol
+  GetFewInvoice(few: string, isCustomer: string) {
+    console.log(few, isCustomer);
+
+    if (isCustomer !== undefined) {
+      return this.http.get(
+        this.apiUrlInvoice + 'get-invoices-header/' + isCustomer
+      );
+    }
+    if (few === 'all') {
+      return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
+    }
+    if (few === 'paid') {
+      return this.http.get(this.apiUrlInvoice + 'get-invoices-header-paid');
+    }
+    if (few === 'delay') {
+      return this.http.get(this.apiUrlInvoice + 'get-invoices-header-delay');
+    }
+    if (few === 'draft') {
+      return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
+    } else {
+      return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
+    }
+  }
+  //////////
   /////// review
   GetAllInvoicePaid() {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header-paid');

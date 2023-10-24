@@ -7,13 +7,13 @@
       <app-language-selector></app-language-selector>
     </mat-toolbar>
 
-    <mat-nav-list>
+    <mat-nav-list *transloco="let t">
       <a mat-list-item routerLink="invoice-list" routerLinkActive="active" ariaCurrentWhenActive="page"
         class="nav-list-elem">
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>insert_drive_file</mat-icon>
-            <p>Invoices</p>
+            <p>{{ t("sidebar.invoices") }}</p>
           </div>
         </div>
       </a>
@@ -22,7 +22,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>description</mat-icon>
-            <p>Proforma</p>
+            <p>{{ t("sidebar.proforma") }}</p>
           </div>
         </div>
       </a>
@@ -31,7 +31,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>summarize</mat-icon>
-            <p>Corrects</p>
+            <p>{{ t("sidebar.corrections") }}</p>
           </div>
         </div>
       </a>
@@ -40,7 +40,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>build</mat-icon>
-            <p>Products</p>
+            <p>{{ t("sidebar.products") }}</p>
           </div>
         </div>
       </a>
@@ -49,7 +49,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>perm_identity</mat-icon>
-            <p>Customers</p>
+            <p>{{ t("sidebar.customers") }}</p>
           </div>
         </div>
       </a>
@@ -58,7 +58,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>supervisor_account</mat-icon>
-            <p>Co-workers</p>
+            <p>{{ t("sidebar.co-workers") }}</p>
           </div>
         </div>
       </a>
@@ -67,7 +67,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>file_copy</mat-icon>
-            <p>Review</p>
+            <p>{{ t("sidebar.review") }}</p>
           </div>
         </div>
       </a>
@@ -76,7 +76,7 @@
         <div>
           <div class="nav-list-elem-middle">
             <mat-icon>dashboard</mat-icon>
-            <p>Dashboard</p>
+            <p>{{ t("sidebar.dashboard") }}</p>
           </div>
         </div>
       </a>

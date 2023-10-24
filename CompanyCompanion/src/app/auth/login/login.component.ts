@@ -45,14 +45,14 @@ export class LoginComponent implements OnInit {
         (result) => {
           if (result.message === 'Success' || result.success === true) {
             localStorage.setItem('token', result.data.jwtToken);
-            this.toaster.success('Witamy w fakturio!');
+            this.toaster.success(this.translocoService.translate('toaster.toasterWelcome'));
             this.route.navigate(['']);
           } else {
-            this.toaster.warning('Something went wrong, try again later.');
+            this.toaster.warning(this.translocoService.translate('toaster.toasterFailed'));
           }
         },
         () => {
-          this.toaster.warning('Wrong credentials');
+          this.toaster.warning(this.translocoService.translate('toaster.toasterWrongCredit'));
         }
       );
     }

@@ -69,6 +69,7 @@ import { FormsPopupComponent } from './components/forms-popup/forms-popup.compon
 import { Registerv2Component } from './auth/registerv2/registerv2.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
+import { InvoiceTableComponent } from './components/invoice-table/invoice-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +115,7 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
     FormsPopupComponent,
     Registerv2Component,
     LanguageSelectorComponent,
+    InvoiceTableComponent,
   ],
   imports: [
     BrowserModule,

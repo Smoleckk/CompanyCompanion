@@ -1,51 +1,104 @@
 {
   "login": {
-    "loginForm": "Formularz logowania",
-    "username": "Imie",
-    "password": "Haslo",
-    "loginButton": "Zaloguj się",
-    "member": "Nie jestes czlonkiem?",
-    "signUp": "Zarejestruj się teraz!",
-    "failedLogin": "Złe dane logowania"
-  },
-  "welcome": {
+    "loginForm": "Formularz Logowania",
+    "username": "Nazwa Użytkownika",
+    "password": "Hasło",
+    "loginButton": "Zaloguj",
+    "member": "Nie jesteś członkiem?",
+    "signUp": "Zarejestruj się teraz!"
+},
+"toaster": {
+    "toasterWelcome": "Witaj w Fakturio",
+    "toasterFailed": "Coś poszło nie tak, spróbuj ponownie później.",
+    "toasterWrongCredit": "Nieprawidłowe dane logowania",
+    "toasterRegisterSuccessfully": "Rejestracja udana",
+    "regonSuccess": "Doskonale, udało się ukończyć przedmiot",
+    "toasterCreatedSuccess": "Utworzenie udane",
+    "toasterWrongInputData": "Proszę sprawdzić dane wejściowe"
+},
+"welcome": {
     "title": "Fakturio",
-    "subTitle": "Intuicyjna i łatwa w użyciu aplikacja zaprojektowana, aby pomóc małym firmom w łatwym zarządzaniu codziennymi operacjami. Dzięki intuicyjnemu interfejsowi i wszechstronnym funkcjom. Ta aplikacja upraszcza proces tworzenia i zarządzania fakturami i magazynami, umożliwiając firmom pozostanie zorganizowanym i skoncentrowanym na rozwoju.",
+    "subTitle": "Intuicyjna i użytkowa aplikacja zaprojektowana, aby pomóc małym firmom w łatwym zarządzaniu ich codziennymi operacjami. Dzięki intuicyjnemu interfejsowi i wszechstronnym funkcjom. <br/> Ta aplikacja upraszcza proces tworzenia i zarządzania fakturami i magazynami, umożliwiając firmom pozostanie zorganizowanym i skoncentrowanym na rozwoju.",
     "register": "Zarejestruj się!",
-    "systemFeatures": "Cechy systemu!",
-    "effectiveness": "EFEKTYWNOSC",
+    "systemFeatures": "Funkcje Systemu!",
+    "effectiveness": "WYDAJNOŚĆ",
     "safety": "BEZPIECZEŃSTWO",
-    "availability": "DOSTEPNOSC",
-    "offerHeader": "Co oferujemy!",
-    "offerParam": "Wystawiaj faktury, kontroluj magazyn i zarządzaj swoim biznesem - wszystko w jednym miejscu!",
-    "offerHeaderFirst": "Wystawianie faktur i ofert",
-    "offerParamFirst": "Nasza aplikacja pozwala użytkownikom na szybkie i łatwe wystawianie faktur proform i ofert handlowych. Dzięki temu użytkownicy mogą zyskać na czasie i skupić się na innych ważnych zadaniach biznesowych. Aplikacja umożliwia dodawanie klientów, tworzenie szablonów faktur i ofert, a także automatyczne obliczanie kwot, podatków i rabatów.",
-    "offerHeaderSecond": "Zarządzanie magazynem",
-    "offerParamSecond": "Nasza aplikacja oferuje również narzędzia do zarządzania magazynem i kontrolowania poziomów zapasów. Dzięki temu użytkownicy mogą szybko sprawdzić stan magazynowy, dodawać i usuwać produkty oraz tworzyć raporty związane z ich zapasami. Aplikacja umożliwia również tworzenie zamówień i śledzenie ich statusu.",
-    "offerHeaderThird": "Bezpieczne logowanie i przechowywanie danych",
-    "offerParamThird": "Nasza aplikacja zapewnia bezpieczne logowanie i przechowywanie danych użytkowników. Wszystkie dane są przechowywane w chmurze, co oznacza, że ​​użytkownicy mogą mieć do nich dostęp z dowolnego miejsca na świecie. Aplikacja oferuje również funkcję backupu danych, dzięki czemu użytkownicy nie muszą się martwić o utratę ważnych informacji. Wszystkie połączenia z aplikacją są szyfrowane, co zapewnia bezpieczeństwoprzesyłanych danych.",
-    "userHeader": "Co mówią użytkownicy?",
-    "userParam": "Dołącz do grona naszych zadowolonych klientów i wypróbuj Fakturio już dziś!",
-    "userOpinionFirst": "Nasza firma korzysta z CompanyCompanion od kilku miesięcy i jesteśmy bardzo zadowoleni. Wystawianie faktur jest teraz dużo łatwiejsze i szybsze, a kontrola magazynu nigdy nie była tak prosta. Polecamy!",
+    "availability": "DOSTĘPNOŚĆ",
+    "offerHeader": "Co Oferujemy!",
+    "offerParam": "Twórz faktury, kontroluj swój magazyn i zarządzaj swoim biznesem, wszystko w jednym miejscu!",
+    "offerHeaderFirst": "Fakturowanie i Tworzenie Ofert",
+    "offerParamFirst": "Nasza aplikacja pozwala użytkownikom szybko i łatwo tworzyć faktury proformy i oferty handlowe. Dzięki temu użytkownicy mogą zaoszczędzić czas i skupić się na innych ważnych zadaniach biznesowych. Aplikacja pozwala na dodawanie klientów, tworzenie szablonów faktur i ofert oraz automatyczne obliczanie kwot, podatków i rabatów.",
+    "offerHeaderSecond": "Zarządzanie Magazynem",
+    "offerParamSecond": "Nasza aplikacja dostarcza również narzędzi do zarządzania magazynem i monitorowania stanów zapasów. Dzięki temu użytkownicy mogą szybko sprawdzać stan magazynowy, dodawać i usuwać produkty oraz tworzyć raporty związanymi z ich zapasami. Aplikacja umożliwia również tworzenie zamówień i śledzenie ich statusu.",
+    "offerHeaderThird": "Bezpieczne Logowanie i Przechowywanie Danych",
+    "offerParamThird": "Nasza aplikacja zapewnia bezpieczne logowanie użytkowników i przechowywanie danych. Wszystkie dane są przechowywane w chmurze, co umożliwia użytkownikom dostęp do nich z dowolnego miejsca na świecie. Aplikacja oferuje również funkcję tworzenia kopii zapasowych danych, dzięki czemu użytkownicy nie muszą się martwić o utratę ważnych informacji. Wszystkie połączenia z aplikacją są szyfrowane, co zapewnia bezpieczeństwo przesyłanych danych.",
+    "userHeader": "Co Mówią Nasi Użytkownicy?",
+    "userParam": "Dołącz do naszych zadowolonych klientów i wypróbuj Fakturio już dziś!",
+    "userOpinionFirst": "Nasza firma korzysta z CompanyCompanion od kilku miesięcy i jesteśmy bardzo zadowoleni. Fakturowanie jest teraz znacznie łatwiejsze i szybsze, a kontrola magazynu jeszcze nigdy nie była tak prosta. Gorąco polecamy!",
     "userNameFirst": "Klient z branży meblowej",
-    "userOpinionSecond": "CompanyCompanion pomógł nam usprawnić naszą działalność od pierwszego dnia. Proces wystawiania faktur stał się łatwiejszy, a zarządzanie magazynem jest teraz bardziej efektywne. Polecam tę aplikację każdemu przedsiębiorcy.",
+    "userOpinionSecond": "CompanyCompanion pomógł nam zoptymalizować naszą działalność od pierwszego dnia. Proces fakturowania stał się prostszy, a zarządzanie magazynem jest teraz bardziej efektywne. Polecamy tę aplikację każdemu przedsiębiorcy.",
     "userNameSecond": "Klient z branży spożywczej",
-    "aboutUsHeader": "O nas!",
-    "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była efektywna i przyjemna."
-  },
-  "register": {
+    "aboutUsHeader": "O Nas!",
+    "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była wydajna i przyjemna."
+},
+"register": {
     "title": "Utwórz Profil",
     "subTitle": "Te informacje pozwolą nam dowiedzieć się więcej o Tobie.",
-    "personalInfo": "Dane osobowe",
-    "userName": "Nazwa użytkownika",
+    "personalInfo": "Dane Osobowe",
+    "userName": "Nazwa Użytkownika",
     "email": "E-mail",
     "password": "Hasło",
     "confirmPassword": "Potwierdź hasło",
-    "companyInfo": "Dane firmy",
+    "companyInfo": "Dane Firmy",
     "nip": "NIP, np. 7162312129",
-    "companyName": "Nazwa firmy",
-    "companyCity": "Miasto firmy, np. Niepodległości 27",
-    "cityCode": "Kod miasta firmy, np. 23942, Warszawa",
+    "companyName": "Nazwa Firmy",
+    "companyCity": "Miasto Firmy, np. Niepodległości 27",
+    "cityCode": "Kod Miasta Firmy, np. 23942, Warszawa",
     "registerButton": "Zarejestruj się"
-  }
+},
+"customer": {
+  "header": "Dodaj Klienta do bazy danych",
+  "someInfo": "Wypełnij poniższe pola, aby dodać klienta do swojej bazy danych",
+  "headerUpdate": "Aktualizuj Klienta w bazie danych",
+  "someInfoUpdate": "Wypełnij poniższe pola, aby zaktualizować klienta w swojej bazie danych"
+},
+"customerTableHeader": {
+  "customerDetailInfo": "Dane Klienta",
+  "customerHeader": "Klienci",
+  "customerName": "Imię",
+  "customerNip": "NIP",
+  "customerCity": "Miasto",
+  "customerAddress": "Adres"
+},
+
+"invoiceTableHeader": {
+    "invoiceNo": "Numer Faktury",
+    "customerName": "Klient",
+    "total": "Łącznie (brutto)",
+    "dueDate": "Termin Płatności",
+    "dateIssued": "Data Wystawienia"
+},
+
+
+
+
+
+
+
+
+"buttons": {
+  "save": "Zapisz",
+  "update": "Aktualizuj"
+},
+"sidebar":{
+  "invoices": "Faktury",
+  "proforma": "Proforma",
+  "corrections": "Korekty",
+  "products": "Produkty",
+  "customers": "Klienci",
+  "co-workers": "Współpracownicy",
+  "review": "Recenzja",
+  "dashboard": "Pulpit"
+}
+
 }

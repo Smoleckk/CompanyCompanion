@@ -1,4 +1,4 @@
-<div class="containerpopup">
+<div class="containerpopup" *transloco="let t">
   <mat-card>
     <mat-card-header>
       <h1><b>{{header}}</b></h1>
@@ -8,7 +8,7 @@
       <form [formGroup]="form" (ngSubmit)="callParentFunction()">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>NIP</mat-label>
-          <input matInput placeholder="NIP" formControlName="customerNip" />
+          <input matInput [placeholder]="t('customerTableHeader.customerNip')" formControlName="customerNip" />
           <mat-error *ngIf="form.get('customerNip')?.hasError('required')">Wymagane pole</mat-error>
           <mat-error *ngIf="form.get('customerNip')?.hasError('invalidNip')">NIP musi składać się z dokładnie 10 cyfr,
             bez spacji i znaków
@@ -17,9 +17,9 @@
             <mat-icon>search</mat-icon>
           </a>
         </mat-form-field>
-        <app-form-field [form]="form" label="Name" controlName="customerName" cssClass="full-width"></app-form-field>
-        <app-form-field [form]="form" label="City" controlName="customerCity" cssClass="full-width"></app-form-field>
-        <app-form-field [form]="form" label="Address" controlName="customerAddress" cssClass="full-width">
+        <app-form-field [form]="form" [label]="t('customerTableHeader.customerName')" controlName="customerName" cssClass="full-width"></app-form-field>
+        <app-form-field [form]="form" [label]="t('customerTableHeader.customerCity')" controlName="customerCity" cssClass="full-width"></app-form-field>
+        <app-form-field [form]="form" [label]="t('customerTableHeader.customerAddress')" controlName="customerAddress" cssClass="full-width">
         </app-form-field>
 
         <div class="form-submit">

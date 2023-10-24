@@ -5,8 +5,17 @@
     "password": "Password",
     "loginButton": "Login",
     "member": "Not a member?",
-    "signUp": "Sign up now!",
-    "failedLogin": "Wrong credentials"
+    "signUp": "Sign up now!"
+  },
+  "toaster":{
+    "toasterWelcome": "Welcome in Fakturio",
+    "toasterFailed": "Something went wrong, try again later.",
+    "toasterWrongCredit": "Wrong credentials",
+    "toasterRegisterSuccessfully": "Registered successfully",
+    "regonSuccess":"Super, managed to complete the subject",
+
+    "toasterCreatedSuccess":"Created successfully",
+    "toasterWrongInputData":"Please check input data"
   },
   "welcome": {
     "title": "Fakturio",
@@ -47,5 +56,62 @@
     "companyCity": "Company city, ex: Niepodległości 27",
     "cityCode": "Company city code, ex: 23942, Warszawa",
     "registerButton": "Register"
+  },
+  "customer": {
+    "header": "Add Customer to database",
+    "someInfo": "Fill in the fields below to add the customer to your database",
+    "headerUpdate": "Update Customer to database",
+    "someInfoUpdate": "Fill in the fields below to update the customer to your database"
+  },
+  "customerTableHeader": {
+    "customerDetailInfo": "Customer data",
+    "customerHeader": "Customers",
+    "customerName": "Name",
+    "customerNip": "Nip",
+    "customerCity": "City",
+    "customerAddress": "Address"
+  },
+
+  "invoiceTableHeader": {
+    "invoiceNo": "Invoice number",
+    "customerName": "Customer",
+    "total": "Brutto total",
+    "dueDate": "Due date",
+    "dateIssued": "Issued date"
+  },
+  "product": {
+    "header": "Add product to database",
+    "someInfo": "Fill in the fields below to add the product to your database",
+    "headerUpdate": "Update product to database",
+    "someInfoUpdate": "Fill in the fields below to update the product to your database"
+  },
+  "productTableHeader": {
+    "name": "Name",
+    "price": "Price",
+    "vat": "Vat",
+    "qty": "Quantity",
+    "unit": "Unit",
+    "category": "Category",
+    "remarks": "Remarks"
+  },
+
+
+
+
+  "buttons": {
+    "save": "Save",
+    "update": "Update"
+  },
+  "sidebar":{
+    "invoices": "Invoices",
+    "proforma": "Proforma",
+    "corrections": "Corrections",
+    "products": "Products",
+    "customers": "Customers",
+    "co-workers": "Co-workers",
+    "review": "Review",
+    "dashboard": "Dashboard"
   }
+
+
 }

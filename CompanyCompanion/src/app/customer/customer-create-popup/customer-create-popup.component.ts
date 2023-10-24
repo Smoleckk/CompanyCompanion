@@ -1,6 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 import { InvoiceService } from 'src/app/service/invoice.service';
@@ -18,6 +19,7 @@ export class CustomerCreatePopupComponent {
     private service: CustomerService,
     private toastr: ToastrService,
     private dialog: MatDialogRef<CustomerCreatePopupComponent>,
+    private readonly translocoService: TranslocoService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -45,15 +47,15 @@ export class CustomerCreatePopupComponent {
     if (this.createform && this.createform.valid) {
       this.service.createCustomer(this.createform.value).subscribe(
         () => {
-          this.toastr.success('Created successfully');
+          this.toastr.success(this.translocoService.translate('login.toasterCreatedSuccess'));
           this.dialog.close();
         },
         (error) => {
-          this.toastr.error(error.error);
+          this.toastr.error(this.translocoService.translate('login.toasterFailed'));
         }
       );
     } else {
-      this.toastr.warning('Please check data');
+      this.toastr.warning(this.translocoService.translate('login.toasterWrongInputData'));
     }
   }
   getRegon() {
@@ -65,11 +67,11 @@ export class CustomerCreatePopupComponent {
           customerCity: data.ulica + ' ' + data.nrNieruchomosci,
           customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
         });
-        this.toastr.success('Super, udało się uzupełnić podmiot');
+        this.toastr.success(this.translocoService.translate('login.regonSuccess'));
         console.log(data);
       },
       (error) => {
-        this.toastr.error(error.error);
+        this.toastr.error(this.translocoService.translate('login.toasterFailed'));
       }
     );
   }

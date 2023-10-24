@@ -12,11 +12,15 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 import { AuthService } from '../../service/auth.service';
 
-export function matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
+export function matchValidator(
+  matchTo: string,
+  reverse?: boolean
+): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const parent = control.parent;
 
@@ -30,7 +34,9 @@ export function matchValidator(matchTo: string, reverse?: boolean): ValidatorFn 
       return null;
     }
 
-    return parent && control.value === parent.get(matchTo)?.value ? null : { matching: true };
+    return parent && control.value === parent.get(matchTo)?.value
+      ? null
+      : { matching: true };
   };
 }
 
@@ -46,59 +52,65 @@ export class Registerv2Component {
     private authService: AuthService,
     private customerService: CustomerService,
     private toastr: ToastrService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private readonly translocoService: TranslocoService
+  ) {
+  }
 
   createform = this.builder.group({
-    username: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(50)]],
-    password: ['', [
-      Validators.required,
-      // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-      // Validators.minLength(6),
-      Validators.maxLength(25),
-      matchValidator('confirmPassword', true)
-    ]],
-    confirmPassword: ['', [
-      Validators.required,
-      matchValidator('password')
-    ]],
-    email: ['', [Validators.required,Validators.email]],
-    name: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(50)]],
+    username: [
+      '',
+      [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+    ],
+    password: [
+      '',
+      [
+        Validators.required,
+        // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        // Validators.minLength(6),
+        Validators.maxLength(25),
+        matchValidator('confirmPassword', true),
+      ],
+    ],
+    confirmPassword: ['', [Validators.required, matchValidator('password')]],
+    email: ['', [Validators.required, Validators.email]],
+    name: [
+      '',
+      [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+    ],
     nip: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     city: ['', Validators.required],
     cityCode: ['', Validators.required],
     template: ['first', Validators.required],
   });
 
+  get password() {
+    return this.createform.get('password');
+  }
+  get confirmPassword() {
+    return this.createform.get('confirmPassword');
+  }
 
-  get password() { return this.createform.get('password'); }
-  get confirmPassword() { return this.createform.get('confirmPassword'); }
-
-
-  
-  // username: ['', Validators.required],
-  // password: ['', Validators.required],
-  // email: ['', Validators.required],
-  // name: ['', Validators.required],
-  // city: ['', Validators.required],
-  // cityCode: ['', Validators.required],
   proceedRegistration(): void {
     this.createform.markAllAsTouched();
     if (this.createform.valid) {
       this.authService.proceedRegister(this.createform.value).subscribe(
         () => {
           this.toaster.success(
-            'Registered successfully. Please contact',
-            'Success'
+            this.translocoService.translate('toaster.toasterRegisterSuccessfully')
           );
           this.router.navigate(['login']);
         },
         () => {
-          this.toaster.warning('Wrong credentials');
+          this.toaster.warning(
+            this.translocoService.translate('toaster.toasterWrongCredit')
+          );
         }
       );
     } else {
-      this.toaster.warning('Please enter valid data');
+      this.toaster.warning(
+        this.translocoService.translate('toaster.toasterWrongInputData')
+      );
     }
   }
   getRegon() {
@@ -110,11 +122,14 @@ export class Registerv2Component {
           city: data.ulica + ' ' + data.nrNieruchomosci,
           cityCode: data.kodPocztowy + ' ' + data.miejscowosc,
         });
-        this.toastr.success('Super, udało się uzupełnić podmiot');
-        console.log(data);
+        this.toastr.success(
+          this.translocoService.translate('toaster.regonSuccess')
+        );
       },
       (error) => {
-        this.toastr.error(error.error);
+        this.toastr.error(
+          this.translocoService.translate('toaster.toasterFailed')
+        );
       }
     );
   }
