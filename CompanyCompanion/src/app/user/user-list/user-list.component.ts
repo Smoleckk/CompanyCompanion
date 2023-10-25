@@ -9,6 +9,7 @@ import { UserCreatePopupComponent } from '../user-create-popup/user-create-popup
 import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/service/profile.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +23,8 @@ export class UserListComponent implements OnInit {
     private service: UserService,
     private dialog: MatDialog,
     private toastrService: ToastrService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private readonly translocoService: TranslocoService,
   ) {}
   userdata: any;
   dataSource: any;
@@ -31,12 +33,12 @@ export class UserListComponent implements OnInit {
   columns: any = [
     {
       matColumnDef: 'username',
-      matHeaderCellDef: 'Username',
+      matHeaderCellDef: this.translocoService.translate('userTableHeader.username'),
       matCellDef: 'username',
     },
     {
       matColumnDef: 'email',
-      matHeaderCellDef: 'Email',
+      matHeaderCellDef: this.translocoService.translate('userTableHeader.email'),
       matCellDef: 'email',
     }
   ];

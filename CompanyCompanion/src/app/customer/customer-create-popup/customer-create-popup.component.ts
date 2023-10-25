@@ -50,7 +50,7 @@ export class CustomerCreatePopupComponent {
           this.toastr.success(this.translocoService.translate('login.toasterCreatedSuccess'));
           this.dialog.close();
         },
-        (error) => {
+        () => {
           this.toastr.error(this.translocoService.translate('login.toasterFailed'));
         }
       );
@@ -68,9 +68,8 @@ export class CustomerCreatePopupComponent {
           customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
         });
         this.toastr.success(this.translocoService.translate('login.regonSuccess'));
-        console.log(data);
       },
-      (error) => {
+      () => {
         this.toastr.error(this.translocoService.translate('login.toasterFailed'));
       }
     );

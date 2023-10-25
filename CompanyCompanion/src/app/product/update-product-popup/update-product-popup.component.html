@@ -1,3 +1,3 @@
-<app-forms-popup [form]="updateform" header="Add product to database"
-  someInfo="Fill in the fields below to add the product to your database" buttonName="Update"
+<app-forms-popup *transloco="let t" [form]="updateform" [header]="t('product.headerUpdate')"
+  [someInfo]="t('product.someInfoUpdate')" [buttonName]="t('buttons.update')"
   (callParent)="updateProduct()"></app-forms-popup>

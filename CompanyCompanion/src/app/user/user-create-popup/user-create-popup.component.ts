@@ -1,6 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 
@@ -15,6 +16,7 @@ export class UserCreatePopupComponent {
     private service: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private toastr: ToastrService,
+    private readonly translocoService: TranslocoService,
     private dialog: MatDialogRef<UserCreatePopupComponent>
   ) {}
   ngOnInit(): void {}
@@ -22,9 +24,9 @@ export class UserCreatePopupComponent {
   editdata: any;
 
   fields = [
-    { label: 'Username', controlName: 'username', type: 'text', cssStyle: 'full-width' },
-    { label: 'Email', controlName: 'email', type: 'email', cssStyle: 'full-width' },
-    { label: 'Password', controlName: 'password', type: 'password', cssStyle: 'full-width' }
+    { label: this.translocoService.translate('userFormHeader.username'), controlName: 'username', type: 'text', cssStyle: 'full-width' },
+    { label: this.translocoService.translate('userFormHeader.email'), controlName: 'email', type: 'email', cssStyle: 'full-width' },
+    { label: this.translocoService.translate('userFormHeader.password'), controlName: 'password', type: 'password', cssStyle: 'full-width' }
   ];
 
   createform = this.builder.group({
@@ -36,11 +38,11 @@ export class UserCreatePopupComponent {
   SaveUser() {
     if (this.createform.valid) {
       this.service.createUser(this.createform.value).subscribe(() => {
-        this.toastr.success('Created successfully');
+        this.toastr.success(this.translocoService.translate('toaster.toasterCreatedSuccess'));
         this.dialog.close();
       });
     } else {
-      this.toastr.warning('Please check data');
+      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'),);
     }
   }
 }

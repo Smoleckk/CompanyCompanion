@@ -91,7 +91,7 @@ export class CustomerListComponent {
 
   deleteCustomer(code: any): void {
     this.service.deleteCustomerByCode(code).subscribe(() => {
-      this.toastr.success('Deleted successfully');
+      this.toastr.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
       this.loadCustomers();
     });
   }

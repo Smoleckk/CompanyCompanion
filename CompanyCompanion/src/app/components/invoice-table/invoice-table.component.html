@@ -1,5 +1,5 @@
-<mat-card>
-    <app-tableheader [header]="'Invocies ' + few " searchPlaceholder="Ex. invoices" (callParent)="applyFilter($event)">
+<mat-card *transloco="let t">
+    <app-tableheader [header]="t('invoiceTableHeader.header') + few " searchPlaceholder="Ex. invoices" (callParent)="applyFilter($event)">
     </app-tableheader>
     <app-tablecontent [dataSource]="dataSource" [columns]="columns" [actionButtons]="actionButtons" [displayedColumns]="displayedColumns"></app-tablecontent>
   </mat-card>

@@ -7,15 +7,18 @@
     "member": "Not a member?",
     "signUp": "Sign up now!"
   },
-  "toaster":{
+  "toaster": {
     "toasterWelcome": "Welcome in Fakturio",
     "toasterFailed": "Something went wrong, try again later.",
     "toasterWrongCredit": "Wrong credentials",
     "toasterRegisterSuccessfully": "Registered successfully",
-    "regonSuccess":"Super, managed to complete the subject",
+    "regonSuccess": "Super, managed to complete the subject",
 
-    "toasterCreatedSuccess":"Created successfully",
-    "toasterWrongInputData":"Please check input data"
+    "toasterConfirm": "Confirm to take this action ",
+    "toasterCreatedSuccess": "Created successfully",
+    "toasterDeletedSuccess": "Deleted successfully",
+    "toasterUpdateSuccess": "Updated successfully",
+    "toasterWrongInputData": "Please check input data"
   },
   "welcome": {
     "title": "Fakturio",
@@ -72,20 +75,14 @@
     "customerAddress": "Address"
   },
 
-  "invoiceTableHeader": {
-    "invoiceNo": "Invoice number",
-    "customerName": "Customer",
-    "total": "Brutto total",
-    "dueDate": "Due date",
-    "dateIssued": "Issued date"
-  },
+
   "product": {
     "header": "Add product to database",
     "someInfo": "Fill in the fields below to add the product to your database",
     "headerUpdate": "Update product to database",
     "someInfoUpdate": "Fill in the fields below to update the product to your database"
   },
-  "productTableHeader": {
+  "productFormHeader": {
     "name": "Name",
     "price": "Price",
     "vat": "Vat",
@@ -94,15 +91,63 @@
     "category": "Category",
     "remarks": "Remarks"
   },
+  "productTableHeader": {
+    "productHeader": "Products",
+    "searchPlaceholder": "Ex. pencil",
+    "name": "Name",
+    "price": "Price",
+    "category": "Category",
+    "remarks": "Remarks"
+  },
 
+  "user": {
+    "header": "Add co-workers",
+    "someInfo": "Fill in the fields below to add the co-workers to your company"
+  },
+  "userFormHeader": {
+    "username": "Username",
+    "email": "Email",
+    "password": "Password"
+  },
+  "userTableHeader": {
+    "productHeader": "Co-workers",
+    "searchPlaceholder": "Ex. tom",
+    "username": "Username",
+    "email": "Email"
+  },
+  "invoiceTableHeader": {
+    "header": "Invoices ",
+    "searchPlaceholder": "Ex. 7152652718",
+    "invoiceNo": "Invoice number",
+    "customerName": "Customer",
+    "total": "Brutto total",
+    "dueDate": "Due date",
+    "dateIssued": "EmaIssued dateil"
+  },
 
-
+  "home": {
+    "header": "Nice to see you :]",
+    "invoiceTitle": "Invoice",
+    "invoiceSubTitle": "Set the terms of sale before the actual invoice. Issue proformas, enter order details and automatically calculate the amount.",
+    "proformaTitle": "Proforma",
+    "proformaSubTitle": "Issue invoices the easy way. Connect with customers, calculate taxes and generate invoice numbers - all in one place.",
+    "productTitle": "Product",
+    "productSubTitle": "Add products easily and always be prepared for invoicing. Create a product catalog with names, descriptions and prices, then add them to invoices in seconds.",
+    "customerTitle": "Customer",
+    "customerSubTitle": "Manage your customers' data in one place. Add and edit their contact information, addresses and payment information. Issue invoices and proformas with auto-filled customer data and save time.",
+    "employeeTitle": "Employee",
+    "employeeSubTitle": "Add and manage your employees' data in one place. Save time and easily assign employees to invoices.",
+    "reviewTitle": "Invoices review",
+    "reviewSubTitle": "Easily control the status of your invoices with a clear summary. See how many invoices have already been paid and how many are still outstanding. View a list of all invoices and their statuses to always have an overview.",
+    "dashboardTitle": "Dashboard",
+    "dashboardSubTitle": "A clear control panel where you will find a summary of your most important business activities. Quickly and easily check the status of your invoices, proformas, and current balance."
+  },
 
   "buttons": {
     "save": "Save",
     "update": "Update"
   },
-  "sidebar":{
+  "sidebar": {
     "invoices": "Invoices",
     "proforma": "Proforma",
     "corrections": "Corrections",
@@ -112,6 +157,4 @@
     "review": "Review",
     "dashboard": "Dashboard"
   }
-
-
 }

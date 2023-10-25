@@ -70,6 +70,7 @@ import { Registerv2Component } from './auth/registerv2/registerv2.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { InvoiceTableComponent } from './components/invoice-table/invoice-table.component';
+import { HomeCardComponent } from './components/home-card/home-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,6 +117,7 @@ import { InvoiceTableComponent } from './components/invoice-table/invoice-table.
     Registerv2Component,
     LanguageSelectorComponent,
     InvoiceTableComponent,
+    HomeCardComponent,
   ],
   imports: [
     BrowserModule,

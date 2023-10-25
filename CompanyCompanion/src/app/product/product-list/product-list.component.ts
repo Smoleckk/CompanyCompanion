@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from 'src/app/service/invoice.service';
 import { CreateProductPopupComponent } from '../create-product-popup/create-product-popup.component';
@@ -19,7 +20,9 @@ export class ProductListComponent implements OnInit {
   constructor(
     private service: InvoiceService,
     private dialog: MatDialog,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private readonly translocoService: TranslocoService,
+
   ) {}
 
   dataSource!: MatTableDataSource<any>;
@@ -34,22 +37,22 @@ export class ProductListComponent implements OnInit {
   columns: any = [
     {
       matColumnDef: 'name',
-      matHeaderCellDef: 'Name',
+      matHeaderCellDef: this.translocoService.translate('productTableHeader.name'),
       matCellDef: 'name',
     },
     {
       matColumnDef: 'price',
-      matHeaderCellDef: 'Price',
+      matHeaderCellDef: this.translocoService.translate('productTableHeader.price'),
       matCellDef: 'price',
     },
     {
       matColumnDef: 'category',
-      matHeaderCellDef: 'Category',
+      matHeaderCellDef: this.translocoService.translate('productTableHeader.category'),
       matCellDef: 'category',
     },
     {
       matColumnDef: 'remarks',
-      matHeaderCellDef: 'Remarks',
+      matHeaderCellDef: this.translocoService.translate('productTableHeader.remarks'),
       matCellDef: 'remarks',
     },
   ];
@@ -105,9 +108,9 @@ export class ProductListComponent implements OnInit {
     });
   }
   removeProduct(code: any): void {
-    if (confirm('Do you want to remove this invoice: ' + code)) {
+    if (confirm(this.translocoService.translate('toaster.toasterConfirm') + code)) {
       this.service.deleteProduct(code).subscribe(() => {
-        this.toastrService.success('Deleted successfully', 'Remove PRoduct');
+        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
         this.loadProducts();
       });
     }

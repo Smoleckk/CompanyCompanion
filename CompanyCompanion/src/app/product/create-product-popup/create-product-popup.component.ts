@@ -33,24 +33,24 @@ export class CreateProductPopupComponent implements OnInit {
   });
 
   fields = [
-    {  label: this.translocoService.translate('productTableHeader.name'), controlName: 'name', cssClass: 'full-width' ,type: 'text'},
-    {  label: this.translocoService.translate('productTableHeader.price'), controlName: 'price', cssClass: 'full-width', type: 'number' },
-    {  label: this.translocoService.translate('productTableHeader.vat'), controlName: 'vat', cssClass: 'full-width', type: 'number' },
-    {  label: this.translocoService.translate('productTableHeader.qty'), controlName: 'qty', cssClass: 'full-width', type: 'number' },
-    {  label: this.translocoService.translate('productTableHeader.unit'), controlName: 'unit', cssClass: 'full-width',type: 'text' },
-    {  label: this.translocoService.translate('productTableHeader.category'), controlName: 'category', cssClass: 'full-width',type: 'text' },
-    {  label: this.translocoService.translate('productTableHeader.remarks'), controlName: 'remarks', cssClass: 'full-width',type: 'text' }
+    {  label: this.translocoService.translate('productFormHeader.name'), controlName: 'name', cssClass: 'full-width' ,type: 'text'},
+    {  label: this.translocoService.translate('productFormHeader.price'), controlName: 'price', cssClass: 'full-width', type: 'number' },
+    {  label: this.translocoService.translate('productFormHeader.vat'), controlName: 'vat', cssClass: 'full-width', type: 'number' },
+    {  label: this.translocoService.translate('productFormHeader.qty'), controlName: 'qty', cssClass: 'full-width', type: 'number' },
+    {  label: this.translocoService.translate('productFormHeader.unit'), controlName: 'unit', cssClass: 'full-width',type: 'text' },
+    {  label: this.translocoService.translate('productFormHeader.category'), controlName: 'category', cssClass: 'full-width',type: 'text' },
+    {  label: this.translocoService.translate('productFormHeader.remarks'), controlName: 'remarks', cssClass: 'full-width',type: 'text' }
   ];
 
 
   saveProduct(): void {
     if (this.createform.valid) {
       this.service.CreateProduct(this.createform.value).subscribe(() => {
-        this.toastr.success('Updated successfully');
+        this.toastr.success(this.translocoService.translate('toaster.toasterCreatedSuccess'));
         this.dialog.close();
       });
     } else {
-      this.toastr.warning('Please check data');
+      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'));
     }
   }
 }

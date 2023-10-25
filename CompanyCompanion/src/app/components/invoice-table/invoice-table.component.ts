@@ -10,6 +10,7 @@ import { ProfileService } from 'src/app/service/profile.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InvoicePrintPopupComponent } from 'src/app/invoice/invoice-print-popup/invoice-print-popup.component';
 import { InvoicePrintSecondPopupComponent } from 'src/app/invoice/invoice-print-second-popup/invoice-print-second-popup.component';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-invoice-table',
@@ -30,6 +31,7 @@ export class InvoiceTableComponent {
     private router: Router,
     private dialog: MatDialog,
     private builder: FormBuilder,
+    private readonly translocoService: TranslocoService,
     private profileService: ProfileService
   ) {
 
@@ -49,27 +51,27 @@ export class InvoiceTableComponent {
   columns: any = [
     {
       matColumnDef: 'invoiceNo',
-      matHeaderCellDef: 'Invoice number',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.invoiceNo'),
       matCellDef: 'invoiceNo',
     },
     {
       matColumnDef: 'customerName',
-      matHeaderCellDef: 'Customer',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.customerName'),
       matCellDef: 'customerName',
     },
     {
       matColumnDef: 'total',
-      matHeaderCellDef: 'Brutto total',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.total'),
       matCellDef: 'total',
     },
     {
       matColumnDef: 'dueDate',
-      matHeaderCellDef: 'Due date',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dueDate'),
       matCellDef: 'dueDate',
     },
     {
       matColumnDef: 'dateIssued',
-      matHeaderCellDef: 'Issued date',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dateIssued'),
       matCellDef: 'dateIssued',
     },
   ];
@@ -133,9 +135,9 @@ export class InvoiceTableComponent {
   }
 
   public removeInvoice(invoiceId: any): void {
-    if (confirm('Do you want to remove this invoice: ' + invoiceId)) {
+    if (confirm(this.translocoService.translate('toaster.toasterConfirm') + invoiceId)) {
       this.invoiceService.RemoveInvoice(invoiceId).subscribe(() => {
-        this.toastrService.success('Deleted successfully', 'Remove Invoice');
+        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
         this.loadInvoices();
       });
     }

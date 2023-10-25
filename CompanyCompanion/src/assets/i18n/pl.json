@@ -8,13 +8,17 @@
     "signUp": "Zarejestruj się teraz!"
 },
 "toaster": {
-    "toasterWelcome": "Witaj w Fakturio",
-    "toasterFailed": "Coś poszło nie tak, spróbuj ponownie później.",
-    "toasterWrongCredit": "Nieprawidłowe dane logowania",
-    "toasterRegisterSuccessfully": "Rejestracja udana",
-    "regonSuccess": "Doskonale, udało się ukończyć przedmiot",
-    "toasterCreatedSuccess": "Utworzenie udane",
-    "toasterWrongInputData": "Proszę sprawdzić dane wejściowe"
+  "toasterWelcome": "Witaj w Fakturio",
+  "toasterFailed": "Coś poszło nie tak, spróbuj ponownie później.",
+  "toasterWrongCredit": "Błędne dane logowania",
+  "toasterRegisterSuccessfully": "Zarejestrowano pomyślnie",
+  "regonSuccess": "Super, udało się zakończyć przedmiot",
+
+  "toasterConfirm":"Super, czy chcesz potwierdzic operacje",
+  "toasterCreatedSuccess": "Utworzono pomyślnie",
+  "toasterDeletedSuccess": "Usunięto pomyślnie",
+  "toasterUpdateSuccess": "Zaktualizowano pomyślnie",
+  "toasterWrongInputData": "Proszę sprawdź dane wejściowe"
 },
 "welcome": {
     "title": "Fakturio",
@@ -71,15 +75,72 @@
   "customerAddress": "Adres"
 },
 
+"product": {
+  "header": "Dodaj produkt do bazy danych",
+  "someInfo": "Wypełnij pola poniżej, aby dodać produkt do bazy danych",
+  "headerUpdate": "Aktualizuj produkt w bazie danych",
+  "someInfoUpdate": "Wypełnij pola poniżej, aby zaktualizować produkt w bazie danych"
+},
+"productFormHeader": {
+  "name": "Nazwa",
+  "price": "Cena",
+  "vat": "Podatek VAT",
+  "qty": "Ilość",
+  "unit": "Jednostka",
+  "category": "Kategoria",
+  "remarks": "Uwagi"
+},
+"productTableHeader": {
+  "productHeader": "Produkty",
+  "searchPlaceholder": "Np. ołówek",
+  "name": "Nazwa",
+  "price": "Cena",
+  "category": "Kategoria",
+  "remarks": "Uwagi"
+},
+"user": {
+  "header": "Dodaj współpracowników",
+  "someInfo": "Wypełnij pola poniżej, aby dodać współpracowników do swojej firmy"
+},
+"userFormHeader": {
+  "username": "Nazwa użytkownika",
+  "email": "Email",
+  "password": "Hasło"
+},
+"userTableHeader": {
+  "productHeader": "Współpracownicy",
+  "searchPlaceholder": "Np. Tom",
+  "username": "Nazwa użytkownika",
+  "email": "Email"
+},
 "invoiceTableHeader": {
-    "invoiceNo": "Numer Faktury",
-    "customerName": "Klient",
-    "total": "Łącznie (brutto)",
-    "dueDate": "Termin Płatności",
-    "dateIssued": "Data Wystawienia"
+  "header": "Faktury ",
+  "searchPlaceholder": "Np. 7152652718",
+  "invoiceNo": "Numer faktury",
+  "customerName": "Klient",
+  "total": "Suma brutto",
+  "dueDate": "Termin płatności",
+  "dateIssued": "Data wystawienia"
 },
 
 
+"home": {
+  "header": "Miło cię widzieć :]",
+  "invoiceTitle": "Faktura",
+  "invoiceSubTitle": "Ustal warunki sprzedaży przed właściwą fakturą. Wystawiaj proformy, wprowadzaj szczegóły zamówienia i automatycznie obliczaj kwotę.",
+  "proformaTitle": "Proforma",
+  "proformaSubTitle": "Wystawiaj faktury w prosty sposób. Połącz się z klientami, obliczaj podatki i generuj numery faktur - wszystko w jednym miejscu.",
+  "productTitle": "Produkt",
+  "productSubTitle": "Dodawaj produkty łatwo i zawsze bądź przygotowany do wystawiania faktur. Stwórz katalog produktów z nazwami, opisami i cenami, a następnie dodawaj je do faktur w ciągu sekund.",
+  "customerTitle": "Klient",
+  "customerSubTitle": "Zarządzaj danymi swoich klientów w jednym miejscu. Dodawaj i edytuj ich dane kontaktowe, adresy i informacje płatnicze. Wystawiaj faktury i proformy z automatycznie wypełnionymi danymi klienta i oszczędzaj czas.",
+  "employeeTitle": "Pracownik",
+  "employeeSubTitle": "Dodawaj i zarządzaj danymi swoich pracowników w jednym miejscu. Oszczędzaj czas i łatwo przypisuj pracowników do faktur.",
+  "reviewTitle": "Przegląd Faktur",
+  "reviewSubTitle": "Łatwo kontroluj status swoich faktur dzięki czytelnemu podsumowaniu. Dowiedz się, ile faktur zostało już opłaconych, a ile jest jeszcze do uregulowania. Wyświetl listę wszystkich faktur i ich statusy, aby zawsze mieć pełen przegląd.",
+  "dashboardTitle": "Pulpit",
+  "dashboardSubTitle": "Czysta tablica kontrolna, na której znajdziesz podsumowanie najważniejszych działań w swojej firmie. Szybko i łatwo sprawdzisz status swoich faktur, proform i bieżący stan konta."
+},
 
 
 

@@ -1,6 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 import { InvoiceService } from 'src/app/service/invoice.service';
@@ -15,6 +16,7 @@ export class CustomerUpdatePopupComponent implements OnInit {
     private builder: FormBuilder,
     private service: CustomerService,
     private toastr: ToastrService,
+    private readonly translocoService: TranslocoService,
     private dialog: MatDialogRef<CustomerUpdatePopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -59,11 +61,11 @@ export class CustomerUpdatePopupComponent implements OnInit {
       this.service
         .updateCustomerByCode(this.data, this.updateform.value)
         .subscribe(() => {
-          this.toastr.success('Product updated successfully');
+          this.toastr.success(this.translocoService.translate('toaster.toasterUpdateSuccess'));
           this.dialog.close();
         });
     } else {
-      this.toastr.warning('Please check the data');
+      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'));
     }
   }
   getRegon() {
@@ -75,11 +77,11 @@ export class CustomerUpdatePopupComponent implements OnInit {
           customerCity: data.ulica + ' ' + data.nrNieruchomosci,
           customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
         });
-        this.toastr.success('Super, udało się uzupełnić podmiot');
+        this.toastr.success(this.translocoService.translate('toaster.regonSuccess'));
         console.log(data);
       },
-      (error) => {
-        this.toastr.error(error.error);
+      () => {
+        this.toastr.error(this.translocoService.translate('toaster.toasterFailed'));
       }
     );
   }

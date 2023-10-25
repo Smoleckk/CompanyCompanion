@@ -1,6 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from 'src/app/service/invoice.service';
 
@@ -27,6 +28,7 @@ export class UpdateProductPopupComponent implements OnInit {
     private service: InvoiceService,
     private toastr: ToastrService,
     private dialog: MatDialogRef<UpdateProductPopupComponent>,
+    private readonly translocoService: TranslocoService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -53,11 +55,11 @@ export class UpdateProductPopupComponent implements OnInit {
   updateProduct(): void {
     if (this.updateform.valid) {
       this.service.UpdateProductByCode(this.updateform.value).subscribe(() => {
-        this.toastr.success('Product updated successfully');
+        this.toastr.success(this.translocoService.translate('toaster.toasterUpdateSuccess'));
         this.dialog.close();
       });
     } else {
-      this.toastr.warning('Please check the data');
+      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'));
     }
   }
 }
