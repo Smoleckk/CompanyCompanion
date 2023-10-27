@@ -1,0 +1,10 @@
+  <mat-form-field [class]="cssClass" [formGroup]="form" appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <input matInput [placeholder]="label" [formControlName]="controlName" [matDatepicker]="picker2" [type]="type"/>
+    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+    <mat-error *ngIf="form.get(controlName)?.hasError('required')">Wymagane pole</mat-error>
+    <mat-error *ngIf="form.get(controlName)?.hasError('email')">Musi tu byc email</mat-error>
+    <mat-error *ngIf="form.get(controlName)?.hasError('maxlength')">Zbyt mała liczba znakow, min 2</mat-error>
+    <mat-error *ngIf="form.get(controlName)?.hasError('minlength')">Zbyt duza liczba znakow, max 50</mat-error>
+  </mat-form-field>

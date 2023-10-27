@@ -26,7 +26,7 @@ export class ProformaListComponent implements OnInit {
 
   displayedColumns: string[] = [
     'proformaNo',
-    'customer',
+    'customerName',
     'dueDate',
     'dateIssued',
     'total',
@@ -39,9 +39,9 @@ export class ProformaListComponent implements OnInit {
       matCellDef: 'proformaNo',
     },
     {
-      matColumnDef: 'customer',
+      matColumnDef: 'customerName',
       matHeaderCellDef: 'Customer',
-      matCellDef: 'customer',
+      matCellDef: 'customerName',
     },
     {
       matColumnDef: 'dueDate',
@@ -68,7 +68,8 @@ export class ProformaListComponent implements OnInit {
 
   ngOnInit(): void {
     this.LoadProforma();
-
+    console.log(this.LoadProforma());
+    
     this.onResize();
     window.addEventListener('resize', () => {
       this.onResize();
@@ -77,11 +78,11 @@ export class ProformaListComponent implements OnInit {
 
   onResize() {
     if (window.innerWidth <= 850) {
-      this.displayedColumns = ['proformaNo', 'customer', 'action'];
+      this.displayedColumns = ['proformaNo', 'customerName', 'action'];
     } else {
       this.displayedColumns = [
         'proformaNo',
-        'customer',
+        'customerName',
         'dueDate',
         'dateIssued',
         'total',

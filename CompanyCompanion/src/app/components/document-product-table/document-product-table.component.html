@@ -1,0 +1,107 @@
+<!-- Table of products -->
+<div *transloco="let t">
+    <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="35px"
+        style="background-color: #607d8b; margin-bottom: 5px">
+        <mat-grid-tile [colspan]="colspan3">
+            <h4 class="tableHeader">{{t('invoiceForm.name')}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h4 class="tableHeader">{{t('invoiceForm.quantity')}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h4 class="tableHeader">{{t('invoiceForm.unit')}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h4 class="tableHeader">{{t('invoiceForm.price')}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h4 class="tableHeader">{{t('invoiceForm.vat')}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h4 class="tableHeader">{{t('invoiceForm.netto')}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h4 class="tableHeader">{{t('invoiceForm.brutto')}}</h4>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="" [formGroup]="invoiceForm">
+        <ng-container formArrayName="products">
+            <ng-container *ngFor="let detailForm of products.controls; let i = index">
+                <div [formGroupName]="i">
+                    <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="50px"
+                        style="text-align: center; align-items: center">
+                        <mat-grid-tile [colspan]="colspan3">
+                            <mat-form-field appearance="outline" style="width: 100%; margin-top: 20px">
+                                <mat-select (selectionChange)="productChange(i)" formControlName="productName"
+                                [placeholder]="t('invoiceForm.name')">
+                                    <mat-option *ngFor="let item of getProduct" [value]="item.name">
+                                        {{ item.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="outline" style="margin-top: 20px">
+                                <input type="number" (change)="itemCalculation(i)" matInput formControlName="qty"
+                                    [placeholder]="t('invoiceForm.quantity')" />
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="outline" style="margin-top: 20px">
+                                <input (change)="itemCalculation(i)" matInput formControlName="unit"
+                                [placeholder]="t('invoiceForm.unit')" />
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="outline" style="margin-top: 20px">
+                                <input type="number" (change)="itemCalculation(i)" matInput formControlName="salesPrice"
+                                [placeholder]="t('invoiceForm.price')" />
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="outline" style="margin-top: 20px">
+                                <input type="number" (change)="itemCalculation(i)" matInput formControlName="vat"
+                                [placeholder]="t('invoiceForm.vat')" />
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="outline" style="margin-top: 20px">
+                                <input type="number" matInput formControlName="nettoPrice" [placeholder]="t('invoiceForm.netto')" />
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="outline" style="margin-top: 20px">
+                                <input matInput formControlName="bruttoPrice" [placeholder]="t('invoiceForm.brutto')" />
+                            </mat-form-field>
+                        </mat-grid-tile>
+
+                        <mat-icon color="warn" style="
+                      z-index: 100;
+                      position: absolute;
+                      right: -25px;
+                      top: 10px;
+                      cursor: pointer;
+                    " (click)="deleteProduct(i)">
+                            delete_forever</mat-icon>
+                    </mat-grid-list>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    <a style="width: 150px" (click)="addProduct()" mat-raised-button color="primary">
+        {{t('buttons.add')}}
+        <mat-icon color="#fff">add</mat-icon>
+    </a>
+    <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="70px">
+        <mat-grid-tile style="width: 0; height: 0"> </mat-grid-tile>
+        <mat-grid-tile>
+            <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.netTotal')" controlName="netTotal"
+                cssClass="full-width"></app-form-field>
+            <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.tax')" controlName="tax"
+                cssClass="full-width"></app-form-field>
+            <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.total')" controlName="total"
+                cssClass="full-width"></app-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

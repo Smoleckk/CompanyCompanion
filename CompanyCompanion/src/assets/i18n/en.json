@@ -122,7 +122,38 @@
     "customerName": "Customer",
     "total": "Brutto total",
     "dueDate": "Due date",
-    "dateIssued": "EmaIssued dateil"
+    "dateIssued": "Issued date"
+  },
+  "invoiceForm":{
+    "name":"Name",
+    "quantity":"Quantity",
+    "unit":"Unit",
+    "price":"Price",
+    "vat":"Vat",
+    "netto":"Netto",
+    "brutto":"Brutto",
+    "netTotal":"Summary Netto",
+    "tax":"Summary Tax",
+    "total":"Summary Brutto",
+    "remarks":"Remarks",
+    "paymentDescription":"Payment Description",
+    "accountNumber":"Account Number",
+    "isGenerated":"Issued?",
+    "dateIssued":"Issued date",
+    "invoiceDate":"Sold date",
+    "dueDate":"(paid) Date",
+    "placeOfIssue":"Place of issue",
+    "paymentStatus":"Payment status",
+    "paymentType":"Payment type"
+  },
+  "invoiceFormSelect":{
+    "issued":"Issued",
+    "notIssued":"Not Issued",
+    "paid":"Paid",
+    "unpaid":"Unpaid",
+    "cash":"Cash",
+    "blik":"Blik",
+    "bankTransfer":"Bank transfer"
   },
 
   "home": {
@@ -145,7 +176,8 @@
 
   "buttons": {
     "save": "Save",
-    "update": "Update"
+    "update": "Update",
+    "add": "Add"
   },
   "sidebar": {
     "invoices": "Invoices",

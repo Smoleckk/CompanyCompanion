@@ -71,6 +71,9 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { InvoiceTableComponent } from './components/invoice-table/invoice-table.component';
 import { HomeCardComponent } from './components/home-card/home-card.component';
+import { FormFieldSelectComponent } from './components/form-field-select/form-field-select.component';
+import { FormFieldDataPickerComponent } from './components/form-field-data-picker/form-field-data-picker.component';
+import { DocumentProductTableComponent } from './components/document-product-table/document-product-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +121,9 @@ import { HomeCardComponent } from './components/home-card/home-card.component';
     LanguageSelectorComponent,
     InvoiceTableComponent,
     HomeCardComponent,
+    FormFieldSelectComponent,
+    FormFieldDataPickerComponent,
+    DocumentProductTableComponent,
   ],
   imports: [
     BrowserModule,

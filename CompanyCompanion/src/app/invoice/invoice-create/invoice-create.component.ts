@@ -1,20 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerCreatePopupComponent } from 'src/app/customer/customer-create-popup/customer-create-popup.component';
 import { ProfileService } from 'src/app/service/profile.service';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProformaService } from '../../service/proforma.service';
+
 @Component({
   selector: 'app-create-invoice',
   templateUrl: './invoice-create.component.html',
@@ -31,163 +26,128 @@ export class CreateInvoiceComponent implements OnInit {
     private toastr: ToastrService,
     private activeRoute: ActivatedRoute,
     private profileService: ProfileService,
-    private dialog: MatDialog
-    
+    private dialog: MatDialog,
+    private readonly translocoService: TranslocoService
   ) {}
   ngOnInit(): void {
     this.getCustomers();
-    this.GetProducts();
     this.ShowInvoiceNumber();
     this.getProfile();
-
+    this.calculateBreakpoints(window.innerWidth);
     this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
+    this.invoiceFromProformaId =
+      this.activeRoute.snapshot.paramMap.get('proformaId');
+
     if (this.editInvoiceId != null) {
       this.pageTitle = 'Edit Invoice';
       this.isEdit = true;
       this.SetEditInfo(this.editInvoiceId);
-    } else {
-      this.addProduct();
     }
-    this.invoiceFromProformaId =
-      this.activeRoute.snapshot.paramMap.get('proformaId');
+
     if (this.invoiceFromProformaId != null) {
       this.pageTitle = 'Invoice from proforma';
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId);
     }
-    this.breakpoint2 = window.innerWidth <= 850 ? 1 : 2;
-    this.breakpoint3 = window.innerWidth <= 850 ? 1 : 3;
-    this.breakpoint4 = window.innerWidth <= 850 ? 2 : 4;
-    this.breakpoint9 = window.innerWidth <= 850 ? 3 : 9;
-    this.colspan3 = window.innerWidth <= 850 ? 2 : 3;
   }
   onResize(event: any) {
-    this.breakpoint2 = event.target.innerWidth <= 850 ? 1 : 2;
-    this.breakpoint3 = event.target.innerWidth <= 850 ? 1 : 3;
-    this.breakpoint4 = event.target.innerWidth <= 850 ? 2 : 4;
-    this.breakpoint9 = event.target.innerWidth <= 850 ? 3 : 9;
-    this.colspan3 = window.innerWidth <= 850 ? 2 : 3;
+    this.calculateBreakpoints(event.target.innerWidth);
   }
-  // breakpoints
   breakpoint2: any;
   breakpoint3: any;
   breakpoint4: any;
   breakpoint9: any;
   colspan3: any;
-  //
 
   issuedStatus = [
-    { name: 'Issued', value: true },
-    { name: 'Not issued', value: false },
+    {
+      name: this.translocoService.translate('invoiceFormSelect.issued'),
+      value: true,
+    },
+    {
+      name: this.translocoService.translate('invoiceFormSelect.notIssued'),
+      value: false,
+    },
   ];
 
-  paymentStatus: string[] = ['Paid', 'Unpaid'];
-  paymentType: string[] = ['Cash', 'Blik', 'Bank transfer'];
+  paymentStatus = [
+    {
+      name: this.translocoService.translate('invoiceFormSelect.paid'),
+      value: 'Paid',
+    },
+    {
+      name: this.translocoService.translate('invoiceFormSelect.unpaid'),
+      value: 'Unpaid',
+    },
+  ];
+
+  paymentType = [
+    {
+      name: this.translocoService.translate('invoiceFormSelect.cash'),
+      value: 'Cash',
+    },
+    {
+      name: this.translocoService.translate('invoiceFormSelect.blik'),
+      value: 'Blik',
+    },
+    {
+      name: this.translocoService.translate('invoiceFormSelect.bankTransfer'),
+      value: 'Bank transfer',
+    },
+  ];
   pageTitle = 'New invoice';
   invoiceDetail!: FormArray<any>;
-  invoiceProduct!: FormGroup<any>;
   getCustomer: any;
-  getProduct: any;
   editInvoiceId: any;
   invoiceFromProformaId: any;
   isEdit = false;
-  invoiceNoIsEdit:any;
+  invoiceNoIsEdit: any;
   isGeneratedShow: boolean = false;
   editInvoiceDetail: any;
   customerFullName: any = '';
   customerHoldOnlyName: any = '';
-  isTempInvoiceNumber:any = false;
+  isTempInvoiceNumber: any = false;
 
   invoiceForm = this.builder.group({
-    invoiceId: this.builder.control(0),
-    invoiceNo: this.builder.control({ value: '', disabled: true }),
-    placeOfIssue: this.builder.control(''),
-    dateIssued: this.builder.control(new Date().toISOString()),
-    dueDate: this.builder.control(
-      new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()
-    ),
-    invoiceDate: this.builder.control(new Date().toISOString()),
-    customerName: this.builder.control({ value: '', disabled: true }),
-    customerNip: this.builder.control({ value: '', disabled: true }),
-    customerDeliveryAddress: this.builder.control({
-      value: '',
-      disabled: true,
-    }),
-    customerCityCode: this.builder.control(''),
-    sellerId: this.builder.control({ value: '', disabled: true }),
-    sellerIdName: this.builder.control({ value: '', disabled: true }),
-    sellerNip: this.builder.control({ value: '', disabled: true }),
-    sellerDeliveryAddress: this.builder.control({ value: '', disabled: true }),
-    sellerCityCode: this.builder.control({ value: '', disabled: true }),
-    total: this.builder.control({ value: 0, disabled: true }),
-    tax: this.builder.control({ value: 0, disabled: true }),
-    netTotal: this.builder.control({ value: 0, disabled: true }),
-    paymentStatus: this.builder.control('', Validators.required),
-    paymentType: this.builder.control(''),
-    accountNumber: this.builder.control(''),
-    paymentDescription: this.builder.control(''),
-    remarks: this.builder.control(''),
+    invoiceId: [0],
+    invoiceNo: [''],
+    placeOfIssue: [''],
+    dateIssued: [''],
+    dueDate: [''],
+    invoiceDate: [''],
+    customerName: [''],
+    customerNip: [''],
+    customerDeliveryAddress: [''],
+    customerCityCode: [''],
+    sellerId: [''],
+    sellerIdName: [''],
+    sellerNip: [''],
+    sellerDeliveryAddress: [''],
+    sellerCityCode: [''],
+    total: [''],
+    tax: [''],
+    netTotal: [''],
+    paymentStatus: [''],
+    paymentType: [''],
+    accountNumber: [''],
+    paymentDescription: [''],
+    remarks: [''],
     products: this.builder.array([]),
-    isGenerated: this.builder.control(false),
+    isGenerated: [false],
   });
-
   SetEditInfo(invoiceIdCode: any) {
-    this.service.GetInvByCode(invoiceIdCode).subscribe((res) => {
-      let editData: any;
-      editData = res;
-      this.invoiceNoIsEdit = editData.invoiceNo
-      this.isTempInvoiceNumber = this.invoiceNoIsEdit.indexOf('Temp') === 0
-      this.customerFullName =
-      editData.customerName +
-      '<br>' +
-      editData.customerDeliveryAddress +
-      '<br>' +
-      editData.customerCityCode +
-      '<br> NIP: ' +
-      editData.customerNip;
-      this.customerHoldOnlyName =  editData.customerName;
-
-      editData.products.forEach((product: any) => {
-        this.products.push(
-          this.builder.group({
-            productCode: [product.productCode],
-            productName: [product.productName],
-            qty: [product.qty],
-            unit: [product.unit],
-            salesPrice: [product.salesPrice],
-            vat: [product.vat],
-            bruttoPrice: [product.bruttoPrice],
-            nettoPrice: [product.nettoPrice],
-          })
-        );
-      });
+    this.service.GetInvByCode(invoiceIdCode).subscribe((editData: any) => {
       if (editData != null) {
+        this.invoiceNoIsEdit = editData.invoiceNo;
+        this.isTempInvoiceNumber = this.invoiceNoIsEdit.indexOf('Temp') === 0;
+        this.customerFullName = this.formatCustomerFullName(editData);
+        this.customerHoldOnlyName = editData.customerName;
         this.invoiceForm.patchValue({
-          invoiceId: editData.invoiceId,
-          invoiceNo: editData.invoiceNo,
-          placeOfIssue: editData.placeOfIssue,
-          dateIssued: editData.dateIssued,
-          dueDate: editData.dueDate,
-          invoiceDate: editData.invoiceDate,
-          customerName: editData.customerName,
-          customerNip: editData.customerNip,
-          customerDeliveryAddress: editData.customerDeliveryAddress,
-          customerCityCode: editData.customerCityCode,
-          sellerId: editData.sellerId,
-          sellerIdName: editData.sellerIdName,
-          sellerNip: editData.sellerNip,
-          sellerDeliveryAddress: editData.sellerDeliveryAddress,
-          sellerCityCode: editData.sellerCityCode,
-          total: editData.total,
-          tax: editData.tax,
-          netTotal: editData.netTotal,
-          paymentStatus: editData.paymentStatus,
-          paymentType: editData.paymentType,
-          accountNumber: editData.accountNumber,
-          paymentDescription: editData.paymentDescription,
-          remarks: editData.remarks,
+          ...editData,
           products: [],
-          isGenerated: editData.isGenerated,
+        });
+        editData.products.forEach((product: any) => {
+          this.products.push(this.createProductFormGroup(product));
         });
       }
     });
@@ -196,39 +156,20 @@ export class CreateInvoiceComponent implements OnInit {
   SetEditInfoProforma(proformaId: any) {
     this.serviceProforma
       .GetProformaHeaderByCode(proformaId)
-      .subscribe((res) => {
-        let editData: any;
-        editData = res;
+      .subscribe((editData: any) => {
         if (editData != null) {
-          
+          this.customerFullName = this.formatCustomerFullName(editData);
+          this.customerHoldOnlyName = editData.customerName;
           this.invoiceForm.patchValue({
+            ...editData,
+            // products: editData.products,
             invoiceId: editData.proformaId,
             invoiceNo: editData.proformaNo,
-            placeOfIssue: editData.placeOfIssue,
-            dateIssued: editData.dateIssued,
-            dueDate: editData.dueDate,
-            invoiceDate: editData.invoiceDate,
-            customerName: editData.customerName,
-            customerNip: editData.customerNip,
-            customerDeliveryAddress: editData.customerDeliveryAddress,
-            customerCityCode: editData.customerCityCode,
-            sellerId: editData.sellerId,
-            sellerIdName: editData.sellerIdName,
-            sellerNip: editData.sellerNip,
-            sellerDeliveryAddress: editData.sellerDeliveryAddress,
-            sellerCityCode: editData.sellerCityCode,
-            total: editData.total,
-            tax: editData.tax,
-            netTotal: editData.netTotal,
-            paymentStatus: editData.paymentStatus,
-            paymentType: editData.paymentType,
-            accountNumber: editData.accountNumber,
-            paymentDescription: editData.paymentDescription,
-            remarks: editData.remarks,
-            products: [],
-            isGenerated: false,
           });
         }
+        editData.products.forEach((product: any) => {
+          this.products.push(this.createProductFormGroup(product));
+        });
       });
   }
   get products() {
@@ -249,63 +190,42 @@ export class CreateInvoiceComponent implements OnInit {
     });
   }
 
-  addProduct() {
-    const detailForm = this.builder.group({
-      productCode: this.builder.control(''),
-      productName: this.builder.control(''),
-      qty: this.builder.control(1),
-      unit: this.builder.control(''),
-      salesPrice: this.builder.control(0),
-      vat: this.builder.control(0),
-      bruttoPrice: this.builder.control({ value: 0, disabled: true }),
-      nettoPrice: this.builder.control({ value: 0, disabled: true }),
-    });
-    // let customerCode = this.invoiceForm.get("customerId")?.value;
-    // if (customerCode != null && customerCode != '') {
-    this.products.push(detailForm);
-    // } else {
-    // this.toastr.warning('Please select the customer', 'Validation')
-    // }
-  }
-
-  deletePProduct(lessonIndex: number) {
-    this.products.removeAt(lessonIndex);
-    this.SummaryCalculation();
-  }
-
   SaveInvoice() {
+    console.log(this.invoiceForm.value);
+    
+    this.invoiceForm.markAllAsTouched();
     if (this.invoiceForm.valid) {
       if (this.invoiceFromProformaId != null) {
-        console.log(this.invoiceForm.getRawValue());
         this.service
           .SaveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
-            this.toastr.success('Created Successfully', 'Invoice No');
+            this.toastr.success(
+              this.translocoService.translate('toaster.toasterCreatedSuccess')
+            );
             this.router.navigate(['/invoice-list']);
           });
       } else if (this.isEdit) {
-        console.log(this.invoiceForm.getRawValue());
-
         this.service
           .EditInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
-            this.toastr.success('Created Edited', 'Invoice No');
+            this.toastr.success(
+              this.translocoService.translate('toaster.toasterUpdateSuccess')
+            );
             this.router.navigate(['/invoice-list']);
           });
       } else {
-        console.log(this.invoiceForm.getRawValue());
-
         this.service
           .SaveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
-            this.toastr.success('Created Successfully', 'Invoice No');
+            this.toastr.success(
+              this.translocoService.translate('toaster.toasterCreatedSuccess')
+            );
             this.router.navigate(['/invoice-list']);
           });
       }
     } else {
       this.toastr.warning(
-        'Please enter values in all mandatory field',
-        'Validation'
+        this.translocoService.translate('toaster.toasterWrongInputData')
       );
     }
   }
@@ -315,18 +235,9 @@ export class CreateInvoiceComponent implements OnInit {
       this.getCustomer = res;
     });
   }
-  GetProducts() {
-    this.service.GetProducts().subscribe((res) => {
-      this.getProduct = res;
-    });
-  }
-
 
   CustomerChange(event: any) {
-    // let customerCode = this.invoiceForm.get('customerName')?.value;
-    this.service.getCustomerByCode(event.value).subscribe((res) => {
-      let customData: any;
-      customData = res;
+    this.service.getCustomerByCode(event.value).subscribe((customData: any) => {
       if (customData != null) {
         this.invoiceForm
           .get('customerDeliveryAddress')
@@ -338,15 +249,8 @@ export class CreateInvoiceComponent implements OnInit {
           .get('customerName')
           ?.patchValue(customData.customerName);
         this.invoiceForm.get('customerNip')?.patchValue(customData.customerNip);
-        this.customerFullName =
-          customData.customerName +
-          '<br>' +
-          customData.customerAddress +
-          '<br>' +
-          customData.customerCity +
-          '<br> NIP: ' +
-          customData.customerNip;
-          this.customerHoldOnlyName =  customData.customerName
+        this.customerFullName = this.formatCustomerFullName(customData);
+        this.customerHoldOnlyName = customData.customerName;
       }
     });
   }
@@ -354,52 +258,35 @@ export class CreateInvoiceComponent implements OnInit {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }
-
-  ProductChange(index: any) {
-    this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
-    this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
-    let productCode = this.invoiceProduct.get('productName')?.value;
-
-    this.service.GetProductsByName(productCode).subscribe((res) => {
-      let prodData: any;
-      prodData = res;
-      if (prodData != null) {
-        this.invoiceProduct.get('productName')?.patchValue(prodData.name);
-        this.invoiceProduct.get('salesPrice')?.patchValue(prodData.price);
-        this.invoiceProduct.get('vat')?.patchValue(prodData.vat);
-        this.invoiceProduct.get('unit')?.patchValue(prodData.unit);
-        this.ItemCalculation(index);
-      }
+  createProductFormGroup(product: any): FormGroup {
+    return this.builder.group({
+      productCode: [product.productCode],
+      productName: [product.productName],
+      qty: [product.qty],
+      unit: [product.unit],
+      salesPrice: [product.salesPrice],
+      vat: [product.vat],
+      bruttoPrice: [product.bruttoPrice],
+      nettoPrice: [product.nettoPrice],
     });
   }
-
-  ItemCalculation(index: any) {
-    this.invoiceDetail = this.invoiceForm.controls['products'] as FormArray;
-    this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
-    let qty = this.invoiceProduct.get('qty')?.value;
-    let price = this.invoiceProduct.get('salesPrice')?.value;
-    let vat = this.invoiceProduct.get('vat')?.value;
-    let totalBrutto = qty * price * (1 + vat / 100);
-    let totalNetto = qty * price;
-    this.invoiceProduct.get('bruttoPrice')?.patchValue(totalBrutto);
-    this.invoiceProduct.get('nettoPrice')?.patchValue(totalNetto);
-
-    this.SummaryCalculation();
+  formatCustomerFullName(editData: any): string {
+    const customerFullName =
+      editData.customerName +
+      '<br>' +
+      editData.customerDeliveryAddress +
+      '<br>' +
+      editData.customerCityCode +
+      '<br> NIP: ' +
+      editData.customerNip;
+    return customerFullName;
   }
-  SummaryCalculation() {
-    let array = this.invoiceForm.getRawValue().products;
-    let sumTotalBrutto = 0;
-    let sumTotalNetto = 0;
-    array.forEach((x: any) => {
-      sumTotalBrutto = sumTotalBrutto + x.bruttoPrice;
-    });
-    array.forEach((x: any) => {
-      sumTotalNetto = sumTotalNetto + x.nettoPrice;
-    });
-
-    this.invoiceForm.get('total')?.patchValue(sumTotalBrutto);
-    this.invoiceForm.get('tax')?.patchValue(sumTotalBrutto - sumTotalNetto);
-    this.invoiceForm.get('netTotal')?.patchValue(sumTotalNetto);
+  calculateBreakpoints(windowWidth: number): void {
+    this.breakpoint2 = windowWidth <= 850 ? 1 : 2;
+    this.breakpoint3 = windowWidth <= 850 ? 1 : 3;
+    this.breakpoint4 = windowWidth <= 850 ? 2 : 4;
+    this.breakpoint9 = windowWidth <= 850 ? 3 : 9;
+    this.colspan3 = windowWidth <= 850 ? 2 : 3;
   }
   makePdf() {
     let pdf = new jsPDF('p', 'pt', 'a4');
