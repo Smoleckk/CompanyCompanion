@@ -1,9 +1,11 @@
-<div>
-    <button
-      *ngFor="let language of languagesList; index as i"
-      (click)="changeLanguage(language.code)"
-    >
-      <img [src]="language.imgUrl" [alt]="language.name" />
-      <span> {{ language.shorthand }} </span>
+<button mat-button [matMenuTriggerFor]="menu">
+  <mat-icon>flag</mat-icon>
+  Language
+</button>
+<mat-menu #menu="matMenu">
+  <div class="" *ngFor="let language of languagesList;">
+    <button mat-menu-item (click)="changeLanguage(language.code)">
+      <span>{{ language.name }}</span>
     </button>
   </div>
+</mat-menu>

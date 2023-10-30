@@ -9,15 +9,15 @@ import { TranslocoService } from '@ngneat/transloco';
 export class LanguageSelectorComponent {
   constructor(private translocoService: TranslocoService) {}
   public languagesList: 
-    Array<Record<'imgUrl' | 'code' | 'name' | 'shorthand', string>> = [
+    Array<Record<'code' | 'name' | 'shorthand', string>> = [
     {
-      imgUrl: '/assets/images/English.png',
+      // imgUrl: '/assets/images/English.png',
       code: 'en',
       name: 'English',
       shorthand: 'ENG',
     },
     {
-      imgUrl: '/assets/images/Deutsch.png',
+      // imgUrl: '/assets/images/Deutsch.png',
       code: 'pl',
       name: 'Polish',
       shorthand: 'PL',
@@ -25,8 +25,9 @@ export class LanguageSelectorComponent {
   ];
   public changeLanguage(languageCode: string): void {
     this.translocoService.setActiveLang(languageCode);
-    languageCode === 'fa'
-      ? (document.body.style.direction = 'rtl')
-      : (document.body.style.direction = 'ltr');
+    // window.location.reload();
+    // languageCode === 'fa'
+    //   ? (document.body.style.direction = 'rtl')
+    //   : (document.body.style.direction = 'ltr');
   }
 }

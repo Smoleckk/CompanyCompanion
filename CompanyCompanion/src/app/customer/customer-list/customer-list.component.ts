@@ -14,7 +14,7 @@ import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss'],
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
