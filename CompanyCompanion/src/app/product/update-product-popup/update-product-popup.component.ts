@@ -1,9 +1,11 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
+import { ProductMagazine } from 'src/app/models/productMagazine';
 import { InvoiceService } from 'src/app/service/invoice.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-update-product-popup',
@@ -11,8 +13,16 @@ import { InvoiceService } from 'src/app/service/invoice.service';
   styleUrls: ['./update-product-popup.component.scss'],
 })
 export class UpdateProductPopupComponent implements OnInit {
-  editdata: any;
-  updateform = this.builder.group({
+    constructor(
+    private builder: FormBuilder,
+    private productService: ProductService,
+    private toastr: ToastrService,
+    private dialog: MatDialogRef<UpdateProductPopupComponent>,
+    private readonly translocoService: TranslocoService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  updateform: FormGroup = this.builder.group({
     productMagazineId: ['', Validators.required],
     name: ['', Validators.required],
     price: ['', Validators.required],
@@ -22,31 +32,60 @@ export class UpdateProductPopupComponent implements OnInit {
     category: ['', Validators.required],
     remarks: ['', Validators.required],
   });
+  fields = [
+    {
+      label: this.translocoService.translate('productFormHeader.name'),
+      controlName: 'name',
+      cssClass: 'full-width',
+      type: 'text',
+    },
+    {
+      label: this.translocoService.translate('productFormHeader.price'),
+      controlName: 'price',
+      cssClass: 'full-width',
+      type: 'number',
+    },
+    {
+      label: this.translocoService.translate('productFormHeader.vat'),
+      controlName: 'vat',
+      cssClass: 'full-width',
+      type: 'number',
+    },
+    {
+      label: this.translocoService.translate('productFormHeader.qty'),
+      controlName: 'qty',
+      cssClass: 'full-width',
+      type: 'number',
+    },
+    {
+      label: this.translocoService.translate('productFormHeader.unit'),
+      controlName: 'unit',
+      cssClass: 'full-width',
+      type: 'text',
+    },
+    {
+      label: this.translocoService.translate('productFormHeader.category'),
+      controlName: 'category',
+      cssClass: 'full-width',
+      type: 'text',
+    },
+    {
+      label: this.translocoService.translate('productFormHeader.remarks'),
+      controlName: 'remarks',
+      cssClass: 'full-width',
+      type: 'text',
+    },
+  ];
 
-  constructor(
-    private builder: FormBuilder,
-    private service: InvoiceService,
-    private toastr: ToastrService,
-    private dialog: MatDialogRef<UpdateProductPopupComponent>,
-    private readonly translocoService: TranslocoService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+
 
   ngOnInit(): void {
     if (this.data.productMagazineId) {
-      this.service
-        .GetProductsByCode(this.data.productMagazineId)
-        .subscribe((res) => {
-          this.editdata = res;
+      this.productService
+        .getProductByCode(this.data.productMagazineId)
+        .subscribe((editData: ProductMagazine) => {
           this.updateform.patchValue({
-            productMagazineId: this.editdata.productMagazineId,
-            name: this.editdata.name,
-            price: this.editdata.price,
-            vat: this.editdata.vat,
-            qty: this.editdata.qty,
-            unit: this.editdata.unit,
-            category: this.editdata.category,
-            remarks: this.editdata.remarks,
+            ...editData,
           });
         });
     }
@@ -54,12 +93,18 @@ export class UpdateProductPopupComponent implements OnInit {
 
   updateProduct(): void {
     if (this.updateform.valid) {
-      this.service.UpdateProductByCode(this.updateform.value).subscribe(() => {
-        this.toastr.success(this.translocoService.translate('toaster.toasterUpdateSuccess'));
-        this.dialog.close();
-      });
+      this.productService
+        .updateProductByCode(this.updateform.value)
+        .subscribe(() => {
+          this.toastr.success(
+            this.translocoService.translate('toaster.toasterUpdateSuccess')
+          );
+          this.dialog.close();
+        });
     } else {
-      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'));
+      this.toastr.warning(
+        this.translocoService.translate('toaster.toasterWrongInputData')
+      );
     }
   }
 }

@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerCreatePopupComponent } from 'src/app/customer/customer-create-popup/customer-create-popup.component';
+import { CustomerService } from 'src/app/service/customer.service';
 import { InvoiceCorrectService } from 'src/app/service/invoice-correct.service';
 import { ProfileService } from 'src/app/service/profile.service';
 
@@ -26,6 +27,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private service: InvoiceCorrectService,
+    private customerService: CustomerService,
     private router: Router,
     private toastr: ToastrService,
     private activeRoute: ActivatedRoute,
@@ -34,7 +36,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.getCustomers();
-    this.GetProducts();
+    this.getProducts();
     this.getProfile();
 
     this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
@@ -128,7 +130,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   });
 
   SetEditInfo(invoiceIdCode: any) {
-    this.service.GetInvByCode(invoiceIdCode).subscribe((res) => {
+    this.service.getInvByCode(invoiceIdCode).subscribe((res) => {
       let editData: any;
       console.log(res);
 
@@ -262,20 +264,20 @@ export class InvoiceCorrectCreateComponent implements OnInit {
     this.SummaryCalculation();
   }
 
-  SaveInvoice() {
+  saveInvoice() {
     if (this.invoiceForm.valid) {
       console.log(this.invoiceForm.getRawValue());
 
       if (this.isEdit) {
         this.service
-          .EditInvoice(this.invoiceForm.getRawValue())
+          .editInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
             this.toastr.success('Created Edited', 'Invoice No');
             this.router.navigate(['/invoice-correct-list']);
           });
       } else {
         this.service
-          .SaveInvoice(this.invoiceForm.getRawValue())
+          .saveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
             this.toastr.success('Created Successfully', 'Invoice No');
             this.router.navigate(['/invoice-correct-list']);
@@ -290,19 +292,19 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   }
 
   getCustomers() {
-    this.service.GetCustomer().subscribe((res) => {
+    this.customerService.getCustomers().subscribe((res) => {
       this.getCustomer = res;
     });
   }
-  GetProducts() {
-    this.service.GetProducts().subscribe((res) => {
+  getProducts() {
+    this.service.getProducts().subscribe((res) => {
       this.getProduct = res;
     });
   }
 
   CustomerChange(event: any) {
     // let customerCode = this.invoiceForm.get('customerName')?.value;
-    this.service.getCustomerByCode(event.value).subscribe((res) => {
+    this.customerService.getCustomerByCode(event.value).subscribe((res) => {
       let customData: any;
       customData = res;
       if (customData != null) {
@@ -361,7 +363,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
     let productCode = this.invoiceProduct.get('productName')?.value;
 
-    this.service.GetProductsByName(productCode).subscribe((res) => {
+    this.service.getProductsByName(productCode).subscribe((res) => {
       let prodData: any;
       prodData = res;
       if (prodData != null) {
@@ -441,7 +443,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   //   this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
   //   let productCode = this.invoiceProduct.get('productName')?.value;
 
-  //   this.service.GetProductsByName(productCode).subscribe((res) => {
+  //   this.service.getProductsByName(productCode).subscribe((res) => {
   //     let prodData: any;
   //     prodData = res;
   //     if (prodData != null) {

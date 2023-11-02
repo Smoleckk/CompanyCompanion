@@ -1,4 +1,5 @@
 import { Component, Input  ,Output, EventEmitter} from '@angular/core';
+import { Invoice } from 'src/app/models/invoice';
 
 @Component({
   selector: 'app-tablecontent',

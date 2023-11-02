@@ -5,39 +5,32 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class InvoiceCorrectService {
-  apiUrlCustomer = 'https://localhost:7037/api/Customer/';
+  // apiUrlCustomer = 'https://localhost:7037/api/Customer/';
   apiUrlProducts = 'https://localhost:7037/api/ProductMagazines/';
   apiUrlInvoice = 'https://localhost:7037/api/InvoiceCorrect/';
 
   constructor(private http: HttpClient) {}
 
-  GetCustomer() {
-    return this.http.get(this.apiUrlCustomer);
-  }
-  getCustomerByCode(code: any) {
-    return this.http.get(this.apiUrlCustomer + code);
-  }
-
-  GetProducts() {
+  getProducts() {
     return this.http.get(this.apiUrlProducts);
   }
-  GetProductsByCode(code: any) {
+  getProductsByCode(code: any) {
     return this.http.get(this.apiUrlProducts + code);
   }
-  GetProductsByName(name: any) {
+  getProductsByName(name: any) {
     return this.http.get(this.apiUrlProducts + 'name/' + name);
   }
-  UpdateProductByCode(product: any) {
+  updateProductByCode(product: any) {
     return this.http.put(this.apiUrlProducts, product);
   }
-  CreateProduct(product: any) {
+  createProduct(product: any) {
     return this.http.post(this.apiUrlProducts, product);
   }
   deleteProduct(code: any) {
     return this.http.delete(this.apiUrlProducts + code);
   }
 
-  GetAllInvoice() {
+  getAllInvoice() {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
   }
   /////// review
@@ -51,19 +44,19 @@ export class InvoiceCorrectService {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
   }
   //////////
-  GetCustomerInvoices(code: any) {
+  getCustomerInvoices(code: any) {
     return this.http.get(this.apiUrlInvoice + 'get-invoices-header/' + code);
   }
-  GetInvByCode(invoiceId: any) {
+  getInvByCode(invoiceId: any) {
     return this.http.get(this.apiUrlInvoice + invoiceId);
   }
-  RemoveInvoice(invoiceId: any) {
+  removeInvoice(invoiceId: any) {
     return this.http.delete(this.apiUrlInvoice + invoiceId);
   }
-  SaveInvoice(invoiceData: any) {
+  saveInvoice(invoiceData: any) {
     return this.http.post(this.apiUrlInvoice + 'save-invoice', invoiceData);
   }
-  EditInvoice(invoiceData: any) {
+  editInvoice(invoiceData: any) {
     return this.http.put(
       this.apiUrlInvoice + 'invoices/' + invoiceData.invoiceCorrectId,
       invoiceData

@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from 'src/app/service/invoice.service';
 import { CreateProductPopupComponent } from '../create-product-popup/create-product-popup.component';
 import { UpdateProductPopupComponent } from '../update-product-popup/update-product-popup.component';
+import { ProductService } from 'src/app/service/product.service';
+import { ProductMagazine } from 'src/app/models/productMagazine';
 
 @Component({
   selector: 'app-product-list',
@@ -19,6 +21,7 @@ export class ProductListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private service: InvoiceService,
+    private productService: ProductService,
     private dialog: MatDialog,
     private toastrService: ToastrService,
     private readonly translocoService: TranslocoService,
@@ -88,7 +91,7 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.service.GetProducts().subscribe((data: any) => {
+    this.productService.getProducts().subscribe((data: ProductMagazine[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -109,7 +112,7 @@ export class ProductListComponent implements OnInit {
   }
   removeProduct(code: any): void {
     if (confirm(this.translocoService.translate('toaster.toasterConfirm') + code)) {
-      this.service.deleteProduct(code).subscribe(() => {
+      this.productService.deleteProduct(code).subscribe(() => {
         this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
         this.loadProducts();
       });

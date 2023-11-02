@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ChartInvoice } from '../models/chartInvoice';
+import { Observable } from 'rxjs';
+import { ChartProduct } from '../models/chartProduct';
 
 @Injectable({
   providedIn: 'root',
@@ -9,19 +12,19 @@ export class ChartService {
 
   constructor(private http: HttpClient) {}
 
-  getInvoicePaidStatus() {
-    return this.http.get(this.apiUrlInvoice + 'invoice-paid-status');
+  getInvoicePaidStatus(): Observable<ChartInvoice> {
+    return this.http.get<ChartInvoice>(this.apiUrlInvoice + 'invoice-paid-status');
   }
-  getInvoicePaidTotalStatus() {
-    return this.http.get(this.apiUrlInvoice + 'invoice-paid-total-status');
+  getInvoicePaidTotalStatus(): Observable<ChartInvoice>  {
+    return this.http.get<ChartInvoice>(this.apiUrlInvoice + 'invoice-paid-total-status');
   }
-  getInvoiceIssueDateStatus() {
-    return this.http.get(this.apiUrlInvoice + 'invoice-date-issued-status');
+  getInvoiceIssueDateStatus(): Observable<ChartInvoice>  {
+    return this.http.get<ChartInvoice>(this.apiUrlInvoice + 'invoice-date-issued-status');
   }
-  getInvoiceNumberCustomerStatus() {
-    return this.http.get(this.apiUrlInvoice + 'invoice-number-customer-status');
+  getInvoiceNumberCustomerStatus(): Observable<ChartInvoice>  {
+    return this.http.get<ChartInvoice>(this.apiUrlInvoice + 'invoice-number-customer-status');
   }
-  getProductStatus() {
-    return this.http.get(this.apiUrlInvoice + 'product-status');
+  getProductStatus():Observable<ChartProduct> {
+    return this.http.get<ChartProduct>(this.apiUrlInvoice + 'product-status');
   }
 }

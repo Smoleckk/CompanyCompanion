@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import { UserFormData } from '../models/userFormData';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,10 @@ export class UserService {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  createUser(user: any): Observable<User> {
+  createUser(user: UserFormData): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
-  deleteUser(userId: any): Observable<User> {
+  deleteUser(userId: string): Observable<User> {
     return this.http.delete<User>(this.apiUrl + userId);
   }
 }

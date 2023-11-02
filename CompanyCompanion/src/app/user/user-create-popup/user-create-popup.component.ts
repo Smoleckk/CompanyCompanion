@@ -1,5 +1,5 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
@@ -21,15 +21,13 @@ export class UserCreatePopupComponent {
   ) {}
   ngOnInit(): void {}
 
-  editdata: any;
-
   fields = [
     { label: this.translocoService.translate('userFormHeader.username'), controlName: 'username', type: 'text', cssStyle: 'full-width' },
     { label: this.translocoService.translate('userFormHeader.email'), controlName: 'email', type: 'email', cssStyle: 'full-width' },
     { label: this.translocoService.translate('userFormHeader.password'), controlName: 'password', type: 'password', cssStyle: 'full-width' }
   ];
 
-  createform = this.builder.group({
+  createform : FormGroup = this.builder.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
@@ -42,7 +40,7 @@ export class UserCreatePopupComponent {
         this.dialog.close();
       });
     } else {
-      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'),);
+      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'));
     }
   }
 }

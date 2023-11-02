@@ -47,7 +47,7 @@ export class InvoiceCorrectSecondPopupComponent implements OnInit {
     if (this.data.code) {
       //////////////////////////
       if (this.data.code) {
-        this.service.GetInvByCode(this.data.code).subscribe((res) => {
+        this.service.getInvByCode(this.data.code).subscribe((res) => {
           this.editdata = res;
           console.log(res);
           this.groupedProductsCorrectBefore = this.editdata.products
@@ -107,7 +107,7 @@ export class InvoiceCorrectSecondPopupComponent implements OnInit {
         });
       }
       //////////////////////////
-      this.service.GetInvByCode(this.data.code).subscribe((res) => {
+      this.service.getInvByCode(this.data.code).subscribe((res) => {
         this.editdata = res;
         console.log(res);
 
@@ -189,7 +189,7 @@ export class InvoiceCorrectSecondPopupComponent implements OnInit {
       });
     }
     /////////////////////////////
-    this.service.GetInvByCode(this.data.code).subscribe((res) => {
+    this.service.getInvByCode(this.data.code).subscribe((res) => {
       this.editdata = res;
       console.log(res);
 

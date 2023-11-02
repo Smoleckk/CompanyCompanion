@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
 import { ProfileService } from 'src/app/service/profile.service';
 import { TranslocoService } from '@ngneat/transloco';
+import { UserProfile } from 'src/app/models/userProfile';
 
 @Component({
   selector: 'app-user-list',
@@ -26,7 +27,6 @@ export class UserListComponent implements OnInit {
     private profileService: ProfileService,
     private readonly translocoService: TranslocoService,
   ) {}
-  userdata: any;
   dataSource: any;
 
   displayedColumns: string[] = ['username', 'email', 'action'];
@@ -76,14 +76,12 @@ export class UserListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
-  loadUsers() {
-    this.service.loadUsers().subscribe((data) => {
-      this.userdata = data;
-      this.profileService.getProfile().subscribe((res) => {
-        let editData: any = res;
-        if (editData != null) {
-          this.userdata = this.userdata.filter((u: any) => u.username !== editData.username);
-          this.dataSource = new MatTableDataSource(this.userdata);
+  loadUsers():void {
+    this.service.loadUsers().subscribe((userdata:User[]) => {
+      this.profileService.getProfile().subscribe((profile:UserProfile) => {
+        if (profile != null) {
+          userdata = userdata.filter((u: User) => u.username !== profile.username);
+          this.dataSource = new MatTableDataSource(userdata);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
@@ -118,7 +116,7 @@ export class UserListComponent implements OnInit {
   removeUser(code: any): void {
     if (confirm('Do you want to remove this User: ' + code)) {
       this.service.deleteUser(code).subscribe(() => {
-        this.toastrService.success('Deleted successfully', 'Remove User');
+        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
         this.loadUsers();
       });
     }

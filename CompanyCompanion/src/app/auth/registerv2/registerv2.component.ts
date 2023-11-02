@@ -57,7 +57,7 @@ export class Registerv2Component {
   ) {
   }
 
-  createform = this.builder.group({
+  createform :FormGroup = this.builder.group({
     username: [
       '',
       [Validators.required, Validators.minLength(2), Validators.maxLength(50)],

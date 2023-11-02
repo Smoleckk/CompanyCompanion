@@ -95,7 +95,7 @@ export class InvoiceCorrectListComponent  implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   loadInvoices(): void {
-    this.invoiceService.GetAllInvoice().subscribe((invoices: any) => {
+    this.invoiceService.getAllInvoice().subscribe((invoices: any) => {
       console.log(invoices);
       
       this.dataSource.data = invoices;
@@ -106,7 +106,7 @@ export class InvoiceCorrectListComponent  implements OnInit {
 
   removeInvoice(invoiceId: any): void {
     if (confirm('Do you want to remove this invoice: ' + invoiceId)) {
-      this.invoiceService.RemoveInvoice(invoiceId).subscribe(() => {
+      this.invoiceService.removeInvoice(invoiceId).subscribe(() => {
         this.toastrService.success('Deleted successfully', 'Remove Invoice');
         this.loadInvoices();
       });

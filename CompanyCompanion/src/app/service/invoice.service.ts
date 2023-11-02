@@ -1,95 +1,52 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Invoice } from '../models/invoice';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceService {
-  apiUrlCustomer = 'https://localhost:7037/api/Customer/';
-  apiUrlProducts = 'https://localhost:7037/api/ProductMagazines/';
   apiUrlInvoice = 'https://localhost:7037/api/Invoice/';
 
   constructor(private http: HttpClient) {}
-
-  GetCustomer() {
-    return this.http.get(this.apiUrlCustomer);
+  getAllInvoice(): Observable<Invoice[]>  {
+    return this.http.get<Invoice[]>(this.apiUrlInvoice + 'get-invoices-header');
   }
-  getCustomerByCode(code: any) {
-    return this.http.get(this.apiUrlCustomer + code);
-  }
-
-  GetProducts() {
-    return this.http.get(this.apiUrlProducts);
-  }
-  GetProductsByCode(code: any) {
-    return this.http.get(this.apiUrlProducts + code);
-  }
-  GetProductsByName(name: any) {
-    return this.http.get(this.apiUrlProducts + 'name/' + name);
-  }
-  UpdateProductByCode(product: any) {
-    return this.http.put(this.apiUrlProducts, product);
-  }
-  CreateProduct(product: any) {
-    return this.http.post(this.apiUrlProducts, product);
-  }
-  deleteProduct(code: any) {
-    return this.http.delete(this.apiUrlProducts + code);
-  }
-
-  GetAllInvoice() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
-  }
-  ///////////lol
-  GetFewInvoice(few: string, isCustomer: string) {
-    console.log(few, isCustomer);
-
+  
+  getFewInvoice(few: string, isCustomer: string): Observable<Invoice[]> {
     if (isCustomer !== undefined) {
-      return this.http.get(
+      return this.http.get<Invoice[]>(
         this.apiUrlInvoice + 'get-invoices-header/' + isCustomer
       );
     }
     if (few === 'all') {
-      return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
+      return this.http.get<Invoice[]>(this.apiUrlInvoice + 'get-invoices-header');
     }
     if (few === 'paid') {
-      return this.http.get(this.apiUrlInvoice + 'get-invoices-header-paid');
+      return this.http.get<Invoice[]>(this.apiUrlInvoice + 'get-invoices-header-paid');
     }
     if (few === 'delay') {
-      return this.http.get(this.apiUrlInvoice + 'get-invoices-header-delay');
+      return this.http.get<Invoice[]>(this.apiUrlInvoice + 'get-invoices-header-delay');
     }
     if (few === 'draft') {
-      return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
+      return this.http.get<Invoice[]>(this.apiUrlInvoice + 'get-invoices-header-draft');
     } else {
-      return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
+      return this.http.get<Invoice[]>(this.apiUrlInvoice + 'get-invoices-header');
     }
   }
-  //////////
-  /////// review
-  GetAllInvoicePaid() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-paid');
+
+  getInvByCode(invoiceId: string): Observable<Invoice> {
+    return this.http.get<Invoice>(this.apiUrlInvoice + invoiceId);
   }
-  GetAllInvoiceDelay() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-delay');
+  removeInvoice(invoiceId: string): Observable<Invoice> {
+    return this.http.delete<Invoice>(this.apiUrlInvoice + invoiceId);
   }
-  GetAllInvoiceDraft() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
+  saveInvoice(invoiceData: Invoice): Observable<Invoice> {
+    return this.http.post<Invoice>(this.apiUrlInvoice + 'save-invoice', invoiceData);
   }
-  //////////
-  GetCustomerInvoices(code: any) {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header/' + code);
-  }
-  GetInvByCode(invoiceId: any) {
-    return this.http.get(this.apiUrlInvoice + invoiceId);
-  }
-  RemoveInvoice(invoiceId: any) {
-    return this.http.delete(this.apiUrlInvoice + invoiceId);
-  }
-  SaveInvoice(invoiceData: any) {
-    return this.http.post(this.apiUrlInvoice + 'save-invoice', invoiceData);
-  }
-  EditInvoice(invoiceData: any) {
-    return this.http.put(
+  editInvoice(invoiceData: Invoice): Observable<Invoice> {
+    return this.http.put<Invoice>(
       this.apiUrlInvoice + 'invoices/' + invoiceData.invoiceId,
       invoiceData
     );

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { UserProfile } from 'src/app/models/userProfile';
 import { ProfileService } from 'src/app/service/profile.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class ProfileDetailsComponent implements OnInit {
   }
 
   pageTitle = 'Profile';
-  profileForm = this.builder.group({
+  profileForm : FormGroup= this.builder.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     name: ['', Validators.required],
@@ -29,17 +30,15 @@ export class ProfileDetailsComponent implements OnInit {
   });
 
   SetEditInfo() {
-    this.profileService.getProfile().subscribe((res) => {
-      let editData: any;
-      editData = res;
-      if (editData != null) {
+    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+      if (profile != null) {
         this.profileForm.setValue({
-          username: editData.username,
-          email: editData.email,
-          name: editData.name,
-          nip: editData.nip,
-          city: editData.city,
-          cityCode: editData.cityCode,
+          username: profile.username,
+          email: profile.email,
+          name: profile.name,
+          nip: profile.nip,
+          city: profile.city,
+          cityCode: profile.cityCode,
         });
       }
     });

@@ -1,4 +1,4 @@
-interface CustomerFormData {
+export interface CustomerFormData {
   customerName: string;
   customerNip: string;
   customerCity: string;

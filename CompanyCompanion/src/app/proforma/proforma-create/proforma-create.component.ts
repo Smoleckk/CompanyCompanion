@@ -16,6 +16,7 @@ import { ProformaFormValue } from 'src/app/models/ProformaFormValue';
 import { Customer } from 'src/app/models/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 import { Product } from 'src/app/models/product';
+import { UserProfile } from 'src/app/models/userProfile';
 
 @Component({
   selector: 'app-proforma-create',
@@ -99,14 +100,14 @@ export class ProformaCreateComponent implements OnInit {
 
   getCustomer: Customer[];
   editProformaId: string;
-  isEdit = false;
+  isEdit:boolean = false;
   isGeneratedShow: boolean = false;
   customerFullName: string = '';
   customerHoldOnlyName: string = '';
   proformaNoIsEdit: string;
   isTempProformaNumber: boolean = false;
 
-  proformaForm = this.builder.group({
+  proformaForm :FormGroup = this.builder.group({
     proformaId: [0],
     proformaNo: [''],
     placeOfIssue: [''],
@@ -148,7 +149,7 @@ export class ProformaCreateComponent implements OnInit {
             ...editData,
             products: [],
           });
-          editData.products.forEach((product: any) => {
+          editData.products.forEach((product: Product) => {
             this.products.push(this.createProductFormGroup(product));
           });
         }
@@ -207,18 +208,16 @@ export class ProformaCreateComponent implements OnInit {
     return this.proformaForm.controls['products'] as FormArray;
   }
   getProfile() {
-    this.profileService.getProfile().subscribe((res) => {
-      let customData: any;
-      customData = res;
-      if (customData != null) {
-        this.proformaForm.get('sellerIdName')?.patchValue(customData.name);
-        this.proformaForm.get('sellerNip')?.patchValue(customData.nip);
+    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+      if (profile != null) {
+        this.proformaForm.get('sellerIdName')?.patchValue(profile.name);
+        this.proformaForm.get('sellerNip')?.patchValue(profile.nip);
         this.proformaForm
           .get('sellerDeliveryAddress')
-          ?.patchValue(customData.city);
+          ?.patchValue(profile.city);
         this.proformaForm
           .get('sellerCityCode')
-          ?.patchValue(customData.cityCode);
+          ?.patchValue(profile.cityCode);
       }
     });
   }

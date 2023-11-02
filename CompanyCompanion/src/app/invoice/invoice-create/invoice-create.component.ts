@@ -9,6 +9,11 @@ import { CustomerCreatePopupComponent } from 'src/app/customer/customer-create-p
 import { ProfileService } from 'src/app/service/profile.service';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProformaService } from '../../service/proforma.service';
+import { CustomerService } from 'src/app/service/customer.service';
+import { Customer } from 'src/app/models/customer';
+import { Invoice } from 'src/app/models/invoice';
+import { Product } from 'src/app/models/product';
+import { UserProfile } from 'src/app/models/userProfile';
 
 @Component({
   selector: 'app-create-invoice',
@@ -21,6 +26,7 @@ export class CreateInvoiceComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private service: InvoiceService,
+    private customerService: CustomerService,
     private serviceProforma: ProformaService,
     private router: Router,
     private toastr: ToastrService,
@@ -34,18 +40,19 @@ export class CreateInvoiceComponent implements OnInit {
     this.showInvoiceNumber();
     this.getProfile();
     this.calculateBreakpoints(window.innerWidth);
-    this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
-    this.invoiceFromProformaId =
-      this.activeRoute.snapshot.paramMap.get('proformaId');
+    this.editInvoiceId = this.activeRoute.snapshot.paramMap.get(
+      'invoiceId'
+    ) as string;
+    this.invoiceFromProformaId = this.activeRoute.snapshot.paramMap.get(
+      'proformaId'
+    ) as string;
 
     if (this.editInvoiceId != null) {
-      this.pageTitle = 'Edit Invoice';
       this.isEdit = true;
       this.SetEditInfo(this.editInvoiceId);
     }
 
     if (this.invoiceFromProformaId != null) {
-      this.pageTitle = 'Invoice from proforma';
       this.isEdit = true;
       this.SetEditInfoProforma(this.invoiceFromProformaId);
     }
@@ -95,20 +102,17 @@ export class CreateInvoiceComponent implements OnInit {
       value: 'Bank transfer',
     },
   ];
-  pageTitle = 'New invoice';
-  invoiceDetail!: FormArray<any>;
-  getCustomer: any;
-  editInvoiceId: any;
-  invoiceFromProformaId: any;
-  isEdit = false;
-  invoiceNoIsEdit: any;
+  getCustomer: Customer[];
+  editInvoiceId: string;
+  invoiceFromProformaId: string;
+  isEdit: boolean = false;
+  invoiceNoIsEdit: string;
   isGeneratedShow: boolean = false;
-  editInvoiceDetail: any;
-  customerFullName: any = '';
-  customerHoldOnlyName: any = '';
-  isTempInvoiceNumber: any = false;
+  customerFullName: string = '';
+  customerHoldOnlyName: string = '';
+  isTempInvoiceNumber: boolean = false;
 
-  invoiceForm = this.builder.group({
+  invoiceForm: FormGroup = this.builder.group({
     invoiceId: [0],
     invoiceNo: [''],
     placeOfIssue: [''],
@@ -135,8 +139,8 @@ export class CreateInvoiceComponent implements OnInit {
     products: this.builder.array([]),
     isGenerated: [false],
   });
-  SetEditInfo(invoiceIdCode: any) {
-    this.service.GetInvByCode(invoiceIdCode).subscribe((editData: any) => {
+  SetEditInfo(invoiceIdCode: string): void {
+    this.service.getInvByCode(invoiceIdCode).subscribe((editData: Invoice) => {
       if (editData != null) {
         this.invoiceNoIsEdit = editData.invoiceNo;
         this.isTempInvoiceNumber = this.invoiceNoIsEdit.indexOf('Temp') === 0;
@@ -146,14 +150,14 @@ export class CreateInvoiceComponent implements OnInit {
           ...editData,
           products: [],
         });
-        editData.products.forEach((product: any) => {
+        editData.products.forEach((product: Product) => {
           this.products.push(this.createProductFormGroup(product));
         });
       }
     });
   }
 
-  SetEditInfoProforma(proformaId: any) {
+  SetEditInfoProforma(proformaId: string): void {
     this.serviceProforma
       .GetProformaHeaderByCode(proformaId)
       .subscribe((editData: any) => {
@@ -167,7 +171,7 @@ export class CreateInvoiceComponent implements OnInit {
             invoiceNo: editData.proformaNo,
           });
         }
-        editData.products.forEach((product: any) => {
+        editData.products.forEach((product: Product) => {
           this.products.push(this.createProductFormGroup(product));
         });
       });
@@ -176,28 +180,24 @@ export class CreateInvoiceComponent implements OnInit {
     return this.invoiceForm.controls['products'] as FormArray;
   }
   getProfile() {
-    this.profileService.getProfile().subscribe((res) => {
-      let customData: any;
-      customData = res;
-      if (customData != null) {
-        this.invoiceForm.get('sellerIdName')?.patchValue(customData.name);
-        this.invoiceForm.get('sellerNip')?.patchValue(customData.nip);
+    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+      if (profile != null) {
+        this.invoiceForm.get('sellerIdName')?.patchValue(profile.name);
+        this.invoiceForm.get('sellerNip')?.patchValue(profile.nip);
         this.invoiceForm
           .get('sellerDeliveryAddress')
-          ?.patchValue(customData.city);
-        this.invoiceForm.get('sellerCityCode')?.patchValue(customData.cityCode);
+          ?.patchValue(profile.city);
+        this.invoiceForm.get('sellerCityCode')?.patchValue(profile.cityCode);
       }
     });
   }
 
-  SaveInvoice() {
-    console.log(this.invoiceForm.value);
-    
+  saveInvoice():void {
     this.invoiceForm.markAllAsTouched();
     if (this.invoiceForm.valid) {
       if (this.invoiceFromProformaId != null) {
         this.service
-          .SaveInvoice(this.invoiceForm.getRawValue())
+          .saveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
             this.toastr.success(
               this.translocoService.translate('toaster.toasterCreatedSuccess')
@@ -206,7 +206,7 @@ export class CreateInvoiceComponent implements OnInit {
           });
       } else if (this.isEdit) {
         this.service
-          .EditInvoice(this.invoiceForm.getRawValue())
+          .editInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
             this.toastr.success(
               this.translocoService.translate('toaster.toasterUpdateSuccess')
@@ -215,7 +215,7 @@ export class CreateInvoiceComponent implements OnInit {
           });
       } else {
         this.service
-          .SaveInvoice(this.invoiceForm.getRawValue())
+          .saveInvoice(this.invoiceForm.getRawValue())
           .subscribe(() => {
             this.toastr.success(
               this.translocoService.translate('toaster.toasterCreatedSuccess')
@@ -230,35 +230,39 @@ export class CreateInvoiceComponent implements OnInit {
     }
   }
 
-  getCustomers() {
-    this.service.GetCustomer().subscribe((res) => {
+  getCustomers():void {
+    this.customerService.getCustomers().subscribe((res) => {
       this.getCustomer = res;
     });
   }
 
   CustomerChange(event: any) {
-    this.service.getCustomerByCode(event.value).subscribe((customData: any) => {
-      if (customData != null) {
-        this.invoiceForm
-          .get('customerDeliveryAddress')
-          ?.patchValue(customData.customerAddress);
-        this.invoiceForm
-          .get('customerCityCode')
-          ?.patchValue(customData.customerCity);
-        this.invoiceForm
-          .get('customerName')
-          ?.patchValue(customData.customerName);
-        this.invoiceForm.get('customerNip')?.patchValue(customData.customerNip);
-        this.customerFullName = this.formatCustomerFullName(customData);
-        this.customerHoldOnlyName = customData.customerName;
-      }
-    });
+    this.customerService
+      .getCustomerByCode(event.value)
+      .subscribe((customData: any) => {
+        if (customData != null) {
+          this.invoiceForm
+            .get('customerDeliveryAddress')
+            ?.patchValue(customData.customerAddress);
+          this.invoiceForm
+            .get('customerCityCode')
+            ?.patchValue(customData.customerCity);
+          this.invoiceForm
+            .get('customerName')
+            ?.patchValue(customData.customerName);
+          this.invoiceForm
+            .get('customerNip')
+            ?.patchValue(customData.customerNip);
+          this.customerFullName = this.formatCustomerFullName(customData);
+          this.customerHoldOnlyName = customData.customerName;
+        }
+      });
   }
-  showInvoiceNumber() {
+  showInvoiceNumber():void {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }
-  createProductFormGroup(product: any): FormGroup {
+  createProductFormGroup(product: Product): FormGroup {
     return this.builder.group({
       productCode: [product.productCode],
       productName: [product.productName],
@@ -288,7 +292,7 @@ export class CreateInvoiceComponent implements OnInit {
     this.breakpoint9 = windowWidth <= 850 ? 3 : 9;
     this.colspan3 = windowWidth <= 850 ? 2 : 3;
   }
-  makePdf() {
+  makePdf():void {
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFont('helvetica');
     pdf.setFontSize(9);

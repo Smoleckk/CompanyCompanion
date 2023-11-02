@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfileService } from '../service/profile.service';
+import { UserProfile } from '../models/userProfile';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -82,12 +83,10 @@ export class SidebarComponent {
   }
 
   getUsername() {
-    this.profileService.getProfile().subscribe((res) => {
-      let editData: any;
-      editData = res;
-      if (editData != null) {
-        this.username = editData.username;
-        this.sliceUsername = editData.username.slice(0, 2).toUpperCase();
+    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+      if (profile != null) {
+        this.username = profile.username;
+        this.sliceUsername = profile.username.slice(0, 2).toUpperCase();
       }
     });
   }

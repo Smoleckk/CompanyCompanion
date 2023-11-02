@@ -11,6 +11,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { InvoicePrintPopupComponent } from 'src/app/invoice/invoice-print-popup/invoice-print-popup.component';
 import { InvoicePrintSecondPopupComponent } from 'src/app/invoice/invoice-print-second-popup/invoice-print-second-popup.component';
 import { TranslocoService } from '@ngneat/transloco';
+import { Invoice } from 'src/app/models/invoice';
+import { UserProfile } from 'src/app/models/userProfile';
 
 @Component({
   selector: 'app-invoice-table',
@@ -38,7 +40,7 @@ export class InvoiceTableComponent {
     
   }
 
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<Invoice>();
 
   displayedColumns: string[] = [
     'invoiceNo',
@@ -96,10 +98,7 @@ export class InvoiceTableComponent {
   });
 
   SetEditInfo() {
-    this.profileService.getProfile().subscribe((res) => {
-      let editData: any;
-      editData = res;
-
+    this.profileService.getProfile().subscribe((editData : UserProfile) => {
       if (editData != null) {
         this.profileForm.setValue({
           template: editData.template,
@@ -127,7 +126,7 @@ export class InvoiceTableComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   loadInvoices(): void {
-    this.invoiceService.GetFewInvoice(this.few,this.isCustomer).subscribe((invoices: any) => {
+    this.invoiceService.getFewInvoice(this.few,this.isCustomer).subscribe((invoices: Invoice[]) => {
       this.dataSource.data = invoices;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -136,7 +135,7 @@ export class InvoiceTableComponent {
 
   public removeInvoice(invoiceId: any): void {
     if (confirm(this.translocoService.translate('toaster.toasterConfirm') + invoiceId)) {
-      this.invoiceService.RemoveInvoice(invoiceId).subscribe(() => {
+      this.invoiceService.removeInvoice(invoiceId).subscribe(() => {
         this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
         this.loadInvoices();
       });

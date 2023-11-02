@@ -3,7 +3,7 @@
   </app-breadcrumb>
   <div>
     <mat-card-content style="padding: 10px 30px">
-      <form [formGroup]="invoiceForm" (ngSubmit)="SaveInvoice()">
+      <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
         <div style="width: 100%">
           <app-form-field-select *ngIf="!editInvoiceId" [form]="invoiceForm" [label]="t('invoiceForm.isGenerated')"
             controlName="isGenerated" cssClass="full-width" [items]="issuedStatus"></app-form-field-select>

@@ -6,7 +6,7 @@ namespace CompanyCompanionBackend.Services.AuthIService
 {
     public interface IAuthService
     {
-        Task<User> Register(UserRegisterDto request);
+        Task<UserReturnDto> Register(UserRegisterDto request);
         Task<ServiceResponse<TokenResponse>> Login(UserLogin request);
     }
 }

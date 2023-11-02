@@ -1,6 +1,8 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { InvoiceService } from '../../service/invoice.service';
+import { ProductService } from 'src/app/service/product.service';
+import { ProductMagazine } from 'src/app/models/productMagazine';
 
 @Component({
   selector: 'app-document-product-table',
@@ -8,14 +10,14 @@ import { InvoiceService } from '../../service/invoice.service';
   styleUrls: ['./document-product-table.component.scss'],
 })
 export class DocumentProductTableComponent implements OnInit {
-  constructor(private builder: FormBuilder, private service: InvoiceService) {}
+  constructor(private builder: FormBuilder, private service: InvoiceService, private productService:ProductService) {}
 
   @Input() invoiceForm: any;
   @Input() editInvoiceId: any;
   @Input() invoiceFromProformaId: any;
   invoiceDetail!: FormArray<any>;
   invoiceProduct!: FormGroup<any>;
-  getProduct: any;
+  getProduct: ProductMagazine[];
   breakpoint2: any;
   breakpoint3: any;
   breakpoint4: any;
@@ -25,10 +27,9 @@ export class DocumentProductTableComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     console.log(this.editInvoiceId);
-    
-    if (this.editInvoiceId != null || this.invoiceFromProformaId!=null) {
 
-    } else {   
+    if (this.editInvoiceId != null || this.invoiceFromProformaId != null) {
+    } else {
       this.addProduct();
     }
     this.calculateBreakpoints(window.innerWidth);
@@ -69,7 +70,7 @@ export class DocumentProductTableComponent implements OnInit {
     this.summaryCalculation();
   }
   getProducts() {
-    this.service.GetProducts().subscribe((res) => {
+    this.productService.getProducts().subscribe((res) => {
       this.getProduct = res;
     });
   }
@@ -79,11 +80,13 @@ export class DocumentProductTableComponent implements OnInit {
     this.invoiceProduct = this.invoiceDetail.at(index) as FormGroup;
     let productCode = this.invoiceProduct.get('productName')?.value;
 
-    this.service.GetProductsByName(productCode).subscribe((res) => {
+    this.productService.getProductsByName(productCode).subscribe((res) => {
       let prodData: any;
       prodData = res;
       if (prodData != null) {
-        this.invoiceProduct.get('productCode')?.patchValue(prodData.productCode);
+        this.invoiceProduct
+          .get('productCode')
+          ?.patchValue(prodData.productCode);
         this.invoiceProduct.get('productName')?.patchValue(prodData.name);
         this.invoiceProduct.get('salesPrice')?.patchValue(prodData.price);
         this.invoiceProduct.get('vat')?.patchValue(prodData.vat);

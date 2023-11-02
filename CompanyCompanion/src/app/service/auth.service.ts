@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserLogin } from '../models/userLogin';
+import { UserRegister } from '../models/userRegister';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  proceedLogin(usercred: any): Observable<any> {
+  proceedLogin(usercred: UserLogin): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'login', usercred);
   }
 
@@ -36,10 +39,10 @@ export class AuthService {
     return false;
   }
 
-  proceedRegister(usercred: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'register', usercred);
+  proceedRegister(usercred: UserRegister): Observable<UserRegister> {
+    return this.http.post<UserRegister>(this.apiUrl + 'register', usercred);
   }
-
+///// depreceted
   getByName(username: any): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'get-by-username', username);
   }
@@ -47,4 +50,5 @@ export class AuthService {
   updateUser(username: any, inputdata: any): Observable<any> {
     return this.http.put<any>(this.apiUrl + username, inputdata);
   }
+  ///////
 }

@@ -1,10 +1,10 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
+import { CustomerFormData } from 'src/app/models/customerFormData';
 import { CustomerService } from 'src/app/service/customer.service';
-import { InvoiceService } from 'src/app/service/invoice.service';
 
 @Component({
   selector: 'app-customer-create-popup',
@@ -23,29 +23,30 @@ export class CustomerCreatePopupComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  createform = this.builder.group({
-    customerName: ['', Validators.required],
-    customerNip: [
-      ,
-      [
-        Validators.required,
-        (control: AbstractControl) => {
-          const value = control.value;
-          if (value && (isNaN(value) || value.toString().length !== 10)) {
-            return { invalidNip: true };
-          }
+  nipValidator: ValidatorFn = (control: AbstractControl) => {
+    const value = control.value;
+    if (!value) {
+      return null; // Wartość jest opcjonalna, więc nie ma błędu
+    }
 
-          return null;
-        },
-      ],
-    ],
+    const pattern = /^\d{10}$/; // Wyrażenie regularne na 10 cyfr
+    if (!pattern.test(value)) {
+      return { invalidNip: true }; // Nieprawidłowy NIP
+    }
+
+    return null;
+  };
+
+  createForm: FormGroup = this.builder.group({
+    customerName: ['', Validators.required],
+    customerNip: [, [Validators.required, this.nipValidator]],
     customerCity: ['', Validators.required],
     customerAddress: ['', Validators.required],
   });
 
   saveCustomer() {
-    if (this.createform && this.createform.valid) {
-      this.service.createCustomer(this.createform.value).subscribe(
+    if (this.createForm && this.createForm.valid) {
+      this.service.createCustomer(this.createForm.value).subscribe(
         () => {
           this.toastr.success(this.translocoService.translate('login.toasterCreatedSuccess'));
           this.dialog.close();
@@ -59,9 +60,9 @@ export class CustomerCreatePopupComponent {
     }
   }
   getRegon() {
-    this.service.getRegon(this.createform.value.customerNip).subscribe(
+    this.service.getRegon(this.createForm.value.customerNip).subscribe(
       (data) => {
-        this.createform.patchValue({
+        this.createForm.patchValue({
           customerName: data.nazwa,
           customerNip: data.nip,
           customerCity: data.ulica + ' ' + data.nrNieruchomosci,

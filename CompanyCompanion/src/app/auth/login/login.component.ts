@@ -18,7 +18,7 @@ import { TranslocoService } from '@ngneat/transloco';
 export class LoginComponent implements OnInit {
   hideMenu = true;
 
-  loginform = this.builder.group({
+  loginform : FormGroup = this.builder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
   });

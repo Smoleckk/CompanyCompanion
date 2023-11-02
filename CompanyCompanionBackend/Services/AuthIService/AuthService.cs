@@ -1,5 +1,7 @@
-﻿using CompanyCompanionBackend.Data;
+﻿using AutoMapper;
+using CompanyCompanionBackend.Data;
 using CompanyCompanionBackend.Models.CompanyModel;
+using CompanyCompanionBackend.Models.InvoiceModel;
 using CompanyCompanionBackend.Models.ServiceResponseModel;
 using CompanyCompanionBackend.Models.UserModel;
 using CompanyCompanionBackend.Models.UserModel.Auth;
@@ -15,14 +17,16 @@ namespace CompanyCompanionBackend.Services.AuthIService
     {
         private readonly IConfiguration configuration;
         private readonly DataContext context;
+        private readonly IMapper _mapper;
 
-        public AuthService(IConfiguration configuration, DataContext context)
+        public AuthService(IConfiguration configuration, DataContext context, IMapper mapper)
         {
             this.configuration = configuration;
             this.context = context;
+            _mapper = mapper;
         }
 
-        public async Task<User> Register(UserRegisterDto request)
+        public async Task<UserReturnDto> Register(UserRegisterDto request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             User user = new User();
@@ -44,8 +48,8 @@ namespace CompanyCompanionBackend.Services.AuthIService
             context.Companies.Add(company);
             context.Users.Add(user);
             context.SaveChanges();
-
-            return user;
+            var userReturnDTO = _mapper.Map<UserReturnDto>(user);
+            return userReturnDTO;
         }
 
         public async Task<ServiceResponse<TokenResponse>> Login(UserLogin request)

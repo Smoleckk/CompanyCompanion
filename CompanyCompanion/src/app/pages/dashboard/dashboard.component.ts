@@ -76,7 +76,7 @@ export class DashboardComponent implements OnInit {
         'Products'
       );
     });
-    this.invoiceService.GetAllInvoice().subscribe((readInvoices: any) => {
+    this.invoiceService.getAllInvoice().subscribe((readInvoices: any) => {
       this.invoicesTotalSum = readInvoices
         .map((invo: any) => invo.total)
         .reduce((a: any, b: any) => a + b, 0);
