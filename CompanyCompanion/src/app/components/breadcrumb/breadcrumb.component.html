@@ -1,20 +1,17 @@
-
-  <mat-card class="breadcrumb">
-    <mat-card-actions class="card">
-      <div [routerLink]="['/']" class="middle">
-        <mat-icon>home</mat-icon>
-        <p class="breadcrumb-p">Home > </p>
-      </div>
-      <p class="breadcrumb-p middle" [routerLink]="link">
-        {{header}}
-      </p>
-      <p class="breadcrumb-p">{{headerDetail}}</p>
-    </mat-card-actions>
-    <mat-card-actions *ngIf="isAddButton">
-      <div class="middle" >
-        <mat-icon (click)="callParentFunction()" color="primary"
-          >add_circle</mat-icon
-        >
-      </div>
-    </mat-card-actions>
-  </mat-card> 
+<mat-card class="breadcrumb">
+  <mat-card-actions class="card">
+    <div [routerLink]="['/']" class="middle">
+      <mat-icon>home</mat-icon>
+      <p class="breadcrumb-p">Home > </p>
+    </div>
+    <p class="breadcrumb-p middle" [routerLink]="link">
+      {{header}}
+    </p>
+    <p class="breadcrumb-p">{{headerDetail}}</p>
+  </mat-card-actions>
+  <mat-card-actions *ngIf="isAddButton">
+    <div class="middle">
+      <mat-icon (click)="callParentFunction()" color="primary">add_circle</mat-icon>
+    </div>
+  </mat-card-actions>
+</mat-card>

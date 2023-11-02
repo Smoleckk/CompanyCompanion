@@ -1,21 +1,15 @@
-<mat-card
-  style="
+<mat-card style="
     width: 60%;
     margin: auto;
     margin-top: 20px;
     padding: 40px 0;
     display: flex;
     align-items: center;
-  "
->
+  ">
   <h1>Build Your Profile</h1>
   <h3>This information will let us know more about you.</h3>
   <mat-stepper #stepper [orientation]="(stepperOrientation | async)!">
-    <mat-step
-      [stepControl]="registerForm"
-      label="Personal info"
-      errorMessage="Personal info is required."
-    >
+    <mat-step [stepControl]="registerForm" label="Personal info" errorMessage="Personal info is required.">
       <div style="display: flex; flex-direction: column; align-items: center">
         <h3>Let's start with the basic information</h3>
         <form [formGroup]="registerForm">
@@ -43,53 +37,27 @@
         </form>
       </div>
     </mat-step>
-    <mat-step
-      [stepControl]="companyForm"
-      label="Company info"
-      errorMessage="Company info is required."
-    >
+    <mat-step [stepControl]="companyForm" label="Company info" errorMessage="Company info is required.">
       <div style="display: flex; flex-direction: column; align-items: center">
         <h3>Tell us more about your company</h3>
         <form [formGroup]="companyForm">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Company name</mat-label>
-            <input
-              matInput
-              placeholder="Company name"
-              formControlName="name"
-              required
-            />
+            <input matInput placeholder="Company name" formControlName="name" required />
           </mat-form-field>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Company nip</mat-label>
-            <input
-              matInput
-              placeholder="Company nip"
-              formControlName="nip"
-              required
-            />
+            <input matInput placeholder="Company nip" formControlName="nip" required />
           </mat-form-field>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Company city</mat-label>
-            <input
-              matInput
-              placeholder="Company city"
-              formControlName="city"
-              required
-            />
+            <input matInput placeholder="Company city" formControlName="city" required />
           </mat-form-field>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Company city code</mat-label>
-            <input
-              matInput
-              placeholder="Company city code"
-              formControlName="cityCode"
-              required
-            />
+            <input matInput placeholder="Company city code" formControlName="cityCode" required />
           </mat-form-field>
-          <div
-            style="width: 97%; display: flex; justify-content: space-between"
-          >
+          <div style="width: 97%; display: flex; justify-content: space-between">
             <button mat-raised-button color="accent" matStepperPrevious>
               Back
             </button>
@@ -104,17 +72,11 @@
       <div style="display: flex; flex-direction: column; align-items: center">
         <h3>Lets register</h3>
         <mat-card-content>
-          <div
-            style="width: 97%; display: flex; justify-content: space-between"
-          >
+          <div style="width: 97%; display: flex; justify-content: space-between">
             <button mat-raised-button color="accent" (click)="stepper.reset()">
               Reset
             </button>
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="proceedRegistration()"
-            >
+            <button mat-raised-button color="primary" (click)="proceedRegistration()">
               Register
             </button>
           </div>

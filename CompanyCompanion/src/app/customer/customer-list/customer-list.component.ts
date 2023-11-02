@@ -25,7 +25,6 @@ export class CustomerListComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private readonly translocoService: TranslocoService
-
   ) {}
 
   dataSource = new MatTableDataSource<any>();
@@ -40,22 +39,30 @@ export class CustomerListComponent implements OnInit {
   columns: any = [
     {
       matColumnDef: 'customerName',
-      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerName'),
+      matHeaderCellDef: this.translocoService.translate(
+        'customerTableHeader.customerName'
+      ),
       matCellDef: 'customerName',
     },
     {
       matColumnDef: 'customerNip',
-      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerNip'),
+      matHeaderCellDef: this.translocoService.translate(
+        'customerTableHeader.customerNip'
+      ),
       matCellDef: 'customerNip',
     },
     {
       matColumnDef: 'customerCity',
-      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerCity'),
+      matHeaderCellDef: this.translocoService.translate(
+        'customerTableHeader.customerCity'
+      ),
       matCellDef: 'customerCity',
     },
     {
       matColumnDef: 'customerAddress',
-      matHeaderCellDef: this.translocoService.translate('customerTableHeader.customerAddress'),
+      matHeaderCellDef: this.translocoService.translate(
+        'customerTableHeader.customerAddress'
+      ),
       matCellDef: 'customerAddress',
     },
   ];
@@ -77,7 +84,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   loadCustomers(): void {
-    this.service.getCustomers().subscribe((customerData : Customer[]) => {
+    this.service.getCustomers().subscribe((customerData: Customer[]) => {
       this.dataSource = new MatTableDataSource(customerData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -90,7 +97,9 @@ export class CustomerListComponent implements OnInit {
 
   deleteCustomer(code: string): void {
     this.service.deleteCustomerByCode(code).subscribe(() => {
-      this.toastr.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
+      this.toastr.success(
+        this.translocoService.translate('toaster.toasterDeletedSuccess')
+      );
       this.loadCustomers();
     });
   }

@@ -99,14 +99,14 @@ export class ProformaCreateComponent implements OnInit {
 
   getCustomer: Customer[];
   editProformaId: string;
-  isEdit:boolean = false;
+  isEdit: boolean = false;
   isGeneratedShow: boolean = false;
   customerFullName: string = '';
   customerHoldOnlyName: string = '';
   proformaNoIsEdit: string;
   isTempProformaNumber: boolean = false;
 
-  proformaForm :FormGroup = this.builder.group({
+  proformaForm: FormGroup = this.builder.group({
     proformaId: [0],
     proformaNo: [''],
     placeOfIssue: [''],
@@ -207,16 +207,14 @@ export class ProformaCreateComponent implements OnInit {
     return this.proformaForm.controls['products'] as FormArray;
   }
   getProfile() {
-    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+    this.profileService.getProfile().subscribe((profile: UserProfile) => {
       if (profile != null) {
         this.proformaForm.get('sellerIdName')?.patchValue(profile.name);
         this.proformaForm.get('sellerNip')?.patchValue(profile.nip);
         this.proformaForm
           .get('sellerDeliveryAddress')
           ?.patchValue(profile.city);
-        this.proformaForm
-          .get('sellerCityCode')
-          ?.patchValue(profile.cityCode);
+        this.proformaForm.get('sellerCityCode')?.patchValue(profile.cityCode);
       }
     });
   }

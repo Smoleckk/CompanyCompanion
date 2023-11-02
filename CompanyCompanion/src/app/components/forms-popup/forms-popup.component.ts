@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-
 @Component({
   selector: 'app-forms-popup',
   templateUrl: './forms-popup.component.html',
-  styleUrls: ['./forms-popup.component.scss']
+  styleUrls: ['./forms-popup.component.scss'],
 })
 export class FormsPopupComponent {
   @Input() form: any;
@@ -17,9 +16,7 @@ export class FormsPopupComponent {
   @Output() callParent = new EventEmitter<String>();
   @Output() callGetRegonParent = new EventEmitter<String>();
 
-
   callParentFunction() {
     this.callParent.emit();
   }
-
 }

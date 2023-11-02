@@ -63,21 +63,21 @@
               <td>{{ item.vat / 100 | percent }}</td>
               <td>
                 {{
-                  item.salesPrice * item.qty
-                    | currency : " " : "symbol" : "1.2-2"
+                item.salesPrice * item.qty
+                | currency : " " : "symbol" : "1.2-2"
                 }}
               </td>
               <td>
                 {{
-                  (item.salesPrice * item.qty * item.vat) / 100
-                    | currency : " " : "symbol" : "1.2-2"
+                (item.salesPrice * item.qty * item.vat) / 100
+                | currency : " " : "symbol" : "1.2-2"
                 }}
               </td>
               <td>
                 {{
-                  (item.salesPrice * item.qty * item.vat) / 100 +
-                    item.salesPrice * item.qty
-                    | currency : " " : "symbol" : "1.2-2"
+                (item.salesPrice * item.qty * item.vat) / 100 +
+                item.salesPrice * item.qty
+                | currency : " " : "symbol" : "1.2-2"
                 }}
               </td>
             </tr>

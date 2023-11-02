@@ -32,7 +32,7 @@
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>{{ t("register.confirmPassword") }}</mat-label>
 
-                <input matInput  formControlName="confirmPassword">
+                <input matInput formControlName="confirmPassword">
                 <mat-error *ngIf="createform.get('confirmPassword')?.hasError('matching')">
                     Password must match.
                 </mat-error>
@@ -50,8 +50,8 @@
                     <mat-icon>search</mat-icon>
                 </a>
             </mat-form-field>
-            <app-form-field [form]="createform" [label]="t('register.companyName')" controlName="name" cssClass="full-width"
-                type="text">
+            <app-form-field [form]="createform" [label]="t('register.companyName')" controlName="name"
+                cssClass="full-width" type="text">
             </app-form-field>
             <app-form-field [form]="createform" [label]="t('register.companyCity')" controlName="city"
                 cssClass="full-width" type="text">

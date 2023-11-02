@@ -10,7 +10,11 @@ import { ProductMagazine } from 'src/app/models/productMagazine';
   styleUrls: ['./document-product-table.component.scss'],
 })
 export class DocumentProductTableComponent implements OnInit {
-  constructor(private builder: FormBuilder, private service: InvoiceService, private productService:ProductService) {}
+  constructor(
+    private builder: FormBuilder,
+    private service: InvoiceService,
+    private productService: ProductService
+  ) {}
 
   @Input() invoiceForm: any;
   @Input() editInvoiceId: any;

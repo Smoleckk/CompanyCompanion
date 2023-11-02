@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-list',
@@ -7,11 +7,7 @@ import {  Router } from '@angular/router';
   styleUrls: ['./invoice-list.component.scss'],
 })
 export class InvoiceListComponent {
-
-  constructor(
-    private router: Router,
-  ) {}
-
+  constructor(private router: Router) {}
 
   addInvoice(): void {
     this.router.navigateByUrl(`/create-invoice`);

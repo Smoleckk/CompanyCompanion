@@ -4,12 +4,11 @@ import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-language-selector',
   templateUrl: './language-selector.component.html',
-  styleUrls: ['./language-selector.component.scss']
+  styleUrls: ['./language-selector.component.scss'],
 })
 export class LanguageSelectorComponent {
   constructor(private translocoService: TranslocoService) {}
-  public languagesList: 
-    Array<Record<'code' | 'name' | 'shorthand', string>> = [
+  public languagesList: Array<Record<'code' | 'name' | 'shorthand', string>> = [
     {
       // imgUrl: '/assets/images/English.png',
       code: 'en',

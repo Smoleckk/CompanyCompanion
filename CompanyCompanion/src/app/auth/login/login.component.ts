@@ -18,7 +18,7 @@ import { TranslocoService } from '@ngneat/transloco';
 export class LoginComponent implements OnInit {
   hideMenu = true;
 
-  loginform : FormGroup = this.builder.group({
+  loginform: FormGroup = this.builder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
@@ -45,14 +45,20 @@ export class LoginComponent implements OnInit {
         (result) => {
           if (result.message === 'Success' || result.success === true) {
             localStorage.setItem('token', result.data.jwtToken);
-            this.toaster.success(this.translocoService.translate('toaster.toasterWelcome'));
+            this.toaster.success(
+              this.translocoService.translate('toaster.toasterWelcome')
+            );
             this.route.navigate(['']);
           } else {
-            this.toaster.warning(this.translocoService.translate('toaster.toasterFailed'));
+            this.toaster.warning(
+              this.translocoService.translate('toaster.toasterFailed')
+            );
           }
         },
         () => {
-          this.toaster.warning(this.translocoService.translate('toaster.toasterWrongCredit'));
+          this.toaster.warning(
+            this.translocoService.translate('toaster.toasterWrongCredit')
+          );
         }
       );
     }

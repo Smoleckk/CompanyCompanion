@@ -33,44 +33,71 @@ export class ProformaListComponent implements OnInit {
     'total',
     'action',
   ];
-  
+
   columns = [
     {
       matColumnDef: 'proformaNo',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.invoiceNo'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.invoiceNo'
+      ),
       matCellDef: 'proformaNo',
     },
     {
       matColumnDef: 'customerName',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.customerName'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.customerName'
+      ),
       matCellDef: 'customerName',
     },
     {
       matColumnDef: 'total',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.total'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.total'
+      ),
       matCellDef: 'total',
     },
     {
       matColumnDef: 'dueDate',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dueDate'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.dueDate'
+      ),
       matCellDef: 'dueDate',
     },
     {
       matColumnDef: 'dateIssued',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dateIssued'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.dateIssued'
+      ),
       matCellDef: 'dateIssued',
     },
   ];
   actionButtons = [
-    { color: 'primary', icon: 'edit', function: (element:any) => this.proformaEdit(element.proformaId) },
-    { color: 'primary', icon: 'print', function: (element:any) => this.proformaDownload(element.proformaId) },
-    { color: 'warn', icon: 'delete', function: (element:any) => this.proformaRemove(element.proformaId) },
-    { color: 'primary', icon: 'bookmarks', function: (element:any) => this.generateInvoiceFormProforma(element.proformaId) }
+    {
+      color: 'primary',
+      icon: 'edit',
+      function: (element: any) => this.proformaEdit(element.proformaId),
+    },
+    {
+      color: 'primary',
+      icon: 'print',
+      function: (element: any) => this.proformaDownload(element.proformaId),
+    },
+    {
+      color: 'warn',
+      icon: 'delete',
+      function: (element: any) => this.proformaRemove(element.proformaId),
+    },
+    {
+      color: 'primary',
+      icon: 'bookmarks',
+      function: (element: any) =>
+        this.generateInvoiceFormProforma(element.proformaId),
+    },
   ];
 
   ngOnInit(): void {
     this.loadProforma();
-    
+
     this.onResize();
     window.addEventListener('resize', () => {
       this.onResize();

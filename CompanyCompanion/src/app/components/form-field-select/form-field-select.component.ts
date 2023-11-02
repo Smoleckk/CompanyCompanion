@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-form-field-select',
   templateUrl: './form-field-select.component.html',
-  styleUrls: ['./form-field-select.component.scss']
+  styleUrls: ['./form-field-select.component.scss'],
 })
 export class FormFieldSelectComponent {
   @Input()

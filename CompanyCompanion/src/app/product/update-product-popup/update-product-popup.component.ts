@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./update-product-popup.component.scss'],
 })
 export class UpdateProductPopupComponent implements OnInit {
-    constructor(
+  constructor(
     private builder: FormBuilder,
     private productService: ProductService,
     private toastr: ToastrService,
@@ -76,8 +76,6 @@ export class UpdateProductPopupComponent implements OnInit {
       type: 'text',
     },
   ];
-
-
 
   ngOnInit(): void {
     if (this.data.productMagazineId) {

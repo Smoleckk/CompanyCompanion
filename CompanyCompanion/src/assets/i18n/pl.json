@@ -6,21 +6,21 @@
     "loginButton": "Zaloguj",
     "member": "Nie jesteś członkiem?",
     "signUp": "Zarejestruj się teraz!"
-},
-"toaster": {
-  "toasterWelcome": "Witaj w Fakturio",
-  "toasterFailed": "Coś poszło nie tak, spróbuj ponownie później.",
-  "toasterWrongCredit": "Błędne dane logowania",
-  "toasterRegisterSuccessfully": "Zarejestrowano pomyślnie",
-  "regonSuccess": "Super, udało się zakończyć przedmiot",
+  },
+  "toaster": {
+    "toasterWelcome": "Witaj w Fakturio",
+    "toasterFailed": "Coś poszło nie tak, spróbuj ponownie później.",
+    "toasterWrongCredit": "Błędne dane logowania",
+    "toasterRegisterSuccessfully": "Zarejestrowano pomyślnie",
+    "regonSuccess": "Super, udało się zakończyć przedmiot",
 
-  "toasterConfirm":"Super, czy chcesz potwierdzic operacje",
-  "toasterCreatedSuccess": "Utworzono pomyślnie",
-  "toasterDeletedSuccess": "Usunięto pomyślnie",
-  "toasterUpdateSuccess": "Zaktualizowano pomyślnie",
-  "toasterWrongInputData": "Proszę sprawdź dane wejściowe"
-},
-"welcome": {
+    "toasterConfirm": "Super, czy chcesz potwierdzic operacje",
+    "toasterCreatedSuccess": "Utworzono pomyślnie",
+    "toasterDeletedSuccess": "Usunięto pomyślnie",
+    "toasterUpdateSuccess": "Zaktualizowano pomyślnie",
+    "toasterWrongInputData": "Proszę sprawdź dane wejściowe"
+  },
+  "welcome": {
     "title": "Fakturio",
     "subTitle": "Intuicyjna i użytkowa aplikacja zaprojektowana, aby pomóc małym firmom w łatwym zarządzaniu ich codziennymi operacjami. Dzięki intuicyjnemu interfejsowi i wszechstronnym funkcjom. <br/> Ta aplikacja upraszcza proces tworzenia i zarządzania fakturami i magazynami, umożliwiając firmom pozostanie zorganizowanym i skoncentrowanym na rozwoju.",
     "register": "Zarejestruj się!",
@@ -44,8 +44,8 @@
     "userNameSecond": "Klient z branży spożywczej",
     "aboutUsHeader": "O Nas!",
     "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była wydajna i przyjemna."
-},
-"register": {
+  },
+  "register": {
     "title": "Utwórz Profil",
     "subTitle": "Te informacje pozwolą nam dowiedzieć się więcej o Tobie.",
     "personalInfo": "Dane Osobowe",
@@ -59,162 +59,155 @@
     "companyCity": "Miasto Firmy, np. Niepodległości 27",
     "cityCode": "Kod Miasta Firmy, np. 23942, Warszawa",
     "registerButton": "Zarejestruj się"
-},
-"customer": {
-  "header": "Dodaj Klienta do bazy danych",
-  "someInfo": "Wypełnij poniższe pola, aby dodać klienta do swojej bazy danych",
-  "headerUpdate": "Aktualizuj Klienta w bazie danych",
-  "someInfoUpdate": "Wypełnij poniższe pola, aby zaktualizować klienta w swojej bazie danych"
-},
-"customerTableHeader": {
-  "customerDetailInfo": "Dane Klienta",
-  "customerHeader": "Klienci",
-  "customerName": "Imię",
-  "customerNip": "NIP",
-  "customerCity": "Miasto",
-  "customerAddress": "Adres"
-},
+  },
+  "customer": {
+    "header": "Dodaj Klienta do bazy danych",
+    "someInfo": "Wypełnij poniższe pola, aby dodać klienta do swojej bazy danych",
+    "headerUpdate": "Aktualizuj Klienta w bazie danych",
+    "someInfoUpdate": "Wypełnij poniższe pola, aby zaktualizować klienta w swojej bazie danych"
+  },
+  "customerTableHeader": {
+    "customerDetailInfo": "Dane Klienta",
+    "customerHeader": "Klienci",
+    "customerName": "Imię",
+    "customerNip": "NIP",
+    "customerCity": "Miasto",
+    "customerAddress": "Adres"
+  },
 
-"product": {
-  "header": "Dodaj produkt do bazy danych",
-  "someInfo": "Wypełnij pola poniżej, aby dodać produkt do bazy danych",
-  "headerUpdate": "Aktualizuj produkt w bazie danych",
-  "someInfoUpdate": "Wypełnij pola poniżej, aby zaktualizować produkt w bazie danych"
-},
-"productFormHeader": {
-  "name": "Nazwa",
-  "price": "Cena",
-  "vat": "Podatek VAT",
-  "qty": "Ilość",
-  "unit": "Jednostka",
-  "category": "Kategoria",
-  "remarks": "Uwagi"
-},
-"productTableHeader": {
-  "productHeader": "Produkty",
-  "searchPlaceholder": "Np. ołówek",
-  "name": "Nazwa",
-  "price": "Cena",
-  "category": "Kategoria",
-  "remarks": "Uwagi"
-},
-"user": {
-  "header": "Dodaj współpracowników",
-  "someInfo": "Wypełnij pola poniżej, aby dodać współpracowników do swojej firmy"
-},
-"userFormHeader": {
-  "username": "Nazwa użytkownika",
-  "email": "Email",
-  "password": "Hasło"
-},
-"userTableHeader": {
-  "productHeader": "Współpracownicy",
-  "searchPlaceholder": "Np. Tom",
-  "username": "Nazwa użytkownika",
-  "email": "Email"
-},
-"invoiceTableHeader": {
-  "header": "Faktury ",
-  "searchPlaceholder": "Np. 7152652718",
-  "invoiceNo": "Nr",
-  "customerName": "Klient",
-  "total": "Suma brutto",
-  "dueDate": "Termin płatności",
-  "dateIssued": "Data wystawienia"
-},
-"invoiceForm":{
-  "name":"Nazwa",
-  "quantity":"Ilość",
-  "unit":"Jednostka",
-  "price":"Cena",
-  "vat":"VAT",
-  "netto":"Netto",
-  "brutto":"Brutto",
-  "netTotal":"Suma Netto",
-  "tax":"Suma Podatku",
-  "total":"Suma Brutto",
-  "remarks":"Uwagi",
-  "paymentDescription":"Szczegóły płatności",
-  "accountNumber":"Numer konta",
-  "isGenerated":"Wystawiona?",
-  "dateIssued":"Data wystawienia",
-  "invoiceDate":"Data sprzedaży",
-  "dueDate":"Termin płatności",
-  "placeOfIssue":"Miejsce wystawienia",
-  "paymentStatus":"Status płatności",
-  "paymentType":"Typ płatności"
-},
-"proformaForm":{
-  "name":"Nazwa",
-  "quantity":"Ilość",
-  "unit":"Jednostka",
-  "price":"Cena",
-  "vat":"VAT",
-  "netto":"Netto",
-  "brutto":"Brutto",
-  "netTotal":"Suma Netto",
-  "tax":"Suma Podatku",
-  "total":"Suma Brutto",
-  "remarks":"Uwagi",
-  "paymentDescription":"Szczegóły płatności",
-  "accountNumber":"Numer konta",
-  "isGenerated":"Wystawiona?",
-  "dateIssued":"Data wystawienia",
-  "invoiceDate":"Data sprzedaży",
-  "dueDate":"Termin płatności",
-  "placeOfIssue":"Miejsce wystawienia",
-  "paymentStatus":"Status płatności",
-  "paymentType":"Typ płatności"
-},
+  "product": {
+    "header": "Dodaj produkt do bazy danych",
+    "someInfo": "Wypełnij pola poniżej, aby dodać produkt do bazy danych",
+    "headerUpdate": "Aktualizuj produkt w bazie danych",
+    "someInfoUpdate": "Wypełnij pola poniżej, aby zaktualizować produkt w bazie danych"
+  },
+  "productFormHeader": {
+    "name": "Nazwa",
+    "price": "Cena",
+    "vat": "Podatek VAT",
+    "qty": "Ilość",
+    "unit": "Jednostka",
+    "category": "Kategoria",
+    "remarks": "Uwagi"
+  },
+  "productTableHeader": {
+    "productHeader": "Produkty",
+    "searchPlaceholder": "Np. ołówek",
+    "name": "Nazwa",
+    "price": "Cena",
+    "category": "Kategoria",
+    "remarks": "Uwagi"
+  },
+  "user": {
+    "header": "Dodaj współpracowników",
+    "someInfo": "Wypełnij pola poniżej, aby dodać współpracowników do swojej firmy"
+  },
+  "userFormHeader": {
+    "username": "Nazwa użytkownika",
+    "email": "Email",
+    "password": "Hasło"
+  },
+  "userTableHeader": {
+    "productHeader": "Współpracownicy",
+    "searchPlaceholder": "Np. Tom",
+    "username": "Nazwa użytkownika",
+    "email": "Email"
+  },
+  "invoiceTableHeader": {
+    "header": "Faktury ",
+    "searchPlaceholder": "Np. 7152652718",
+    "invoiceNo": "Nr",
+    "customerName": "Klient",
+    "total": "Suma brutto",
+    "dueDate": "Termin płatności",
+    "dateIssued": "Data wystawienia"
+  },
+  "invoiceForm": {
+    "name": "Nazwa",
+    "quantity": "Ilość",
+    "unit": "Jednostka",
+    "price": "Cena",
+    "vat": "VAT",
+    "netto": "Netto",
+    "brutto": "Brutto",
+    "netTotal": "Suma Netto",
+    "tax": "Suma Podatku",
+    "total": "Suma Brutto",
+    "remarks": "Uwagi",
+    "paymentDescription": "Szczegóły płatności",
+    "accountNumber": "Numer konta",
+    "isGenerated": "Wystawiona?",
+    "dateIssued": "Data wystawienia",
+    "invoiceDate": "Data sprzedaży",
+    "dueDate": "Termin płatności",
+    "placeOfIssue": "Miejsce wystawienia",
+    "paymentStatus": "Status płatności",
+    "paymentType": "Typ płatności"
+  },
+  "proformaForm": {
+    "name": "Nazwa",
+    "quantity": "Ilość",
+    "unit": "Jednostka",
+    "price": "Cena",
+    "vat": "VAT",
+    "netto": "Netto",
+    "brutto": "Brutto",
+    "netTotal": "Suma Netto",
+    "tax": "Suma Podatku",
+    "total": "Suma Brutto",
+    "remarks": "Uwagi",
+    "paymentDescription": "Szczegóły płatności",
+    "accountNumber": "Numer konta",
+    "isGenerated": "Wystawiona?",
+    "dateIssued": "Data wystawienia",
+    "invoiceDate": "Data sprzedaży",
+    "dueDate": "Termin płatności",
+    "placeOfIssue": "Miejsce wystawienia",
+    "paymentStatus": "Status płatności",
+    "paymentType": "Typ płatności"
+  },
 
-"invoiceFormSelect":{
-  "issued":"Wystawiona",
-  "notIssued":"Niewystawiona",
-  "paid":"Opłacona",
-  "unpaid":"Nieopłacona",
-  "cash":"Gotówka",
-  "blik":"BLIK",
-  "bankTransfer":"Przelew bankowy"
-},
+  "invoiceFormSelect": {
+    "issued": "Wystawiona",
+    "notIssued": "Niewystawiona",
+    "paid": "Opłacona",
+    "unpaid": "Nieopłacona",
+    "cash": "Gotówka",
+    "blik": "BLIK",
+    "bankTransfer": "Przelew bankowy"
+  },
 
+  "home": {
+    "header": "Miło cię widzieć :]",
+    "invoiceTitle": "Faktura",
+    "invoiceSubTitle": "Ustal warunki sprzedaży przed właściwą fakturą. Wystawiaj proformy, wprowadzaj szczegóły zamówienia i automatycznie obliczaj kwotę.",
+    "proformaTitle": "Proforma",
+    "proformaSubTitle": "Wystawiaj faktury w prosty sposób. Połącz się z klientami, obliczaj podatki i generuj numery faktur - wszystko w jednym miejscu.",
+    "productTitle": "Produkt",
+    "productSubTitle": "Dodawaj produkty łatwo i zawsze bądź przygotowany do wystawiania faktur. Stwórz katalog produktów z nazwami, opisami i cenami, a następnie dodawaj je do faktur w ciągu sekund.",
+    "customerTitle": "Klient",
+    "customerSubTitle": "Zarządzaj danymi swoich klientów w jednym miejscu. Dodawaj i edytuj ich dane kontaktowe, adresy i informacje płatnicze. Wystawiaj faktury i proformy z automatycznie wypełnionymi danymi klienta i oszczędzaj czas.",
+    "employeeTitle": "Pracownik",
+    "employeeSubTitle": "Dodawaj i zarządzaj danymi swoich pracowników w jednym miejscu. Oszczędzaj czas i łatwo przypisuj pracowników do faktur.",
+    "reviewTitle": "Przegląd Faktur",
+    "reviewSubTitle": "Łatwo kontroluj status swoich faktur dzięki czytelnemu podsumowaniu. Dowiedz się, ile faktur zostało już opłaconych, a ile jest jeszcze do uregulowania. Wyświetl listę wszystkich faktur i ich statusy, aby zawsze mieć pełen przegląd.",
+    "dashboardTitle": "Pulpit",
+    "dashboardSubTitle": "Czysta tablica kontrolna, na której znajdziesz podsumowanie najważniejszych działań w swojej firmie. Szybko i łatwo sprawdzisz status swoich faktur, proform i bieżący stan konta."
+  },
 
-"home": {
-  "header": "Miło cię widzieć :]",
-  "invoiceTitle": "Faktura",
-  "invoiceSubTitle": "Ustal warunki sprzedaży przed właściwą fakturą. Wystawiaj proformy, wprowadzaj szczegóły zamówienia i automatycznie obliczaj kwotę.",
-  "proformaTitle": "Proforma",
-  "proformaSubTitle": "Wystawiaj faktury w prosty sposób. Połącz się z klientami, obliczaj podatki i generuj numery faktur - wszystko w jednym miejscu.",
-  "productTitle": "Produkt",
-  "productSubTitle": "Dodawaj produkty łatwo i zawsze bądź przygotowany do wystawiania faktur. Stwórz katalog produktów z nazwami, opisami i cenami, a następnie dodawaj je do faktur w ciągu sekund.",
-  "customerTitle": "Klient",
-  "customerSubTitle": "Zarządzaj danymi swoich klientów w jednym miejscu. Dodawaj i edytuj ich dane kontaktowe, adresy i informacje płatnicze. Wystawiaj faktury i proformy z automatycznie wypełnionymi danymi klienta i oszczędzaj czas.",
-  "employeeTitle": "Pracownik",
-  "employeeSubTitle": "Dodawaj i zarządzaj danymi swoich pracowników w jednym miejscu. Oszczędzaj czas i łatwo przypisuj pracowników do faktur.",
-  "reviewTitle": "Przegląd Faktur",
-  "reviewSubTitle": "Łatwo kontroluj status swoich faktur dzięki czytelnemu podsumowaniu. Dowiedz się, ile faktur zostało już opłaconych, a ile jest jeszcze do uregulowania. Wyświetl listę wszystkich faktur i ich statusy, aby zawsze mieć pełen przegląd.",
-  "dashboardTitle": "Pulpit",
-  "dashboardSubTitle": "Czysta tablica kontrolna, na której znajdziesz podsumowanie najważniejszych działań w swojej firmie. Szybko i łatwo sprawdzisz status swoich faktur, proform i bieżący stan konta."
-},
-
-
-
-
-
-
-"buttons": {
-  "save": "Zapisz",
-  "update": "Aktualizuj",
-  "add": "Dodaj"
-},
-"sidebar":{
-  "invoices": "Faktury",
-  "proforma": "Proforma",
-  "corrections": "Korekty",
-  "products": "Produkty",
-  "customers": "Klienci",
-  "co-workers": "Współpracownicy",
-  "review": "Recenzja",
-  "dashboard": "Pulpit"
-}
-
+  "buttons": {
+    "save": "Zapisz",
+    "update": "Aktualizuj",
+    "add": "Dodaj"
+  },
+  "sidebar": {
+    "invoices": "Faktury",
+    "proforma": "Proforma",
+    "corrections": "Korekty",
+    "products": "Produkty",
+    "customers": "Klienci",
+    "co-workers": "Współpracownicy",
+    "review": "Recenzja",
+    "dashboard": "Pulpit"
+  }
 }

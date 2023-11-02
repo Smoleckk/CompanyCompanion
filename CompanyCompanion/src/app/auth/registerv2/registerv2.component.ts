@@ -54,10 +54,9 @@ export class Registerv2Component {
     private toastr: ToastrService,
     private router: Router,
     private readonly translocoService: TranslocoService
-  ) {
-  }
+  ) {}
 
-  createform :FormGroup = this.builder.group({
+  createform: FormGroup = this.builder.group({
     username: [
       '',
       [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
@@ -97,7 +96,9 @@ export class Registerv2Component {
       this.authService.proceedRegister(this.createform.value).subscribe(
         () => {
           this.toaster.success(
-            this.translocoService.translate('toaster.toasterRegisterSuccessfully')
+            this.translocoService.translate(
+              'toaster.toasterRegisterSuccessfully'
+            )
           );
           this.router.navigate(['login']);
         },

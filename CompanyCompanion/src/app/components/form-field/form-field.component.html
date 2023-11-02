@@ -1,6 +1,6 @@
 <mat-form-field [class]="cssClass" [formGroup]="form" appearance="outline">
   <mat-label>{{label}}</mat-label>
-  <input matInput [placeholder]="label" [formControlName]="controlName" [type]="type"/>
+  <input matInput [placeholder]="label" [formControlName]="controlName" [type]="type" />
   <mat-error *ngIf="form.get(controlName)?.hasError('required')">Wymagane pole</mat-error>
   <mat-error *ngIf="form.get(controlName)?.hasError('email')">Musi tu byc email</mat-error>
   <mat-error *ngIf="form.get(controlName)?.hasError('maxlength')">Zbyt mała liczba znakow, min 2</mat-error>

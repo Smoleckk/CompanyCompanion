@@ -1,20 +1,11 @@
 <div class="container" *transloco="let t">
-  <app-breadcrumb
-    [headerDetail]="t('customerTableHeader.customerHeader')"
-    (callParent)="createCustomer()"
-  ></app-breadcrumb>
+  <app-breadcrumb [headerDetail]="t('customerTableHeader.customerHeader')"
+    (callParent)="createCustomer()"></app-breadcrumb>
   <mat-card>
-    <app-tableheader
-      [header]="t('customerTableHeader.customerHeader')"
-      searchPlaceholder="Ex. customer"
-      (callParent)="applyFilter($event)"
-    >
+    <app-tableheader [header]="t('customerTableHeader.customerHeader')" searchPlaceholder="Ex. customer"
+      (callParent)="applyFilter($event)">
     </app-tableheader>
-    <app-tablecontent
-      [dataSource]="dataSource"
-      [columns]="columns"
-      [actionButtons]="actionButtons"
-      [displayedColumns]="displayedColumns"
-    ></app-tablecontent>
+    <app-tablecontent [dataSource]="dataSource" [columns]="columns" [actionButtons]="actionButtons"
+      [displayedColumns]="displayedColumns"></app-tablecontent>
   </mat-card>
 </div>

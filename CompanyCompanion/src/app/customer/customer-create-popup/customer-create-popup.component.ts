@@ -1,5 +1,11 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
@@ -48,15 +54,21 @@ export class CustomerCreatePopupComponent {
     if (this.createForm && this.createForm.valid) {
       this.service.createCustomer(this.createForm.value).subscribe(
         () => {
-          this.toastr.success(this.translocoService.translate('login.toasterCreatedSuccess'));
+          this.toastr.success(
+            this.translocoService.translate('login.toasterCreatedSuccess')
+          );
           this.dialog.close();
         },
         () => {
-          this.toastr.error(this.translocoService.translate('login.toasterFailed'));
+          this.toastr.error(
+            this.translocoService.translate('login.toasterFailed')
+          );
         }
       );
     } else {
-      this.toastr.warning(this.translocoService.translate('login.toasterWrongInputData'));
+      this.toastr.warning(
+        this.translocoService.translate('login.toasterWrongInputData')
+      );
     }
   }
   getRegon() {
@@ -68,10 +80,14 @@ export class CustomerCreatePopupComponent {
           customerCity: data.ulica + ' ' + data.nrNieruchomosci,
           customerAddress: data.kodPocztowy + ' ' + data.miejscowosc,
         });
-        this.toastr.success(this.translocoService.translate('login.regonSuccess'));
+        this.toastr.success(
+          this.translocoService.translate('login.regonSuccess')
+        );
       },
       () => {
-        this.toastr.error(this.translocoService.translate('login.toasterFailed'));
+        this.toastr.error(
+          this.translocoService.translate('login.toasterFailed')
+        );
       }
     );
   }

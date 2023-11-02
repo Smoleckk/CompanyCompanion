@@ -25,7 +25,7 @@ export class CustomerDetailsComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  customerForm :FormGroup = this.builder.group({
+  customerForm: FormGroup = this.builder.group({
     customerId: ['', Validators.required],
     customerName: ['', Validators.required],
     customerNip: ['', Validators.required],
@@ -34,21 +34,25 @@ export class CustomerDetailsComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.editCustomerId = this.activeRoute.snapshot.paramMap.get('customerId') as string;
+    this.editCustomerId = this.activeRoute.snapshot.paramMap.get(
+      'customerId'
+    ) as string;
     if (this.editCustomerId != null) {
       this.setEditInfo(this.editCustomerId);
     }
   }
 
   setEditInfo(customerIdCode: any) {
-    this.service.getCustomerByCode(customerIdCode).subscribe((editData:Customer) => {
-      if (editData != null) {
-        this.customerForm.setValue({
-          ...editData,
-        });
-      }
-      this.isCustomer = editData.customerName || '';
-    });
+    this.service
+      .getCustomerByCode(customerIdCode)
+      .subscribe((editData: Customer) => {
+        if (editData != null) {
+          this.customerForm.setValue({
+            ...editData,
+          });
+        }
+        this.isCustomer = editData.customerName || '';
+      });
   }
 
   updateCustomer(): void {

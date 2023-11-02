@@ -1,43 +1,38 @@
-<div
-  style="
+<div style="
     width: 100%;
     height: 80%;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-  " *transloco="let t"
->
+  " *transloco="let t">
   <mat-card style="width: 500px; height: 600px; margin: 10%">
-    <mat-card-header
-      style="
+    <mat-card-header style="
         background-image: linear-gradient(to right, #617055, #116444);
         margin-bottom: 20px;
-      "
-    >
-      <h1 style="color: #fff; font-size: 40px; font-weight: 500; padding: 10px" >
+      ">
+      <h1 style="color: #fff; font-size: 40px; font-weight: 500; padding: 10px">
         {{ t("login.loginForm") }}
       </h1>
     </mat-card-header>
-    <mat-card-content>  
+    <mat-card-content>
       <form class="form" [formGroup]="loginform" (ngSubmit)="proceedLogin()">
-        <app-form-field [form]="loginform"  [label]="t('login.loginForm')" controlName="username" cssClass="full-width"
-        type="text">
-    </app-form-field>
-        <app-form-field [form]="loginform"  [label]="t('login.password')" controlName="password" cssClass="full-width"
-        type="password">
-    </app-form-field>
+        <app-form-field [form]="loginform" [label]="t('login.loginForm')" controlName="username" cssClass="full-width"
+          type="text">
+        </app-form-field>
+        <app-form-field [form]="loginform" [label]="t('login.password')" controlName="password" cssClass="full-width"
+          type="password">
+        </app-form-field>
         <div class="form-submit">
-          <button mat-raised-button class="full-width" color="primary" >
+          <button mat-raised-button class="full-width" color="primary">
             {{t("login.loginButton")}}
           </button>
         </div>
       </form>
-      <div style="display: flex; justify-content: center; margin-top: 20px" >
-        <p style="margin-right: 5px">    {{t("login.member")}}</p>
-        <a routerLink="/register" style="color: #116444; text-decoration: none" >
-          {{t("login.signUp")}}</a
-        >
+      <div style="display: flex; justify-content: center; margin-top: 20px">
+        <p style="margin-right: 5px"> {{t("login.member")}}</p>
+        <a routerLink="/register" style="color: #116444; text-decoration: none">
+          {{t("login.signUp")}}</a>
       </div>
     </mat-card-content>
   </mat-card>

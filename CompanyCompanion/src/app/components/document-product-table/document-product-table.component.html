@@ -34,7 +34,7 @@
                         <mat-grid-tile [colspan]="colspan3">
                             <mat-form-field appearance="outline" style="width: 100%; margin-top: 20px">
                                 <mat-select (selectionChange)="productChange(i)" formControlName="productName"
-                                [placeholder]="t('invoiceForm.name')">
+                                    [placeholder]="t('invoiceForm.name')">
                                     <mat-option *ngFor="let item of getProduct" [value]="item.name">
                                         {{ item.name }}
                                     </mat-option>
@@ -50,24 +50,25 @@
                         <mat-grid-tile>
                             <mat-form-field appearance="outline" style="margin-top: 20px">
                                 <input (change)="itemCalculation(i)" matInput formControlName="unit"
-                                [placeholder]="t('invoiceForm.unit')" />
+                                    [placeholder]="t('invoiceForm.unit')" />
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field appearance="outline" style="margin-top: 20px">
                                 <input type="number" (change)="itemCalculation(i)" matInput formControlName="salesPrice"
-                                [placeholder]="t('invoiceForm.price')" />
+                                    [placeholder]="t('invoiceForm.price')" />
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field appearance="outline" style="margin-top: 20px">
                                 <input type="number" (change)="itemCalculation(i)" matInput formControlName="vat"
-                                [placeholder]="t('invoiceForm.vat')" />
+                                    [placeholder]="t('invoiceForm.vat')" />
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field appearance="outline" style="margin-top: 20px">
-                                <input type="number" matInput formControlName="nettoPrice" [placeholder]="t('invoiceForm.netto')" />
+                                <input type="number" matInput formControlName="nettoPrice"
+                                    [placeholder]="t('invoiceForm.netto')" />
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>

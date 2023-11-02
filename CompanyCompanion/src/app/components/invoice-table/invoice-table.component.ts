@@ -1,4 +1,4 @@
-import { Component, Input  ,ViewChild, EventEmitter} from '@angular/core';
+import { Component, Input, ViewChild, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,11 +17,9 @@ import { UserProfile } from 'src/app/models/userProfile';
 @Component({
   selector: 'app-invoice-table',
   templateUrl: './invoice-table.component.html',
-  styleUrls: ['./invoice-table.component.scss']
+  styleUrls: ['./invoice-table.component.scss'],
 })
 export class InvoiceTableComponent {
-
-
   @Input() few: string;
   @Input() isCustomer: string;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -35,10 +33,7 @@ export class InvoiceTableComponent {
     private builder: FormBuilder,
     private readonly translocoService: TranslocoService,
     private profileService: ProfileService
-  ) {
-
-    
-  }
+  ) {}
 
   dataSource = new MatTableDataSource<Invoice>();
 
@@ -53,35 +48,57 @@ export class InvoiceTableComponent {
   columns = [
     {
       matColumnDef: 'invoiceNo',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.invoiceNo'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.invoiceNo'
+      ),
       matCellDef: 'invoiceNo',
     },
     {
       matColumnDef: 'customerName',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.customerName'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.customerName'
+      ),
       matCellDef: 'customerName',
     },
     {
       matColumnDef: 'total',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.total'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.total'
+      ),
       matCellDef: 'total',
     },
     {
       matColumnDef: 'dueDate',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dueDate'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.dueDate'
+      ),
       matCellDef: 'dueDate',
     },
     {
       matColumnDef: 'dateIssued',
-      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dateIssued'),
+      matHeaderCellDef: this.translocoService.translate(
+        'invoiceTableHeader.dateIssued'
+      ),
       matCellDef: 'dateIssued',
     },
   ];
 
   actionButtons = [
-    { color: 'primary', icon: 'print', function: (element:any) => this.downloadInvoice(element.invoiceId) },
-    { color: 'primary', icon: 'edit', function: (element:any) => this.editInvoice(element.invoiceId) },
-    { color: 'warn', icon: 'delete', function: (element:any) => this.removeInvoice(element.invoiceId) }
+    {
+      color: 'primary',
+      icon: 'print',
+      function: (element: any) => this.downloadInvoice(element.invoiceId),
+    },
+    {
+      color: 'primary',
+      icon: 'edit',
+      function: (element: any) => this.editInvoice(element.invoiceId),
+    },
+    {
+      color: 'warn',
+      icon: 'delete',
+      function: (element: any) => this.removeInvoice(element.invoiceId),
+    },
   ];
   ngOnInit(): void {
     this.loadInvoices();
@@ -90,7 +107,6 @@ export class InvoiceTableComponent {
     window.addEventListener('resize', () => {
       this.onResize();
     });
-    
   }
 
   profileForm = this.builder.group({
@@ -98,7 +114,7 @@ export class InvoiceTableComponent {
   });
 
   SetEditInfo() {
-    this.profileService.getProfile().subscribe((editData : UserProfile) => {
+    this.profileService.getProfile().subscribe((editData: UserProfile) => {
       if (editData != null) {
         this.profileForm.setValue({
           template: editData.template,
@@ -126,17 +142,25 @@ export class InvoiceTableComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   loadInvoices(): void {
-    this.invoiceService.getFewInvoice(this.few,this.isCustomer).subscribe((invoices: Invoice[]) => {
-      this.dataSource.data = invoices;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    this.invoiceService
+      .getFewInvoice(this.few, this.isCustomer)
+      .subscribe((invoices: Invoice[]) => {
+        this.dataSource.data = invoices;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
   }
 
   public removeInvoice(invoiceId: any): void {
-    if (confirm(this.translocoService.translate('toaster.toasterConfirm') + invoiceId)) {
+    if (
+      confirm(
+        this.translocoService.translate('toaster.toasterConfirm') + invoiceId
+      )
+    ) {
       this.invoiceService.removeInvoice(invoiceId).subscribe(() => {
-        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
+        this.toastrService.success(
+          this.translocoService.translate('toaster.toasterDeletedSuccess')
+        );
         this.loadInvoices();
       });
     }

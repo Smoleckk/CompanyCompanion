@@ -54,8 +54,8 @@
                 controlName="dateIssued" cssClass="full-width"></app-form-field-data-picker>
               <app-form-field-data-picker [form]="proformaForm" [label]="t('proformaForm.invoiceDate')"
                 controlName="invoiceDate" cssClass="full-width"></app-form-field-data-picker>
-              <app-form-field-data-picker [form]="proformaForm" [label]="t('proformaForm.dueDate')" controlName="dueDate"
-                cssClass="full-width"></app-form-field-data-picker>
+              <app-form-field-data-picker [form]="proformaForm" [label]="t('proformaForm.dueDate')"
+                controlName="dueDate" cssClass="full-width"></app-form-field-data-picker>
             </div>
           </mat-grid-tile>
           <mat-grid-tile>
@@ -70,18 +70,19 @@
           </mat-grid-tile>
         </mat-grid-list>
         <!-- Table of products -->
-<app-document-product-table [invoiceForm]="proformaForm" [editInvoiceId]="editProformaId"></app-document-product-table>
+        <app-document-product-table [invoiceForm]="proformaForm"
+          [editInvoiceId]="editProformaId"></app-document-product-table>
 
 
 
         <!-- Details -->
         <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)">
           <app-form-field [form]="proformaForm" [label]="t('proformaForm.accountNumber')" controlName="accountNumber"
-          cssClass="full-width"></app-form-field>
-          <app-form-field [form]="proformaForm" [label]="t('proformaForm.paymentDescription')" controlName="paymentDescription"
-          cssClass="full-width"></app-form-field>
+            cssClass="full-width"></app-form-field>
+          <app-form-field [form]="proformaForm" [label]="t('proformaForm.paymentDescription')"
+            controlName="paymentDescription" cssClass="full-width"></app-form-field>
           <app-form-field [form]="proformaForm" [label]="t('proformaForm.remarks')" controlName="remarks"
-          cssClass="full-width"></app-form-field>
+            cssClass="full-width"></app-form-field>
         </mat-grid-list>
 
         <div class="form-submit">

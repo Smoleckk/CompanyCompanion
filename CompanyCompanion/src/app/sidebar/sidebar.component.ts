@@ -83,7 +83,7 @@ export class SidebarComponent {
   }
 
   getUsername() {
-    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+    this.profileService.getProfile().subscribe((profile: UserProfile) => {
       if (profile != null) {
         this.username = profile.username;
         this.sliceUsername = profile.username.slice(0, 2).toUpperCase();

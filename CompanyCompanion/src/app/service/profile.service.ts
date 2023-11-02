@@ -8,13 +8,12 @@ import { ApiConfig } from '../config/apiConfig';
   providedIn: 'root',
 })
 export class ProfileService {
-
   constructor(private http: HttpClient) {}
 
   getProfile(): Observable<UserProfile> {
     return this.http.get<UserProfile>(ApiConfig.profileApiUrl);
   }
-  
+
   updateProfile(template: string) {
     return this.http.put(ApiConfig.profileApiUrl + template, template);
   }

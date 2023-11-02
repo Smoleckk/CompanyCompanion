@@ -14,7 +14,6 @@ export class CustomerPopupComponent {
   @Output() callParent = new EventEmitter<String>();
   @Output() callGetRegonParent = new EventEmitter<String>();
 
-
   callParentFunction() {
     this.callParent.emit();
   }

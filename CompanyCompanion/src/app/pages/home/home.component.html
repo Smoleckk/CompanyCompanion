@@ -1,12 +1,19 @@
 <div class="container" *transloco="let t">
   <app-breadcrumb [headerDetail]="t('home.header')" [isAddButton]="false"></app-breadcrumb>
-  <div class="container2" >
-    <app-home-card [title]="t('home.invoiceTitle')" [subTitle]="t('home.invoiceSubTitle')" navLink="/proforma-list"></app-home-card>
-    <app-home-card [title]="t('home.proformaTitle')" [subTitle]="t('home.proformaSubTitle')" navLink="/invoice-list"></app-home-card>
-    <app-home-card [title]="t('home.productTitle')" [subTitle]="t('home.productSubTitle')" navLink="/product-list"></app-home-card>
-    <app-home-card [title]="t('home.customerTitle')" [subTitle]="t('home.customerSubTitle')" navLink="/customer-list"></app-home-card>
-    <app-home-card [title]="t('home.employeeTitle')" [subTitle]="t('home.employeeSubTitle')" navLink="/user-list"></app-home-card>
-    <app-home-card [title]="t('home.reviewTitle')" [subTitle]="t('home.reviewSubTitle')" navLink="/invoice-review"></app-home-card>
-    <app-home-card [title]="t('home.dashboardTitle')" [subTitle]="t('home.dashboardSubTitle')" navLink="/dashboard"></app-home-card>
+  <div class="container2">
+    <app-home-card [title]="t('home.invoiceTitle')" [subTitle]="t('home.invoiceSubTitle')"
+      navLink="/proforma-list"></app-home-card>
+    <app-home-card [title]="t('home.proformaTitle')" [subTitle]="t('home.proformaSubTitle')"
+      navLink="/invoice-list"></app-home-card>
+    <app-home-card [title]="t('home.productTitle')" [subTitle]="t('home.productSubTitle')"
+      navLink="/product-list"></app-home-card>
+    <app-home-card [title]="t('home.customerTitle')" [subTitle]="t('home.customerSubTitle')"
+      navLink="/customer-list"></app-home-card>
+    <app-home-card [title]="t('home.employeeTitle')" [subTitle]="t('home.employeeSubTitle')"
+      navLink="/user-list"></app-home-card>
+    <app-home-card [title]="t('home.reviewTitle')" [subTitle]="t('home.reviewSubTitle')"
+      navLink="/invoice-review"></app-home-card>
+    <app-home-card [title]="t('home.dashboardTitle')" [subTitle]="t('home.dashboardSubTitle')"
+      navLink="/dashboard"></app-home-card>
   </div>
 </div>

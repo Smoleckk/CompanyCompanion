@@ -70,18 +70,19 @@
           </mat-grid-tile>
         </mat-grid-list>
         <!-- Table of products -->
-<app-document-product-table [invoiceForm]="invoiceForm" [editInvoiceId]="editInvoiceId" [invoiceFromProformaId]="invoiceFromProformaId"></app-document-product-table>
+        <app-document-product-table [invoiceForm]="invoiceForm" [editInvoiceId]="editInvoiceId"
+          [invoiceFromProformaId]="invoiceFromProformaId"></app-document-product-table>
 
 
 
         <!-- Details -->
         <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)">
           <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.accountNumber')" controlName="accountNumber"
-          cssClass="full-width"></app-form-field>
-          <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.paymentDescription')" controlName="paymentDescription"
-          cssClass="full-width"></app-form-field>
+            cssClass="full-width"></app-form-field>
+          <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.paymentDescription')"
+            controlName="paymentDescription" cssClass="full-width"></app-form-field>
           <app-form-field [form]="invoiceForm" [label]="t('invoiceForm.remarks')" controlName="remarks"
-          cssClass="full-width"></app-form-field>
+            cssClass="full-width"></app-form-field>
         </mat-grid-list>
 
         <div class="form-submit">

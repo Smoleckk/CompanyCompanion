@@ -22,8 +22,7 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private dialog: MatDialog,
     private toastrService: ToastrService,
-    private readonly translocoService: TranslocoService,
-
+    private readonly translocoService: TranslocoService
   ) {}
 
   dataSource!: MatTableDataSource<any>;
@@ -38,30 +37,46 @@ export class ProductListComponent implements OnInit {
   columns: any = [
     {
       matColumnDef: 'name',
-      matHeaderCellDef: this.translocoService.translate('productTableHeader.name'),
+      matHeaderCellDef: this.translocoService.translate(
+        'productTableHeader.name'
+      ),
       matCellDef: 'name',
     },
     {
       matColumnDef: 'price',
-      matHeaderCellDef: this.translocoService.translate('productTableHeader.price'),
+      matHeaderCellDef: this.translocoService.translate(
+        'productTableHeader.price'
+      ),
       matCellDef: 'price',
     },
     {
       matColumnDef: 'category',
-      matHeaderCellDef: this.translocoService.translate('productTableHeader.category'),
+      matHeaderCellDef: this.translocoService.translate(
+        'productTableHeader.category'
+      ),
       matCellDef: 'category',
     },
     {
       matColumnDef: 'remarks',
-      matHeaderCellDef: this.translocoService.translate('productTableHeader.remarks'),
+      matHeaderCellDef: this.translocoService.translate(
+        'productTableHeader.remarks'
+      ),
       matCellDef: 'remarks',
     },
   ];
   actionButtons = [
-    { color: 'primary', icon: 'edit', function: (element:any) => this.updateProduct(element.productMagazineId) },
-    { color: 'warn', icon: 'delete', function: (element:any) => this.removeProduct(element.productMagazineId) }
+    {
+      color: 'primary',
+      icon: 'edit',
+      function: (element: any) => this.updateProduct(element.productMagazineId),
+    },
+    {
+      color: 'warn',
+      icon: 'delete',
+      function: (element: any) => this.removeProduct(element.productMagazineId),
+    },
   ];
-  
+
   ngOnInit(): void {
     this.loadProducts();
     this.onResize();
@@ -97,9 +112,13 @@ export class ProductListComponent implements OnInit {
   }
 
   removeProduct(code: string): void {
-    if (confirm(this.translocoService.translate('toaster.toasterConfirm') + code)) {
+    if (
+      confirm(this.translocoService.translate('toaster.toasterConfirm') + code)
+    ) {
       this.productService.deleteProduct(code).subscribe(() => {
-        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
+        this.toastrService.success(
+          this.translocoService.translate('toaster.toasterDeletedSuccess')
+        );
         this.loadProducts();
       });
     }

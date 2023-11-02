@@ -24,7 +24,11 @@ export class AuthService {
 
   haveAccess(): boolean {
     const loggintoken = localStorage.getItem('token') || '';
-    if (loggintoken !== '' && loggintoken!== undefined && loggintoken !== null) {
+    if (
+      loggintoken !== '' &&
+      loggintoken !== undefined &&
+      loggintoken !== null
+    ) {
       const _extractedtoken = loggintoken.split('.')[1];
       const _atodata = atob(_extractedtoken);
       const _finaldata = JSON.parse(_atodata);
@@ -37,11 +41,17 @@ export class AuthService {
   }
 
   proceedRegister(usercred: UserRegister): Observable<UserRegister> {
-    return this.http.post<UserRegister>(ApiConfig.authApiUrl + 'register', usercred);
+    return this.http.post<UserRegister>(
+      ApiConfig.authApiUrl + 'register',
+      usercred
+    );
   }
-///// depreceted
+  ///// depreceted
   getByName(username: any): Observable<any> {
-    return this.http.post<any>(ApiConfig.authApiUrl + 'get-by-username', username);
+    return this.http.post<any>(
+      ApiConfig.authApiUrl + 'get-by-username',
+      username
+    );
   }
 
   updateUser(username: any, inputdata: any): Observable<any> {
