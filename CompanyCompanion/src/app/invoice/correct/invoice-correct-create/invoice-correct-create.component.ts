@@ -194,7 +194,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
           isGenerated: editData.isGenerated,
         });
       }
-      this.ShowInvoiceNumber();
+      this.showInvoiceNumber();
     });
   }
 
@@ -327,7 +327,7 @@ export class InvoiceCorrectCreateComponent implements OnInit {
       }
     });
   }
-  ShowInvoiceNumber() {
+  showInvoiceNumber() {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }

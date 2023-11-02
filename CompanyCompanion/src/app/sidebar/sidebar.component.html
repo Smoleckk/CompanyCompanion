@@ -168,13 +168,12 @@
   <section class="">
     <nav style="background-image: linear-gradient(to right, #617055, #116444)">
       <a href="welcome">Fakturio</a>
-      <app-language-selector></app-language-selector>
-
       <div class="nav-links" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
         <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
           <mat-icon class="hide-icon fa fa-times">power_settings_new</mat-icon>
         </button>
         <ul>
+          <app-language-selector></app-language-selector>
           <li><a href="/welcome">HOME</a></li>
           <li><a href="/login">LOGIN</a></li>
           <li><a href="/register">REGISTER</a></li>

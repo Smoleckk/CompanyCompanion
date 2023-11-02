@@ -33,7 +33,7 @@ export class InvoiceDefaultComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers();
     this.GetProducts();
-    this.ShowInvoiceNumber();
+    this.showInvoiceNumber();
     this.getProfile();
     this.addProduct();
 
@@ -297,7 +297,7 @@ export class InvoiceDefaultComponent implements OnInit {
       }
     });
   }
-  ShowInvoiceNumber() {
+  showInvoiceNumber() {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }

@@ -31,7 +31,7 @@ export class CreateInvoiceComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.getCustomers();
-    this.ShowInvoiceNumber();
+    this.showInvoiceNumber();
     this.getProfile();
     this.calculateBreakpoints(window.innerWidth);
     this.editInvoiceId = this.activeRoute.snapshot.paramMap.get('invoiceId');
@@ -254,7 +254,7 @@ export class CreateInvoiceComponent implements OnInit {
       }
     });
   }
-  ShowInvoiceNumber() {
+  showInvoiceNumber() {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }

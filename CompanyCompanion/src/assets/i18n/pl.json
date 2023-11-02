@@ -144,6 +144,29 @@
   "paymentStatus":"Status płatności",
   "paymentType":"Typ płatności"
 },
+"proformaForm":{
+  "name":"Nazwa",
+  "quantity":"Ilość",
+  "unit":"Jednostka",
+  "price":"Cena",
+  "vat":"VAT",
+  "netto":"Netto",
+  "brutto":"Brutto",
+  "netTotal":"Suma Netto",
+  "tax":"Suma Podatku",
+  "total":"Suma Brutto",
+  "remarks":"Uwagi",
+  "paymentDescription":"Szczegóły płatności",
+  "accountNumber":"Numer konta",
+  "isGenerated":"Wystawiona?",
+  "dateIssued":"Data wystawienia",
+  "invoiceDate":"Data sprzedaży",
+  "dueDate":"Termin płatności",
+  "placeOfIssue":"Miejsce wystawienia",
+  "paymentStatus":"Status płatności",
+  "paymentType":"Typ płatności"
+},
+
 "invoiceFormSelect":{
   "issued":"Wystawiona",
   "notIssued":"Niewystawiona",

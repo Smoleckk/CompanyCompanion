@@ -105,7 +105,7 @@ export class ProformaListComponent implements OnInit {
   }
   ProformaRemove(proformaId: any) {
     if (confirm('Do you want to remove this Proforma :' + proformaId)) {
-      this.service.RemoveProforma(proformaId).subscribe((res) => {
+      this.service.RemoveProforma(proformaId).subscribe(() => {
         this.toastr.success('Deleted Successfully', 'Remove Proforma');
         this.LoadProforma();
       });

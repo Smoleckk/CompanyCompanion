@@ -146,6 +146,28 @@
     "paymentStatus":"Payment status",
     "paymentType":"Payment type"
   },
+  "proformaForm":{
+    "name":"Name",
+    "quantity":"Quantity",
+    "unit":"Unit",
+    "price":"Price",
+    "vat":"Vat",
+    "netto":"Netto",
+    "brutto":"Brutto",
+    "netTotal":"Summary Netto",
+    "tax":"Summary Tax",
+    "total":"Summary Brutto",
+    "remarks":"Remarks",
+    "paymentDescription":"Payment Description",
+    "accountNumber":"Account Number",
+    "isGenerated":"Issued?",
+    "dateIssued":"Issued date",
+    "invoiceDate":"Sold date",
+    "dueDate":"(paid) Date",
+    "placeOfIssue":"Place of issue",
+    "paymentStatus":"Payment status",
+    "paymentType":"Payment type"
+  },
   "invoiceFormSelect":{
     "issued":"Issued",
     "notIssued":"Not Issued",

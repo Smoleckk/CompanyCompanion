@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProformaFormValue } from '../models/ProformaFormValue';
 
 @Injectable({
   providedIn: 'root',
@@ -41,13 +43,13 @@ export class ProformaService {
   GetAllProforma() {
     return this.http.get(this.apiUrlProforma + 'get-proformas-header');
   }
-  GetProformaHeaderByCode(proformaId: any) {
-    return this.http.get(
+  GetProformaHeaderByCode(proformaId: string): Observable<ProformaFormValue> {
+    return this.http.get<ProformaFormValue>(
       this.apiUrlProforma + 'get-proforma-header-by-code/' + proformaId
     );
   }
-  RemoveProforma(proformaId: any) {
-    return this.http.delete(this.apiUrlProforma + proformaId);
+  RemoveProforma(proformaId: any): Observable<void> {
+    return this.http.delete<void>(this.apiUrlProforma + proformaId);
   }
   SaveProforma(proformaData: any) {
     return this.http.post(this.apiUrlProforma + 'save-proforma', proformaData);
