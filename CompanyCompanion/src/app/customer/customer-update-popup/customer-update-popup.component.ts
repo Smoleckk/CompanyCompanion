@@ -61,9 +61,8 @@ export class CustomerUpdatePopupComponent implements OnInit {
 
   updateCustomer(): void {
     if (this.updateform.valid) {
-      const customerData: CustomerFormData = this.updateform.value;
       this.service
-        .updateCustomerByCode(this.data, customerData)
+        .updateCustomerByCode(this.data, this.updateform.value)
         .subscribe(() => {
           this.toastr.success(
             this.translocoService.translate('toaster.toasterUpdateSuccess')

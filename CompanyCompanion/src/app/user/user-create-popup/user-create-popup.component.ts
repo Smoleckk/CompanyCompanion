@@ -22,12 +22,27 @@ export class UserCreatePopupComponent {
   ngOnInit(): void {}
 
   fields = [
-    { label: this.translocoService.translate('userFormHeader.username'), controlName: 'username', type: 'text', cssStyle: 'full-width' },
-    { label: this.translocoService.translate('userFormHeader.email'), controlName: 'email', type: 'email', cssStyle: 'full-width' },
-    { label: this.translocoService.translate('userFormHeader.password'), controlName: 'password', type: 'password', cssStyle: 'full-width' }
+    {
+      label: this.translocoService.translate('userFormHeader.username'),
+      controlName: 'username',
+      type: 'text',
+      cssStyle: 'full-width',
+    },
+    {
+      label: this.translocoService.translate('userFormHeader.email'),
+      controlName: 'email',
+      type: 'email',
+      cssStyle: 'full-width',
+    },
+    {
+      label: this.translocoService.translate('userFormHeader.password'),
+      controlName: 'password',
+      type: 'password',
+      cssStyle: 'full-width',
+    },
   ];
 
-  createform : FormGroup = this.builder.group({
+  createform: FormGroup = this.builder.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
@@ -36,11 +51,15 @@ export class UserCreatePopupComponent {
   SaveUser() {
     if (this.createform.valid) {
       this.service.createUser(this.createform.value).subscribe(() => {
-        this.toastr.success(this.translocoService.translate('toaster.toasterCreatedSuccess'));
+        this.toastr.success(
+          this.translocoService.translate('toaster.toasterCreatedSuccess')
+        );
         this.dialog.close();
       });
     } else {
-      this.toastr.warning(this.translocoService.translate('toaster.toasterWrongInputData'));
+      this.toastr.warning(
+        this.translocoService.translate('toaster.toasterWrongInputData')
+      );
     }
   }
 }

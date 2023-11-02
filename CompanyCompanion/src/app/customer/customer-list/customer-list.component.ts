@@ -8,6 +8,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 import { CustomerCreatePopupComponent } from '../customer-create-popup/customer-create-popup.component';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-customer-list',
@@ -27,7 +28,6 @@ export class CustomerListComponent implements OnInit {
 
   ) {}
 
-  customerData: any;
   dataSource = new MatTableDataSource<any>();
 
   displayedColumns: string[] = [
@@ -77,9 +77,8 @@ export class CustomerListComponent implements OnInit {
   }
 
   loadCustomers(): void {
-    this.service.getCustomers().subscribe((data) => {
-      this.customerData = data;
-      this.dataSource = new MatTableDataSource(this.customerData);
+    this.service.getCustomers().subscribe((customerData : Customer[]) => {
+      this.dataSource = new MatTableDataSource(customerData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -89,13 +88,13 @@ export class CustomerListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  deleteCustomer(code: any): void {
+  deleteCustomer(code: string): void {
     this.service.deleteCustomerByCode(code).subscribe(() => {
       this.toastr.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
       this.loadCustomers();
     });
   }
-  detailsCustomer(code: any): void {
+  detailsCustomer(code: string): void {
     this.router.navigateByUrl('/customer/' + code);
   }
 

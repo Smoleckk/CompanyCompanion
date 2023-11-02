@@ -89,7 +89,16 @@ export class UserListComponent implements OnInit {
     });
   }
   
-  updateUser(username: any) {
+
+  removeUser(code: string): void {
+    if (confirm(this.translocoService.translate('toaster.toasterConfirm') + code)) {
+      this.service.deleteUser(code).subscribe(() => {
+        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
+        this.loadUsers();
+      });
+    }
+  }
+  updateUser(username: string) {
     const popup = this.dialog.open(UpdateUserPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
@@ -98,7 +107,6 @@ export class UserListComponent implements OnInit {
         usercode: username,
       },
     });
-
     popup.afterClosed().subscribe(() => {
       this.loadUsers();
     });
@@ -112,13 +120,5 @@ export class UserListComponent implements OnInit {
     popup.afterClosed().subscribe(() => {
       this.loadUsers();
     });
-  }
-  removeUser(code: any): void {
-    if (confirm('Do you want to remove this User: ' + code)) {
-      this.service.deleteUser(code).subscribe(() => {
-        this.toastrService.success(this.translocoService.translate('toaster.toasterDeletedSuccess'));
-        this.loadUsers();
-      });
-    }
   }
 }

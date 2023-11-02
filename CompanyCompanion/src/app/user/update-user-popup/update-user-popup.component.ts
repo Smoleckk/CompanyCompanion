@@ -19,17 +19,20 @@ export class UpdateUserPopupComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     if (this.data.username != null && this.data.username != '') {
-      this.service.getByName(this.data.username).subscribe((res) => {
-        this.editdata = res;
-        this.updateform.setValue({ username: this.editdata.username });
+      this.service.getByName(this.data.username).subscribe((editdata) => {
+        this.updateform.setValue({ username: editdata.username });
       });
     }
   }
 
-  editdata: any;
   fields = [
-    { label: 'Username', controlName: 'username', type: 'text', cssStyle: 'full-width' }
-  ]
+    {
+      label: 'Username',
+      controlName: 'username',
+      type: 'text',
+      cssStyle: 'full-width',
+    },
+  ];
 
   updateform = this.builder.group({
     username: this.builder.control('', Validators.required),
@@ -37,8 +40,6 @@ export class UpdateUserPopupComponent implements OnInit {
 
   updateuser() {
     if (this.updateform.valid) {
-      console.log(this.updateform.value.username, this.updateform.value);
-      
       this.service
         .updateUser(this.updateform.value.username, this.updateform.value)
         .subscribe(() => {

@@ -1,64 +1,76 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiConfig } from '../config/apiConfig';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceCorrectService {
-  // apiUrlCustomer = 'https://localhost:7037/api/Customer/';
-  apiUrlProducts = 'https://localhost:7037/api/ProductMagazines/';
-  apiUrlInvoice = 'https://localhost:7037/api/InvoiceCorrect/';
-
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get(this.apiUrlProducts);
+    return this.http.get(ApiConfig.productMAgazineApiUrl);
   }
   getProductsByCode(code: any) {
-    return this.http.get(this.apiUrlProducts + code);
+    return this.http.get(ApiConfig.productMAgazineApiUrl + code);
   }
   getProductsByName(name: any) {
-    return this.http.get(this.apiUrlProducts + 'name/' + name);
+    return this.http.get(ApiConfig.productMAgazineApiUrl + 'name/' + name);
   }
   updateProductByCode(product: any) {
-    return this.http.put(this.apiUrlProducts, product);
+    return this.http.put(ApiConfig.productMAgazineApiUrl, product);
   }
   createProduct(product: any) {
-    return this.http.post(this.apiUrlProducts, product);
+    return this.http.post(ApiConfig.productMAgazineApiUrl, product);
   }
   deleteProduct(code: any) {
-    return this.http.delete(this.apiUrlProducts + code);
+    return this.http.delete(ApiConfig.productMAgazineApiUrl + code);
   }
 
   getAllInvoice() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header');
+    return this.http.get(
+      ApiConfig.invoiceCorrectApiUrl + 'get-invoices-header'
+    );
   }
   /////// review
   GetAllInvoicePaid() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-paid');
+    return this.http.get(
+      ApiConfig.invoiceCorrectApiUrl + 'get-invoices-header-paid'
+    );
   }
   GetAllInvoiceDelay() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-delay');
+    return this.http.get(
+      ApiConfig.invoiceCorrectApiUrl + 'get-invoices-header-delay'
+    );
   }
   GetAllInvoiceDraft() {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header-draft');
+    return this.http.get(
+      ApiConfig.invoiceCorrectApiUrl + 'get-invoices-header-draft'
+    );
   }
   //////////
   getCustomerInvoices(code: any) {
-    return this.http.get(this.apiUrlInvoice + 'get-invoices-header/' + code);
+    return this.http.get(
+      ApiConfig.invoiceCorrectApiUrl + 'get-invoices-header/' + code
+    );
   }
   getInvByCode(invoiceId: any) {
-    return this.http.get(this.apiUrlInvoice + invoiceId);
+    return this.http.get(ApiConfig.invoiceCorrectApiUrl + invoiceId);
   }
   removeInvoice(invoiceId: any) {
-    return this.http.delete(this.apiUrlInvoice + invoiceId);
+    return this.http.delete(ApiConfig.invoiceCorrectApiUrl + invoiceId);
   }
   saveInvoice(invoiceData: any) {
-    return this.http.post(this.apiUrlInvoice + 'save-invoice', invoiceData);
+    return this.http.post(
+      ApiConfig.invoiceCorrectApiUrl + 'save-invoice',
+      invoiceData
+    );
   }
   editInvoice(invoiceData: any) {
     return this.http.put(
-      this.apiUrlInvoice + 'invoices/' + invoiceData.invoiceCorrectId,
+      ApiConfig.invoiceCorrectApiUrl +
+        'invoices/' +
+        invoiceData.invoiceCorrectId,
       invoiceData
     );
   }

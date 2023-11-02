@@ -20,7 +20,7 @@ export class ProfileDetailsComponent implements OnInit {
   }
 
   pageTitle = 'Profile';
-  profileForm : FormGroup= this.builder.group({
+  profileForm: FormGroup = this.builder.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     name: ['', Validators.required],
@@ -30,15 +30,10 @@ export class ProfileDetailsComponent implements OnInit {
   });
 
   SetEditInfo() {
-    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+    this.profileService.getProfile().subscribe((profile: UserProfile) => {
       if (profile != null) {
         this.profileForm.setValue({
-          username: profile.username,
-          email: profile.email,
-          name: profile.name,
-          nip: profile.nip,
-          city: profile.city,
-          cityCode: profile.cityCode,
+          ...profile,
         });
       }
     });
@@ -46,14 +41,14 @@ export class ProfileDetailsComponent implements OnInit {
 
   updateTemplateFirst() {
     if (confirm('Do you want to change your template?')) {
-      this.profileService.updateProfile('first').subscribe((res) => {
+      this.profileService.updateProfile('first').subscribe(() => {
         this.toastrService.success('Successfully updated template');
       });
     }
   }
   updateTemplateSecond() {
     if (confirm('Do you want to change your template?')) {
-      this.profileService.updateProfile('second').subscribe((res) => {
+      this.profileService.updateProfile('second').subscribe(() => {
         this.toastrService.success('Successfully updated template');
       });
     }

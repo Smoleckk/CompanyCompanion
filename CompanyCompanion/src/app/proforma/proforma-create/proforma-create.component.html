@@ -3,7 +3,7 @@
   </app-breadcrumb>
   <div>
     <mat-card-content style="padding: 10px 30px">
-      <form [formGroup]="proformaForm" (ngSubmit)="SaveProforma()">
+      <form [formGroup]="proformaForm" (ngSubmit)="saveProforma()">
         <div style="width: 100%">
           <app-form-field-select *ngIf="!editProformaId" [form]="proformaForm" [label]="t('proformaForm.isGenerated')"
             controlName="isGenerated" cssClass="full-width" [items]="issuedStatus"></app-form-field-select>

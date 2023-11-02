@@ -1,14 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
-import { ToastrService } from 'ngx-toastr';
 import { ProformaService } from '../../service/proforma.service';
 
 @Component({
@@ -26,16 +18,13 @@ export class ProformaPrintPopupComponent {
   public totalBruttoSum: number = 0;
 
   constructor(
-    private builder: FormBuilder,
     private service: ProformaService,
-    private toastr: ToastrService,
-    private dialogRef: MatDialogRef<ProformaPrintPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
     if (this.data.code) {
-      this.service.GetProformaHeaderByCode(this.data.code).subscribe((res) => {
+      this.service.getProformaHeaderByCode(this.data.code).subscribe((res) => {
         this.editdata = res;
 
         this.groupedProducts = this.editdata.products.reduce(

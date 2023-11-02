@@ -7,6 +7,7 @@ import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProformaService } from 'src/app/service/proforma.service';
 import { ProformaPrintPopupComponent } from '../proforma-print-popup/proforma-print-popup.component';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-proforma-list',
   templateUrl: './proforma-list.component.html',
@@ -19,9 +20,9 @@ export class ProformaListComponent implements OnInit {
     private service: ProformaService,
     private toastr: ToastrService,
     private router: Router,
+    private readonly translocoService: TranslocoService,
     private dialog: MatDialog
   ) {}
-  proformaHeader: any;
   dataSource: any;
 
   displayedColumns: string[] = [
@@ -32,43 +33,43 @@ export class ProformaListComponent implements OnInit {
     'total',
     'action',
   ];
-  columns: any = [
+  
+  columns = [
     {
       matColumnDef: 'proformaNo',
-      matHeaderCellDef: 'Proforma number',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.invoiceNo'),
       matCellDef: 'proformaNo',
     },
     {
       matColumnDef: 'customerName',
-      matHeaderCellDef: 'Customer',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.customerName'),
       matCellDef: 'customerName',
     },
     {
+      matColumnDef: 'total',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.total'),
+      matCellDef: 'total',
+    },
+    {
       matColumnDef: 'dueDate',
-      matHeaderCellDef: 'Due Date',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dueDate'),
       matCellDef: 'dueDate',
     },
     {
       matColumnDef: 'dateIssued',
-      matHeaderCellDef: 'Issued date',
+      matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.dateIssued'),
       matCellDef: 'dateIssued',
-    },
-    {
-      matColumnDef: 'total',
-      matHeaderCellDef: 'Brutto total',
-      matCellDef: 'total',
     },
   ];
   actionButtons = [
-    { color: 'primary', icon: 'edit', function: (element:any) => this.ProformaEdit(element.proformaId) },
-    { color: 'primary', icon: 'print', function: (element:any) => this.ProformaDownload(element.proformaId) },
-    { color: 'warn', icon: 'delete', function: (element:any) => this.ProformaRemove(element.proformaId) },
-    { color: 'primary', icon: 'bookmarks', function: (element:any) => this.GenerateInvoiceFormProforma(element.proformaId) }
+    { color: 'primary', icon: 'edit', function: (element:any) => this.proformaEdit(element.proformaId) },
+    { color: 'primary', icon: 'print', function: (element:any) => this.proformaDownload(element.proformaId) },
+    { color: 'warn', icon: 'delete', function: (element:any) => this.proformaRemove(element.proformaId) },
+    { color: 'primary', icon: 'bookmarks', function: (element:any) => this.generateInvoiceFormProforma(element.proformaId) }
   ];
 
   ngOnInit(): void {
-    this.LoadProforma();
-    console.log(this.LoadProforma());
+    this.loadProforma();
     
     this.onResize();
     window.addEventListener('resize', () => {
@@ -94,34 +95,32 @@ export class ProformaListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  LoadProforma() {
-    this.service.GetAllProforma().subscribe((res) => {
-      console.log(res);
-      this.proformaHeader = res;
-      this.dataSource = new MatTableDataSource(this.proformaHeader);
+  loadProforma() {
+    this.service.getAllProforma().subscribe((proformas) => {
+      this.dataSource = new MatTableDataSource(proformas);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
-  ProformaRemove(proformaId: any) {
+  proformaRemove(proformaId: string) {
     if (confirm('Do you want to remove this Proforma :' + proformaId)) {
-      this.service.RemoveProforma(proformaId).subscribe(() => {
+      this.service.removeProforma(proformaId).subscribe(() => {
         this.toastr.success('Deleted Successfully', 'Remove Proforma');
-        this.LoadProforma();
+        this.loadProforma();
       });
     }
   }
-  ProformaEdit(proformaId: any) {
+  proformaEdit(proformaId: string) {
     this.router.navigateByUrl('/edit-proforma/' + proformaId);
   }
-  GenerateInvoiceFormProforma(proformaId: any) {
+  generateInvoiceFormProforma(proformaId: string) {
     this.router.navigateByUrl('/invoice-from-proforma/' + proformaId);
   }
   addProforma(): void {
     this.router.navigateByUrl(`/create-proforma`);
   }
-  ProformaDownload(code: any) {
-    const popup = this.dialog.open(ProformaPrintPopupComponent, {
+  proformaDownload(code: string) {
+    this.dialog.open(ProformaPrintPopupComponent, {
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '500ms',
       width: '50%',

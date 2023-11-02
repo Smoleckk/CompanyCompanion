@@ -159,7 +159,7 @@ export class CreateInvoiceComponent implements OnInit {
 
   SetEditInfoProforma(proformaId: string): void {
     this.serviceProforma
-      .GetProformaHeaderByCode(proformaId)
+      .getProformaHeaderByCode(proformaId)
       .subscribe((editData: any) => {
         if (editData != null) {
           this.customerFullName = this.formatCustomerFullName(editData);
@@ -180,19 +180,17 @@ export class CreateInvoiceComponent implements OnInit {
     return this.invoiceForm.controls['products'] as FormArray;
   }
   getProfile() {
-    this.profileService.getProfile().subscribe((profile:UserProfile) => {
+    this.profileService.getProfile().subscribe((profile: UserProfile) => {
       if (profile != null) {
         this.invoiceForm.get('sellerIdName')?.patchValue(profile.name);
         this.invoiceForm.get('sellerNip')?.patchValue(profile.nip);
-        this.invoiceForm
-          .get('sellerDeliveryAddress')
-          ?.patchValue(profile.city);
+        this.invoiceForm.get('sellerDeliveryAddress')?.patchValue(profile.city);
         this.invoiceForm.get('sellerCityCode')?.patchValue(profile.cityCode);
       }
     });
   }
 
-  saveInvoice():void {
+  saveInvoice(): void {
     this.invoiceForm.markAllAsTouched();
     if (this.invoiceForm.valid) {
       if (this.invoiceFromProformaId != null) {
@@ -230,7 +228,7 @@ export class CreateInvoiceComponent implements OnInit {
     }
   }
 
-  getCustomers():void {
+  getCustomers(): void {
     this.customerService.getCustomers().subscribe((res) => {
       this.getCustomer = res;
     });
@@ -258,7 +256,7 @@ export class CreateInvoiceComponent implements OnInit {
         }
       });
   }
-  showInvoiceNumber():void {
+  showInvoiceNumber(): void {
     this.isGeneratedShow = this.invoiceForm.get('isGenerated')
       ?.value as boolean;
   }
@@ -292,7 +290,7 @@ export class CreateInvoiceComponent implements OnInit {
     this.breakpoint9 = windowWidth <= 850 ? 3 : 9;
     this.colspan3 = windowWidth <= 850 ? 2 : 3;
   }
-  makePdf():void {
+  makePdf(): void {
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFont('helvetica');
     pdf.setFontSize(9);

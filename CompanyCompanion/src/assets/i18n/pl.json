@@ -116,7 +116,7 @@
 "invoiceTableHeader": {
   "header": "Faktury ",
   "searchPlaceholder": "Np. 7152652718",
-  "invoiceNo": "Numer faktury",
+  "invoiceNo": "Nr",
   "customerName": "Klient",
   "total": "Suma brutto",
   "dueDate": "Termin płatności",

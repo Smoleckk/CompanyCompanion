@@ -118,7 +118,7 @@
   "invoiceTableHeader": {
     "header": "Invoices ",
     "searchPlaceholder": "Ex. 7152652718",
-    "invoiceNo": "Invoice number",
+    "invoiceNo": "No",
     "customerName": "Customer",
     "total": "Brutto total",
     "dueDate": "Due date",

@@ -3,31 +3,30 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { Observable } from 'rxjs';
 import { ProductMagazine } from '../models/productMagazine';
+import { ApiConfig } from '../config/apiConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  apiUrlProducts = 'https://localhost:7037/api/ProductMagazines/';
-
   constructor(private http: HttpClient) {}
 
   getProducts():Observable<ProductMagazine[]> {
-    return this.http.get<ProductMagazine[]>(this.apiUrlProducts);
+    return this.http.get<ProductMagazine[]>(ApiConfig.productMAgazineApiUrl);
   }
   getProductByCode(code: string):Observable<ProductMagazine> {
-    return this.http.get<ProductMagazine>(this.apiUrlProducts + code);
+    return this.http.get<ProductMagazine>(ApiConfig.productMAgazineApiUrl + code);
   }
   getProductsByName(name: string):Observable<ProductMagazine[]> {
-    return this.http.get<ProductMagazine[]>(this.apiUrlProducts + 'name/' + name);
+    return this.http.get<ProductMagazine[]>(ApiConfig.productMAgazineApiUrl + 'name/' + name);
   }
   updateProductByCode(product: ProductMagazine):Observable<ProductMagazine> {
-    return this.http.put<ProductMagazine>(this.apiUrlProducts, product);
+    return this.http.put<ProductMagazine>(ApiConfig.productMAgazineApiUrl, product);
   }
   createProduct(product: ProductMagazine):Observable<ProductMagazine>  {
-    return this.http.post<ProductMagazine>(this.apiUrlProducts, product);
+    return this.http.post<ProductMagazine>(ApiConfig.productMAgazineApiUrl, product);
   }
   deleteProduct(code: string):Observable<ProductMagazine>  {
-    return this.http.delete<ProductMagazine>(this.apiUrlProducts + code);
+    return this.http.delete<ProductMagazine>(ApiConfig.productMAgazineApiUrl + code);
   }
 }

@@ -29,7 +29,6 @@ export class ProformaCreateComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private customerService: CustomerService,
-    private invoiceService: InvoiceService,
     private serviceProforma: ProformaService,
     private router: Router,
     private toastr: ToastrService,
@@ -137,7 +136,7 @@ export class ProformaCreateComponent implements OnInit {
 
   SetEditInfo(invoiceIdCode: string): void {
     this.serviceProforma
-      .GetProformaHeaderByCode(invoiceIdCode)
+      .getProformaHeaderByCode(invoiceIdCode)
       .subscribe((editData: ProformaFormValue) => {
         if (editData != null) {
           this.proformaNoIsEdit = editData.proformaNo;
@@ -156,18 +155,18 @@ export class ProformaCreateComponent implements OnInit {
       });
   }
 
-  SaveProforma(): void {
+  saveProforma(): void {
     if (this.proformaForm.valid) {
       if (this.isEdit) {
         this.serviceProforma
-          .EditProforma(this.proformaForm.getRawValue())
+          .editProforma(this.proformaForm.getRawValue())
           .subscribe(() => {
             this.translocoService.translate('toaster.toasterUpdateSuccess');
             this.router.navigate(['/proforma-list']);
           });
       } else {
         this.serviceProforma
-          .SaveProforma(this.proformaForm.getRawValue())
+          .saveProforma(this.proformaForm.getRawValue())
           .subscribe(() => {
             this.translocoService.translate('toaster.toasterCreatedSuccess');
             this.router.navigate(['/proforma-list']);
@@ -187,7 +186,7 @@ export class ProformaCreateComponent implements OnInit {
 
   SetEditInfoProforma(proformaId: string) {
     this.serviceProforma
-      .GetProformaHeaderByCode(proformaId)
+      .getProformaHeaderByCode(proformaId)
       .subscribe((editData: ProformaFormValue) => {
         if (editData != null) {
           this.customerFullName = this.formatCustomerFullName(editData);

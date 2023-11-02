@@ -50,7 +50,7 @@ export class InvoiceTableComponent {
     'total',
     'action',
   ];
-  columns: any = [
+  columns = [
     {
       matColumnDef: 'invoiceNo',
       matHeaderCellDef: this.translocoService.translate('invoiceTableHeader.invoiceNo'),

@@ -3,18 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserLogin } from '../models/userLogin';
 import { UserRegister } from '../models/userRegister';
-import { User } from '../models/user';
-
+import { ApiConfig } from '../config/apiConfig';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = 'https://localhost:7037/api/Auth/';
-
   constructor(private http: HttpClient) {}
 
   proceedLogin(usercred: UserLogin): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'login', usercred);
+    return this.http.post<any>(ApiConfig.authApiUrl + 'login', usercred);
   }
 
   isLoggedIn(): boolean {
@@ -40,15 +37,15 @@ export class AuthService {
   }
 
   proceedRegister(usercred: UserRegister): Observable<UserRegister> {
-    return this.http.post<UserRegister>(this.apiUrl + 'register', usercred);
+    return this.http.post<UserRegister>(ApiConfig.authApiUrl + 'register', usercred);
   }
 ///// depreceted
   getByName(username: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'get-by-username', username);
+    return this.http.post<any>(ApiConfig.authApiUrl + 'get-by-username', username);
   }
 
   updateUser(username: any, inputdata: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl + username, inputdata);
+    return this.http.put<any>(ApiConfig.authApiUrl + username, inputdata);
   }
   ///////
 }
