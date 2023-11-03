@@ -115,6 +115,8 @@ export class Registerv2Component {
     }
   }
   getRegon() {
+    console.log("regon");
+    
     this.customerService.getRegon(this.createform.value.nip).subscribe(
       (data) => {
         this.createform.patchValue({

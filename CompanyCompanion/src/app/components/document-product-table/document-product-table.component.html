@@ -105,4 +105,21 @@
                 cssClass="full-width"></app-form-field>
         </mat-grid-tile>
     </mat-grid-list>
+    <!-- <mat-grid-list cols="4" (window:resize)="onResize($event)" rowHeight="210px">
+        <mat-grid-tile colspan="1" [ngStyle]="{background:'lightgreen'}">1</mat-grid-tile>
+<mat-grid-tile colspan="3" rowHeight="100px">
+    <mat-grid-list [cols]="breakpoint3" (window:resize)="onResize($event)" rowHeight="70px"
+        [ngStyle]="{width:'100%',height:'100%'}">
+        <mat-grid-tile colspan="1"  [ngStyle]="{background:'lightgreen'}"> <app-form-field [form]="invoiceForm"
+                [label]="t('invoiceForm.netTotal')" controlName="netTotal"
+                cssClass="full-width"></app-form-field></mat-grid-tile>
+        <mat-grid-tile colspan="1"  [ngStyle]="{background:'lightblue'}"><app-form-field [form]="invoiceForm"
+                [label]="t('invoiceForm.tax')" controlName="tax"
+                cssClass="full-width"></app-form-field></mat-grid-tile>
+        <mat-grid-tile colspan="1"  [ngStyle]="{background:'lightblue'}"><app-form-field [form]="invoiceForm"
+                [label]="t('invoiceForm.total')" controlName="total"
+                cssClass="full-width"></app-form-field></mat-grid-tile>
+    </mat-grid-list>
+</mat-grid-tile>
+</mat-grid-list> -->
 </div>

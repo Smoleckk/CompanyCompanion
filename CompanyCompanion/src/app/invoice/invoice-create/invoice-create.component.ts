@@ -80,26 +80,26 @@ export class CreateInvoiceComponent implements OnInit {
   paymentStatus = [
     {
       name: this.translocoService.translate('invoiceFormSelect.paid'),
-      value: 'Paid',
+      value: this.translocoService.translate('invoiceFormSelect.paid'),
     },
     {
       name: this.translocoService.translate('invoiceFormSelect.unpaid'),
-      value: 'Unpaid',
+      value: this.translocoService.translate('invoiceFormSelect.unpaid'),
     },
   ];
 
   paymentType = [
     {
       name: this.translocoService.translate('invoiceFormSelect.cash'),
-      value: 'Cash',
+      value: this.translocoService.translate('invoiceFormSelect.cash'),
     },
     {
       name: this.translocoService.translate('invoiceFormSelect.blik'),
-      value: 'Blik',
+      value:  this.translocoService.translate('invoiceFormSelect.blik'),
     },
     {
       name: this.translocoService.translate('invoiceFormSelect.bankTransfer'),
-      value: 'Bank transfer',
+      value: this.translocoService.translate('invoiceFormSelect.bankTransfer'),
     },
   ];
   getCustomer: Customer[];

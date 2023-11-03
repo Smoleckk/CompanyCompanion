@@ -33,14 +33,14 @@ namespace CompanyCompanionBackend.Services.InvoiceIService
         public async Task<ServiceResponse<List<Invoice>>> GetInvoicesHeaderPaid(Company company)
         {
             var response = new ServiceResponse<List<Invoice>>();
-            response.Data = company.Invoices.Where(e => e.IsGenerated == true && e.PaymentStatus == "Paid").ToList(); ;
+            response.Data = company.Invoices.Where(e => e.IsGenerated == true && (e.PaymentStatus == "Paid" || e.PaymentStatus == "Opłacona")).ToList(); ;
             return response;
 
         }
         public async Task<ServiceResponse<List<Invoice>>> GetInvoicesHeaderDelay(Company company)
         {
             var response = new ServiceResponse<List<Invoice>>();
-            response.Data = company.Invoices.Where(e => DateTime.Parse(e.DueDate) < DateTime.Today && e.PaymentStatus == "Unpaid" && e.IsGenerated == true).ToList();
+            response.Data = company.Invoices.Where(e => DateTime.Parse(e.DueDate) < DateTime.Today && (e.PaymentStatus == "Unpaid"|| e.PaymentStatus == "Nieopłacona") && e.IsGenerated == true).ToList();
             return response;
 
         }

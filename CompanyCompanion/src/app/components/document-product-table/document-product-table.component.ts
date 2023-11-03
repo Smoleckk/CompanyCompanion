@@ -63,8 +63,10 @@ export class DocumentProductTableComponent implements OnInit {
       unit: [],
       salesPrice: [],
       vat: [],
-      bruttoPrice: { value: '', disabled: true },
-      nettoPrice: { value: '', disabled: true },
+      // bruttoPrice: { value: '', disabled: true },
+      // nettoPrice: { value: '', disabled: true },
+      bruttoPrice: [],
+      nettoPrice: [],
     });
     this.products.push(detailForm);
   }

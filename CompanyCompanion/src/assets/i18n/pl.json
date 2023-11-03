@@ -18,7 +18,9 @@
     "toasterCreatedSuccess": "Utworzono pomyślnie",
     "toasterDeletedSuccess": "Usunięto pomyślnie",
     "toasterUpdateSuccess": "Zaktualizowano pomyślnie",
-    "toasterWrongInputData": "Proszę sprawdź dane wejściowe"
+    "toasterWrongInputData": "Proszę sprawdź dane wejściowe",
+    "changeLanguageSuccess": "Udało sie poprawnie zmienic jezyk aplikacji "
+
   },
   "welcome": {
     "title": "Fakturio",
@@ -123,7 +125,7 @@
     "dateIssued": "Data wystawienia"
   },
   "invoiceForm": {
-    "name": "Nazwa",
+    "name": "Nazwa towaru lub uslugi",
     "quantity": "Ilość",
     "unit": "Jednostka",
     "price": "Cena",
@@ -195,10 +197,20 @@
     "dashboardSubTitle": "Czysta tablica kontrolna, na której znajdziesz podsumowanie najważniejszych działań w swojej firmie. Szybko i łatwo sprawdzisz status swoich faktur, proform i bieżący stan konta."
   },
 
+  "printInvoice": {
+    "seller": "Sprzedawca",
+    "customer": "Nabywca",
+    "invoice": "Faktura",
+    "total": "Razem",
+    "inLetters": "Słownie",
+    "signSeller": "Podpis osoby upowaznionej do wystawienia",
+    "signCustomer": "Podpis osoby upowaznionej do wystawienia"
+  },
   "buttons": {
     "save": "Zapisz",
     "update": "Aktualizuj",
-    "add": "Dodaj"
+    "add": "Dodaj",
+    "download": "Pobierz"
   },
   "sidebar": {
     "invoices": "Faktury",

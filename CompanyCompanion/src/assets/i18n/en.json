@@ -18,7 +18,8 @@
     "toasterCreatedSuccess": "Created successfully",
     "toasterDeletedSuccess": "Deleted successfully",
     "toasterUpdateSuccess": "Updated successfully",
-    "toasterWrongInputData": "Please check input data"
+    "toasterWrongInputData": "Please check input data",
+    "changeLanguageSuccess": "Successfully change language "
   },
   "welcome": {
     "title": "Fakturio",
@@ -124,7 +125,7 @@
     "dateIssued": "Issued date"
   },
   "invoiceForm": {
-    "name": "Name",
+    "name": "Name of product or service",
     "quantity": "Quantity",
     "unit": "Unit",
     "price": "Price",
@@ -194,11 +195,20 @@
     "dashboardTitle": "Dashboard",
     "dashboardSubTitle": "A clear control panel where you will find a summary of your most important business activities. Quickly and easily check the status of your invoices, proformas, and current balance."
   },
-
+  "printInvoice": {
+    "seller": "Seller",
+    "customer": "Customer",
+    "invoice": "Invoice",
+    "total": "Total",
+    "inLetters": "In words",
+    "signSeller": "Signature of seller",
+    "signCustomer": "Signature of customer"
+},
   "buttons": {
     "save": "Save",
     "update": "Update",
-    "add": "Add"
+    "add": "Add",
+    "download": "Download"
   },
   "sidebar": {
     "invoices": "Invoices",

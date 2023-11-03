@@ -10,6 +10,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from '../../service/invoice.service';
+import { ProfileService } from 'src/app/service/profile.service';
+import { UserProfile } from 'src/app/models/userProfile';
+import { Invoice } from 'src/app/models/invoice';
 
 @Component({
   selector: 'app-invoice-print-popup',
@@ -18,7 +21,8 @@ import { InvoiceService } from '../../service/invoice.service';
 })
 export class InvoicePrintPopupComponent implements OnInit {
   @ViewChild('content', { static: false }) private content!: ElementRef;
-  public editdata: any;
+  public editdata: Invoice;
+  public profileInfo: UserProfile;
   public groupedProducts: any;
   public arrayGroupedProducts: any;
   public totalNettoSum: number = 0;
@@ -26,10 +30,8 @@ export class InvoicePrintPopupComponent implements OnInit {
   public totalBruttoSum: number = 0;
 
   constructor(
-    private builder: FormBuilder,
     private service: InvoiceService,
-    private toastr: ToastrService,
-    private dialogRef: MatDialogRef<InvoicePrintPopupComponent>,
+    private profileService: ProfileService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -84,6 +86,7 @@ export class InvoicePrintPopupComponent implements OnInit {
       });
     }
   }
+
   public makePdf(): void {
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.setFont('helvetica');

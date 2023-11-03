@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-language-selector',
@@ -7,16 +9,18 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./language-selector.component.scss'],
 })
 export class LanguageSelectorComponent {
-  constructor(private translocoService: TranslocoService) {}
+  constructor(
+    private translocoService: TranslocoService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
   public languagesList: Array<Record<'code' | 'name' | 'shorthand', string>> = [
     {
-      // imgUrl: '/assets/images/English.png',
       code: 'en',
       name: 'English',
       shorthand: 'ENG',
     },
     {
-      // imgUrl: '/assets/images/Deutsch.png',
       code: 'pl',
       name: 'Polish',
       shorthand: 'PL',
@@ -24,9 +28,11 @@ export class LanguageSelectorComponent {
   ];
   public changeLanguage(languageCode: string): void {
     this.translocoService.setActiveLang(languageCode);
-    // window.location.reload();
-    // languageCode === 'fa'
-    //   ? (document.body.style.direction = 'rtl')
-    //   : (document.body.style.direction = 'ltr');
+    this.router.navigate(['/']);
+    this.toastr.success(
+      this.translocoService.translate(
+        'toaster.changeLanguageSuccess' + " : " + languageCode.toUpperCase()
+      )
+    );
   }
 }

@@ -27,5 +27,5 @@ export interface Invoice {
   createUser: string;
   createDate: string;
   isGenerated: boolean;
-  products: Product[]; // Możesz dostosować typ dla właściwości "products" do rzeczywistych danych produktów
+  products: Product[];
 }
