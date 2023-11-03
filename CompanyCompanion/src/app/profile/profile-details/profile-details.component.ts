@@ -27,6 +27,7 @@ export class ProfileDetailsComponent implements OnInit {
     nip: ['', Validators.required],
     city: ['', Validators.required],
     cityCode: ['', Validators.required],
+    template: ['first', Validators.required],
   });
 
   SetEditInfo() {

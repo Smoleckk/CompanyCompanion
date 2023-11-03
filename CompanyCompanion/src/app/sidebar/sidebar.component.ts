@@ -7,6 +7,8 @@ import { AuthService } from '../service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfileService } from '../service/profile.service';
 import { UserProfile } from '../models/userProfile';
+import { TranslocoService } from '@ngneat/transloco';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -29,15 +31,27 @@ export class SidebarComponent {
     private breakpointObserver: BreakpointObserver,
     private route: Router,
     private authService: AuthService,
-    private cookieService: CookieService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private translocoService: TranslocoService,
+    private router: Router,
+    private toastr: ToastrService,
+    private cookieService: CookieService
   ) {
-    this.getUsername();
 
-    if (this.getCookie() == 'false') {
+    if (this.getCookieTheme() == 'false') {
       this.isDarkTheme = false;
     } else {
       this.isDarkTheme = true;
+    }
+    if (this.getCookieLanguage() == 'en') {
+      this.translocoService.setActiveLang(this.getCookieLanguage());
+    }
+    if (this.getCookieLanguage() == 'pl') {
+      this.translocoService.setActiveLang(this.getCookieLanguage());
+    } else {
+      this.cookieService.set('language', 'en', 365);
+      this.translocoService.setActiveLang('en');
+      // this.router.navigate(['/']);
     }
   }
 
@@ -57,6 +71,18 @@ export class SidebarComponent {
       this.roleAdmin = false;
     }
   }
+  sidebarOptions = [
+    { routerLink: 'invoice-list', icon: 'insert_drive_file', translationKey: 'sidebar.invoices' },
+    { routerLink: 'proforma-list', icon: 'description', translationKey: 'sidebar.proforma' },
+    { routerLink: 'invoice-correct-list', icon: 'summarize', translationKey: 'sidebar.corrections' },
+    { routerLink: 'product-list', icon: 'build', translationKey: 'sidebar.products' },
+    { routerLink: 'customer-list', icon: 'perm_identity', translationKey: 'sidebar.customers' },
+    { routerLink: 'user-list', icon: 'supervisor_account', translationKey: 'sidebar.co-workers' },
+    { routerLink: 'invoice-review', icon: 'file_copy', translationKey: 'sidebar.review' },
+    { routerLink: 'dashboard', icon: 'dashboard', translationKey: 'sidebar.dashboard' },
+  ];
+
+  
   hideMenu: boolean = true;
 
   HideMenu() {
@@ -68,6 +94,8 @@ export class SidebarComponent {
   canActivate() {
     if (this.authService.haveAccess()) {
       this.roleAdmin = true;
+    // this.getUsername();
+
     } else {
       this.roleAdmin = false;
     }
@@ -75,11 +103,13 @@ export class SidebarComponent {
 
   toogleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
-    this.cookieService.set('isDarkTheme', this.isDarkTheme.toString());
+    this.cookieService.set('isDarkTheme', this.isDarkTheme.toString(), 365);
   }
-  getCookie() {
-    const isDarkThemeCookie = this.cookieService.get('isDarkTheme');
-    return isDarkThemeCookie;
+  getCookieTheme() {
+    return this.cookieService.get('isDarkTheme');
+  }
+  getCookieLanguage() {
+    return this.cookieService.get('language');
   }
 
   getUsername() {

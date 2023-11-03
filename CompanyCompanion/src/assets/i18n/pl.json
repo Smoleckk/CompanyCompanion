@@ -20,7 +20,6 @@
     "toasterUpdateSuccess": "Zaktualizowano pomyślnie",
     "toasterWrongInputData": "Proszę sprawdź dane wejściowe",
     "changeLanguageSuccess": "Udało sie poprawnie zmienic jezyk aplikacji "
-
   },
   "welcome": {
     "title": "Fakturio",
@@ -219,7 +218,20 @@
     "products": "Produkty",
     "customers": "Klienci",
     "co-workers": "Współpracownicy",
-    "review": "Recenzja",
-    "dashboard": "Pulpit"
+    "review": "Przegląd",
+    "dashboard": "Panel",
+    "welcome": "Cześć",
+    "language": "Zmień język",
+    "about": "O nas",
+    "profile": "Profil",
+    "logout": "Wyloguj się",
+    "home": "STRONA GŁÓWNA",
+    "login": "ZALOGUJ SIĘ",
+    "register": "ZAREJESTRUJ SIĘ"
+  },
+
+  "language": {
+    "english": "Angielski",
+    "polish": "Polski"
   }
 }

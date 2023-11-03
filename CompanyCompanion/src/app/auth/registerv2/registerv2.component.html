@@ -13,7 +13,6 @@
         <div style="width:100%;
                 background-image: linear-gradient(to right, #617055, #116444);
                 margin-bottom: 20px;
-                border-radius: 5px;
               ">
             <h1 style="color: #fff; font-size: 40px; font-weight: 500; padding: 10px" *transloco="let t">
                 {{ t("register.title") }}
@@ -59,7 +58,8 @@
             <app-form-field [form]="createform" [label]="t('register.cityCode')" controlName="cityCode"
                 cssClass="full-width" type="text"></app-form-field>
             <div class="form-submit">
-                <button mat-raised-button color="primary">{{ t("register.registerButton") }}</button>
+                <button class="hero-btn">{{t("register.registerButton")}}</button>
+                <!-- <button mat-raised-button color="primary">{{ t("register.registerButton") }}</button> -->
             </div>
         </form>
     </mat-card>

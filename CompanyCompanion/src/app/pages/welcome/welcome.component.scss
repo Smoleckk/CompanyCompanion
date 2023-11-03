@@ -18,30 +18,7 @@
   }
 }
 
-.hero-btn {
-  display: inline-block;
-  text-decoration: none;
-  color: black;
-  border: 1px solid black;
-  padding: 12px 34px;
-  font-style: 13px;
-  background: transparent;
-  position: relative;
-  cursor: pointer;
-}
 
-.hero-btn:hover {
-  border: 1px solid #116444;
-  background: #116444;
-  transition: 1s;
-}
-
-// color:#116444;
-@media (max-width: 700px) {
-  .text-box h1 {
-    font-size: 20px;
-  }
-}
 
 // course
 

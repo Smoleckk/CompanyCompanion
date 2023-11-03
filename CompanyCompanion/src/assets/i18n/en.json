@@ -203,7 +203,7 @@
     "inLetters": "In words",
     "signSeller": "Signature of seller",
     "signCustomer": "Signature of customer"
-},
+  },
   "buttons": {
     "save": "Save",
     "update": "Update",
@@ -218,6 +218,18 @@
     "customers": "Customers",
     "co-workers": "Co-workers",
     "review": "Review",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "welcome": "Hi",
+    "language": "Language",
+    "about": "About",
+    "profile": "Profile",
+    "logout": "Logout",
+    "home": "HOME",
+    "login": "LOGIN",
+    "register": "REGISTER"
+  },
+  "language": {
+    "english": "English",
+    "polish": "Polish"
   }
 }

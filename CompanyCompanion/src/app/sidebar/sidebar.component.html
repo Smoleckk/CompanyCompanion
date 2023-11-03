@@ -3,180 +3,81 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar style="cursor: pointer" routerLink="">
-      <h1 style="margin: 40px 0; font-weight: 700">Fakturio</h1>
+      <h1 style="margin: 40px 0; font-weight: 700;">Fakturio</h1>
     </mat-toolbar>
 
     <mat-nav-list *transloco="let t">
-      <a mat-list-item routerLink="invoice-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>insert_drive_file</mat-icon>
-            <p>{{ t("sidebar.invoices") }}</p>
+      <ng-container *ngFor="let item of sidebarOptions">
+        <a mat-list-item [routerLink]="item.routerLink" routerLinkActive="active" ariaCurrentWhenActive="page"
+          class="nav-list-elem">
+          <div>
+            <div class="nav-list-elem-middle">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <p>{{ t(item.translationKey) }}</p>
+            </div>
           </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="proforma-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>description</mat-icon>
-            <p>{{ t("sidebar.proforma") }}</p>
-          </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="invoice-correct-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>summarize</mat-icon>
-            <p>{{ t("sidebar.corrections") }}</p>
-          </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="product-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>build</mat-icon>
-            <p>{{ t("sidebar.products") }}</p>
-          </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="customer-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>perm_identity</mat-icon>
-            <p>{{ t("sidebar.customers") }}</p>
-          </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="user-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>supervisor_account</mat-icon>
-            <p>{{ t("sidebar.co-workers") }}</p>
-          </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="invoice-review" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>file_copy</mat-icon>
-            <p>{{ t("sidebar.review") }}</p>
-          </div>
-        </div>
-      </a>
-      <a mat-list-item routerLink="dashboard" routerLinkActive="active" ariaCurrentWhenActive="page"
-        class="nav-list-elem">
-        <div>
-          <div class="nav-list-elem-middle">
-            <mat-icon>dashboard</mat-icon>
-            <p>{{ t("sidebar.dashboard") }}</p>
-          </div>
-        </div>
-      </a>
+        </a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content *transloco="let t">
     <mat-toolbar color="primary">
-      <!-- *ngIf="isHandset$ | async" -->
-
       <mat-icon (click)="drawer.toggle()">menu</mat-icon>
       <span class="example-spacer"></span>
+
       <app-language-selector style="margin-right: 20px;"></app-language-selector>
 
       <mat-icon (click)="toogleTheme()" *ngIf="isDarkTheme">dark_mode</mat-icon>
       <mat-icon (click)="toogleTheme()" *ngIf="!isDarkTheme">light_mode</mat-icon>
-      <a [matMenuTriggerFor]="menu" style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          margin-left: 20px;
-        ">
+      <a [matMenuTriggerFor]="menu" class="hi-rocket">
         <mat-icon>rocket_launch</mat-icon>
 
-        <p style="
-            font-size: 18px;
-            font-weight: 400;
-            margin: 0;
-            padding: 0 5px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          ">
-          Hi, {{ username }}
+        <p class="hi">
+          {{ t("sidebar.welcome") }}
+          , {{ username }}
         </p>
       </a>
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/about" class="example-icon favorite-icon">
           <mat-icon>question_mark</mat-icon>
-          <span>About</span>
+          <span>{{ t("sidebar.about") }}</span>
         </button>
         <button mat-menu-item routerLink="/profile" class="example-icon favorite-icon">
           <mat-icon>manage_accounts</mat-icon>
-          <span>Profile</span>
+          <span>{{ t("sidebar.profile") }}</span>
         </button>
         <button mat-menu-item (click)="clearLocal()" routerLink="/welcome" class="example-icon">
           <mat-icon>logout</mat-icon>
-          <span>Logout</span>
+          <span>{{ t("sidebar.logout") }}</span>
         </button>
       </mat-menu>
-      <!-- ////////////// -->
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <!-- <div style="background-color: red; margin:0;position:absolute;width:100%;bottom:0;">
-      <p>asdasd</p>
-    </div> -->
-    <!-- <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="footer-col">
-            <h4>company</h4>
-            <ul>
-              <li><a href="#">about us</a></li>
-              <li><a href="#">our services</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>get help</h4>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">shipping</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>follow us</h4>
-            <div class="social-links">
-              <a href="#"><mat-icon>rocket_launch</mat-icon></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-   </footer> -->
+
   </mat-sidenav-content>
 </mat-sidenav-container>
 
 <mat-sidenav-container *ngIf="!displaymenu" class="sidenav-container mat-app-background">
-  <section class="">
+  <section class="" *transloco="let t">
     <nav style="background-image: linear-gradient(to right, #617055, #116444)">
-      <a href="welcome">Fakturio</a>
+      <!-- <a href="welcome">Fakturio</a> -->
+      <a href="/welcome" mat-button>
+        <h1 style="color:#fff">Fakturio</h1>
+      </a>
       <div class="nav-links" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
         <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
           <mat-icon class="hide-icon fa fa-times">power_settings_new</mat-icon>
         </button>
         <ul>
-          <app-language-selector></app-language-selector>
-          <li><a href="/welcome">HOME</a></li>
-          <li><a href="/login">LOGIN</a></li>
-          <li><a href="/register">REGISTER</a></li>
+          <app-language-selector ></app-language-selector>
+          <li><a href="/login" mat-button>
+              <mat-icon>face</mat-icon>
+              {{ t("sidebar.login") }}
+            </a></li>
+          <li><a href="/register" mat-button>
+              <mat-icon>how_to_reg</mat-icon>
+              {{ t("sidebar.register") }}
+            </a></li>
         </ul>
       </div>
       <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
