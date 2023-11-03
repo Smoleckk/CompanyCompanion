@@ -59,7 +59,7 @@ export class Registerv2Component {
   createform: FormGroup = this.builder.group({
     username: [
       '',
-      [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+      [Validators.required, Validators.minLength(2), Validators.maxLength(100)],
     ],
     password: [
       '',
@@ -67,7 +67,7 @@ export class Registerv2Component {
         Validators.required,
         // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         // Validators.minLength(6),
-        Validators.maxLength(25),
+        Validators.maxLength(100),
         matchValidator('confirmPassword', true),
       ],
     ],
@@ -75,7 +75,7 @@ export class Registerv2Component {
     email: ['', [Validators.required, Validators.email]],
     name: [
       '',
-      [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+      [Validators.required, Validators.minLength(2), Validators.maxLength(100)],
     ],
     nip: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     city: ['', Validators.required],

@@ -5,7 +5,9 @@
     "password": "Password",
     "loginButton": "Login",
     "member": "Not a member?",
-    "signUp": "Sign up now!"
+    "signUp": "Sign up now!",
+    "login": "Go to login!"
+
   },
   "toaster": {
     "toasterWelcome": "Welcome in Fakturio",
@@ -59,7 +61,8 @@
     "companyName": "Company name",
     "companyCity": "Company city, ex: Niepodległości 27",
     "cityCode": "Company city code, ex: 23942, Warszawa",
-    "registerButton": "Register"
+    "registerButton": "Register",
+    "member": "Already have an account? Great, go to the login panel!"
   },
   "customer": {
     "header": "Add Customer to database",
