@@ -1,0 +1,59 @@
+<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{ darkMode: isDarkTheme }">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar style="cursor: pointer">
+            <h1 style="margin: 40px 0; font-weight: 700;">Fakturio</h1>
+        </mat-toolbar>
+
+        <mat-nav-list *transloco="let t">
+            <ng-container *ngFor="let item of sidebarOptions">
+                <a mat-list-item [routerLink]="item.routerLink" routerLinkActive="active" ariaCurrentWhenActive="page"
+                    class="nav-list-elem">
+                    <div>
+                        <div class="nav-list-elem-middle">
+                            <mat-icon>{{ item.icon }}</mat-icon>
+                            <p>{{ t(item.translationKey) }}</p>
+                        </div>
+                    </div>
+                </a>
+            </ng-container>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content *transloco="let t">
+        <mat-toolbar color="primary">
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+            <span class="example-spacer"></span>
+            <app-language-selector></app-language-selector>
+            <button mat-button *ngIf="isDarkTheme" (click)="toogleTheme()">
+                <mat-icon>dark_mode</mat-icon>
+            </button>
+            <button mat-button *ngIf="!isDarkTheme" (click)="toogleTheme()">
+                <mat-icon>light_mode</mat-icon>
+            </button>
+
+            <button mat-button [matMenuTriggerFor]="menu" *transloco="let t">
+                <mat-icon>rocket_launch</mat-icon>
+                {{ t("sidebar.welcome") }}
+                , {{ username }}
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/about">
+                    <mat-icon>question_mark</mat-icon>
+                    <span>{{ t("sidebar.about") }}</span>
+                </button>
+                <button mat-menu-item routerLink="/profile">
+                    <mat-icon>manage_accounts</mat-icon>
+                    <span>{{ t("sidebar.profile") }}</span>
+                </button>
+                <button mat-menu-item (click)="clearLocal()" routerLink="/welcome">
+                    <mat-icon>logout</mat-icon>
+                    <span>{{ t("sidebar.logout") }}</span>
+                </button>
+            </mat-menu>
+
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

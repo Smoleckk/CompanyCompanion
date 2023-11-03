@@ -1,0 +1,29 @@
+<mat-sidenav-container class="sidenav-container mat-app-background">
+    <section class="" *transloco="let t">
+        <nav style="background-image: linear-gradient(to right, #617055, #116444)">
+            <a href="/welcome" mat-button>
+                <h1 style="color:#fff">Fakturio</h1>
+            </a>
+            <div class="nav-links" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
+                <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
+                    <mat-icon class="hide-icon fa fa-times">power_settings_new</mat-icon>
+                </button>
+                <ul>
+                    <app-language-selector></app-language-selector>
+                    <li><a href="/login" mat-button>
+                            <mat-icon>face</mat-icon>
+                            {{ t("sidebar.login") }}
+                        </a></li>
+                    <li><a href="/register" mat-button>
+                            <mat-icon>how_to_reg</mat-icon>
+                            {{ t("sidebar.register") }}
+                        </a></li>
+                </ul>
+            </div>
+            <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
+                <mat-icon class="hide-icon fa fa-bars">reorder</mat-icon>
+            </button>
+        </nav>
+        <router-outlet></router-outlet>
+    </section>
+</mat-sidenav-container>

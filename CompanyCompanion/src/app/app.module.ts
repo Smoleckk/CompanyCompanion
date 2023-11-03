@@ -73,6 +73,8 @@ import { HomeCardComponent } from './components/home-card/home-card.component';
 import { FormFieldSelectComponent } from './components/form-field-select/form-field-select.component';
 import { FormFieldDataPickerComponent } from './components/form-field-data-picker/form-field-data-picker.component';
 import { DocumentProductTableComponent } from './components/document-product-table/document-product-table.component';
+import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
+import { SidebarSubmainComponent } from './sidebar-submain/sidebar-submain.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,6 +124,8 @@ import { DocumentProductTableComponent } from './components/document-product-tab
     FormFieldSelectComponent,
     FormFieldDataPickerComponent,
     DocumentProductTableComponent,
+    SidebarMainComponent,
+    SidebarSubmainComponent,
   ],
   imports: [
     BrowserModule,

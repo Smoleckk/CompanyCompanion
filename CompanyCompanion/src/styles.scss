@@ -198,3 +198,67 @@ mat-card {
   color: red;
   width: 100%;
 }
+/////////////////////sidebars
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.show {
+  display: none;
+  visibility: hidden;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-list-elem {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+
+  .nav-list-elem-middle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 !important;
+  }
+  p {
+    font-size: 18px;
+    margin: 0 8px !important;
+    padding: 0 !important;
+  }
+}
+mat-icon {
+  cursor: pointer;
+}
+.hi {
+  font-size: 18px;
+  font-weight: 400;
+  // margin: 0;
+  // padding: 0 5px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+.hi-rocket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 20px;
+  height: 50px;
+}
+
