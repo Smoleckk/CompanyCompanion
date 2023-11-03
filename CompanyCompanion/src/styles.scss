@@ -130,17 +130,9 @@ mat-card {
 }
 
 @media only screen and (max-width: 1500px) {
-  .container {
-    // width: 85%;
-  }
 }
 
 @media only screen and (max-width: 600px) {
-  .container {
-    // width: 95%;
-    // margin-top: 20px;
-  }
-
   mat-card {
     padding: 0px;
   }
@@ -243,22 +235,5 @@ mat-card {
 }
 mat-icon {
   cursor: pointer;
-}
-.hi {
-  font-size: 18px;
-  font-weight: 400;
-  // margin: 0;
-  // padding: 0 5px;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-}
-.hi-rocket {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-left: 20px;
-  height: 50px;
 }
 

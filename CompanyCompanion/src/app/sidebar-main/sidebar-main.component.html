@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container mat-app-background">
     <section class="" *transloco="let t">
         <nav style="background-image: linear-gradient(to right, #617055, #116444)">
-            <a href="/welcome" mat-button>
+            <a routerLink="/welcome" mat-button>
                 <h1 style="color:#fff">Fakturio</h1>
             </a>
             <div class="nav-links" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
@@ -10,11 +10,11 @@
                 </button>
                 <ul>
                     <app-language-selector></app-language-selector>
-                    <li><a href="/login" mat-button>
+                    <li><a style="color:#fff" routerLink="/login" mat-button>
                             <mat-icon>face</mat-icon>
                             {{ t("sidebar.login") }}
                         </a></li>
-                    <li><a href="/register" mat-button>
+                    <li><a style="color:#fff" routerLink="/register" mat-button>
                             <mat-icon>how_to_reg</mat-icon>
                             {{ t("sidebar.register") }}
                         </a></li>

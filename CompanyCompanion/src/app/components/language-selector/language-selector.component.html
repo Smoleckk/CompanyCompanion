@@ -1,6 +1,6 @@
-<button mat-button [matMenuTriggerFor]="menu" *transloco="let t">
+<button mat-button [matMenuTriggerFor]="menu" *transloco="let t" style="color:#fff">
   <mat-icon>flag</mat-icon>
-  {{ t("sidebar.language") }}
+  <!-- {{ t("sidebar.language") }} -->
 </button>
 <mat-menu #menu="matMenu">
   <div class="" *ngFor="let language of languagesList;">

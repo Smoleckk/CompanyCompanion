@@ -30,8 +30,6 @@ export class DocumentProductTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    console.log(this.editInvoiceId);
-
     if (this.editInvoiceId != null || this.invoiceFromProformaId != null) {
     } else {
       this.addProduct();

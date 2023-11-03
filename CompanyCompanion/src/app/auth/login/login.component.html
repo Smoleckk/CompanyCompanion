@@ -1,32 +1,19 @@
-<div style="
-    width: 100%;
-    height: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  " *transloco="let t">
-  <mat-card style="width: 500px; height: 600px; margin: 10%">
-    <mat-card-header style="
-        background-image: linear-gradient(to right, #617055, #116444);
-        margin-bottom: 20px;
-      ">
-      <h1 style="color: #fff; font-size: 40px; font-weight: 500; padding: 10px">
+<div class="auth-middle" *transloco="let t">
+  <mat-card class="auth-card ">
+    <mat-card-header class="auth-card-header">
+      <h1 >
         {{ t("login.loginForm") }}
       </h1>
     </mat-card-header>
     <mat-card-content>
       <form class="form" [formGroup]="loginform" (ngSubmit)="proceedLogin()">
-        <app-form-field [form]="loginform" [label]="t('login.loginForm')" controlName="username" cssClass="full-width"
+        <app-form-field [form]="loginform" [label]="t('login.username')" controlName="username" cssClass="full-width"
           type="text">
         </app-form-field>
         <app-form-field [form]="loginform" [label]="t('login.password')" controlName="password" cssClass="full-width"
           type="password">
         </app-form-field>
         <div class="form-submit">
-          <!-- <button mat-raised-button class="full-width" color="primary">
-            {{t("login.loginButton")}}
-          </button> -->
           <button class="hero-btn">{{t("login.loginButton")}}</button>
         </div>
       </form>
@@ -38,39 +25,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-<!-- <mat-stepper #stepper>
-    <form [formGroup]="loginform" (ngSubmit)="ProceedLogin()">
-        <mat-step errorMessage="Name is required.">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field appearance="outline">
-                <mat-label>User Name</mat-label>
-                <input required matInput placeholder="Edd" formControlName="username">
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </mat-step>
-        <mat-step  errorMessage="Address is required.">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input required type="password" matInput formControlName="password">
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div class="form-submit">
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-                <button mat-raised-button color="primary">Login</button>
-            </div>
-
-        </mat-step>
-    </form>
-
-</mat-stepper> -->

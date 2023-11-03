@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 export class LanguageSelectorComponent {
   constructor(
     private translocoService: TranslocoService,
-    private router: Router,
     private toastr: ToastrService,
     private cookieService: CookieService
   ) {}
@@ -33,7 +31,6 @@ export class LanguageSelectorComponent {
     this.cookieService.set('language', languageCode, 365);
 
     this.translocoService.setActiveLang(languageCode);
-    // this.router.navigate(['/']);
     this.toastr.success(languageCode.toUpperCase());
     window.location.reload();
   }

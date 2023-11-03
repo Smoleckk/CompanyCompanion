@@ -1,6 +1,6 @@
 {
   "login": {
-    "loginForm": "Formularz Logowania",
+    "loginForm": "Witamy, zaloguj się!",
     "username": "Nazwa Użytkownika",
     "password": "Hasło",
     "loginButton": "Zaloguj",
@@ -23,7 +23,7 @@
   },
   "welcome": {
     "title": "Fakturio",
-    "subTitle": "Intuicyjna i użytkowa aplikacja zaprojektowana, aby pomóc małym firmom w łatwym zarządzaniu ich codziennymi operacjami. Dzięki intuicyjnemu interfejsowi i wszechstronnym funkcjom. <br/> Ta aplikacja upraszcza proces tworzenia i zarządzania fakturami i magazynami, umożliwiając firmom pozostanie zorganizowanym i skoncentrowanym na rozwoju.",
+    "subTitle": "Nasza intuicyjna i użyteczna aplikacja została stworzona z myślą o małych firmach, aby ułatwić im zarządzanie codziennymi operacjami. Jej wyjątkowy interfejs oraz wszechstronne funkcje zapewniają użytkownikom prostą i efektywną obsługę różnych aspektów działalności przedsiębiorstwa. Aplikacja ta rewolucjonizuje proces tworzenia i zarządzania fakturami oraz magazynami. Dzięki niej firmy mogą szybko i bezproblemowo generować faktury, śledzić stan magazynu, oraz zarządzać zamówieniami i dostawami. To wszystko sprawia, że firma może utrzymać porządek i skupić się na swoim rozwoju, zamiast tracić czas na nieefektywne i czasochłonne zadania.",
     "register": "Zarejestruj się!",
     "systemFeatures": "Funkcje Systemu!",
     "effectiveness": "WYDAJNOŚĆ",
@@ -47,7 +47,7 @@
     "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była wydajna i przyjemna."
   },
   "register": {
-    "title": "Utwórz Profil",
+    "title": "Zarejestruj się w Fakturio!",
     "subTitle": "Te informacje pozwolą nam dowiedzieć się więcej o Tobie.",
     "personalInfo": "Dane Osobowe",
     "userName": "Nazwa Użytkownika",
@@ -225,9 +225,9 @@
     "about": "O nas",
     "profile": "Profil",
     "logout": "Wyloguj się",
-    "home": "STRONA GŁÓWNA",
-    "login": "ZALOGUJ SIĘ",
-    "register": "ZAREJESTRUJ SIĘ"
+    "home": "Strona glowna",
+    "login": "Logowanie",
+    "register": "Rejestracja"
   },
 
   "language": {

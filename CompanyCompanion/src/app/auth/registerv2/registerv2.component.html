@@ -1,62 +1,56 @@
-<div style="
-    width: 100%;
-    height: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  " *transloco="let t">
-    <mat-card style="display: flex;justify-content: center;align-items: center; margin: 7%; padding: 0px 0px;">
-        <!-- <h1>Build Your Profile</h1>
-        <h3>This information will let us know more about you.</h3> -->
-        <!-- <mat-card style="width: 500px; height: 600px; margin: 10%"> -->
-        <div style="width:100%;
-                background-image: linear-gradient(to right, #617055, #116444);
-                margin-bottom: 20px;
-              ">
-            <h1 style="color: #fff; font-size: 40px; font-weight: 500; padding: 10px" *transloco="let t">
+<div class="auth-middle" *transloco="let t">
+    <mat-card class="auth-card-register ">
+        <mat-card-header class="auth-card-header">
+            <h1>
                 {{ t("register.title") }}
             </h1>
-        </div>
-        <form [formGroup]="createform" (ngSubmit)="proceedRegistration()" style="padding: 10px;">
-            <h1>{{ t("register.personalInfo") }}</h1>
-            <app-form-field [form]="createform" [label]="t('register.userName')" controlName="username"
-                cssClass="full-width" type="text">
-            </app-form-field>
-            <app-form-field [form]="createform" [label]="t('register.email')" controlName="email" cssClass="full-width"
-                type="email">
-            </app-form-field>
-            <app-form-field [form]="createform" [label]="t('register.password')" controlName="password"
-                cssClass="full-width" type="password"></app-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>{{ t("register.confirmPassword") }}</mat-label>
+        </mat-card-header>
+        <form [formGroup]="createform" (ngSubmit)="proceedRegistration()">
+            <div class="auth-card-form">
+                <div style="padding: 0 2%;">
+                    <h2>{{ t("register.personalInfo") }}</h2>
+                    <app-form-field [form]="createform" [label]="t('register.userName')" controlName="username"
+                        cssClass="full-width" type="text">
+                    </app-form-field>
+                    <app-form-field [form]="createform" [label]="t('register.email')" controlName="email"
+                        cssClass="full-width" type="email">
+                    </app-form-field>
+                    <app-form-field [form]="createform" [label]="t('register.password')" controlName="password"
+                        cssClass="full-width" type="password"></app-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>{{ t("register.confirmPassword") }}</mat-label>
 
-                <input matInput formControlName="confirmPassword">
-                <mat-error *ngIf="createform.get('confirmPassword')?.hasError('matching')">
-                    Password must match.
-                </mat-error>
-                <mat-error *ngIf="createform.get('confirmPassword')?.hasError('required')">Wymagane pole</mat-error>
-            </mat-form-field>
-            <h1>{{ t("register.companyInfo") }}</h1>
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>{{ t("register.nip") }}</mat-label>
-                <input matInput formControlName="nip" />
-                <mat-error *ngIf="createform.get('nip')?.hasError('required')">Wymagane pole</mat-error>
-                <mat-error *ngIf="createform.get('nip')?.hasError('pattern')">IP musi składać się z dokładnie 10
-                    cyfr,
-                    bez spacji i znaków</mat-error>
-                <a mat-icon-button matSuffix color="primary" (click)="getRegon()">
-                    <mat-icon>search</mat-icon>
-                </a>
-            </mat-form-field>
-            <app-form-field [form]="createform" [label]="t('register.companyName')" controlName="name"
-                cssClass="full-width" type="text">
-            </app-form-field>
-            <app-form-field [form]="createform" [label]="t('register.companyCity')" controlName="city"
-                cssClass="full-width" type="text">
-            </app-form-field>
-            <app-form-field [form]="createform" [label]="t('register.cityCode')" controlName="cityCode"
-                cssClass="full-width" type="text"></app-form-field>
+                        <input matInput formControlName="confirmPassword">
+                        <mat-error *ngIf="createform.get('confirmPassword')?.hasError('matching')">
+                            Password must match.
+                        </mat-error>
+                        <mat-error *ngIf="createform.get('confirmPassword')?.hasError('required')">Wymagane
+                            pole</mat-error>
+                    </mat-form-field>
+                </div>
+                <div style="padding: 0 2%;">
+                    <h2>{{ t("register.companyInfo") }}</h2>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ t("register.nip") }}</mat-label>
+                        <input matInput formControlName="nip" />
+                        <mat-error *ngIf="createform.get('nip')?.hasError('required')">Wymagane pole</mat-error>
+                        <mat-error *ngIf="createform.get('nip')?.hasError('pattern')">IP musi składać się z dokładnie 10
+                            cyfr,
+                            bez spacji i znaków</mat-error>
+                        <a mat-icon-button matSuffix color="primary" (click)="getRegon()">
+                            <mat-icon>search</mat-icon>
+                        </a>
+                    </mat-form-field>
+                    <app-form-field [form]="createform" [label]="t('register.companyName')" controlName="name"
+                        cssClass="full-width" type="text">
+                    </app-form-field>
+                    <app-form-field [form]="createform" [label]="t('register.companyCity')" controlName="city"
+                        cssClass="full-width" type="text">
+                    </app-form-field>
+                    <app-form-field [form]="createform" [label]="t('register.cityCode')" controlName="cityCode"
+                        cssClass="full-width" type="text"></app-form-field>
+                </div>
+            </div>
             <div class="form-submit">
                 <button class="hero-btn">{{t("register.registerButton")}}</button>
                 <!-- <button mat-raised-button color="primary">{{ t("register.registerButton") }}</button> -->

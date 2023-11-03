@@ -56,8 +56,6 @@ import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-l
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 import { InvoiceCorrectSecondPopupComponent } from './invoice/correct/invoice-correct-second-popup/invoice-correct-second-popup.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-// import { ParentComponent } from './zabawa/parent/parent.component';
-// import { ChildComponent } from './zabawa/child/child.component';
 import { TableheaderComponent } from './components/table/tableheader/tableheader.component';
 import { TableactionbuttonComponent } from './components/table/tableactionbutton/tableactionbutton.component';
 import { TablecolumnComponent } from './components/table/tablecolumn/tablecolumn.component';
@@ -108,8 +106,6 @@ import { SidebarSubmainComponent } from './sidebar-submain/sidebar-submain.compo
     InvoiceCorrectCreateComponent,
     InvoiceCorrectSecondPopupComponent,
     BreadcrumbComponent,
-    // ParentComponent,
-    // ChildComponent,
     TableheaderComponent,
     TableactionbuttonComponent,
     TablecolumnComponent,

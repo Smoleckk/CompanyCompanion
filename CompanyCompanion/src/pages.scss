@@ -121,7 +121,7 @@ nav .fa {
   color: #fff;
   border: 1px solid #116444;
   background-image: linear-gradient(to right, #617055, #116444);
-  padding: 12px 34px;
+  padding: 18px 64px;
   font-style: 13px;
   position: relative;
   cursor: pointer;
@@ -138,5 +138,53 @@ nav .fa {
 @media (max-width: 700px) {
   .text-box h1 {
     font-size: 20px;
+  }
+}
+.auth-middle {
+  width: 100%;
+  height: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-card {
+  width: 500px;
+  height: 60vh;
+  margin: 5%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.auth-card-register {
+  width: 800px;
+  height: 60vh;
+  margin: 5%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.auth-card-form {
+  display: flex;
+}
+@media (max-width: 700px) {
+  .auth-card {
+    width: 300px;
+    height: 60vh;
+    margin: 5%;
+  }
+  .auth-card-register {
+    width: 90%;
+    height: 110%;
+    margin: 5%;
+  }
+  .auth-card-form {
+    flex-wrap: wrap;
+  }
+}
+.auth-card-header {
+  // background-image: linear-gradient(to right, #617055, #116444);
+  margin-bottom: 5%;
+  h1 {
+    // color: #fff;
+    font-weight: 400;
+    padding: 10px;
+    margin: auto;
   }
 }

@@ -14,6 +14,7 @@ export class SidebarComponent {
     if (
       this.route.url == '/login' ||
       this.route.url == '/register' ||
+      this.route.url == '/login-and-register' ||
       this.route.url == '/welcome'
     ) {
       this.displaymenu = false;

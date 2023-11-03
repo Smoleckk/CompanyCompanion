@@ -132,8 +132,6 @@ export class InvoiceCorrectCreateComponent implements OnInit {
   SetEditInfo(invoiceIdCode: any) {
     this.service.getInvByCode(invoiceIdCode).subscribe((res) => {
       let editData: any;
-      console.log(res);
-
       editData = res;
       this.invoiceNoIsEdit = editData.invoiceCorrectNo;
 

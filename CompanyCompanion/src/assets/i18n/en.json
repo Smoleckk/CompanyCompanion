@@ -1,6 +1,6 @@
 {
   "login": {
-    "loginForm": "Login Form",
+    "loginForm": "Welcome, log in!",
     "username": "Username",
     "password": "Password",
     "loginButton": "Login",
@@ -23,7 +23,7 @@
   },
   "welcome": {
     "title": "Fakturio",
-    "subTitle": "An intuitive and user-friendly application designed to help small businesses easily manage their daily operations. With an intuitive interface and versatile features. <br/> This application simplifies the process of creating and managing invoices and inventories, allowing businesses to stay organized and focused on growth.",
+    "subTitle": "Our intuitive and useful app has been developed for small businesses to help them manage their day-to-day operations. Its unique interface and comprehensive features provide users with a simple and efficient way to handle various aspects of their business. The application revolutionises the creation and management of invoices and warehouses. It allows companies to quickly and seamlessly generate invoices, track inventory, and manage orders and deliveries. All of this means that a company can stay organised and focus on its growth, instead of wasting time on inefficient and time-consuming tasks.",
     "register": "Sign Up!",
     "systemFeatures": "System Features!",
     "effectiveness": "EFFECTIVENESS",
@@ -47,7 +47,7 @@
     "aboutUsParam": "We are a team of experienced specialists creating simple tools for small businesses. Our mission is to simplify the management of invoices, quotes, and inventory. CompanyCompanion is a solution designed for small business owners to make their work efficient and enjoyable."
   },
   "register": {
-    "title": "Build Your Profile",
+    "title": "Sign up to Fakturio!",
     "subTitle": "This information will let us know more about you.",
     "personalInfo": "Personal info",
     "userName": "User Name",
@@ -224,9 +224,9 @@
     "about": "About",
     "profile": "Profile",
     "logout": "Logout",
-    "home": "HOME",
-    "login": "LOGIN",
-    "register": "REGISTER"
+    "home": "Home",
+    "login": "Login",
+    "register": "Register"
   },
   "language": {
     "english": "English",
