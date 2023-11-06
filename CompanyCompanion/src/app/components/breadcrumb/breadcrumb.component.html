@@ -1,8 +1,8 @@
-<mat-card class="breadcrumb">
+<mat-card class="breadcrumb" *transloco="let t">
   <mat-card-actions class="card">
     <div [routerLink]="['/']" class="middle">
       <mat-icon>home</mat-icon>
-      <p class="breadcrumb-p">Home > </p>
+      <p class="breadcrumb-p">{{t("breadcrumb.home")}} </p>
     </div>
     <p class="breadcrumb-p middle" [routerLink]="link">
       {{header}}

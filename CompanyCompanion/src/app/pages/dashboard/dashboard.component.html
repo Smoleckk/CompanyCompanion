@@ -1,5 +1,5 @@
-<div class="container">
-  <app-breadcrumb headerDetail="Dashboard" [isAddButton]="false"></app-breadcrumb>
+<div class="container" *transloco="let t">
+  <app-breadcrumb [headerDetail]="t('breadcrumb.dashboard')"[isAddButton]="false"></app-breadcrumb>
 
   <div class="dashboard-top">
     <mat-card class="dashboard-top-card" style="background-color: darkslategray">

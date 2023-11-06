@@ -18,7 +18,7 @@ import { CustomerService } from 'src/app/service/customer.service';
   styleUrls: ['./customer-create-popup.component.scss'],
 })
 export class CustomerCreatePopupComponent {
-  editdata: any;
+  editData: any;
 
   constructor(
     private builder: FormBuilder,

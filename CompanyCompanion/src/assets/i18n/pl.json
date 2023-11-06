@@ -207,6 +207,25 @@
     "signSeller": "Podpis osoby upowaznionej do wystawienia",
     "signCustomer": "Podpis osoby upowaznionej do wystawienia"
   },
+  "printProform": {
+    "proform": "Proforma",
+    "toPay": "Do zaplaty"
+    },
+    "breadcrumb": {
+      "home": "Początek >",
+      "customers": "Klienci",
+      "invoices": "Faktury",
+      "invoice": " > Faktura",
+      "reviews": "Podsumowanie",
+      "about": "O nas",
+      "dashboard": "Panel",
+      "products": "Produkty",
+      "profile": "Profil",
+      "proformas": "Proformy",
+      "proforma": " > Proforma",
+      "coWorkers": "Współpracownicy",
+      "search": "Wyszukaj"
+    },
   "buttons": {
     "save": "Zapisz",
     "update": "Aktualizuj",
@@ -215,7 +234,7 @@
   },
   "sidebar": {
     "invoices": "Faktury",
-    "proforma": "Proforma",
+    "proforma": "Proformy",
     "corrections": "Korekty",
     "products": "Produkty",
     "customers": "Klienci",

@@ -1,7 +1,7 @@
-<div class="mat-card-header-filter">
+<div class="mat-card-header-filter" *transloco="let t">
     <h2>{{header}}</h2>
     <mat-form-field appearance="outline">
-      <mat-label>Search</mat-label>
+      <mat-label>{{t("breadcrumb.search")}}</mat-label>
       <input
         matInput
         (keyup)="callParentFunction($event)"

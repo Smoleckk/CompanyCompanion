@@ -1,5 +1,5 @@
 <div class="container" *transloco="let t">
-  <app-breadcrumb header="Invices" headerDetail=" > Invoice" link="/invoice-list" [isAddButton]="false">
+  <app-breadcrumb [header]="t('breadcrumb.invoices')" [headerDetail]="t('breadcrumb.invoice')" link="/invoice-list" [isAddButton]="false">
   </app-breadcrumb>
   <mat-card>
     <mat-card-content style="padding: 10px 30px">

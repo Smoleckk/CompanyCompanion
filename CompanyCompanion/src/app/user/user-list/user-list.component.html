@@ -1,5 +1,5 @@
 <div class="container" *transloco="let t">
-  <app-breadcrumb headerDetail="Co-worker List"  (callParent)="createUser()"></app-breadcrumb>
+  <app-breadcrumb [header]="t('breadcrumb.coWorkers')" (callParent)="createUser()"></app-breadcrumb>
   <mat-card>
     <app-tableheader [header]="t('userTableHeader.productHeader')" [searchPlaceholder]="t('userTableHeader.searchPlaceholder')" (callParent)="applyFilter($event)">
     </app-tableheader>

@@ -1,34 +1,34 @@
 <div class="rightOptions">
     <div class="page" size="A4" id="content" #content>
-      <div class="wrapper" *ngIf="editdata">
+      <div class="wrapper" *ngIf="editData">
         <div class="five">
           <div class="invoiceHeader">
             <h2><b>Faktura korekta</b></h2>
-            <h4>Nr: {{ editdata.invoiceCorrectNo }}</h4>
+            <h4>Nr: {{ editData.invoiceCorrectNo }}</h4>
           </div>
         </div>
         <div class="one">
             <div class="sideBySide2">
                 <p style="width: 130px">Numer faktury do korekty</p>
-                <p style="width: 60px">{{ editdata.invoiceCorrectAfterNoFrom }}</p>
+                <p style="width: 60px">{{ editData.invoiceCorrectAfterNoFrom }}</p>
               </div>
               <div class="sideBySide2">
                 <p style="width: 130px">Data korekty:</p>
-                <p style="width: 60px">{{ editdata.invoiceDateCorrectAfter }}</p>
+                <p style="width: 60px">{{ editData.invoiceDateCorrectAfter }}</p>
               </div>
               <div class="sideBySide2">
                 <p style="width: 130px">Powod korekty:</p>
-                <p style="width: 60px"> {{ editdata.issueCorrectAfter }}</p>
+                <p style="width: 60px"> {{ editData.issueCorrectAfter }}</p>
               </div>
         </div>
         <div class="two">
           <div class="sideBySide2">
             <p style="width: 130px">Miejsce wystawienia:</p>
-            <p style="width: 60px">{{ editdata.placeOfIssue }}</p>
+            <p style="width: 60px">{{ editData.placeOfIssue }}</p>
           </div>
           <div class="sideBySide2">
             <p style="width: 130px">Data wystawienia:</p>
-            <p style="width: 60px">{{ editdata.dateIssued }}</p>
+            <p style="width: 60px">{{ editData.dateIssued }}</p>
           </div>
           <div class="sideBySide2">
             <p style="width: 130px">Data wykonania uslugi:</p>
@@ -37,17 +37,17 @@
         </div>
         <div class="three">
           <h2 class="pborder">Sprzedawca</h2>
-          <p>{{ editdata.customerName }}</p>
-          <p>NIP: {{ editdata.customerNip }}</p>
-          <p>{{ editdata.customerDeliveryAddress }}</p>
-          <p>{{ editdata.customerCityCode }}</p>
+          <p>{{ editData.customerName }}</p>
+          <p>NIP: {{ editData.customerNip }}</p>
+          <p>{{ editData.customerDeliveryAddress }}</p>
+          <p>{{ editData.customerCityCode }}</p>
         </div>
         <div class="four">
           <h2 class="pborder">Nabywca</h2>
-          <p>{{ editdata.sellerIdName }}</p>
-          <p>NIP: {{ editdata.sellerNip }}</p>
-          <p>{{ editdata.sellerDeliveryAddress }}</p>
-          <p>{{ editdata.sellerCityCode }}</p>
+          <p>{{ editData.sellerIdName }}</p>
+          <p>NIP: {{ editData.sellerNip }}</p>
+          <p>{{ editData.sellerDeliveryAddress }}</p>
+          <p>{{ editData.sellerCityCode }}</p>
         </div>
         <div class="six">
           <table>
@@ -65,7 +65,7 @@
               </tr>
             </thead>
             <tbody >
-              <tr *ngFor="let item of editdata.products; let i = index">
+              <tr *ngFor="let item of editData.products; let i = index">
                 <td *ngIf="i%2==0" style="border-left: 1px solid black">{{i}}</td>
                 <td *ngIf="i%2==0">{{ item.productName }}</td>
                 <td *ngIf="i%2==0">{{ item.unit }}</td>
@@ -111,7 +111,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of editdata.products; let i = index">
+              <tr *ngFor="let item of editData.products; let i = index">
                 <td *ngIf="i%2==1" style="border-left: 1px solid black">{{i}}</td>
                 <td *ngIf="i%2==1">{{ item.productName }}</td>
                 <td *ngIf="i%2==1">{{ item.unit }}</td>
@@ -213,15 +213,15 @@
           </div>
           <div class="sideBySide2">
             <p style="width: 100px">Forma platnosc:</p>
-            <p>{{ editdata.paymentType }}</p>
+            <p>{{ editData.paymentType }}</p>
           </div>
           <div class="sideBySide2">
             <p style="width: 100px">Termin zaplaty:</p>
-            <p>{{ editdata.dueDate }}</p>
+            <p>{{ editData.dueDate }}</p>
           </div>
           <div class="sideBySide2">
             <p style="width: 100px">Numer konta:</p>
-            <p>{{ editdata.accountNumber }}</p>
+            <p>{{ editData.accountNumber }}</p>
           </div>
         </div>
         <div class="nine">

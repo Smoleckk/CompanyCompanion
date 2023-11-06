@@ -1,5 +1,5 @@
 <div class="container" *transloco="let t">
-  <app-breadcrumb header="Customers" link="/customer-list" headerDetail="> {{ customerForm.value.customerName }}"
+  <app-breadcrumb [header]="t('breadcrumb.customers')"  link="/customer-list" headerDetail="> {{ customerForm.value.customerName }}"
     [isAddButton]="false"></app-breadcrumb>
   <mat-card style="width: 5%; min-width: 400px">
     <mat-card-content class="customer-details">

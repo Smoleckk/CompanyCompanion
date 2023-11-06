@@ -1,5 +1,5 @@
-<div class="container">
-  <app-breadcrumb headerDetail="Review" [isAddButton]="false"></app-breadcrumb>
+<div class="container" *transloco="let t">
+  <app-breadcrumb [header]="t('breadcrumb.reviews')" [isAddButton]="false"></app-breadcrumb>
   <app-invoice-table few="paid"></app-invoice-table>
   <app-invoice-table few="delay"></app-invoice-table>
   <app-invoice-table few="draft"></app-invoice-table>

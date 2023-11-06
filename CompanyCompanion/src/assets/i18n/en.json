@@ -207,6 +207,26 @@
     "signSeller": "Signature of seller",
     "signCustomer": "Signature of customer"
   },
+  "printProform": {
+    "proform": "Proforma",
+    "toPay": "To pay"
+  },
+  "breadcrumb": {
+    "home": "Home >",
+    "customers": "Customers",
+    "invoices": "Invoices",
+    "invoice": " > Invoice",
+    "reviews": "Reviews",
+    "about": "About",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "profile": "Profile",
+    "proformas": "Proformas",
+    "proforma": " > Proforma",
+    "coWorkers": "Co-workers",
+    "search": "Search"
+
+  },
   "buttons": {
     "save": "Save",
     "update": "Update",
@@ -215,7 +235,7 @@
   },
   "sidebar": {
     "invoices": "Invoices",
-    "proforma": "Proforma",
+    "proforma": "Proformas",
     "corrections": "Corrections",
     "products": "Products",
     "customers": "Customers",

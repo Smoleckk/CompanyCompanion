@@ -1,5 +1,5 @@
-<div class="container">
-  <app-breadcrumb headerDetail="About" [isAddButton]="false"></app-breadcrumb>
+<div class="container" *transloco="let t">
+  <app-breadcrumb [header]="t('breadcrumb.about')" [isAddButton]="false"></app-breadcrumb>
 
   <mat-card>
     <mat-card-content style="margin-bottom: 5px">

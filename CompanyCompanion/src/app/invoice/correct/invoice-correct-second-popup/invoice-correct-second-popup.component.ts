@@ -17,7 +17,7 @@ import { InvoiceCorrectService } from 'src/app/service/invoice-correct.service';
 })
 export class InvoiceCorrectSecondPopupComponent implements OnInit {
   @ViewChild('content', { static: false }) private content!: ElementRef;
-  public editdata: any;
+  public editData: any;
   public groupedProducts: any;
   public arrayGroupedProducts: any;
   public totalNettoSum: number = 0;
@@ -48,9 +48,9 @@ export class InvoiceCorrectSecondPopupComponent implements OnInit {
       //////////////////////////
       if (this.data.code) {
         this.service.getInvByCode(this.data.code).subscribe((res) => {
-          this.editdata = res;
+          this.editData = res;
           console.log(res);
-          this.groupedProductsCorrectBefore = this.editdata.products
+          this.groupedProductsCorrectBefore = this.editData.products
             .filter((_: any, index: number) => index % 2 === 0)
             .reduce(
               (
@@ -108,10 +108,10 @@ export class InvoiceCorrectSecondPopupComponent implements OnInit {
       }
       //////////////////////////
       this.service.getInvByCode(this.data.code).subscribe((res) => {
-        this.editdata = res;
+        this.editData = res;
         console.log(res);
 
-        this.groupedProductsCorrectAfter = this.editdata.products
+        this.groupedProductsCorrectAfter = this.editData.products
           .filter((_: any, index: number) => index % 2 === 1)
           .reduce(
             (
@@ -190,10 +190,10 @@ export class InvoiceCorrectSecondPopupComponent implements OnInit {
     }
     /////////////////////////////
     this.service.getInvByCode(this.data.code).subscribe((res) => {
-      this.editdata = res;
+      this.editData = res;
       console.log(res);
 
-      this.groupedProducts = this.editdata.products.reduce(
+      this.groupedProducts = this.editData.products.reduce(
         (
           acc: {
             has: (arg0: any) => any;

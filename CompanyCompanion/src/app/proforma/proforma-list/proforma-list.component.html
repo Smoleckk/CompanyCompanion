@@ -1,8 +1,7 @@
-<div class="container">
-  <!-- <app-breadcrumb headerDetail="Proforma List" link="/create-proforma" [isAddButton]="true" ></app-breadcrumb> -->
-  <app-breadcrumb headerDetail="Proforma List" (callParent)="addProforma()"></app-breadcrumb>
+<div class="container" *transloco="let t">
+   <app-breadcrumb [headerDetail]="t('breadcrumb.proformas')" (callParent)="addProforma()"></app-breadcrumb>
   <mat-card>
-    <app-tableheader header="Proformas" searchPlaceholder="Ex. proforma" (callParent)="applyFilter($event)">
+    <app-tableheader [header]="t('breadcrumb.proformas')" [searchPlaceholder]="t('breadcrumb.search')" (callParent)="applyFilter($event)">
     </app-tableheader>
     <app-tablecontent [dataSource]="dataSource" [columns]="columns" [actionButtons]="actionButtons"
       [displayedColumns]="displayedColumns"></app-tablecontent>

@@ -1,58 +1,58 @@
-<div class="rightOptions">
+<div class="rightOptions" *transloco="let t">
   <div class="page" size="A4" id="content" #content>
-    <div class="wrapper" *ngIf="editdata">
+    <div class="wrapper" *ngIf="editData">
       <div class="five">
         <div class="invoiceHeader">
-          <h2><b>Faktura</b></h2>
-          <h4>Nr: {{ editdata.invoiceNo }}</h4>
+          <h2><b>{{t('printInvoice.invoice')}}</b></h2>
+          <h4>{{ editData.invoiceNo }}</h4>
         </div>
       </div>
       <div class="one"></div>
       <div class="two">
         <div class="sideBySide2">
-          <p style="width: 130px">Miejsce wystawienia:</p>
-          <p style="width: 60px">{{ editdata.placeOfIssue }}</p>
+          <p style="width: 130px">{{t('invoiceForm.placeOfIssue')}}</p>
+          <p style="width: 60px">{{ editData.placeOfIssue }}</p>
         </div>
         <div class="sideBySide2">
-          <p style="width: 130px">Data wystawienia:</p>
-          <p style="width: 60px">{{ editdata.dateIssued }}</p>
+          <p style="width: 130px">{{t('invoiceForm.dateIssued')}}</p>
+          <p style="width: 60px">{{ editData.dateIssued }}</p>
         </div>
         <div class="sideBySide2">
-          <p style="width: 130px">Data wykonania uslugi:</p>
-          <p style="width: 60px">???</p>
+          <p style="width: 130px">{{t('invoiceForm.dueDate')}}</p>
+          <p style="width: 60px">{{editData.dueDate}}</p>
         </div>
       </div>
       <div class="three">
-        <h2 class="pborder">Sprzedawca</h2>
-        <p>{{ editdata.customerName }}</p>
-        <p>NIP: {{ editdata.customerNip }}</p>
-        <p>{{ editdata.customerDeliveryAddress }}</p>
-        <p>{{ editdata.customerCityCode }}</p>
+        <p class="pborder">{{t('printInvoice.seller')}}</p>
+        <p>{{ editData.sellerIdName }}</p>
+        <p>NIP: {{ editData.sellerNip }}</p>
+        <p>{{ editData.sellerDeliveryAddress }}</p>
+        <p>{{ editData.sellerCityCode }}</p>
       </div>
       <div class="four">
-        <h2 class="pborder">Nabywca</h2>
-        <p>{{ editdata.sellerIdName }}</p>
-        <p>NIP: {{ editdata.sellerNip }}</p>
-        <p>{{ editdata.sellerDeliveryAddress }}</p>
-        <p>{{ editdata.sellerCityCode }}</p>
+        <p class="pborder">{{t('printInvoice.customer')}}</p>
+        <p>{{editData.customerName}}</p>
+        <p>NIP: {{editData.customerNip}}</p>
+        <p>{{editData.customerDeliveryAddress}}</p>
+        <p>{{editData.customerCityCode}}</p>
       </div>
-      <div class="six">
-        <table>
+      <div class="six" style="width: 100%;">
+        <table style="width: 100%;">
           <thead>
             <tr>
               <th style="border-left: 1px solid black">LP</th>
-              <th>Nazwa towaru lub uslugi</th>
-              <th>Jm.</th>
-              <th>Ilosc</th>
-              <th>Cena netto</th>
-              <th>Stawka Vat</th>
-              <th>Warosc netto</th>
-              <th>Wartosc Vat</th>
-              <th>Cena brutto</th>
+              <th>{{t('invoiceForm.name')}}</th>
+              <th>{{t('invoiceForm.unit')}}</th>
+              <th>{{t('invoiceForm.quantity')}}</th>
+              <th>{{t('invoiceForm.netto')}}</th>
+              <th>{{t('invoiceForm.netTotal')}}</th>
+              <th>{{t('invoiceForm.vat')}}</th>
+              <th>{{t('invoiceForm.tax')}}</th>
+              <th>{{t('invoiceForm.total')}}</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of editdata.products">
+            <tr *ngFor="let item of editData.products">
               <td style="border-left: 1px solid black">1</td>
               <td>{{ item.productName }}</td>
               <td>{{ item.unit }}</td>
@@ -88,7 +88,7 @@
         <table style="float: right">
           <thead>
             <tr>
-              <th style="border-left: 1px solid black">Razem</th>
+              <th style="border-left: 1px solid black">{{t('printInvoice.total')}}</th>
               <th>X</th>
               <th>{{ totalNettoSum | currency : " " : "symbol" : "1.2-2" }}</th>
               <th>{{ totalVatSum | currency : " " : "symbol" : "1.2-2" }}</th>
@@ -116,37 +116,37 @@
       </div>
       <div class="six">
         <div class="sideBySide2">
-          <p style="width: 100px">Razem</p>
+          <p style="width: 100px">{{t('printInvoice.total')}}</p>
           <p>{{ totalBruttoSum | currency : " " : "symbol" : "1.2-2" }}</p>
-          <p style="width: 60px; margin-left: 20px">Slownie:</p>
+          <p style="width: 60px; margin-left: 20px">{{t('printInvoice.inLetters')}}</p>
         </div>
         <div class="sideBySide2">
-          <p style="width: 100px">Do zaplaty</p>
+          <p style="width: 100px">{{t('printProform.toPay')}}</p>
           <p style="font-weight: bold; margin-bottom: 20px">
             {{ totalBruttoSum | currency : " " : "symbol" : "1.2-2" }}
           </p>
         </div>
         <div class="sideBySide2">
-          <p style="width: 100px">Forma platnosc:</p>
-          <p>{{ editdata.paymentType }}</p>
+          <p style="width: 100px">{{t('invoiceForm.paymentType')}}:</p>
+          <p>{{ editData.paymentType }}</p>
         </div>
         <div class="sideBySide2">
-          <p style="width: 100px">Termin zaplaty:</p>
-          <p>{{ editdata.dueDate }}</p>
+          <p style="width: 100px">{{t('invoiceForm.paymentStatus')}}</p>
+          <p>{{ editData.paymentStatus }}</p>
         </div>
         <div class="sideBySide2">
-          <p style="width: 100px">Numer konta:</p>
-          <p>{{ editdata.accountNumber }}</p>
+          <p style="width: 100px">{{t('invoiceForm.accountNumber')}}</p>
+          <p>{{ editData.accountNumber }}</p>
         </div>
       </div>
       <div class="nine">
         <div class="signature">
-          <p>Podpis osoby upowaznionej do wystawienia</p>
+          <p>{{t('printInvoice.signSeller')}}</p>
         </div>
       </div>
       <div class="ten">
         <div class="signature">
-          <p>Podpis osoby upowaznionej do odbioru</p>
+          <p>{{t('printInvoice.signCustomer')}}</p>
         </div>
       </div>
     </div>

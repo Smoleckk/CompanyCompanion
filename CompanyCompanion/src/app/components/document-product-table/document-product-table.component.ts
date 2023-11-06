@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { InvoiceService } from '../../service/invoice.service';
 import { ProductService } from 'src/app/service/product.service';
 import { ProductMagazine } from 'src/app/models/productMagazine';
+import { Invoice } from 'src/app/models/invoice';
 
 @Component({
   selector: 'app-document-product-table',
@@ -16,17 +17,17 @@ export class DocumentProductTableComponent implements OnInit {
     private productService: ProductService
   ) {}
 
-  @Input() invoiceForm: any;
-  @Input() editInvoiceId: any;
-  @Input() invoiceFromProformaId: any;
+  @Input() invoiceForm: FormGroup;
+  @Input() editInvoiceId: string;
+  @Input() invoiceFromProformaId: string;
   invoiceDetail!: FormArray<any>;
   invoiceProduct!: FormGroup<any>;
   getProduct: ProductMagazine[];
-  breakpoint2: any;
-  breakpoint3: any;
-  breakpoint4: any;
-  breakpoint9: any;
-  colspan3: any;
+  breakpoint2: number;
+  breakpoint3: number;
+  breakpoint4: number;
+  breakpoint9: number;
+  colspan3: number;
 
   ngOnInit(): void {
     this.getProducts();
@@ -108,8 +109,8 @@ export class DocumentProductTableComponent implements OnInit {
     let vat = this.invoiceProduct.get('vat')?.value;
     let totalBrutto = qty * price * (1 + vat / 100);
     let totalNetto = qty * price;
-    this.invoiceProduct.get('bruttoPrice')?.patchValue(totalBrutto);
-    this.invoiceProduct.get('nettoPrice')?.patchValue(totalNetto);
+    this.invoiceProduct.get('bruttoPrice')?.patchValue((Math.round(totalBrutto*100)/100).toFixed(2));
+    this.invoiceProduct.get('nettoPrice')?.patchValue((Math.round(totalNetto*100)/100).toFixed(2));
 
     this.summaryCalculation();
   }
@@ -123,9 +124,10 @@ export class DocumentProductTableComponent implements OnInit {
     array.forEach((x: any) => {
       sumTotalNetto = sumTotalNetto + x.nettoPrice;
     });
-
-    this.invoiceForm.get('total')?.patchValue(sumTotalBrutto);
+    this.invoiceForm.get('total')?.patchValue((Math.round(sumTotalBrutto*100)/100).toFixed(2));
     const calculatedTax = sumTotalBrutto - sumTotalNetto;
+    console.log(calculatedTax);
+    
     this.invoiceForm.get('tax')?.patchValue(calculatedTax.toFixed(2));
     this.invoiceForm.get('netTotal')?.patchValue(sumTotalNetto);
   }

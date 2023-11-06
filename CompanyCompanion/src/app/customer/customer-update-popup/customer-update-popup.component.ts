@@ -51,9 +51,9 @@ export class CustomerUpdatePopupComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      this.service.getCustomerByCode(this.data).subscribe((editdata) => {
+      this.service.getCustomerByCode(this.data).subscribe((editData) => {
         this.updateform.patchValue({
-          ...editdata,
+          ...editData,
         });
       });
     }

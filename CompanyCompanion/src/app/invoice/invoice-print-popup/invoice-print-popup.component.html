@@ -1,31 +1,31 @@
 <div class="rightOptions" *transloco="let t">
   <div class="page" size="A4" id="content" #content>
-    <div class="wrapper" *ngIf="editdata">
-      <div class="one">{{ editdata.sellerIdName }}</div>
+    <div class="wrapper" *ngIf="editData">
+      <div class="one">{{ editData.sellerIdName }}</div>
       <div class="two">
         <p class="pborder">{{t('invoiceForm.placeOfIssue')}}</p>
-        <p>{{editdata.placeOfIssue}}</p>
+        <p>{{editData.placeOfIssue}}</p>
         <p class="pborder">{{t('invoiceForm.dateIssued')}}</p>
-        <p>{{editdata.dateIssued}}</p>
+        <p>{{editData.dateIssued}}</p>
         <p class="pborder">{{t('invoiceForm.dueDate')}}</p>
-        <p>{{editdata.dueDate}}</p>
+        <p>{{editData.dueDate}}</p>
       </div>
       <div class="three">
         <p class="pborder">{{t('printInvoice.seller')}}</p>
-        <p>{{ editdata.sellerIdName }}</p>
-        <p>NIP: {{ editdata.sellerNip }}</p>
-        <p>{{ editdata.sellerDeliveryAddress }}</p>
-        <p>{{ editdata.sellerCityCode }}</p>
+        <p>{{ editData.sellerIdName }}</p>
+        <p>NIP: {{ editData.sellerNip }}</p>
+        <p>{{ editData.sellerDeliveryAddress }}</p>
+        <p>{{ editData.sellerCityCode }}</p>
       </div>
       <div class="four">
         <p class="pborder">{{t('printInvoice.customer')}}</p>
-        <p>{{editdata.customerName}}</p>
-        <p>NIP: {{editdata.customerNip}}</p>
-        <p>{{editdata.customerDeliveryAddress}}</p>
-        <p>{{editdata.customerCityCode}}</p>
+        <p>{{editData.customerName}}</p>
+        <p>NIP: {{editData.customerNip}}</p>
+        <p>{{editData.customerDeliveryAddress}}</p>
+        <p>{{editData.customerCityCode}}</p>
       </div>
       <div class="five">
-        <p class="invoiceHeader">{{t('printInvoice.invoice')}} {{ editdata.invoiceNo }}</p>
+        <p class="invoiceHeader">{{t('printInvoice.invoice')}} {{ editData.invoiceNo }}</p>
       </div>
       <div class="six" style="width: 100%;">
         <table style="width: 100%;">
@@ -43,7 +43,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of editdata.products">
+            <tr *ngFor="let item of editData.products">
               <td style="border-left: 1px solid black">1</td>
               <td>{{ item.productName }}</td>
               <td>{{ item.unit }}</td>
@@ -89,15 +89,15 @@
       <div class="seven">
         <div class="sideBySide">
           <p style="width: 140px">{{t('invoiceForm.paymentType')}}</p>
-          <p>{{editdata.paymentType}}</p>
+          <p>{{editData.paymentType}}</p>
         </div>
         <div class="sideBySide">
           <p style="width: 140px">{{t('invoiceForm.paymentStatus')}}</p>
-          <p>{{editdata.paymentStatus}}</p>
+          <p>{{editData.paymentStatus}}</p>
         </div>
         <div class="sideBySide">
           <p style="width: 140px">{{t('invoiceForm.accountNumber')}}</p>
-          <p>{{editdata.accountNumber}}</p>
+          <p>{{editData.accountNumber}}</p>
         </div>
       </div>
       <div class="eight">

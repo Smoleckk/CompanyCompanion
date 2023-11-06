@@ -21,7 +21,7 @@ import { Invoice } from 'src/app/models/invoice';
 })
 export class InvoicePrintPopupComponent implements OnInit {
   @ViewChild('content', { static: false }) private content!: ElementRef;
-  public editdata: Invoice;
+  public editData: Invoice;
   public profileInfo: UserProfile;
   public groupedProducts: any;
   public arrayGroupedProducts: any;
@@ -38,9 +38,9 @@ export class InvoicePrintPopupComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.code) {
       this.service.getInvByCode(this.data.code).subscribe((res) => {
-        this.editdata = res;
+        this.editData = res;
 
-        this.groupedProducts = this.editdata.products.reduce(
+        this.groupedProducts = this.editData.products.reduce(
           (
             acc: {
               has: (arg0: any) => any;

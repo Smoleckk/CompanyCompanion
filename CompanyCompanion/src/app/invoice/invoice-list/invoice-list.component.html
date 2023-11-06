@@ -1,4 +1,4 @@
-<div class="container">
-    <app-breadcrumb headerDetail="Invoice List" (callParent)="addInvoice()"></app-breadcrumb>
+<div class="container" *transloco="let t">
+    <app-breadcrumb [headerDetail]="t('breadcrumb.invoices')"(callParent)="addInvoice()"></app-breadcrumb>
     <app-invoice-table few="all"></app-invoice-table>
 </div>

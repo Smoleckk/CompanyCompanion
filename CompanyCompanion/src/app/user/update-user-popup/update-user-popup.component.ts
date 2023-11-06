@@ -19,8 +19,8 @@ export class UpdateUserPopupComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     if (this.data.username != null && this.data.username != '') {
-      this.service.getByName(this.data.username).subscribe((editdata) => {
-        this.updateform.setValue({ username: editdata.username });
+      this.service.getByName(this.data.username).subscribe((editData) => {
+        this.updateform.setValue({ username: editData.username });
       });
     }
   }
