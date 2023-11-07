@@ -1,6 +1,7 @@
 {
   "login": {
-    "loginForm": "Witamy, zaloguj się!",
+    "loginForm": "Cześć, Witamy Ponownie!",
+    "loginSubTitle": "",
     "username": "Nazwa Użytkownika",
     "password": "Hasło",
     "loginButton": "Zaloguj",
@@ -23,8 +24,8 @@
     "changeLanguageSuccess": "Udało sie poprawnie zmienic jezyk aplikacji "
   },
   "welcome": {
-    "title": "Fakturio",
-    "subTitle": "Nasza intuicyjna i użyteczna aplikacja została stworzona z myślą o małych firmach, aby ułatwić im zarządzanie codziennymi operacjami. Jej wyjątkowy interfejs oraz wszechstronne funkcje zapewniają użytkownikom prostą i efektywną obsługę różnych aspektów działalności przedsiębiorstwa. Aplikacja ta rewolucjonizuje proces tworzenia i zarządzania fakturami oraz magazynami. Dzięki niej firmy mogą szybko i bezproblemowo generować faktury, śledzić stan magazynu, oraz zarządzać zamówieniami i dostawami. To wszystko sprawia, że firma może utrzymać porządek i skupić się na swoim rozwoju, zamiast tracić czas na nieefektywne i czasochłonne zadania.",
+    "title": "Twoje Cele, Nasza Wiedza \n-\n Twój Sukces",
+    "subTitle": "Odkryj potencjał, rozpal sukces dzięki naszej aplikacji do fakturowania!",
     "register": "Zarejestruj się!",
     "systemFeatures": "Funkcje Systemu!",
     "effectiveness": "WYDAJNOŚĆ",
@@ -37,7 +38,7 @@
     "offerHeaderSecond": "Zarządzanie Magazynem",
     "offerParamSecond": "Nasza aplikacja dostarcza również narzędzi do zarządzania magazynem i monitorowania stanów zapasów. Dzięki temu użytkownicy mogą szybko sprawdzać stan magazynowy, dodawać i usuwać produkty oraz tworzyć raporty związanymi z ich zapasami. Aplikacja umożliwia również tworzenie zamówień i śledzenie ich statusu.",
     "offerHeaderThird": "Bezpieczne Logowanie i Przechowywanie Danych",
-    "offerParamThird": "Nasza aplikacja zapewnia bezpieczne logowanie użytkowników i przechowywanie danych. Wszystkie dane są przechowywane w chmurze, co umożliwia użytkownikom dostęp do nich z dowolnego miejsca na świecie. Aplikacja oferuje również funkcję tworzenia kopii zapasowych danych, dzięki czemu użytkownicy nie muszą się martwić o utratę ważnych informacji. Wszystkie połączenia z aplikacją są szyfrowane, co zapewnia bezpieczeństwo przesyłanych danych.",
+    "offerParamThird": "Nasza aplikacja zapewnia bezpieczne logowanie użytkowników i przechowywanie danych. Wszystkie dane są przechowywane w chmurze, co umożliwia użytkownikom dostęp do nich z dowolnego miejsca na świecie. ",
     "userHeader": "Co Mówią Nasi Użytkownicy?",
     "userParam": "Dołącz do naszych zadowolonych klientów i wypróbuj Fakturio już dziś!",
     "userOpinionFirst": "Nasza firma korzysta z CompanyCompanion od kilku miesięcy i jesteśmy bardzo zadowoleni. Fakturowanie jest teraz znacznie łatwiejsze i szybsze, a kontrola magazynu jeszcze nigdy nie była tak prosta. Gorąco polecamy!",

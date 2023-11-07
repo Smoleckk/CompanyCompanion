@@ -1,21 +1,56 @@
-<mat-sidenav-container class="sidenav-container mat-app-background">
-    <section class="" *transloco="let t">
-        <nav style="background-image: linear-gradient(to right, #617055, #116444)">
-            <a routerLink="/welcome" mat-button>
-                <h1 style="color:#fff">Fakturio</h1>
+<mat-sidenav-container>
+    <section *transloco="let t">
+        <nav>
+            <a routerLink="/welcome">
+                Fakturio
             </a>
             <div class="nav-links" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
-                <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
-                    <mat-icon class="hide-icon fa fa-times">power_settings_new</mat-icon>
-                </button>
                 <ul>
-                    <app-language-selector></app-language-selector>
-                    <li><a style="color:#fff" routerLink="/login" mat-button>
-                            <mat-icon>face</mat-icon>
+                    <li><a routerLink="/welcome">
+                            Home
+                        </a></li>
+                    <li><a routerLink="/about">
+                            About
+                        </a></li>
+                    <li><a routerLink="/about">
+                            Blog
+                        </a></li>
+                    <li><a routerLink="/about">
+                            Contact
+                        </a></li>
+                </ul>
+                <ul>
+                    <!-- <app-language-selector></app-language-selector> -->
+                    <li><a routerLink="/login" mat-button>
+                            <mat-icon>lock</mat-icon>
                             {{ t("sidebar.login") }}
                         </a></li>
-                    <li><a style="color:#fff" routerLink="/register" mat-button>
-                            <mat-icon>how_to_reg</mat-icon>
+                    <li><a routerLink="/register" mat-button>
+                            {{ t("sidebar.register") }}
+                        </a></li>
+                </ul>
+            </div>
+            <div class="nav-links2" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
+                <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
+                    <mat-icon class="hide-icon fa fa-times">highlight_off</mat-icon>
+                </button>
+                <ul>
+                    <li><a routerLink="/welcome">
+                            Home
+                        </a></li>
+                    <li><a routerLink="/about">
+                            About
+                        </a></li>
+                    <li><a routerLink="/welcome">
+                            Blog
+                        </a></li>
+                    <li><a routerLink="/welcome">
+                            Contact
+                        </a></li>
+                    <li><a routerLink="/login">
+                            {{ t("sidebar.login") }}
+                        </a></li>
+                    <li><a routerLink="/register">
                             {{ t("sidebar.register") }}
                         </a></li>
                 </ul>

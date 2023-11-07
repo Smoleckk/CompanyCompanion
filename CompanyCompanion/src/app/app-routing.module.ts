@@ -25,8 +25,8 @@ import { Registerv2Component } from './auth/registerv2/registerv2.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: Registerv2Component },
-  // { path: 'register2', component: Registerv2Component },
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'about', component: AboutComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -45,11 +45,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
     canActivate: [AuthGuard],
   },
   {

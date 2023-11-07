@@ -1,72 +1,90 @@
-<div class="" *transloco="let t">
-  <section >
+<div style=" background-color: #edf1ee;" *transloco="let t">
+  <section class="text-box-section">
     <div class="text-box">
       <h1> {{t("welcome.title")}}</h1>
-      <p >
+      <h2>
         {{t("welcome.subTitle")}}
-      </p>
+      </h2>
       <a routerLink="/register" class="hero-btn">{{t("welcome.register")}}</a>
     </div>
   </section>
-  <section class="course">
-    <h1>{{t("welcome.offerHeader")}}</h1>
-    <p>
-      {{t("welcome.offerParam")}}
-    </p>
-    <div class="row">
-      <div class="course-col">
-        <h3>{{t("welcome.offerHeaderFirst")}}</h3>
-        <p>
-          {{t("welcome.offerParamFirst")}}
-        </p>
-      </div>
-      <div class="course-col">
-        <h3>{{t("welcome.offerHeaderSecond")}}</h3>
-        <p>
-          {{t("welcome.offerParamSecond")}}
-        </p>
-      </div>
-      <div class="course-col">
-        <h3>{{t("welcome.offerHeaderThird")}}</h3>
-        <p>
-          {{t("welcome.offerParamThird")}}
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials">
-    <h1>{{t("welcome.userHeader")}}</h1>
-    <p>
-      {{t("welcome.userParam")}}
-    </p>
-    <div class="row">
-      <div class="testimonials-col">
-        <div class="">
+  <section class="offer-section">
+    <div class="offer">
+      <h1>{{t("welcome.offerHeader")}}</h1>
+      <h2>
+        {{t("welcome.offerParam")}}
+      </h2>
+      <div class="row">
+        <div class="offer-col">
+          <h3>{{t("welcome.offerHeaderFirst")}}</h3>
           <p>
-            {{t("welcome.userOpinionFirst")}}
+            {{t("welcome.offerParamFirst")}}
           </p>
-          <h3>{{t("welcome.userNameFirst")}}</h3>
         </div>
-      </div>
-      <div class="testimonials-col">
-        <div class="">
+        <div class="offer-col">
+          <h3>{{t("welcome.offerHeaderSecond")}}</h3>
           <p>
-            {{t("welcome.userOpinionSecond")}}
+            {{t("welcome.offerParamSecond")}}
           </p>
-          <h3>{{t("welcome.userNameSecond")}}</h3>
+        </div>
+        <div class="offer-col">
+          <h3>{{t("welcome.offerHeaderThird")}}</h3>
+          <p>
+            {{t("welcome.offerParamThird")}}
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="testimonials">
-    <h4>{{t("welcome.aboutUsHeader")}}</h4>
-    <p>
-      {{t("welcome.aboutUsParam")}}
-    </p>
-    <a mat-icon-button>
-      <mat-icon>facebook</mat-icon>
-    </a>
+  <section class="testimonials-section">
+    <div class="testimonials">
+      <h1>{{t("welcome.userHeader")}}</h1>
+      <h2>
+        {{t("welcome.userParam")}}
+      </h2>
+      <div class="row">
+        <div class="testimonials-col">
+          <div class="">
+            <p>
+              {{t("welcome.userOpinionFirst")}}
+            </p>
+            <h3>{{t("welcome.userNameFirst")}}</h3>
+          </div>
+        </div>
+        <div class="testimonials-col">
+          <div class="">
+            <p>
+              {{t("welcome.userOpinionSecond")}}
+            </p>
+            <h3>{{t("welcome.userNameSecond")}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact-section">
+    <div class="contact">
+      <h1>Want to Chat? Feel free to Contact our Team.</h1>
+      <h2>
+        If you have anything in mind just contact us with our expert.
+      </h2>
+    </div>
+    <a routerLink="/register">Contact Us!</a>
+
+  </section>
+
+  <section class="footer-section">
+    <div class="footer">
+      <mat-card >
+        <h4>{{t("welcome.aboutUsHeader")}}</h4>
+        <p>
+          {{t("welcome.aboutUsParam")}}
+        </p>
+        <a mat-icon-button>
+          <mat-icon>facebook</mat-icon>
+        </a>
+      </mat-card>
+    </div>
   </section>
 </div>

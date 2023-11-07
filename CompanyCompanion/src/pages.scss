@@ -16,45 +16,57 @@ h6 {
 }
 nav {
   display: flex;
-  padding: 2% 6%;
+  padding: 1%;
+  min-height: 50px;
+  max-height: 100px;
+
   justify-content: space-between;
   align-items: center;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  z-index: 100;
+  background-color: #edf1ee;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 
   a {
-    color: #fff;
+    color: black;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 34px;
+    letter-spacing: 1px;
+    margin-right: 100px;
   }
 }
 
-h1 {
-  font-size: 36px;
-  letter-spacing: 1px;
-}
-
 .nav-links {
+  display: flex;
   flex: 1;
-  text-align: right;
+  justify-content: space-between;
+  align-items: center;
+  // text-align: right;
 
   ul li {
     list-style: none;
     display: inline-block;
-    padding: 8px 12px;
     position: relative;
 
     a {
-      color: #fff;
+      color: black;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 18px;
+      margin-right: 40px;
     }
   }
+}
+.nav-links2 {
+  display: none;
 }
 
 .nav-links ul li::after {
   content: "";
   width: 100%;
   height: 0px;
-  background-color: #116444;
+  background-color: #19352d;
   display: block;
   margin: auto;
   transition: 0.5s;
@@ -74,18 +86,20 @@ nav .fa {
   cursor: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .text-box h1 {
     font-size: 20px;
   }
 
-  .nav-links ul li {
-    display: block;
-  }
-
   .nav-links {
+    display: none;
+  }
+  .nav-links2 {
+    display: block;
+    flex-direction: column;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
     position: absolute;
-    background: #116444;
+    background: #edf1ee;
     height: 100vh;
     width: 200px;
     top: 0;
@@ -93,11 +107,32 @@ nav .fa {
     text-align: left;
     z-index: 2;
     transition: 1s;
+    ul {
+      margin-top: 100px;
+    }
+    ul li {
+      display: block;
+      padding: 20px;
+
+      a {
+        color: #19352d;
+        text-decoration: none;
+        font-size: 18px;
+        margin-left: 40px;
+        // background-color: red;
+      }
+      a:hover {
+        color: #19352d;
+        text-decoration: none;
+        font-size: 18px;
+        margin-left: 40px;
+      }
+    }
   }
 
   nav .fa {
     display: block;
-    color: #fff;
+    color: #19352d;
     font-size: 22px;
     cursor: pointer;
   }
@@ -116,74 +151,133 @@ nav .fa {
   }
 }
 .hero-btn {
-  display: inline-block;
-  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 50px;
+  padding: 0 38px;
+  text-align: center;
+  border-radius: 50px;
   color: #fff;
-  border: 1px solid #116444;
-  background-image: linear-gradient(to right, #617055, #116444);
-  padding: 18px 64px;
-  font-style: 13px;
-  position: relative;
-  cursor: pointer;
+  background-color: #29594b;
+  transition: all 0.3s ease-in-out 0s;
+  text-decoration: none;
+  padding: 14px 22px;
 }
 
 .hero-btn:hover {
-  border: 1px solid black;
-  color: black;
+  border: 1px solid #19352d;
+  color: #19352d;
   background: transparent;
   transition: 1s;
 }
 
 // color:#116444;
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .text-box h1 {
     font-size: 20px;
   }
 }
 .auth-middle {
+  background-color: #edf1ee;
   width: 100%;
-  height: 80%;
+  height: 100vh;
+  margin-top: 50px;
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  .auth-card-header {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-weight: 500;
+      margin-bottom: 2%;
+      font-size: 42px;
+      color: #19352d;
+    }
+
+    h2 {
+      margin: auto;
+      margin-bottom: 2%;
+      font-weight: 400;
+      font-size: 20px;
+    }
+  }
 }
 .auth-card {
-  width: 500px;
+  width: 600px;
+  margin: auto;
+  display: flex;
   height: 60vh;
-  margin: 5%;
+  padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .auth-card-register {
   width: 800px;
   height: 60vh;
-  margin: 5%;
+  padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .auth-card-form {
   display: flex;
 }
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .auth-card {
-    width: 300px;
-    height: 60vh;
-    margin: 5%;
+    width: 400px;
   }
   .auth-card-register {
-    width: 90%;
-    height: 100%;
-    margin: 5%;
-    padding: 10px 0;
+    min-height: 80vh;
+    // height: 100%;
   }
   .auth-card-form {
     flex-wrap: wrap;
   }
+  .auth-middle {
+    .auth-card-header {
+      h1 {
+        font-weight: 500;
+        font-size: 26px;
+        color: #19352d;
+      }
+
+      h2 {
+        margin: auto;
+        margin-bottom: 2%;
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+  }
+}
+.auth-card-content {
+  button {
+    font-weight: 700;
+    font-size: 18px;
+    // padding: 0 38px;
+    width: 100%;
+    text-align: center;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #29594b;
+    border: 1px solid black;
+    transition: all 0.3s ease-in-out 0s;
+    text-decoration: none;
+    padding: 14px 22px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border: 1px solid black;
+    color: black;
+    background: transparent;
+    transition: 1s;
+    background-color: #fff;
+  }
 }
 .auth-card-header {
-  // background-image: linear-gradient(to right, #617055, #116444);
-  margin-bottom: 5%;
+  margin-bottom: 10px;
   h1 {
-    // color: #fff;
     font-weight: 400;
     padding: 10px;
     margin: auto;

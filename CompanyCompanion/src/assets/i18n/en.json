@@ -1,6 +1,7 @@
 {
   "login": {
-    "loginForm": "Welcome, log in!",
+    "loginForm": "Hi, Welcome Back!",
+    "loginSubTitle": "",
     "username": "Username",
     "password": "Password",
     "loginButton": "Login",
@@ -24,8 +25,8 @@
     "changeLanguageSuccess": "Successfully change language "
   },
   "welcome": {
-    "title": "Fakturio",
-    "subTitle": "Our intuitive and useful app has been developed for small businesses to help them manage their day-to-day operations. Its unique interface and comprehensive features provide users with a simple and efficient way to handle various aspects of their business. The application revolutionises the creation and management of invoices and warehouses. It allows companies to quickly and seamlessly generate invoices, track inventory, and manage orders and deliveries. All of this means that a company can stay organised and focus on its growth, instead of wasting time on inefficient and time-consuming tasks.",
+    "title": "Your Goals, Our Knowledge \n-\n Your Success",
+    "subTitle": "Discover the Potential, Ignite the Success with Our Invoicing Application!",
     "register": "Sign Up!",
     "systemFeatures": "System Features!",
     "effectiveness": "EFFECTIVENESS",
@@ -38,7 +39,7 @@
     "offerHeaderSecond": "Inventory Management",
     "offerParamSecond": "Our application also provides tools for inventory management and monitoring stock levels. This allows users to quickly check stock status, add and remove products, and create reports related to their inventory. The application also enables the creation of orders and tracking their status.",
     "offerHeaderThird": "Secure Login and Data Storage",
-    "offerParamThird": "Our application ensures secure user login and data storage. All data is stored in the cloud, allowing users to access it from anywhere in the world. The application also offers data backup functionality, so users don't have to worry about losing important information. All connections to the application are encrypted, ensuring the security of transmitted data.",
+    "offerParamThird": "Our application provides secure user login and data storage. All data is stored in the cloud, allowing users to access it from anywhere in the world.",
     "userHeader": "What Our Users Say?",
     "userParam": "Join our satisfied customers and try Fakturio today!",
     "userOpinionFirst": "Our company has been using CompanyCompanion for several months, and we are very satisfied. Invoicing is now much easier and faster, and inventory control has never been so straightforward. We highly recommend it!",
