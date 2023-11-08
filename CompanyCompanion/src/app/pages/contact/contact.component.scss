@@ -1,0 +1,151 @@
+.offer-section {
+  min-height: 30vh;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.offer {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+
+  h1 {
+    font-size: 64px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  h2 {
+    margin: auto;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-weight: 500;
+    font-size: 28px;
+    color: #fff;
+  }
+}
+.row {
+  // margin-top: 4%;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.offer-col {
+  flex-basis: 27%;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+.offer-button {
+  margin: auto;
+  background-color: #29594b;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h3 {
+  text-align: center;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+// .offer-col:hover {
+//   box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+// }
+
+@media (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+  .text-box-section {
+    min-height: 30vh;
+  }
+  .text-box,
+  .offer {
+    margin-bottom: 10%;
+
+    h1 {
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 2%;
+      margin-top: 5%;
+    }
+    h2 {
+      margin-bottom: 5%;
+      margin-top: 5%;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 2%;
+    }
+  }
+}
+.contact-section {
+  min-height: 50vh;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+mat-card {
+  max-width: 1400px;
+  border-radius: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  .contact-col {
+    flex-basis: 44%;
+    box-sizing: border-box;
+    transition: 0.5s;
+    text-align: left;
+    h1 {
+      font-size: 64px;
+      font-weight: 600;
+      color: #29594b;
+      line-height: 1em;
+    }
+  }
+  button {
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #29594b;
+    transition: all 0.3s ease-in-out 0s;
+    text-decoration: none;
+    padding: 14px 22px;
+    width: 200px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border: 1px solid black;
+    color: black;
+    background: transparent;
+    transition: 1s;
+    background-color: #fff;
+  }
+}
+@media (max-width: 700px) {
+  mat-card {
+
+
+    .contact-col {
+      h1 {
+        font-size: 44px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

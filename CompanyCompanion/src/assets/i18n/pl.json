@@ -23,6 +23,24 @@
     "toasterWrongInputData": "Proszę sprawdź dane wejściowe",
     "changeLanguageSuccess": "Udało sie poprawnie zmienic jezyk aplikacji "
   },
+  "footer": {
+    "contactHeader": "Fakturio.",
+    "contactCopyright": "Prawa autorskie @2023 Smoleckk",
+    "linksHeader": "Nawigacja",
+    "homeLink": "Strona główna",
+    "aboutLink": "O nas",
+    "contactLink": "Kontakt",
+    "featuresLink": "Funkcje",
+    "howToUseLink": "Jak korzystać",
+    "companyHeader": "Firma",
+    "faqLink": "FAQ",
+    "blogsLink": "Blogi",
+    "supportHeader": "Wsparcie",
+    "privacyLink": "Polityka prywatności",
+    "cookiePolicyLink": "Polityka plików cookie",
+    "termsOfUseLink": "Warunki użytkowania",
+    "selfServiceLink": "Obsługa samoobsługowa"
+  },
   "welcome": {
     "title": "Twoje Cele, Nasza Wiedza \n-\n Twój Sukces",
     "subTitle": "Odkryj potencjał, rozpal sukces dzięki naszej aplikacji do fakturowania!",
@@ -46,7 +64,35 @@
     "userOpinionSecond": "CompanyCompanion pomógł nam zoptymalizować naszą działalność od pierwszego dnia. Proces fakturowania stał się prostszy, a zarządzanie magazynem jest teraz bardziej efektywne. Polecamy tę aplikację każdemu przedsiębiorcy.",
     "userNameSecond": "Klient z branży spożywczej",
     "aboutUsHeader": "O Nas!",
-    "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była wydajna i przyjemna."
+    "aboutUsParam": "Jesteśmy zespołem doświadczonych specjalistów tworzących proste narzędzia dla małych firm. Nasza misja to ułatwienie zarządzania fakturami, ofertami i magazynem. CompanyCompanion to rozwiązanie stworzone dla właścicieli małych firm, aby ich praca była wydajna i przyjemna.",
+    "contactHeader": "Chcesz porozmawiać?",
+    "contactParam": "Jeśli masz coś na myśli, skontaktuj się z nami i skonsultuj się z naszym ekspertem.",
+    "contactParamButton": "Skontaktuj się z nami!"
+  },
+  "about": {
+    "title": "KIM JESTEŚMY",
+    "subTitle": "Jesteśmy łatwą w użyciu aplikacją zaprojektowaną, aby pomóc małym firmom zarządzać ich codziennymi operacjami z łatwością. Dzięki intuicyjnemu interfejsowi i wszechstronnym funkcjom.",
+    "aboutUsTitle": "O nas",
+    "discoverOurPassionTitle": "Odkryj Naszą Pasję",
+    "ourAppDescription": "Nasza Aplikacja - Twój Klucz do Szybszego i Łatwiejszego Zarządzania Fakturami, Magazynem i Kontrahentami",
+    "learnMoreAboutUs": "Więcej o nas"
+  },
+    "contact": {
+      "contactUsTitle": "Skontaktuj się z nami w sprawie zapytań",
+      "contactUsSubTitle": "Otrzymaj wszystkie informacje i skontaktuj się z nami bezpośrednio stąd",
+      "ourAddressTitle": "Nasz Adres",
+      "ourAddress": "Krakowskie Przedmieście 48/50,\n00-071 Warszawa",
+      "contactInfoTitle": "Informacje kontaktowe",
+      "contactInfo": "Otwórz czat lub zadzwoń pod numer\n519 176 921",
+      "emailSupportTitle": "Wsparcie e-mail",
+      "emailSupport": "Obsługa e-mail 24/7\nfakturio@fakturio.com",
+      "haveInquiriesTitle": "Masz pytania? Skontaktuj się za pomocą wiadomości",
+      "username": "Nazwa użytkownika",
+      "email": "E-mail",
+      "messageLabel": "Wiadomość",
+      "messagePlaceholder": "Wiadomość",
+      "messageRequired": "Pole jest wymagane",
+      "contactButton": "Skontaktuj się"
   },
   "register": {
     "title": "Zarejestruj się w Fakturio!",
@@ -211,22 +257,22 @@
   "printProform": {
     "proform": "Proforma",
     "toPay": "Do zaplaty"
-    },
-    "breadcrumb": {
-      "home": "Początek >",
-      "customers": "Klienci",
-      "invoices": "Faktury",
-      "invoice": " > Faktura",
-      "reviews": "Podsumowanie",
-      "about": "O nas",
-      "dashboard": "Panel",
-      "products": "Produkty",
-      "profile": "Profil",
-      "proformas": "Proformy",
-      "proforma": " > Proforma",
-      "coWorkers": "Współpracownicy",
-      "search": "Wyszukaj"
-    },
+  },
+  "breadcrumb": {
+    "home": "Początek >",
+    "customers": "Klienci",
+    "invoices": "Faktury",
+    "invoice": " > Faktura",
+    "reviews": "Podsumowanie",
+    "about": "O nas",
+    "dashboard": "Panel",
+    "products": "Produkty",
+    "profile": "Profil",
+    "proformas": "Proformy",
+    "proforma": " > Proforma",
+    "coWorkers": "Współpracownicy",
+    "search": "Wyszukaj"
+  },
   "buttons": {
     "save": "Zapisz",
     "update": "Aktualizuj",

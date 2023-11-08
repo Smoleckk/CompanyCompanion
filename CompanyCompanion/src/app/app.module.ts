@@ -74,6 +74,9 @@ import { DocumentProductTableComponent } from './components/document-product-tab
 import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
 import { SidebarSubmainComponent } from './sidebar-submain/sidebar-submain.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HeaderComponent } from './pages/components/header/header.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { FooterComponent } from './pages/components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +127,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     SidebarMainComponent,
     SidebarSubmainComponent,
     NotFoundComponent,
+    HeaderComponent,
+    ContactComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

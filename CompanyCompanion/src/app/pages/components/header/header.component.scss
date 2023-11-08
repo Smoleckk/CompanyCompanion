@@ -1,0 +1,50 @@
+.text-box-section {
+    min-height: 35vh;
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .text-box {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  
+    h1 {
+      font-weight: 600;
+      margin-bottom: 2%;
+      font-size: 85px;
+      line-height: 1em;
+      color: #19352d;
+    }
+  
+    h2 {
+      margin: auto;
+      margin-bottom: 2%;
+      font-weight: 500;
+      font-size: 28px;
+    }
+  }
+  @media (max-width: 700px) {
+    .text-box-section {
+      min-height: 30vh;
+    }
+    .text-box,
+    .offer {
+      margin-top: 10%;
+  
+      h1 {
+        font-size: 36px;
+        font-weight: 500;
+        margin-bottom: 2%;
+        margin-top: 5%;
+      }
+      h2 {
+        margin-bottom: 5%;
+        margin-top: 5%;
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 2%;
+      }
+    }
+  }

@@ -1,0 +1,48 @@
+<section class="footer-section" *transloco="let t">
+    <div class="footer">
+        <mat-card>
+            <div class="footer-col">
+                <h1>{{t('footer.contactHeader')}}</h1>
+                <h2>{{t('footer.contactCopyright')}}</h2>
+                <div>
+                    <a mat-icon-button>
+                        <mat-icon>facebook</mat-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h1>{{t('footer.linksHeader')}}</h1>
+                <div class="footer-links">
+                    <ul>
+                        <li><a routerLink="/welcome">{{t('footer.homeLink')}}</a></li>
+                        <li><a routerLink="/about">{{t('footer.aboutLink')}}</a></li>
+                        <li><a routerLink="/contact">{{t('footer.contactLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.featuresLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.howToUseLink')}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h1>{{t('footer.companyHeader')}}</h1>
+                <div class="footer-links">
+                    <ul>
+                        <li><a routerLink="/welcome">{{t('footer.homeLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.faqLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.blogsLink')}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h1>{{t('footer.supportHeader')}}</h1>
+                <div class="footer-links">
+                    <ul>
+                        <li><a routerLink="/welcome">{{t('footer.privacyLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.cookiePolicyLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.termsOfUseLink')}}</a></li>
+                        <li><a routerLink="/welcome">{{t('footer.selfServiceLink')}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</section>

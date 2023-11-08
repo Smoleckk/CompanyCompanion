@@ -65,26 +65,14 @@
   </section>
   <section class="contact-section">
     <div class="contact">
-      <h1>Want to Chat? Feel free to Contact our Team.</h1>
-      <h2>
-        If you have anything in mind just contact us with our expert.
-      </h2>
-    </div>
-    <a routerLink="/register">Contact Us!</a>
-
-  </section>
-
-  <section class="footer-section">
-    <div class="footer">
-      <mat-card >
-        <h4>{{t("welcome.aboutUsHeader")}}</h4>
-        <p>
-          {{t("welcome.aboutUsParam")}}
-        </p>
-        <a mat-icon-button>
-          <mat-icon>facebook</mat-icon>
-        </a>
-      </mat-card>
+      <div >
+        <h1>{{t("welcome.contactHeader")}}</h1>
+        <h2>
+          {{t("welcome.contactParam")}}
+        </h2>
+      </div>
+      <a routerLink="/contact">{{t("welcome.contactParamButton")}}</a>
     </div>
   </section>
+  <app-footer></app-footer>
 </div>

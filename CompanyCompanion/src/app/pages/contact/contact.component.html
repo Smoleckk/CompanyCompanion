@@ -1,0 +1,67 @@
+<div style=" background-color: #edf1ee;" *transloco="let t">
+  <app-header [title]="t('contact.contactUsTitle')" [subTitle]="t('contact.contactUsSubTitle')"></app-header>
+  <section class="offer-section">
+    <div class="offer">
+      <div class="row">
+        <div class="offer-col">
+          <a mat-icon-button disabled class="offer-button">
+            <mat-icon style="transform: scale(1.5);">location_on</mat-icon>
+          </a>
+          <h3>{{t('contact.ourAddressTitle')}}</h3>
+          <p>
+            {{t('contact.ourAddress')}}
+          </p>
+        </div>
+        <div class="offer-col">
+          <a mat-icon-button disabled class="offer-button">
+            <mat-icon style="transform: scale(1.5)">phone</mat-icon>
+          </a>
+          <h3>{{t('contact.contactInfoTitle')}}</h3>
+          <p>
+            {{t('contact.contactInfo')}}
+          </p>
+        </div>
+        <div class="offer-col">
+          <a mat-icon-button disabled class="offer-button">
+            <mat-icon style="transform: scale(1.5)">mail_outline</mat-icon>
+          </a>
+          <h3>{{t('contact.emailSupportTitle')}}</h3>
+          <p>
+            {{t('contact.emailSupport')}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact-section">
+    <mat-card class="offer" style="background-color: #edf1ee;">
+      <div class="row">
+        <div class="contact-col">
+          <h1>{{t('contact.haveInquiriesTitle')}}</h1>
+        </div>
+        <div class="contact-col">
+          <form class="form" [formGroup]="contactForm" (ngSubmit)="proceedLogin()">
+            <app-form-field [form]="contactForm" [label]="t('contact.username')" controlName="username"
+              cssClass="full-width" type="text">
+            </app-form-field>
+            <app-form-field [form]="contactForm" [label]="t('contact.email')" controlName="email" cssClass="full-width"
+              type="email">
+            </app-form-field>
+            <mat-form-field  appearance="outline" class="full-width">
+              <mat-label>{{t('contact.messageLabel')}}</mat-label>
+              <textarea rows="5" matInput placeholder="{{t('contact.messagePlaceholder')}}" formControlName="message"></textarea>
+              <!-- <mat-error *ngIf="contactForm.get('message')?.hasError('required')">{{t('contact.messageRequired')}}
+              </mat-error> -->
+            </mat-form-field>
+            <div class="form-submit">
+              <button>{{t("contact.contactButton")}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card>
+  </section>
+
+  <app-footer></app-footer>
+
+</div>

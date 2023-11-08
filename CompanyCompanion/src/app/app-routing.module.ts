@@ -23,11 +23,13 @@ import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct
 // import { ParentComponent } from './zabawa/parent/parent.component';
 import { Registerv2Component } from './auth/registerv2/registerv2.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ContactComponent } from './pages/contact/contact.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: Registerv2Component },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '404', component: NotFoundComponent },
   {
     path: 'dashboard',

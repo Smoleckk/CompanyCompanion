@@ -8,7 +8,6 @@
     "member": "Not a member?",
     "signUp": "Sign up now!",
     "login": "Go to login!"
-
   },
   "toaster": {
     "toasterWelcome": "Welcome in Fakturio",
@@ -23,6 +22,24 @@
     "toasterUpdateSuccess": "Updated successfully",
     "toasterWrongInputData": "Please check input data",
     "changeLanguageSuccess": "Successfully change language "
+  },
+  "footer": {
+    "contactHeader": "Fakturio.",
+    "contactCopyright": "Copyright @2023 Smoleckk",
+    "linksHeader": "Links",
+    "homeLink": "Home",
+    "aboutLink": "About us",
+    "contactLink": "Contact",
+    "featuresLink": "Features",
+    "howToUseLink": "How use",
+    "companyHeader": "Company",
+    "faqLink": "FAQ's",
+    "blogsLink": "Blogs",
+    "supportHeader": "Support",
+    "privacyLink": "Privacy",
+    "cookiePolicyLink": "Cookie policy",
+    "termsOfUseLink": "Terms of use",
+    "selfServiceLink": "Self-service"
   },
   "welcome": {
     "title": "Your Goals, Our Knowledge \n-\n Your Success",
@@ -47,7 +64,35 @@
     "userOpinionSecond": "CompanyCompanion has helped us streamline our operations from day one. The invoicing process has become easier, and inventory management is now more efficient. We recommend this application to every entrepreneur.",
     "userNameSecond": "Customer from the food industry",
     "aboutUsHeader": "About Us!",
-    "aboutUsParam": "We are a team of experienced specialists creating simple tools for small businesses. Our mission is to simplify the management of invoices, quotes, and inventory. CompanyCompanion is a solution designed for small business owners to make their work efficient and enjoyable."
+    "aboutUsParam": "We are a team of experienced specialists creating simple tools for small businesses. Our mission is to simplify the management of invoices, quotes, and inventory. CompanyCompanion is a solution designed for small business owners to make their work efficient and enjoyable.",
+    "contactHeader": "Want to Chat?",
+    "contactParam": "If you have anything in mind just contact us with our expert.",
+    "contactParamButton": "Contact Us!"
+  },
+  "about": {
+    "title": "WHO WE ARE",
+    "subTitle": "We are an easy-to-use application designed to help small businesses manage their daily operations with ease. With an intuitive interface and versatile features.",
+    "aboutUsTitle": "About Us",
+    "discoverOurPassionTitle": "Discover Our Passion",
+    "ourAppDescription": "Our Application - Your Key to Faster and Easier Management of Invoices, Inventory, and Clients.",
+    "learnMoreAboutUs": "Learn More About Us"
+  },
+  "contact": {
+    "contactUsTitle": "Contact us for inquiries",
+    "contactUsSubTitle": "Get all the information and contact us directly from here",
+    "ourAddressTitle": "Our Address",
+    "ourAddress": "Krakowskie Przedmieście 48/50,\n00-071 Warsaw",
+    "contactInfoTitle": "Contact Information",
+    "contactInfo": "Open a chat or give us a call at\n519 176 921",
+    "emailSupportTitle": "Email Support",
+    "emailSupport": "24/7 email service\nfakturio@fakturio.com",
+    "haveInquiriesTitle": "Have inquiries? Contact us via message",
+    "username": "Username",
+    "email": "Email",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Message",
+    "messageRequired": "Field is required",
+    "contactButton": "Contact Us"
   },
   "register": {
     "title": "Sign up to Fakturio!",
@@ -226,7 +271,6 @@
     "proforma": " > Proforma",
     "coWorkers": "Co-workers",
     "search": "Search"
-
   },
   "buttons": {
     "save": "Save",
