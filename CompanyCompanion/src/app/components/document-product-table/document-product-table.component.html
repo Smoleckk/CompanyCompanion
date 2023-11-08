@@ -1,7 +1,7 @@
 <!-- Table of products -->
 <div *transloco="let t">
     <mat-grid-list [cols]="breakpoint9" (window:resize)="onResize($event)" rowHeight="35px"
-        style="background-color: #607d8b; margin-bottom: 5px">
+        style=" margin-bottom: 5px;">
         <mat-grid-tile [colspan]="colspan3">
             <h4 class="tableHeader">{{t('invoiceForm.name')}}</h4>
         </mat-grid-tile>

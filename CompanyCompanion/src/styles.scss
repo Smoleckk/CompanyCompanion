@@ -1,39 +1,137 @@
 @use "@angular/material" as mat;
 @import "@angular/material/theming";
+@import "toaster";
+@import "pages";
+
 @include mat.core();
-// light
-// $angular-primary-light: mat.define-palette(mat.$teal-palette);
-$angular-primary-light: mat.define-palette(mat.$blue-grey-palette);
-$angular-accent-light: mat.define-palette(mat.$green-palette);
-$angular-warn-light: mat.define-palette(mat.$pink-palette);
-// dark
-$angular-primary-dark: mat.define-palette(mat.$blue-grey-palette);
-$angular-accent-dark: mat.define-palette(mat.$purple-palette);
-$angular-warn-dark: mat.define-palette(mat.$pink-palette);
 
-$angular-default-theme: mat.define-light-theme(
+$dark-navy-green-palette: (
+  50: #19352d,
+  100: #19352d,
+  200: #19352d,
+  300: #19352d,
+  400: #19352d,
+  500: #19352d,
+  600: #19352d,
+  700: #19352d,
+  800: #19352d,
+  900: #19352d,
+  A100: #19352d,
+  A200: #19352d,
+  A400: #19352d,
+  A700: #19352d,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+$bright-navy-green-palette: (
+  50: #145a46,
+  100: #145a46,
+  200: #145a46,
+  300: #145a46,
+  400: #145a46,
+  500: #145a46,
+  600: #145a46,
+  700: #145a46,
+  800: #145a46,
+  900: #145a46,
+  A100: #145a46,
+  A200: #145a46,
+  A400: #145a46,
+  A700: #145a46,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: black,
+    600: black,
+    700: black,
+    800: black,
+    900: black,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: black,
+    A700: black,
+  ),
+);
+
+$crimson-palette: (
+  50: #ffebef,
+  100: #ffcdc5,
+  200: #f0999f,
+  300: #e77179,
+  400: #f24e58,
+  500: #f83a40,
+  600: #e9313e,
+  700: #d72638,
+  800: #ca1e30,
+  900: #bb0d24,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+$greeny-primary-dark: mat.define-palette(
+  $dark-navy-green-palette,
+  700,
+  300,
+  900
+);
+$greeny-accent-dark: mat.define-palette(
+  $dark-navy-green-palette,
+  300,
+  100,
+  500
+);
+$greeny-warn-dark: mat.define-palette($crimson-palette, 700);
+$greeny-theme-light: mat.define-light-theme(
   (
     color: (
-      primary: $angular-primary-light,
-      accent: $angular-accent-light,
-      warn: $angular-warn-light,
+      primary: $greeny-primary-dark,
+      accent: $greeny-accent-dark,
+      warn: $greeny-warn-dark,
     ),
   )
 );
-
-$angular-dark-theme: mat.define-dark-theme(
+$greeny-primary: mat.define-palette($bright-navy-green-palette, 700, 300, 900);
+$greeny-accent: mat.define-palette($bright-navy-green-palette, 300, 100, 500);
+$greeny-warn: mat.define-palette($crimson-palette, 700);
+$greeny-theme-dark: mat.define-dark-theme(
   (
     color: (
-      primary: $angular-primary-dark,
-      accent: $angular-accent-dark,
-      warn: $angular-warn-dark,
+      primary: $greeny-primary,
+      accent: $greeny-accent,
+      warn: $greeny-warn,
     ),
   )
 );
-@include mat.all-component-themes($angular-default-theme);
+@include mat.all-component-themes($greeny-theme-light);
 
 .darkMode {
-  @include mat.all-component-colors($angular-dark-theme);
+  @include mat.all-component-colors($greeny-theme-dark);
 }
 
 html,
@@ -56,8 +154,6 @@ body {
   margin: 0;
 }
 
-@import "toaster";
-@import "pages";
 
 .container {
   margin: auto;
@@ -231,4 +327,3 @@ mat-card {
 mat-icon {
   cursor: pointer;
 }
-
