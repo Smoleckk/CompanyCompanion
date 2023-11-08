@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,19 +8,24 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   displaymenu = false;
+  notFound = false;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private authService: AuthService) {}
 
   ngDoCheck(): void {
-    if (
-      this.route.url == '/login' ||
-      this.route.url == '/register' ||
-      this.route.url == '/about' ||
-      this.route.url == '/welcome'
-    ) {
-      this.displaymenu = false;
-    } else {
+    if (this.authService.haveAccess()) {
       this.displaymenu = true;
+    } else {
+      this.displaymenu = false;
     }
+      if (
+    this.route.url == '/login' ||
+    this.route.url == '/register' ||
+    this.route.url == '/about' ||
+    this.route.url == '/welcome'
+  ) {
+    this.displaymenu = false;
   }
+  }
+
 }

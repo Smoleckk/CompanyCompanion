@@ -1,0 +1,29 @@
+.text-box-section {
+    // background-color: #fff;
+    // margin-top: 400px;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .text-box {
+    height: 300px;
+    width: 800px;
+    margin: auto;
+    text-align: center;
+  
+    h1 {
+      font-weight: 500;
+      margin-bottom: 2%;
+      font-size: 100px;
+      line-height: 1em;
+      color: #19352d;
+    }
+  
+    h2 {
+      margin: auto;
+      margin-bottom: 2%;
+      font-weight: 500;
+      font-size: 28px;
+    }
+  }

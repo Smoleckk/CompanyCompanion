@@ -22,11 +22,13 @@ import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-l
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
 // import { ParentComponent } from './zabawa/parent/parent.component';
 import { Registerv2Component } from './auth/registerv2/registerv2.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: Registerv2Component },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'about', component: AboutComponent },
+  { path: '404', component: NotFoundComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -117,11 +119,7 @@ const routes: Routes = [
     component: ProfileDetailsComponent,
     canActivate: [AuthGuard],
   },
-  // {
-  //   path: 'zabawa',
-  //   component: ParentComponent,
-  //    canActivate: [AuthGuard],
-  // },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({

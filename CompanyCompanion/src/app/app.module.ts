@@ -73,6 +73,7 @@ import { FormFieldDataPickerComponent } from './components/form-field-data-picke
 import { DocumentProductTableComponent } from './components/document-product-table/document-product-table.component';
 import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
 import { SidebarSubmainComponent } from './sidebar-submain/sidebar-submain.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,6 +123,7 @@ import { SidebarSubmainComponent } from './sidebar-submain/sidebar-submain.compo
     DocumentProductTableComponent,
     SidebarMainComponent,
     SidebarSubmainComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
