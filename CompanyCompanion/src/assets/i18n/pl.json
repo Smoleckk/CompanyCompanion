@@ -43,7 +43,7 @@
   },
   "welcome": {
     "title": "Twoje Cele, Nasza Wiedza \n-\n Twój Sukces",
-    "subTitle": "Odkryj potencjał, rozpal sukces dzięki naszej aplikacji do fakturowania!",
+    "subTitle": "Odkryj potencjał, rozpal sukces dzięki naszej aplikacji do fakturowania",
     "register": "Zarejestruj się!",
     "systemFeatures": "Funkcje Systemu!",
     "effectiveness": "WYDAJNOŚĆ",
@@ -77,22 +77,22 @@
     "ourAppDescription": "Nasza Aplikacja - Twój Klucz do Szybszego i Łatwiejszego Zarządzania Fakturami, Magazynem i Kontrahentami",
     "learnMoreAboutUs": "Więcej o nas"
   },
-    "contact": {
-      "contactUsTitle": "Skontaktuj się z nami w sprawie zapytań",
-      "contactUsSubTitle": "Otrzymaj wszystkie informacje i skontaktuj się z nami bezpośrednio stąd",
-      "ourAddressTitle": "Nasz Adres",
-      "ourAddress": "Krakowskie Przedmieście 48/50,\n00-071 Warszawa",
-      "contactInfoTitle": "Informacje kontaktowe",
-      "contactInfo": "Otwórz czat lub zadzwoń pod numer\n519 176 921",
-      "emailSupportTitle": "Wsparcie e-mail",
-      "emailSupport": "Obsługa e-mail 24/7\nfakturio@fakturio.com",
-      "haveInquiriesTitle": "Masz pytania? Skontaktuj się za pomocą wiadomości",
-      "username": "Nazwa użytkownika",
-      "email": "E-mail",
-      "messageLabel": "Wiadomość",
-      "messagePlaceholder": "Wiadomość",
-      "messageRequired": "Pole jest wymagane",
-      "contactButton": "Skontaktuj się"
+  "contact": {
+    "contactUsTitle": "Skontaktuj się z nami w sprawie zapytań",
+    "contactUsSubTitle": "Otrzymaj wszystkie informacje i skontaktuj się z nami bezpośrednio stąd",
+    "ourAddressTitle": "Nasz Adres",
+    "ourAddress": "Krakowskie Przedmieście 48/50,\n00-071 Warszawa",
+    "contactInfoTitle": "Informacje kontaktowe",
+    "contactInfo": "Otwórz czat lub zadzwoń pod numer\n519 176 921",
+    "emailSupportTitle": "Wsparcie e-mail",
+    "emailSupport": "Obsługa e-mail 24/7\nfakturio@fakturio.com",
+    "haveInquiriesTitle": "Masz pytania? Skontaktuj się za pomocą wiadomości",
+    "username": "Nazwa użytkownika",
+    "email": "E-mail",
+    "messageLabel": "Wiadomość",
+    "messagePlaceholder": "Wiadomość",
+    "messageRequired": "Pole jest wymagane",
+    "contactButton": "Skontaktuj się"
   },
   "register": {
     "title": "Zarejestruj się w Fakturio!",

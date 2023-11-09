@@ -1,19 +1,22 @@
 <div style=" background-color: #edf1ee;" *transloco="let t">
-  <section class="text-box-section " >
-    <div class="text-box " data-aos="fade-up" data-aos-duration="2000">
-      <h1> {{t("welcome.title")}}</h1>
+  <section class="text-box-section ">
+    <div class="text-box ">
+      <h1 data-aos="slide-left" data-aos-duration="2000"> {{t("welcome.title")}}</h1>
       <div>
-      <h2 >
-        {{t("welcome.subTitle")}}
-      </h2>
-      <a routerLink="/register" class="hero-btn">{{t("welcome.register")}}</a>
-    </div>
+        <div data-aos="slide-down" data-aos-duration="1500">
+          <h2>
+            {{t("welcome.subTitle")}}
+          </h2>
+          <a routerLink="/register" class="hero-btn">{{t("welcome.register")}}</a>
+        </div>
+      </div>
     </div>
   </section>
   <section class="offer-section">
     <div class="offer ">
-      <h1 data-aos="slide-right" data-aos-duration="3000">{{t("welcome.offerHeader")}}</h1>
-      <h2 data-aos="slide-right" data-aos-duration="3000">
+      <h1>{{t("welcome.offerHeader")}}</h1>
+      <h2>
+        <!-- data-aos="slide-right" data-aos-duration="3000" -->
         {{t("welcome.offerParam")}}
       </h2>
       <div class="row">
@@ -39,30 +42,30 @@
     </div>
   </section>
 
-<section class="testimonials-section" data-aos="fade-up" data-aos-duration="3000">
-  <div class="testimonials">
-    <h1>{{t("welcome.userHeader")}}</h1>
-    <h2>{{t("welcome.userParam")}}</h2>
-    <div class="row">
-      <div class="testimonials-col" data-aos="slide-right" data-aos-duration="3000">
-        <div class="">
-          <p>{{t("welcome.userOpinionFirst")}}</p>
-          <h3>{{t("welcome.userNameFirst")}}</h3>
+  <section class="testimonials-section" data-aos="fade-up" data-aos-duration="3000">
+    <div class="testimonials">
+      <h1>{{t("welcome.userHeader")}}</h1>
+      <h2>{{t("welcome.userParam")}}</h2>
+      <div class="row">
+        <div class="testimonials-col" data-aos="slide-right" data-aos-duration="3000">
+          <div class="">
+            <p>{{t("welcome.userOpinionFirst")}}</p>
+            <h3>{{t("welcome.userNameFirst")}}</h3>
+          </div>
         </div>
-      </div>
-      <div class="testimonials-col " data-aos="slide-left" data-aos-duration="3000">
-        <div class="">
-          <p>{{t("welcome.userOpinionSecond")}}</p>
-          <h3>{{t("welcome.userNameSecond")}}</h3>
+        <div class="testimonials-col " data-aos="slide-left" data-aos-duration="3000">
+          <div class="">
+            <p>{{t("welcome.userOpinionSecond")}}</p>
+            <h3>{{t("welcome.userNameSecond")}}</h3>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section class="contact-section" data-aos="fade-up" data-aos-duration="3000">
     <div class="contact">
-      <div >
+      <div>
         <h1>{{t("welcome.contactHeader")}}</h1>
         <h2>
           {{t("welcome.contactParam")}}

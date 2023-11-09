@@ -5,14 +5,13 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { ToastrService } from 'ngx-toastr';
-import { InvoiceService } from '../../service/invoice.service';
-import { ProfileService } from 'src/app/service/profile.service';
-import { UserProfile } from 'src/app/models/userProfile';
 import { Invoice } from 'src/app/models/invoice';
+import { UserProfile } from 'src/app/models/userProfile';
+import { ProfileService } from 'src/app/service/profile.service';
+import { InvoiceService } from '../../service/invoice.service';
 
 @Component({
   selector: 'app-invoice-print-popup',
@@ -87,14 +86,34 @@ export class InvoicePrintPopupComponent implements OnInit {
     }
   }
 
-  public makePdf(): void {
-    const pdf = new jsPDF('p', 'pt', 'a4');
-    pdf.setFont('helvetica');
-    pdf.setFontSize(4);
-    pdf.html(this.content.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('sample.pdf');
-      },
+  // public makePdf(): void {
+  //   const pdf = new jsPDF('p', 'pt', 'a4');
+  //   pdf.setFont('helvetica');
+  //   pdf.setFontSize(4);
+  //   pdf.html(this.content.nativeElement, {
+  //     callback: (pdf) => {
+  //       pdf.save('sample.pdf');
+  //     },
+  //   });
+  // }
+
+  /*
+Generowanie pliku pdf, ale jest to ss
+*/
+  makePdf(): void {
+    const contentElement = this.content.nativeElement;
+    const w = contentElement.offsetWidth;
+    const h = contentElement.offsetHeight;
+
+    html2canvas(contentElement, {
+      scale: 3,
+    }).then((canvas: any) => {
+      const img = canvas.toDataURL('image/jpeg', 1);
+      const doc = new jsPDF('p', 'px', [w, h]);
+      doc.addImage(img, 'JPEG', 0, 0, w, h);
+      // doc.autoPrint();
+      // doc.output('dataurlnewwindow');
+      doc.save('Faktura_' + this.editData.invoiceNo + '.pdf');
     });
   }
 }
