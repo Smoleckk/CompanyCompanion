@@ -6,9 +6,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { UserProfile } from '../models/userProfile';
-import { AuthService } from '../service/auth.service';
-import { ProfileService } from '../service/profile.service';
+import { UserProfile } from '../../models/userProfile';
+import { AuthService } from '../../service/auth.service';
+import { ProfileService } from '../../service/profile.service';
 
 @Component({
   selector: 'app-sidebar-submain',

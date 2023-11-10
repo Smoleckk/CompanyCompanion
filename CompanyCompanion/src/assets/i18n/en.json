@@ -94,6 +94,10 @@
     "messageRequired": "Field is required",
     "contactButton": "Contact Us"
   },
+  "blog": {
+    "blogTitle": "Explore our News",
+    "blogSubTitle": "Find the team members details here with all the information"
+  },
   "register": {
     "title": "Sign up to Fakturio!",
     "subTitle": "This information will let us know more about you.",

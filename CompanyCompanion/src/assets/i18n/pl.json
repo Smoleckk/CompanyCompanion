@@ -94,6 +94,10 @@
     "messageRequired": "Pole jest wymagane",
     "contactButton": "Skontaktuj się"
   },
+  "blog": {
+    "blogTitle": "Eksploruj nasze nowości",
+    "blogSubTitle": "Znajdź szczegóły członków zespołu tutaj z wszystkimi informacjami"
+  },
   "register": {
     "title": "Zarejestruj się w Fakturio!",
     "subTitle": "Te informacje pozwolą nam dowiedzieć się więcej o Tobie.",

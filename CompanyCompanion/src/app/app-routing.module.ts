@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
 import { CreateInvoiceComponent } from './invoice/invoice-create/invoice-create.component';
 import { AuthGuard } from './shared/auth.guard';
@@ -20,16 +19,17 @@ import { ProfileDetailsComponent } from './profile/profile-details/profile-detai
 import { InvoiceReviewComponent } from './invoice/invoice-review/invoice-review.component';
 import { InvoiceCorrectListComponent } from './invoice/correct/invoice-correct-list/invoice-correct-list.component';
 import { InvoiceCorrectCreateComponent } from './invoice/correct/invoice-correct-create/invoice-correct-create.component';
-// import { ParentComponent } from './zabawa/parent/parent.component';
 import { Registerv2Component } from './auth/registerv2/registerv2.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { BlogListComponent } from './pages/blog/blog-list/blog-list.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: Registerv2Component },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'blog', component: BlogListComponent },
   { path: '404', component: NotFoundComponent },
   {
     path: 'dashboard',

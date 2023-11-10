@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -22,6 +22,7 @@ export class SidebarComponent {
     this.route.url == '/login' ||
     this.route.url == '/register' ||
     this.route.url == '/about' ||
+    this.route.url == '/blog' ||
     this.route.url == '/welcome'
   ) {
     this.displaymenu = false;
