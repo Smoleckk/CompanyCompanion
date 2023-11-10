@@ -106,8 +106,8 @@
           <p style="font-weight: bold">{{ totalBruttoSum | currency }}</p>
         </div>
         <div class="sideBySide">
-          <p style="width: 60px">{{t('printInvoice.inLetters')}}</p>
-          <p>Tysiac dwiescie czterdziesci dwa 10/100 PLN</p>
+          <p>{{t('printInvoice.inLetters')}}: </p>
+          <p>{{n2words(totalBruttoSum)}}</p>
         </div>
       </div>
       <div class="nine">

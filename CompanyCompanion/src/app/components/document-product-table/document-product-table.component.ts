@@ -4,6 +4,7 @@ import { InvoiceService } from '../../service/invoice.service';
 import { ProductService } from 'src/app/service/product.service';
 import { ProductMagazine } from 'src/app/models/productMagazine';
 import { Invoice } from 'src/app/models/invoice';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-document-product-table',
@@ -58,12 +59,10 @@ export class DocumentProductTableComponent implements OnInit {
     const detailForm = this.builder.group({
       productCode: [],
       productName: [],
-      qty: [],
+      qty: 1,
       unit: [],
-      salesPrice: [],
-      vat: [],
-      // bruttoPrice: { value: '', disabled: true },
-      // nettoPrice: { value: '', disabled: true },
+      salesPrice: 0,
+      vat: 0,
       bruttoPrice: [],
       nettoPrice: [],
     });
@@ -107,28 +106,38 @@ export class DocumentProductTableComponent implements OnInit {
     let qty = this.invoiceProduct.get('qty')?.value;
     let price = this.invoiceProduct.get('salesPrice')?.value;
     let vat = this.invoiceProduct.get('vat')?.value;
-    let totalBrutto = qty * price * (1 + vat / 100);
-    let totalNetto = qty * price;
-    this.invoiceProduct.get('bruttoPrice')?.patchValue((Math.round(totalBrutto*100)/100).toFixed(2));
-    this.invoiceProduct.get('nettoPrice')?.patchValue((Math.round(totalNetto*100)/100).toFixed(2));
+    let totalBrutto: number = qty * price * (1 + vat / 100);
+    let totalNetto: number = qty * price;
+    this.invoiceProduct
+      .get('bruttoPrice')
+      ?.patchValue(
+        parseFloat((Math.round(totalBrutto * 100) / 100).toFixed(2))
+      );
+
+    this.invoiceProduct
+      .get('nettoPrice')
+      ?.patchValue(parseFloat((Math.round(totalNetto * 100) / 100).toFixed(2)));
 
     this.summaryCalculation();
   }
   summaryCalculation() {
     let array = this.invoiceForm.getRawValue().products;
-    let sumTotalBrutto = 0;
-    let sumTotalNetto = 0;
-    array.forEach((x: any) => {
+
+    let sumTotalBrutto: number = 0;
+    let sumTotalNetto: number = 0;
+    array.forEach((x: Product) => {
       sumTotalBrutto = sumTotalBrutto + x.bruttoPrice;
     });
-    array.forEach((x: any) => {
+    array.forEach((x: Product) => {
       sumTotalNetto = sumTotalNetto + x.nettoPrice;
     });
-    this.invoiceForm.get('total')?.patchValue((Math.round(sumTotalBrutto*100)/100).toFixed(2));
+    this.invoiceForm
+      .get('total')
+      ?.patchValue((Math.round(sumTotalBrutto * 100) / 100).toFixed(2));
     const calculatedTax = sumTotalBrutto - sumTotalNetto;
-    console.log(calculatedTax);
-    
-    this.invoiceForm.get('tax')?.patchValue(calculatedTax.toFixed(2));
+    this.invoiceForm
+      .get('tax')
+      ?.patchValue((Math.round(calculatedTax * 100) / 100).toFixed(2));
     this.invoiceForm.get('netTotal')?.patchValue(sumTotalNetto);
   }
 }

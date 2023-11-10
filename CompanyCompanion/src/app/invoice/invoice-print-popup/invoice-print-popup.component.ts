@@ -10,9 +10,10 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Invoice } from 'src/app/models/invoice';
 import { UserProfile } from 'src/app/models/userProfile';
-import { ProfileService } from 'src/app/service/profile.service';
 import { InvoiceService } from '../../service/invoice.service';
-
+// @ts-ignore
+import n2words from 'n2words';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-invoice-print-popup',
   templateUrl: './invoice-print-popup.component.html',
@@ -30,7 +31,7 @@ export class InvoicePrintPopupComponent implements OnInit {
 
   constructor(
     private service: InvoiceService,
-    private profileService: ProfileService,
+    private cookieService: CookieService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -86,6 +87,13 @@ export class InvoicePrintPopupComponent implements OnInit {
     }
   }
 
+  n2words(amount: number): string {
+    if (this.cookieService.get('language') == 'en') {
+      return ': ' + n2words(amount.toFixed(2), { lang: 'en' }) + ' PLN';
+    } else {
+      return ': ' + n2words(amount.toFixed(2), { lang: 'pl' }) + ' PLN';
+    }
+  }
   // public makePdf(): void {
   //   const pdf = new jsPDF('p', 'pt', 'a4');
   //   pdf.setFont('helvetica');
@@ -111,8 +119,6 @@ Generowanie pliku pdf, ale jest to ss
       const img = canvas.toDataURL('image/jpeg', 1);
       const doc = new jsPDF('p', 'px', [w, h]);
       doc.addImage(img, 'JPEG', 0, 0, w, h);
-      // doc.autoPrint();
-      // doc.output('dataurlnewwindow');
       doc.save('Faktura_' + this.editData.invoiceNo + '.pdf');
     });
   }
