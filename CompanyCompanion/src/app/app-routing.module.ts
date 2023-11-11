@@ -23,6 +23,7 @@ import { Registerv2Component } from './auth/registerv2/registerv2.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { BlogListComponent } from './pages/blog/blog-list/blog-list.component';
+import { BlogDetailComponent } from './pages/blog/blog-detail/blog-detail.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: Registerv2Component },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'blog', component: BlogListComponent },
+  { path: 'blog-detail', component: BlogDetailComponent },
   { path: '404', component: NotFoundComponent },
   {
     path: 'dashboard',

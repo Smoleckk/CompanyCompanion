@@ -1,0 +1,84 @@
+<div style=" background-color: #edf1ee;" *transloco="let t">
+    <app-header [title]="t('blog.blogTitle')" [subTitle]="t('blog.blogSubTitle')"></app-header>
+    <section class="contact-section">
+        <div class="flexbox" >
+            <div class="blog-detail-left">
+                <mat-card>
+                    <img [src]="'../../../assets/images/blog/' + blogDetail.Id + '.jpg'" alt="contact">
+                    <div class="blog-detail-left-text">
+                        <p>{{ blogDetail.readingTime }}. {{ blogDetail.categories }}</p>
+                        <h1>{{ blogDetail.title }}</h1>
+                        <hr />
+                        <p>{{ blogDetail.introduction }}</p>
+                        <p>{{ blogDetail.development }}</p>
+                        <hr />
+                        <h3>{{ blogDetail.quote }}</h3>
+                        <hr />
+                        <p>{{ blogDetail.summary }}</p>
+                        <hr />
+                        <h1>{{ blogDetail.author }}</h1>
+                    </div>
+                </mat-card>
+                <mat-card class="blog-detail-left-comment-list">
+                    <div>
+                        <h1>Comments</h1>
+                        <hr />
+                        <div *ngFor="let comment of comments; let last = last">
+                            <div class="comment">
+                                <h2>{{comment.author}}</h2>
+                                <h2 style="color: #ccc;">{{comment.date}}</h2>
+                            </div>
+                            <p>{{comment.comment}}</p>
+                            <hr *ngIf="!last"/>
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-card class="blog-detail-left-comment">
+                    <div>
+                        <h1>Add Your Comments</h1>
+                        <h2>Sign in to post your comment or signup if you do not have any account.</h2>
+                        <form class="form" [formGroup]="contactForm" (ngSubmit)="proceedLogin()">
+                            <app-form-field [form]="contactForm" [label]="t('contact.username')" controlName="username"
+                                cssClass="full-width" type="text">
+                            </app-form-field>
+                            <app-form-field [form]="contactForm" [label]="t('contact.email')" controlName="email"
+                                cssClass="full-width" type="email">
+                            </app-form-field>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>{{t('contact.messageLabel')}}</mat-label>
+                                <textarea rows="5" matInput placeholder="{{t('contact.messagePlaceholder')}}"
+                                    formControlName="message"></textarea>
+                                <!-- <mat-error *ngIf="contactForm.get('message')?.hasError('required')">{{t('contact.messageRequired')}}
+                              </mat-error> -->
+                            </mat-form-field>
+                            <div class="form-submit">
+                                <button>Post Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="blog-detail-right">
+                <h1>Category</h1>
+                <ul *ngFor="let blog of blogList">
+                    <a routerLink="/blog-detail">
+                        <li>{{ blog.Categories }}</li>
+                    </a>
+                </ul>
+                <h1 style="margin-top: 60px">Recent News</h1>
+                <div class="blog-detail-right-recent" *ngFor="let blog of blogList">
+                    <a routerLink="/blog-detail">
+                        <img [src]="'../../../assets/images/blog/' + blog.Id + '.jpg'" alt="contact">
+                    </a>
+                    <h3>{{ blog.Author }}. {{ blog.ReadingTime }}. {{ blog.Categories }}</h3>
+                    <a routerLink="/blog-detail">
+                        <h2>{{ blog.Title }}</h2>
+                    </a>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <app-footer></app-footer>
+</div>

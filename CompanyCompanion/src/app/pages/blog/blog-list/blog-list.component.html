@@ -1,12 +1,12 @@
 <div style=" background-color: #edf1ee;" *transloco="let t">
     <app-header [title]="t('blog.blogTitle')" [subTitle]="t('blog.blogSubTitle')"></app-header>
     <section class="contact-section">
-        <div class="flexbox" data-aos="slide-up" data-aos-duration="2000">
-            <div class="swing" *ngFor="let blog of blogList" >
-                <a routerLink="/welcome">
+        <div class="flexbox" data-aos="slide-up" data-aos-duration="1000">
+            <div  *ngFor="let blog of blogList" >
+                <a routerLink="/blog-detail">
                     <img [src]="'../../../assets/images/blog/' + blog.Id + '.jpg'" alt="contact">
                 </a>
-                <a routerLink="/welcome">
+                <a routerLink="/blog-detail">
                     <h1>{{ blog.Title }}</h1>
                 </a>
                 <hr />
