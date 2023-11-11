@@ -35,22 +35,22 @@
                     <mat-icon class="hide-icon fa fa-times">highlight_off</mat-icon>
                 </button>
                 <ul>
-                    <li><a routerLink="/welcome">
+                    <li><a routerLink="/welcome" (click)="HideMenu()">
                             Home
                         </a></li>
-                    <li><a routerLink="/about">
+                    <li><a routerLink="/about" (click)="HideMenu()">
                             About
                         </a></li>
-                    <li><a routerLink="/contact">
+                    <li><a routerLink="/contact" (click)="HideMenu()">
                             Contact
                         </a></li>
-                    <li><a routerLink="/blog">
+                    <li><a routerLink="/blog" (click)="HideMenu()">
                             Blog
                         </a></li>
-                    <li><a routerLink="/login">
+                    <li><a routerLink="/login" (click)="HideMenu()">
                             {{ t("sidebar.login") }}
                         </a></li>
-                    <li><a routerLink="/register">
+                    <li><a routerLink="/register" (click)="HideMenu()">
                             {{ t("sidebar.register") }}
                         </a></li>
                 </ul>

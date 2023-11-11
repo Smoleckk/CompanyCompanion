@@ -76,6 +76,7 @@ import { UpdateUserPopupComponent } from './user/update-user-popup/update-user-p
 import { UserCreatePopupComponent } from './user/user-create-popup/user-create-popup.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { BlogListComponent } from './pages/blog/blog-list/blog-list.component';
+import { BlogDetailComponent } from './pages/blog/blog-detail/blog-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,6 +130,7 @@ import { BlogListComponent } from './pages/blog/blog-list/blog-list.component';
     ContactComponent,
     FooterComponent,
     BlogListComponent,
+    BlogDetailComponent,
   ],
   imports: [
     BrowserModule,

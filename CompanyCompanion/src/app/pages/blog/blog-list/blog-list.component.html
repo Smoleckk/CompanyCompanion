@@ -1,18 +1,19 @@
 <div style=" background-color: #edf1ee;" *transloco="let t">
     <app-header [title]="t('blog.blogTitle')" [subTitle]="t('blog.blogSubTitle')"></app-header>
     <section class="contact-section">
-      <div class="contact-box">
-        <div class="contact" data-aos="slide-right" data-aos-duration="3000">
-          <img src="../../../assets/images/aboutus.jpg" alt="contact">
+        <div class="flexbox" data-aos="slide-up" data-aos-duration="2000">
+            <div class="swing" *ngFor="let blog of blogList" >
+                <a routerLink="/welcome">
+                    <img [src]="'../../../assets/images/blog/' + blog.Id + '.jpg'" alt="contact">
+                </a>
+                <a routerLink="/welcome">
+                    <h1>{{ blog.Title }}</h1>
+                </a>
+                <hr />
+                <h2>{{ blog.Author }}. {{ blog.ReadingTime }}. {{ blog.Categories }}</h2>
+            </div>
         </div>
-        <div class="contact" data-aos="slide-left" data-aos-duration="3000">
-          <h3>{{t('about.aboutUsTitle')}}</h3>
-          <h1>{{t('about.discoverOurPassionTitle')}}</h1>
-          <h2>{{t('about.ourAppDescription')}}</h2>
-          <a routerLink="/about">{{t('about.learnMoreAboutUs')}}</a>
-        </div>
-      </div>
     </section>
+
     <app-footer></app-footer>
-  </div>
-  
+</div>
