@@ -1,10 +1,10 @@
 <div style=" background-color: #edf1ee;" *transloco="let t">
-    <app-header [title]="t('blog.blogTitle')" [subTitle]="t('blog.blogSubTitle')"></app-header>
+    <app-header title="Single Blog Details" subTitle="..."></app-header>
     <section class="contact-section">
-        <div class="flexbox" >
+        <div class="flexbox">
             <div class="blog-detail-left">
                 <mat-card>
-                    <img [src]="'../../../assets/images/blog/' + blogDetail.Id + '.jpg'" alt="contact">
+                    <img [src]="'../../../assets/images/blog/' + blogDetail.id + '.jpg'" alt="contact">
                     <div class="blog-detail-left-text">
                         <p>{{ blogDetail.readingTime }}. {{ blogDetail.categories }}</p>
                         <h1>{{ blogDetail.title }}</h1>
@@ -12,7 +12,12 @@
                         <p>{{ blogDetail.introduction }}</p>
                         <p>{{ blogDetail.development }}</p>
                         <hr />
-                        <h3>{{ blogDetail.quote }}</h3>
+                        <div class=""
+                            style="display: flex;flex-direction:column;align-items: center;text-align: center;">
+                            <mat-icon style="color: #29594b;transform: scale(2);" >format_quote</mat-icon>
+                            <h3>{{ blogDetail.quote }}</h3>
+                            <h4>{{ blogDetail.quoteAuthor }}</h4>
+                        </div>
                         <hr />
                         <p>{{ blogDetail.summary }}</p>
                         <hr />
@@ -29,7 +34,7 @@
                                 <h2 style="color: #ccc;">{{comment.date}}</h2>
                             </div>
                             <p>{{comment.comment}}</p>
-                            <hr *ngIf="!last"/>
+                            <hr *ngIf="!last" />
                         </div>
                     </div>
                 </mat-card>

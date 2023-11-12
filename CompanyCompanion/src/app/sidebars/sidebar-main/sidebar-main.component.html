@@ -1,4 +1,4 @@
-<mat-sidenav-container >
+<mat-sidenav-container>
     <section *transloco="let t">
         <nav>
             <a routerLink="/welcome">
@@ -7,16 +7,16 @@
             <div class="nav-links" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
                 <ul>
                     <li><a routerLink="/welcome">
-                            Home
+                        {{ t("footer.homeLink") }}
                         </a></li>
                     <li><a routerLink="/about">
-                            About
+                        {{ t("footer.aboutLink") }}
                         </a></li>
-                        <li><a routerLink="/contact">
-                            Contact
+                    <li><a routerLink="/contact">
+                        {{ t("footer.contactLink") }}
                         </a></li>
                     <li><a routerLink="/blog">
-                            Blog
+                            {{ t("footer.blogsLink") }}
                         </a></li>
                 </ul>
                 <ul>
@@ -31,21 +31,23 @@
                 </ul>
             </div>
             <div class="nav-links2" id="navlinks" [ngClass]="{ hidemenu: hideMenu }">
-                <button (click)="HideMenu()" class="hide-icon" mat-icon-button>
-                    <mat-icon class="hide-icon fa fa-times">highlight_off</mat-icon>
-                </button>
+                <div style="width: 100%;display:flex;justify-content: end;">
+                    <button (click)="HideMenu()" class="hide-icon"  mat-icon-button>
+                        <mat-icon class="hide-icon fa fa-times">highlight_off</mat-icon>
+                    </button>
+                </div>
                 <ul>
                     <li><a routerLink="/welcome" (click)="HideMenu()">
-                            Home
+                        {{ t("footer.homeLink") }}
                         </a></li>
                     <li><a routerLink="/about" (click)="HideMenu()">
-                            About
+                        {{ t("footer.aboutLink") }}
                         </a></li>
                     <li><a routerLink="/contact" (click)="HideMenu()">
-                            Contact
+                        {{ t("footer.contactLink") }}
                         </a></li>
                     <li><a routerLink="/blog" (click)="HideMenu()">
-                            Blog
+                        {{ t("footer.blogsLink") }}
                         </a></li>
                     <li><a routerLink="/login" (click)="HideMenu()">
                             {{ t("sidebar.login") }}

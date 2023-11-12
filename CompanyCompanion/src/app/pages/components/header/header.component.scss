@@ -1,9 +1,36 @@
 .text-box-section {
-    min-height: 35vh;
+    min-height: 45vh;
     margin-top: 50px;
     width: 100%;
     display: flex;
     align-items: center;
+    position: relative;
+  }
+  .img-left{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 250px;
+    height: 250px;
+    animation: MoveUpDown 4s linear infinite;
+  }
+
+  .img-right{
+    position: absolute;
+    bottom: 0px;
+    right: 100px;
+    width: 250px;
+    height: 250px;
+    animation: MoveUpDown 4s linear infinite;
+  }
+    
+  @keyframes MoveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
   .text-box {
     width: 80%;
@@ -25,9 +52,64 @@
       font-size: 28px;
     }
   }
+  @media (max-width: 1600px) {
+    .img-left{
+      width: 200px;
+      height: 200px;
+      left: -10px;
+    }
+    .text-box,
+    .offer {
+      h1 {
+        font-weight: 600;
+        margin-bottom: 2%;
+        font-size: 65px;
+        line-height: 1em;
+        color: #19352d;
+      }
+    
+      h2 {
+        margin: auto;
+        margin-bottom: 2%;
+        font-weight: 500;
+        font-size: 24px;
+      }
+    }
+    
+  }
+  @media (max-width: 1000px) {
+    .img-left{
+      width: 150px;
+      height: 150px;
+      left: -15px;
+    }
+    .text-box,
+    .offer {
+      h1 {
+        font-weight: 600;
+        margin-bottom: 2%;
+        font-size: 45px;
+        line-height: 1em;
+        color: #19352d;
+      }
+    
+      h2 {
+        margin: auto;
+        margin-bottom: 2%;
+        font-weight: 500;
+        font-size: 20px;
+      }
+    }
+  }
   @media (max-width: 700px) {
+    .img-left{
+      width: 100px;
+      height: 100px;
+      left: -20px;
+      // bottom: -20px;
+    }
     .text-box-section {
-      min-height: 30vh;
+      min-height: 35vh;
     }
     .text-box,
     .offer {
@@ -42,7 +124,7 @@
       h2 {
         margin-bottom: 5%;
         margin-top: 5%;
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 500;
         margin-bottom: 2%;
       }

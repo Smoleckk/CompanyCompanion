@@ -41,12 +41,13 @@ export class BlogDetailComponent {
   }
 
   blogDetail: any = {
-    Id: '2',
+    id: '2',
     title: 'Sztuka Samodzielnego Uczestnictwa: Dlaczego Warto Być Niezależnym',
     introduction:
       'W dzisiejszym świecie, w którym dostęp do informacji jest na wyciągnięcie ręki, coraz ważniejsza staje się umiejętność samodzielnego myślenia i działania. W tym artykule przyjrzymy się, dlaczego warto być niezależnym myślicielem i uczestnikiem życia, zamiast podążać za tłumem.',
     quote:
-      'Najlepszym sposobem przewidywania przyszłości jest ją tworzyć. - Peter Drucker',
+      'Najlepszym sposobem przewidywania przyszłości jest ją tworzyć.',
+    quoteAuthor: 'Peter Drucker',
     development:
       'Samodzielność umożliwia nam podejmowanie decyzji niezależnie od wpływu innych. To umiejętność, która pozwala nam rozumieć i analizować świat, dokonywać wyborów, a także wpływać na własny los. Samodzielni ludzie często wyznaczają trendy, zamiast podążać za nimi. Samodzielność stwarza przestrzeń do tworzenia, innowacji i osiągania osobistego spełnienia.',
     summary:
@@ -63,7 +64,8 @@ export class BlogDetailComponent {
       Introduction:
         'W dzisiejszym świecie, w którym dostęp do informacji jest na wyciągnięcie ręki, coraz ważniejsza staje się umiejętność samodzielnego myślenia i działania. W tym artykule przyjrzymy się, dlaczego warto być niezależnym myślicielem i uczestnikiem życia, zamiast podążać za tłumem.',
       Quote:
-        'Najlepszym sposobem przewidywania przyszłości jest ją tworzyć. - Peter Drucker',
+        'Najlepszym sposobem przewidywania przyszłości jest ją tworzyć.',
+      QuoteAuthor: 'Peter Drucker',
       Development:
         'Samodzielność umożliwia nam podejmowanie decyzji niezależnie od wpływu innych. To umiejętność, która pozwala nam rozumieć i analizować świat, dokonywać wyborów, a także wpływać na własny los. Samodzielni ludzie często wyznaczają trendy, zamiast podążać za nimi. Samodzielność stwarza przestrzeń do tworzenia, innowacji i osiągania osobistego spełnienia.',
       Summary:
@@ -78,7 +80,8 @@ export class BlogDetailComponent {
         'Sztuka Skutecznego Zarządzania Czasem: Strategie Efektywnego Planowania',
       Introduction:
         'Zarządzanie czasem jest kluczowym elementem osiągania sukcesu w dzisiejszym szybkim tempie życia. W tym artykule omówimy strategie efektywnego planowania czasu i osiągania zamierzonych celów.',
-      Quote: 'Czas to pieniądz. - Benjamin Franklin',
+      Quote: 'Czas to pieniądz.',
+      QuoteAuthor: 'Benjamin Franklin',
       Development:
         'Efektywne zarządzanie czasem obejmuje identyfikację priorytetów, tworzenie realistycznych planów, eliminację rozproszeń i skupienie się na kluczowych zadaniach. Osoby potrafiące skutecznie zarządzać czasem mają większą szansę na osiągnięcie sukcesu zawodowego i osobistego.',
       Summary:
